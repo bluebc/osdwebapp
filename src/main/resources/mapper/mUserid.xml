@@ -3,12 +3,12 @@
 <mapper namespace="Userid">
 
    		
-   		 <select id = "getUserid" resultType="com.osd.web.app.dto.UseridDto">
-   			 select TOP 1 * from Userid 
+   		 <select id = "getUserid" resultType="UseridDto">
+   			 select TOP * id from userid
    		 </select>
    		 
    		 
-   		 <select id="getUseridAll" resultType="com.osd.web.app.dto.UseridDto">
+   		 <select id="getUseridAll" resultType="UseridDto">
    		 	select * from Userid
    		 </select>
         
