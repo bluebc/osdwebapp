@@ -4,7 +4,7 @@
 
    		
    		 <select id = "getUserid" resultType="UseridDto">
-   			 select TOP * id from userid
+   			 select TOP 1 * from userid
    		 </select>
    		 
    		 
