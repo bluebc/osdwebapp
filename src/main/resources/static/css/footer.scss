@@ -102,8 +102,7 @@ footer{
 // 웹모바일 768px
 @include itablet{
     footer{
-
-    .footer_info{
+        .footer_info{
           
           padding: 0 3rem 3rem;
           .ft-sns{
@@ -155,16 +154,15 @@ footer{
                   }
               }
           }
-    }
-    
-    .footer_nav{
+        }
+        .footer_nav{
           //카테고리
           display: block;
           
           .category_wrap{
             display: none;
             position: fixed;
-            z-index: 15;
+            z-index: 10;
             top: 0;
             left: 0;
             bottom: 0;
@@ -253,7 +251,6 @@ footer{
                   
                   .accordion-content{
                     display: none;
-                    padding: 10px;
                     background: #fff;
                     
                     li{
@@ -292,7 +289,7 @@ footer{
     
           .footer_navbar{
             position: fixed;
-            z-index: 16;
+            z-index: 11;
             bottom: 0;
             left: 0;
             width: 100%;
@@ -330,81 +327,80 @@ footer{
               }
             }
           }
-    }
-
+        }
     }
 }
 
 // 425px
 @include galaxy{
-  footer{
-    .footer_info{
-      padding: 0 2rem;
-      .ft-sns{
-          ul{
-              gap: 0.5rem;
-              li{
-                  a{
-                      width: 2.5rem;
-                      height: 2.5rem;
-                      background-size: auto 2.5rem;
-                  }
-                  .sns1{background-position: 0 0;}
-                  .sns2{background-position: -2.5rem 0;}
-                  .sns3{background-position: -5rem 0;}
-                  .sns4{background-position: -7.5rem 0;}
-                  .sns5{background-position: -10rem 0;}
-                  .sns6{background-position: -12.5rem 0;}
-                  .sns7{background-position: -15rem 0;}
-                  .sns8{background-position: -17.5rem 0;}
-              } 
-          } 
-      }
-      .ft-fot{
-          .ft_info{
-              .ft_cs{
-                  span{
-                      line-height: 1.2;
-                  }
-              } 
-          }
-          .ft_logo{
-              a{
-                  img{
-                      width: 80px;
-                  }
-              } 
-          }  
-      } 
-    }
-    .footer_nav{}
-  } 
+    footer{
+            .footer_info{
+            padding: 0 2rem;
+            .ft-sns{
+                ul{
+                    gap: 0.5rem;
+                    li{
+                        a{
+                            width: 2.5rem;
+                            height: 2.5rem;
+                            background-size: auto 2.5rem;
+                        }
+                        .sns1{background-position: 0 0;}
+                        .sns2{background-position: -2.5rem 0;}
+                        .sns3{background-position: -5rem 0;}
+                        .sns4{background-position: -7.5rem 0;}
+                        .sns5{background-position: -10rem 0;}
+                        .sns6{background-position: -12.5rem 0;}
+                        .sns7{background-position: -15rem 0;}
+                        .sns8{background-position: -17.5rem 0;}
+                    } 
+                } 
+            }
+            .ft-fot{
+                .ft_info{
+                    .ft_cs{
+                        span{
+                            line-height: 1.2;
+                        }
+                    } 
+                }
+                .ft_logo{
+                    a{
+                        img{
+                            width: 80px;
+                        }
+                    } 
+                }  
+            } 
+            }
+            .footer_nav{}
+    } 
 }
 
 // 375px
 @include iphone{
-  footer{
-    .footer_info{
-      .ft-sns{
-        ul{
-            li{
-                a{
-                    width: 2rem;
-                    height: 2rem;
-                    background-size: auto 2rem;
-                }
-                .sns1{background-position: 0 0;}
-                .sns2{background-position: -2rem 0;}
-                .sns3{background-position: -4rem 0;}
-                .sns4{background-position: -6rem 0;}
-                .sns5{background-position: -8rem 0;}
-                .sns6{background-position: -10rem 0;}
-                .sns7{background-position: -12rem 0;}
-                .sns8{background-position: -14rem 0;}
-            } 
-        } 
+    footer{
+      .footer_info{
+        .ft-sns{
+          ul{
+              li{
+                  a{
+                      width: 2rem;
+                      height: 2rem;
+                      background-size: auto 2rem;
+                  }
+                  .sns1{background-position: 0 0;}
+                  .sns2{background-position: -2rem 0;}
+                  .sns3{background-position: -4rem 0;}
+                  .sns4{background-position: -6rem 0;}
+                  .sns5{background-position: -8rem 0;}
+                  .sns6{background-position: -10rem 0;}
+                  .sns7{background-position: -12rem 0;}
+                  .sns8{background-position: -14rem 0;}
+              } 
+          } 
+        }
       }
+      .footer_nav{}
     }
-    .footer_nav{}
-  }
-}  
+}

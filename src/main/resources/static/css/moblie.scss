@@ -12,10 +12,7 @@
 
 /*패드 991px*/
 @include tablet{
-
 }
-
-
 
 /*아이패드 768px*/
 @include itablet{
@@ -330,6 +327,7 @@
     
     main{
         #health{
+            padding: 5rem 0 0;
             .content{
                 .he-img{
                     .he-box{
@@ -412,10 +410,12 @@
     
 }
 
+
 /* 모바일4 아이폰 375px */
 @include iphone{
     main{
         #health{
+            padding: 4rem 0 0;
             .content{
                 .he-img {
                     .he-box {
@@ -430,6 +430,9 @@
                                     
                                 }
                             }
+                        }
+                        .he-tit{
+                            right: 2.5rem;
                         }
                     }
                 }

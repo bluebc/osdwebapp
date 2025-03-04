@@ -233,6 +233,9 @@
 }
 /* 모바일3 갤석시 425px */
 @media screen and (max-width: 425px) {
+  main #health {
+    padding: 5rem 0 0;
+  }
   main #health .content .he-img .he-box {
     top: 12rem;
   }
@@ -282,12 +285,18 @@
   }
 }
 /* 모바일4 아이폰 375px */
-@media screen and (max-width: 340px) {
+@media screen and (max-width: 344px) {
+  main #health {
+    padding: 4rem 0 0;
+  }
   main #health .content .he-img .he-box {
     top: 10rem;
   }
   main #health .content .he-img .he-box .he-container .he-wrapper .he-sw img {
     border: 5px solid white;
     width: 150px;
+  }
+  main #health .content .he-img .he-box .he-tit {
+    right: 2.5rem;
   }
 }/*# sourceMappingURL=moblie.css.map */

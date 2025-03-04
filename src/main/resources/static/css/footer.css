@@ -149,7 +149,7 @@ footer .footer_nav {
   footer .footer_nav .category_wrap {
     display: none;
     position: fixed;
-    z-index: 15;
+    z-index: 10;
     top: 0;
     left: 0;
     bottom: 0;
@@ -258,7 +258,7 @@ footer .footer_nav {
   }
   footer .footer_nav .footer_navbar {
     position: fixed;
-    z-index: 16;
+    z-index: 11;
     bottom: 0;
     left: 0;
     width: 100%;
@@ -340,7 +340,7 @@ footer .footer_nav {
     width: 80px;
   }
 }
-@media screen and (max-width: 340px) {
+@media screen and (max-width: 344px) {
   footer .footer_info .ft-sns ul li a {
     width: 2rem;
     height: 2rem;
