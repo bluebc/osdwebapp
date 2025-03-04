@@ -13,22 +13,17 @@
 
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <link rel="stylesheet" href="css/reset.css">
-    <link defer rel="stylesheet" href="css/inc.css">
     <link rel="stylesheet" href="css/index.css">
     <link rel="stylesheet" href="css/moblie.css">
 
-    <!-- jsdelivr -->
-    <!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" /> -->
-
+    
     <!--favicon--->
     <link href="img/favicon.ico" rel="icon">
 
     <!--js-->
-    <!-- <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> -->
     <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
     <script  src="http://code.jquery.com/jquery-latest.min.js"></script>
     
-    <script defer src="js/inc.js"></script>
     <script src="js/swiper.js"></script>
     <script src="js/menu_scroll.js"></script>
 
@@ -39,7 +34,10 @@
 
 </head>
 <body>
-    
+
+    <!-- header -->
+    <jsp:include page="header.jsp"></jsp:include>
+
     <!-- main -->
     <main>
         <!-- 건강스토리 -->
@@ -262,11 +260,12 @@
         </section>
     </main>
 
+    <!-- footer -->
+    <jsp:include page="footer.jsp"></jsp:include>
+
+
     <!-- AOS라이브러리 -->
     <script> AOS.init(); </script>
-
-
-
 
 
 </body>
