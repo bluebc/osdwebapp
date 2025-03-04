@@ -3,7 +3,7 @@ package com.osd.web.app.dto;
 import lombok.Data;
 
 @Data
-public class USER_INFODto {
+public class USER_INFODto2 {
     
     private String USER_ID;
     private String USER_PW;
