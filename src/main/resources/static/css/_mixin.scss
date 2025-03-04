@@ -1,0 +1,60 @@
+@import "./variable";
+
+// 데스크탑 : 최소 '데스크탑'사이즈
+@mixin desktop {
+  @media screen and (max-width: #{$breakpoint-desktop}) {
+    @content;
+  }
+}
+
+// 노트북
+@mixin laptop {
+  @media screen and (max-width: #{$breakpoint-laptop}) {
+    @content;
+  }
+}
+
+// 패드
+@mixin tablet {
+  @media screen and (max-width: #{$breakpoint-tablet}) {
+    @content;
+  }
+}
+
+// 아이패드
+@mixin itablet {
+  @media screen and (max-width: #{$breakpoint-itablet}) {
+    @content;
+  }
+}
+
+// 모바일
+@mixin mobile {
+  @media screen and (max-width: #{$breakpoint-mobile}) {
+    @content;
+  }
+}
+
+// 모바일2
+@mixin mobile2 {
+  @media screen and (max-width: #{$breakpoint-mobile2}) {
+    @content;
+  }
+}
+
+// 모바일3 갤럭시
+@mixin galaxy {
+  @media screen and (max-width: #{$breakpoint-galaxy}) {
+    @content;
+  }
+}
+
+// 모바일4 아이폰
+@mixin iphone {
+  @media screen and (max-width: #{$breakpoint-iphone}) {
+    @content;
+  }
+}
+
+
+
