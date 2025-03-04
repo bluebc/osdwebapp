@@ -17,11 +17,13 @@ public class UseridDao {
     private SqlSession session;
 
     public UseridDto getUserid(){
-        return session.selectOne("Userid.getUserid");
+        return session.selectOne("Userid.getUseridaa");
     }
 
     public List<UseridDto> getUseridAll(){
         return session.selectList("Userid.getUseridAll");
     }
+
+
     
 }
