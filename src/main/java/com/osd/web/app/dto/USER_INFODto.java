@@ -3,17 +3,15 @@ package com.osd.web.app.dto;
 import lombok.Data;
 
 @Data
-public class USER_INFODto {
-    
-    private String USER_ID;
-    private String USER_PW;
-    private String USER_NAME;
-    private String USER_HPNO;
-    private String USER_EMAIL;
-    private String USER_ADDR;
-    private String USER_BIRTH;
-    private String USER_GENDER;
-    private String USER_CREATED_AT;
-    private String USER_UPDATED_AT;
-
+public class User_InfoDto {
+    private String user_id;
+    private String user_pw;
+    private String user_name;
+    private String user_hpno;
+    private String user_email;
+    private String user_addr;
+    private String user_birth;
+    private String user_gender;
+    private String user_created_at;
+    private String user_updated_at;
 }
