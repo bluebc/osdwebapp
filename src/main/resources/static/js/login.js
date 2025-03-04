@@ -31,7 +31,8 @@ async function loginCheck(id, pw) {
             break;
         case 1:
             alert("로그인되었습니다.");
-            window.location.href = "/main";
+            localStorage.setItem("isLoggedIn",true);
+            window.location.href = "/";
             break;
         default:
             alert("오류가 발생하였습니다.");
@@ -41,7 +42,7 @@ async function loginCheck(id, pw) {
 
 async function auth(id, pw) {
     var user = { id: id, password: pw };
-  
+
     const response = await fetch("/auth", {
         method: "POST",
         headers: { "Content-Type": "application/json" },

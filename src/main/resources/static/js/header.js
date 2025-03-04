@@ -5,7 +5,8 @@ $(document).ready(function () {
 
     // 로그인 상태 불러오기
     let isLoggedIn = localStorage.getItem("isLoggedIn") === "true";
-
+    
+    
     function updateHeaderUI() {
         if (isLoggedIn) {
             $loginButtons.text("로그아웃");
@@ -21,21 +22,33 @@ $(document).ready(function () {
     // 로그인 버튼 클릭 이벤트
     $loginButtons.on("click", function (event) {
         event.preventDefault();
-        isLoggedIn = !isLoggedIn;
-        localStorage.setItem("isLoggedIn", isLoggedIn);
-        updateHeaderUI();
+        // isLoggedIn = !isLoggedIn;
+        // localStorage.setItem("isLoggedIn", isLoggedIn);
+        // updateHeaderUI();
 
         // 다른 파일에서도 즉시 반영되도록 이벤트 발생
         window.dispatchEvent(new Event("storage"));
+
+
+    
+        // ++ 로그인 페이지로 이동
+        if (isLoggedIn != true) {
+            window.location.href = "/login";
+        }else{
+            window.location.href = "/logout";
+        }
+        // 로그인 버튼 클릭 function 별도 분리?
+
+
+        updateHeaderUI();
+
     });
+
+
 
     updateHeaderUI();
 
-    // 다른 JS 파일에서 로그인 상태 변경 감지하여 동기화
-    window.addEventListener("storage", function () {
-        isLoggedIn = localStorage.getItem("isLoggedIn") === "true";
-        updateHeaderUI();
-    });
+
 });
 
 // GNB 메뉴 관련 코드
