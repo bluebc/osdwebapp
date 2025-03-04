@@ -6,7 +6,7 @@ header{
     position: fixed;
     top: 0;
     left: 0;
-    z-index: 999;
+    z-index: 10;
   .top-banner{
     
       img{
@@ -140,103 +140,6 @@ header{
     }
 }
 
-/*footer*/
-footer{
-    
-  .footer_info{
-      padding: 1rem 15rem;
-      height: 100%;
-      background-color: #2b2b2b;
-      color: #cfcfcf;
-      display: flex;
-      flex-direction: column;
-      .ft-sns{
-      
-      ul{
-        padding: 3rem 0;
-        display: flex;
-        justify-content: center;
-        gap: 2rem;
-        li{    
-          list-style: none;
-          a{
-            display: inline-block;
-            width: 3.2rem;
-            height: 3.2rem;
-            background: url(../img/iconFooterSns.png) no-repeat;
-            background-size: auto 3.2rem;
-            font-size: 0;
-            vertical-align: middle;
-          }
-  
-          .sns1{background-position: 0 0;}
-          .sns2{background-position: -3.2rem 0;}
-          .sns3{background-position: -6.4rem 0;}
-          .sns4{background-position: -9.6rem 0;}
-          .sns5{background-position: -12.8rem 0;}
-          .sns6{background-position: -16rem 0;}
-          .sns7{background-position: -19.2rem 0;}
-          .sns8{background-position: -22.4rem 0;}
-        }
-      }
-      }
-      .ft-fot{
-        display: flex;
-        flex-direction: row;
-        align-items: center;
-        .ft_logo{
-          width: 10%;
-          display: flex;
-          flex-direction: column;
-          a{color: #cfcfcf;
-            img{
-              margin-bottom: 1rem;
-              width: 80px;
-            }
-          }
-        }
-        .ft_info{
-          font-size: 1.1rem;
-          font-weight: 300;
-          width: 70%;
-          .f_company{
-            margin-bottom: 1rem;
-            span{
-              margin-right: 2rem;
-            }
-          }
-          .ft_cs{
-            display: flex;
-            flex-direction: column;
-            span{
-              margin-bottom: 1rem;
-            }
-            p{
-              margin-bottom: 1rem;
-              .sp1{
-                margin-right: 2rem;
-              }
-            }
-          }
-        }
-        .ft_link{
-          width: 20%;
-          li{
-            display: flex;
-            flex-direction: column;
-            align-items: flex-end;
-            a{
-              margin-bottom: 1.4rem;
-              color: #cfcfcf;
-            }
-          }
-        }
-      }
-    }
-    
-    
-}
-
 
 // 웹모바일 768px
 @include itablet{
@@ -356,62 +259,6 @@ footer{
             }
       }
   }
-  footer{
-
-    .footer_info{
-      padding: 0 3rem;
-      .ft-sns{
-          ul{
-              li{
-                  a{}
-              }
-          }
-      }
-      .ft-fot{
-          flex-direction: column-reverse;
-          align-items: flex-start;
-          margin-bottom: 3rem;
-          .ft_logo{
-              width: 100%;
-              flex-direction: row;
-              
-              a{
-                  img{
-                      margin-right: 3rem;
-                      width: 120px;
-                  }
-              }
-          }
-          .ft_info{
-              width: 100%;
-              margin-bottom: 1rem;
-              .f_company{
-                  span{
-                      &:nth-child(1){
-                          width: 100%;
-                          display: block;
-                          margin-bottom: 1rem;
-                      }
-                  }
-              }
-              .ft_cs{
-                  p{
-                      display: flex;
-                      flex-direction: column;
-                  }
-              }
-          }
-          .ft_link{
-              width: 100%;
-              margin-bottom: 1rem;
-              li{
-                  align-items: flex-start;
-              }
-          }
-      }
-    }
-    .footer_nav{}
-  }
 }
 
 // 425px
@@ -458,74 +305,8 @@ footer{
         
     }
   }
-  footer{
-    .footer_info{
-      padding: 0 2rem;
-      .ft-sns{
-          ul{
-              gap: 0.5rem;
-              li{
-                  a{
-                      width: 2.5rem;
-                      height: 2.5rem;
-                      background-size: auto 2.5rem;
-                  }
-                  .sns1{background-position: 0 0;}
-                  .sns2{background-position: -2.5rem 0;}
-                  .sns3{background-position: -5rem 0;}
-                  .sns4{background-position: -7.5rem 0;}
-                  .sns5{background-position: -10rem 0;}
-                  .sns6{background-position: -12.5rem 0;}
-                  .sns7{background-position: -15rem 0;}
-                  .sns8{background-position: -17.5rem 0;}
-              } 
-          } 
-      }
-      .ft-fot{
-          .ft_info{
-              .ft_cs{
-                  span{
-                      line-height: 1.2;
-                  }
-              } 
-          }
-          .ft_logo{
-              a{
-                  img{
-                      width: 80px;
-                  }
-              } 
-          }  
-      } 
-    }
-    .footer_nav{}
-  } 
 }
 
 // 375px
 @include iphone{
-  footer{
-    .footer_info{
-      .ft-sns{
-        ul{
-            li{
-                a{
-                    width: 2rem;
-                    height: 2rem;
-                    background-size: auto 2rem;
-                }
-                .sns1{background-position: 0 0;}
-                .sns2{background-position: -2rem 0;}
-                .sns3{background-position: -4rem 0;}
-                .sns4{background-position: -6rem 0;}
-                .sns5{background-position: -8rem 0;}
-                .sns6{background-position: -10rem 0;}
-                .sns7{background-position: -12rem 0;}
-                .sns8{background-position: -14rem 0;}
-            } 
-        } 
-      }
-    }
-    .footer_nav{}
-  }
 }
