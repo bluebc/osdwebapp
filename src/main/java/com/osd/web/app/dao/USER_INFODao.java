@@ -7,21 +7,22 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import com.osd.web.app.dto.UseridDto;
+import com.osd.web.app.dto.USER_INFODto;
 
 @Repository
 @Mapper
-public class UseridDao {
+public class USER_INFODao {
 
     @Autowired
     private SqlSession session;
 
-    public UseridDto getUserid(){
-        return session.selectOne("Userid.getUserid");
+    public USER_INFODto getUSER_INFO(String USER_ID){
+        return session.selectOne("USER_INFO.getUSER_INFO",USER_ID);
+
     }
 
-    public List<UseridDto> getUseridAll(){
-        return session.selectList("Userid.getUseridAll");
+    public List<USER_INFODto> getUSER_INFOAll(){
+        return session.selectList("USEUR_INFO.getUSER_INFOAll");
+        
     }
-    
 }
