@@ -27,4 +27,11 @@ public class UseridDao {
         return session.selectList("Userid.getUseridAll");
     }
 
+    public int idCheck(UseridDto useridDto){
+        return session.selectOne("Userid.idCheck", useridDto);
+    }
+    public int insert(UseridDto useridDto){
+        return session.insert("Userid.insert", useridDto);
+    }
+
 }

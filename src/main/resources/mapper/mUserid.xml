@@ -18,5 +18,16 @@
    		 <select id="getUseridAll" resultType="UseridDto">
    		 	select * from Userid
    		 </select>
+
+      	<select id = "idCheck" parameterType="UseridDto" resultType="int">
+     	 select count(id) from userid
+     	 <where>
+     	 id = #{id}
+     	 </where>
+      	</select>
+
+      	<insert id = "insert" parameterType="UseridDto">
+      	insert into userid (id, password, name, ts) values (#{id}, #{password}, #{name}, #{ts})
+      	</insert>
         
 </mapper>

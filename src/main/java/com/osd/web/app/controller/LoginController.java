@@ -14,9 +14,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.osd.web.app.dto.UseridDto;
 import com.osd.web.app.service.LoginService;
 
-import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServletRequest;
-import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 
 @Controller
 public class LoginController {
@@ -42,6 +41,31 @@ public class LoginController {
         if (status == 1) {
             loginService.setSession(request, useridDto.getId());
         }
+
+        return result;
+    }
+
+    @RequestMapping("/logout")
+    public String logout(HttpServletRequest request) {
+
+        HttpSession session = request.getSession();
+        session.invalidate();
+
+        return "redirect:/test";
+    }
+
+
+    @RequestMapping("/signup")
+    public String signupPage(){
+        return "signup";
+    }
+
+    @ResponseBody
+    @PostMapping("/idcheck")
+    public int idCheck(@RequestBody UseridDto useridDto) {
+        int result = 0;
+
+        result = loginService.insert(useridDto);
 
         return result;
     }

@@ -20,7 +20,10 @@ public class LoginService {
         HttpSession session = request.getSession(true);
         // 10분
         // session.setMaxInactiveInterval(10 * 60);
-        session.setAttribute("springsession", id);
+        // 1분
+        session.setMaxInactiveInterval(1 * 60);
+        session.setAttribute("osdsession", id);
+        
     }
 
     public int auth(UseridDto useridDto) {
@@ -40,6 +43,17 @@ public class LoginService {
             result = 1;
         }
 
+        return result;
+    }
+
+    public int insert(UseridDto useridDto){
+        int result = 0;
+
+        if (useridDao.idCheck(useridDto) == 0) {
+            result = useridDao.insert(useridDto);
+        } else if (useridDao.idCheck(useridDto) > 0) {
+            result = -1;
+        }
         return result;
     }
 
