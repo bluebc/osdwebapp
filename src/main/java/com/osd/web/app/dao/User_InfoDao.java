@@ -16,13 +16,13 @@ public class User_InfoDao {
     @Autowired
     private SqlSession session;
 
-    public User_InfoDto getUSER_INFO(String USER_ID){
-        return session.selectOne("USER_INFO.getUSER_INFO",USER_ID);
+    public User_InfoDto getUser_Info(String user_Id){
+        return session.selectOne("User_Info.getUser_Info",user_Id);
 
     }
 
-    public List<User_InfoDto> getUSER_INFOAll(){
-        return session.selectList("USEUR_INFO.getUSER_INFOAll");
+    public List<User_InfoDto> getUser_InfoAll(){
+        return session.selectList("User_Info.getUser_InfoAll");
         
     }
 }

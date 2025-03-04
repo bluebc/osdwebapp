@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="USER_INFO">
+<mapper namespace="User_Info">
 
    		
-   		 <select id = "getUSER_INFOSelect"  parameterType = "String"   resultType="com.osd.web.app.dto.USER_INFODto">
+   		 <select id = "getUser_InfoSelect"  parameterType = "String"   resultType="com.osd.web.app.dto.USER_INFODto">
    		 	SELECT   USER_ID
 					,USER_PW
 					,USER_NAME
@@ -19,7 +19,7 @@
    		 </select>
    		 
    		 
-   		 <select id="getUSER_INFOSelectAll" resultType="com.osd.web.app.dto.USER_INFODto">
+   		 <select id="getUser_InfoSelectAll" resultType="com.osd.web.app.dto.USER_INFODto">
    		 	SELECT 	 USER_ID
 					,USER_PW
 					,USER_NAME
