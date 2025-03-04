@@ -10,8 +10,6 @@
 		</select>
 
 
-
-
    		 <select id = "getUserid" resultType="UseridDto">
    			 select TOP 1 * from userid
    		 </select>
