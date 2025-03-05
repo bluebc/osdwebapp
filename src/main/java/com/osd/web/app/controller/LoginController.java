@@ -71,13 +71,8 @@ public class LoginController {
     @ResponseBody
     @PostMapping("/getsession")
     public Map<String, Object> getSession(HttpServletRequest request) {
-        // boolean logined = false;
-
+  
         Map<String, Object> sessionInfo = loginService.getSession(request);
-        // String loginId = (String) sessionInfo.get("id");
-        // if (loginId != null && !loginId.equals("")) {
-        //     logined = true;
-        // }
 
         return sessionInfo;
     }

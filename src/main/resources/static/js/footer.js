@@ -47,13 +47,9 @@ $(document).ready(function () {
         // 다른 파일에서도 즉시 반영되도록 이벤트 발생
         window.dispatchEvent(new Event("storage"));
 
-        // 로그인 or 나의 정보
-        // ++ 로그인 페이지로 이동
-        if (isLoggedIn != true) {
-            window.location.href = "/login";
-        } else {
-            // window.location.href = "/";
-        }
+        // ++ 로그인 여부 세션 확인
+        sessionCheck("footer");
+
 
     });
 
@@ -65,3 +61,34 @@ $(document).ready(function () {
         updateFooterUI();
     });
 });
+
+// 로그인 세션 확인
+async function sessionCheck(page) {
+    
+    const response = await fetch("/getsession", {
+        method: "POST"
+    });
+    const result = await response.json();
+
+    var isLoggedIn = false;
+    if (result.id != null && result.id != "") {
+        isLoggedIn = true;
+    }
+
+    switch (page) {
+        case "header":
+            if (isLoggedIn != true) {
+                window.location.href = "/login";
+            } else {
+                window.location.href = "/logout";
+            }
+            break;
+        case "footer":
+            if (isLoggedIn != true) {
+                window.location.href = "/login";
+            } else {
+                window.location.href = "/mypage";
+            }
+            break;
+    }
+}

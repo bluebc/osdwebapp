@@ -1,13 +1,10 @@
-// document.addEventListener("DOMContentLoaded", sessionCheck());
-
+// 로그인 세션 확인
 async function sessionCheck(page) {
-    // localStorage.setItem("isLoggedIn", isLoggedIn);
+    
     const response = await fetch("/getsession", {
         method: "POST"
     });
     const result = await response.json();
-
-    alert(result.id);
 
     var isLoggedIn = false;
     if (result.id != null && result.id != "") {
@@ -21,6 +18,13 @@ async function sessionCheck(page) {
             } else {
                 window.location.href = "/logout";
             }
+            break;
+        case "footer":
+            if (isLoggedIn != true) {
+                window.location.href = "/login";
+            } else {
+                window.location.href = "/mypage";
+            }
+            break;
     }
-
 }
