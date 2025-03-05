@@ -1,3 +1,4 @@
+@charset "UTF-8";
 /*footer*/
 footer .footer_info {
   padding: 1rem 15rem;
@@ -149,13 +150,14 @@ footer .footer_nav {
   footer .footer_nav .category_wrap {
     display: none;
     position: fixed;
-    z-index: 15;
+    z-index: 10;
     top: 0;
     left: 0;
     bottom: 0;
     background: #fff;
     width: 100%;
-    max-width: 72rem;
+    height: 100%;
+    max-width: 100%;
     overflow-y: auto;
     overflow-x: hidden;
   }
@@ -214,22 +216,28 @@ footer .footer_nav {
     text-align: left;
     padding: 10px;
     font-size: 16px;
-    cursor: pointer;
     outline: none;
+    cursor: pointer;
+    position: relative;
   }
   footer .footer_nav .category_wrap .category-content .accordion .accordion-item .accordion-button:after {
     content: "+";
     color: EF4D74;
     float: right;
+    transition: transform 0.3s ease;
+  }
+  footer .footer_nav .category_wrap .category-content .accordion .accordion-item .accordion-button.open:after {
+    content: "−";
   }
   footer .footer_nav .category_wrap .category-content .accordion .accordion-item .accordion-button:hover {
     background-color: #6b7a5e;
     color: #ffffff;
   }
   footer .footer_nav .category_wrap .category-content .accordion .accordion-item .accordion-content {
-    display: none;
-    padding: 10px;
     background: #fff;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease-in-out;
   }
   footer .footer_nav .category_wrap .category-content .accordion .accordion-item .accordion-content li {
     display: flex;
@@ -256,9 +264,12 @@ footer .footer_nav {
     border: 1px solid #ccc;
     margin: 4rem;
   }
+  footer .footer_nav .accordion_op {
+    display: block;
+  }
   footer .footer_nav .footer_navbar {
     position: fixed;
-    z-index: 16;
+    z-index: 11;
     bottom: 0;
     left: 0;
     width: 100%;
@@ -298,6 +309,32 @@ footer .footer_nav {
   }
 }
 @media screen and (max-width: 425px) {
+  header .top-banner img {
+    height: 100%;
+  }
+  header .hd_all .hd_m {
+    height: 8.5rem;
+  }
+  header .hd_all .hd_m .hd_info .hd_logo {
+    left: 1rem;
+    top: 1rem;
+  }
+  header .hd_all .hd_m .hd_info .gnbbar {
+    top: 6rem;
+  }
+  header .hd_all .hd_m .hd_info .gnbbar .group_option .on {
+    margin-top: 1rem;
+  }
+  header .hd_all .hd_m .hd_info .hd_log_m {
+    top: 1rem;
+    right: 1rem;
+  }
+  header .hd_all .hd_m .hd_info .hd_log_m .hd_util a {
+    margin-left: 0.4rem;
+  }
+  header .hd_all .hd_m .hd_info .hd_log_m .hd_util a img {
+    width: 22px;
+  }
   footer .footer_info {
     padding: 0 2rem;
   }
@@ -333,6 +370,9 @@ footer .footer_nav {
   footer .footer_info .ft-sns ul li .sns8 {
     background-position: -17.5rem 0;
   }
+  footer .footer_info .ft-fot {
+    margin-bottom: 5rem;
+  }
   footer .footer_info .ft-fot .ft_info .ft_cs span {
     line-height: 1.2;
   }
@@ -340,7 +380,7 @@ footer .footer_nav {
     width: 80px;
   }
 }
-@media screen and (max-width: 340px) {
+@media screen and (max-width: 344px) {
   footer .footer_info .ft-sns ul li a {
     width: 2rem;
     height: 2rem;

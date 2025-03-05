@@ -13,19 +13,22 @@
 
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <link rel="stylesheet" href="css/reset.css">
+    <link rel="stylesheet" href="css/header.css">
     <link rel="stylesheet" href="css/index.css">
-    <link rel="stylesheet" href="css/moblie.css">
-
+    <link rel="stylesheet" href="css/footer.css">
+    
     
     <!--favicon--->
     <link href="img/favicon.ico" rel="icon">
 
     <!--js-->
     <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
-    <script  src="http://code.jquery.com/jquery-latest.min.js"></script>
+    <script src="http://code.jquery.com/jquery-latest.min.js"></script>
     
+    <script src="js/header.js"></script>
     <script src="js/swiper.js"></script>
     <script src="js/menu_scroll.js"></script>
+    <script defer src="js/footer.js"></script>
 
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
@@ -34,6 +37,8 @@
 
 </head>
 <body>
+<%-- 로그인 여부 --%>
+<input type = "hidden" id = "isLoggedIn" value = "${loginInfo.get("isLoggedIn")}"/>
 
     <!-- header -->
     <jsp:include page="header.jsp"></jsp:include>
@@ -75,7 +80,7 @@
             <div class="content">
                 <article class="st-flex1">
                     <div class="st-img"><img src="img/st1.jpg"></div>
-                    <div class="st-tet">
+                    <div class="st-tet" data-aos="fade-up" data-aos-duration="1000">
                         <h2>비움과 채움</h2>
                         <h3>일상에서 누구나 쉽게 실천할 수 있는<br>
                         비움프로그램</h2>
@@ -85,7 +90,7 @@
                     </div>
                 </article>
                 <article class="st-flex2">
-                    <div class="st-tet">
+                    <div class="st-tet" data-aos="fade-up" data-aos-duration="1000">
                         <h2>건강 코칭</h2>
                         <h3>생활 속 바른 습관을 형성하는<br>
                         토탈 러닝메이트 서비스</h2>
@@ -98,7 +103,7 @@
                 </article>
                 <article class="st-flex3">
                     <div class="st-img"><img src="img/st3.jpg"></div>
-                    <div class="st-tet">
+                    <div class="st-tet" data-aos="fade-up" data-aos-duration="1000">
                         <h2>생명 나눔</h2>
                         <h3>더불어 사는 사회에서 실천하는 나눔의<br>
                         봉사 프로젝트</h2>
@@ -108,7 +113,7 @@
                     </div>
                 </article>
                 <article class="st-flex4">
-                    <div class="st-tet">
+                    <div class="st-tet" data-aos="fade-up" data-aos-duration="1000">
                         <h2>휴먼 리셋</h2>
                         <h3>명상, 요가, 피트니스, 여행 등<br>
                         자연 속 휴식과 명상을 통해 함께하는<br>
@@ -186,13 +191,13 @@
             <div class="content">
                 <div class="cs-img" style="background-image: url(img/he-sw33.jpg);"></div>
                 <div class="cs-tet">
-                    <article class="cs-abs1">
+                    <article class="cs-abs1" data-aos="fade-left"  data-aos-duration="500">
                         <h2>체계적인 관리</h2>
                         <h4>기록의 습관을 통해 일상에서도 꾸준하게 관리<br>
                         할 수 있고 체계적인 프로그램을 편하게 관리<br>
                         할 수 있게 제작한 맞춤 서비스</h4>
                     </article>
-                    <article class="cs-abs2">
+                    <article class="cs-abs2" data-aos="fade-right"  data-aos-duration="500">
                         <h2>저속노화를 도화주는 건강 체크</h2>
                         <h4>기대 수명이 올라간 현대 사회에서 노화를 늦추는 것은<br>
                         건강한 삶을 영위하는데 필수적인 요소이다.<br>
@@ -258,6 +263,10 @@
                 </div>
             </div>
         </section>
+
+        <%-- top버튼 --%>
+        <button id="top-btn"> ▲ <br/> TOP </button >
+
     </main>
 
     <!-- footer -->

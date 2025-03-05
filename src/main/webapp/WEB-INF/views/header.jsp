@@ -1,21 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 
-<!DOCTYPE html>
-<html lang="ko" dir="ltr">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>header</title>
-
-    <link rel="stylesheet" href="css/header.css">
-
-    <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
-    <script  src="http://code.jquery.com/jquery-latest.min.js"></script>
-
-    <script src="js/header.js"></script>
-
-</head>
-<body>
     
     <header  class="header" >
         <div class="top-banner">
@@ -111,5 +95,3 @@
         </div>
     </header>
 
-</body>
-</html>
