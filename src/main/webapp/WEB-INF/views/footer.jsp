@@ -1,23 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 
-<!DOCTYPE html>
-<html lang="ko" dir="ltr">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>footer</title>
 
-    <link rel="stylesheet" href="css/footer.css">
-    
-    <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
-    <script  src="http://code.jquery.com/jquery-latest.min.js"></script>
-
-
-    <script defer src="js/footer.js"></script>
-
-</head>
-<body>
-    
 
 <footer class="footer">
 
@@ -178,25 +161,25 @@
                     </span>
                     <span class="text-wrap">카테고리</span>
                 </div>
-                <a class="navi-item">
+                <a href="#" class="navi-item">
                     <span class="icon-wrap">
                         <img src="/img/검색.svg" alt="검색">
                     </span>
                     <span class="text-wrap">검색</span>
                 </a>
-                <a class="navi-item">
+                <a href="#" class="navi-item">
                     <span class="icon-wrap">
                         <img src="/img/홈.svg" alt="홈">
                     </span>
                     <span class="text-wrap">홈</span>
                 </a>
-                <a class="navi-item">
+                <a href="#" class="navi-item">
                     <span class="icon-wrap btn-address2">
                         <img src="/img/로그인.svg" alt="로그인">
                     </span>
                     <span class="text-wrap loginBtn2">로그인</span>
                 </a>
-                <a class="navi-item">
+                <a href="#" class="navi-item">
                     <span class="icon-wrap">
                         <img src="/img/전화.png" alt="상담예약">
                     </span>
@@ -210,6 +193,3 @@
     
 
 </footer>     
-
-</body>
-</html>

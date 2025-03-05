@@ -26,5 +26,7 @@ async function sessionCheck(page) {
                 window.location.href = "/mypage";
             }
             break;
+        default :
+            return isLoggedIn;
     }
 }

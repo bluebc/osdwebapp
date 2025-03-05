@@ -33,7 +33,13 @@ public class LoginService {
         Map<String, Object> sessionInfo = new HashMap<>();
         HttpSession session = request.getSession();
 
-        sessionInfo.put("id", session.getAttribute("osdsession"));
+        String loginId = (String)session.getAttribute("osdsession");
+        boolean isLoggedIn = false;
+        if(loginId!=null && !loginId.equals("")){
+            isLoggedIn = true;
+        }
+        sessionInfo.put("id", loginId);
+        sessionInfo.put("isLoggedIn", isLoggedIn);
         return sessionInfo;
     }
 
