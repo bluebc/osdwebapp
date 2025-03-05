@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.osd.web.app.dto.User_InfoDto;
 import com.osd.web.app.dto.UseridDto;
 import com.osd.web.app.service.LoginService;
 
@@ -61,11 +62,11 @@ public class LoginController {
     }
 
     @ResponseBody
-    @PostMapping("/idcheck")
-    public int idCheck(@RequestBody UseridDto useridDto) {
+    @PostMapping("/userCreate")
+    public int userCreate(@RequestBody User_InfoDto user_info) {
         int result = 0;
 
-        result = loginService.insert(useridDto);
+        result = loginService.insert(user_info);
 
         return result;
     }

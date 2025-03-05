@@ -10,7 +10,6 @@ import org.springframework.stereotype.Repository;
 import com.osd.web.app.dto.User_InfoDto;
 
 @Repository
-@Mapper
 public class User_InfoDao {
 
     @Autowired
@@ -25,4 +24,14 @@ public class User_InfoDao {
         return session.selectList("User_Info.getUser_InfoAll");
         
     }
+
+
+    public int existsById(String user_id){
+        return session.selectOne("User_Info.existsById", user_id);
+    }
+
+    public int insert(User_InfoDto user_InfoDto){
+        return session.insert("User_Info.insert", user_InfoDto);
+    }
+
 }

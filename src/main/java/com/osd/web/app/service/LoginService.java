@@ -3,7 +3,9 @@ package com.osd.web.app.service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.osd.web.app.dao.User_InfoDao;
 import com.osd.web.app.dao.UseridDao;
+import com.osd.web.app.dto.User_InfoDto;
 import com.osd.web.app.dto.UseridDto;
 
 import jakarta.servlet.http.HttpServletRequest;
@@ -14,6 +16,9 @@ public class LoginService {
 
     @Autowired
     private UseridDao useridDao;
+
+    @Autowired
+    private User_InfoDao user_InfoDao;
 
     // 세션 생성
     public void setSession(HttpServletRequest request, String id) {
@@ -46,12 +51,12 @@ public class LoginService {
         return result;
     }
 
-    public int insert(UseridDto useridDto){
+    public int insert(User_InfoDto user_InfoDto){
         int result = 0;
 
-        if (useridDao.idCheck(useridDto) == 0) {
-            result = useridDao.insert(useridDto);
-        } else if (useridDao.idCheck(useridDto) > 0) {
+        if (user_InfoDao.existsById(user_InfoDto.getUser_id()) == 0) {
+            result = user_InfoDao.insert(user_InfoDto);
+        } else if (user_InfoDao.existsById(user_InfoDto.getUser_id()) > 0) {
             result = -1;
         }
         return result;
