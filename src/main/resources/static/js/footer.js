@@ -30,7 +30,10 @@ $(document).ready(function () {
     const $loginButtons = $(".loginBtn2"); // 푸터 로그인 버튼
     const $btbAddress = $(".btn-address2 img"); // 푸터 알람 이미지
 
-    let isLoggedIn = localStorage.getItem("isLoggedIn") === "true";
+    // let isLoggedIn = localStorage.getItem("isLoggedIn") === "true";
+    let isLoggedIn = document.getElementById("isLoggedIn").value === "true";
+    localStorage.setItem("isLoggedIn", isLoggedIn);
+    
 
     function updateFooterUI() {
         if (isLoggedIn) {
@@ -45,12 +48,17 @@ $(document).ready(function () {
     // 로그인 컨테이너 클릭 이벤트 (한번에 변경)
     $loginContainer.on("click", function (event) {
         event.preventDefault();
-        isLoggedIn = !isLoggedIn;
-        localStorage.setItem("isLoggedIn", isLoggedIn);
+        // isLoggedIn = !isLoggedIn;
+        // localStorage.setItem("isLoggedIn", isLoggedIn);
         updateFooterUI();
 
         // 다른 파일에서도 즉시 반영되도록 이벤트 발생
         window.dispatchEvent(new Event("storage"));
+
+        // ++ 로그인 여부 세션 확인
+        sessionCheck("footer");
+
+
     });
 
     updateFooterUI();
@@ -61,3 +69,36 @@ $(document).ready(function () {
         updateFooterUI();
     });
 });
+
+// 로그인 세션 확인
+async function sessionCheck(page) {
+    
+    const response = await fetch("/getsession", {
+        method: "POST"
+    });
+    const result = await response.json();
+
+    var isLoggedIn = false;
+    if (result.id != null && result.id != "") {
+        isLoggedIn = true;
+    }
+
+    switch (page) {
+        case "header":
+            if (isLoggedIn != true) {
+                window.location.href = "/login";
+            } else {
+                window.location.href = "/logout";
+            }
+            break;
+        case "footer":
+            if (isLoggedIn != true) {
+                window.location.href = "/login";
+            } else {
+                window.location.href = "/mypage";
+            }
+            break;
+        default :
+            return isLoggedIn;
+    }
+}
