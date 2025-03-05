@@ -1,18 +1,18 @@
 async function login() {
-    var id = document.getElementById("id").value;
-    if (id == "") {
-        document.getElementById("id").focus();
+    var user_id = document.getElementById("user_id");
+    if (user_id.value == "") {
+        user_id.focus();
         alert("아이디를 입력하세요.");
         return;
     }
-    var pw = document.getElementById("pw").value;
-    if (pw == "") {
-        document.getElementById("pw").focus();
-        alert("패스워드를 입력해주세요.");
+    var user_pw = document.getElementById("user_pw");
+    if (user_pw == "") {
+        user_pw.focus();
+        alert("비밀번호를 입력해주세요.");
         return;
     }
 
-    loginCheck(id, pw);
+    await loginCheck(user_id.value, user_pw.value);
 }
 
 async function loginCheck(id, pw) {
@@ -41,7 +41,7 @@ async function loginCheck(id, pw) {
 }
 
 async function auth(id, pw) {
-    var user = { id: id, password: pw };
+    var user = { user_id: id, user_pw: pw };
 
     const response = await fetch("/auth", {
         method: "POST",

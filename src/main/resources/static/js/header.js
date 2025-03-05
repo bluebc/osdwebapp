@@ -22,14 +22,15 @@ $(document).ready(function () {
     // 로그인 버튼 클릭 이벤트
     $loginButtons.on("click", function (event) {
         event.preventDefault();
-        isLoggedIn = !isLoggedIn;
+        // isLoggedIn = !isLoggedIn;
         localStorage.setItem("isLoggedIn", isLoggedIn);
         updateHeaderUI();
 
         // 다른 파일에서도 즉시 반영되도록 이벤트 발생
         window.dispatchEvent(new Event("storage"));
 
-
+        // document.write("<script type='text/javascript' src='js/sessioncheck.js'></script>");
+        // sessionCheck("header");
 
         // ++ 로그인 페이지로 이동
         if (isLoggedIn != true) {
@@ -63,4 +64,4 @@ $(document).ready(function () {
         opList.classList.remove('on');
     });
 });
->>>>>>> Frontend
+

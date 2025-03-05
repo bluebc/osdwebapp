@@ -1,6 +1,5 @@
 package com.osd.web.app.controller;
 
-import java.time.LocalDateTime;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -11,7 +10,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.osd.web.app.dto.UseridDto;
+import com.osd.web.app.dto.User_InfoDto;
 import com.osd.web.app.service.LoginService;
 
 import jakarta.servlet.http.HttpServletRequest;
@@ -31,15 +30,15 @@ public class LoginController {
 
     @ResponseBody
     @PostMapping("/auth")
-    public Map<Object, Object> auth(@RequestBody UseridDto useridDto,
+    public Map<Object, Object> auth(@RequestBody User_InfoDto user_InfoDto,
             HttpServletRequest request) {
         Map<Object, Object> result = new HashMap<>();
 
-        int status = loginService.auth(useridDto);
+        int status = loginService.auth(user_InfoDto);
         result.put("status", status);
 
         if (status == 1) {
-            loginService.setSession(request, useridDto.getId());
+            loginService.setSession(request, user_InfoDto.getUser_id());
         }
 
         return result;
@@ -54,20 +53,33 @@ public class LoginController {
         return "logout";
     }
 
-
     @RequestMapping("/signup")
-    public String signupPage(){
+    public String signupPage() {
         return "signup";
     }
 
     @ResponseBody
-    @PostMapping("/idcheck")
-    public int idCheck(@RequestBody UseridDto useridDto) {
+    @PostMapping("/usercreate")
+    public int userCreate(@RequestBody User_InfoDto user_info) {
         int result = 0;
 
-        result = loginService.insert(useridDto);
+        result = loginService.insert(user_info);
 
         return result;
+    }
+
+    @ResponseBody
+    @PostMapping("/getsession")
+    public Map<String, Object> getSession(HttpServletRequest request) {
+        // boolean logined = false;
+
+        Map<String, Object> sessionInfo = loginService.getSession(request);
+        // String loginId = (String) sessionInfo.get("id");
+        // if (loginId != null && !loginId.equals("")) {
+        //     logined = true;
+        // }
+
+        return sessionInfo;
     }
 
 }

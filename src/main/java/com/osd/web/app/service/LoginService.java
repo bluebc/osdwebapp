@@ -1,10 +1,13 @@
 package com.osd.web.app.service;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.osd.web.app.dao.UseridDao;
-import com.osd.web.app.dto.UseridDto;
+import com.osd.web.app.dao.User_InfoDao;
+import com.osd.web.app.dto.User_InfoDto;
 
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
@@ -13,7 +16,7 @@ import jakarta.servlet.http.HttpSession;
 public class LoginService {
 
     @Autowired
-    private UseridDao useridDao;
+    private User_InfoDao user_InfoDao;
 
     // 세션 생성
     public void setSession(HttpServletRequest request, String id) {
@@ -23,35 +26,43 @@ public class LoginService {
         // 1분
         session.setMaxInactiveInterval(1 * 60);
         session.setAttribute("osdsession", id);
-        
+
     }
 
-    public int auth(UseridDto useridDto) {
-        int result = 0;
-        UseridDto useridDtoFromDb = useridDao.getUseridById(useridDto);
+    public Map<String, Object> getSession(HttpServletRequest request){
+        Map<String, Object> sessionInfo = new HashMap<>();
+        HttpSession session = request.getSession();
 
-        if (useridDtoFromDb == null) {
+        sessionInfo.put("id", session.getAttribute("osdsession"));
+        return sessionInfo;
+    }
+
+    public int auth(User_InfoDto user_InfoDto) {
+        int result = 0;
+        User_InfoDto user_InfoFromDb = user_InfoDao.getUser_InfoById(user_InfoDto);
+
+        if (user_InfoFromDb == null) {
             result = -1;
             return result;
         }
-        if (!useridDto.getPassword().equals(useridDtoFromDb.getPassword())) {
+        if (!user_InfoDto.getUser_pw().equals(user_InfoFromDb.getUser_pw())) {
             result = -2;
             return result;
         }
-        if (useridDto.getId().equals(useridDtoFromDb.getId())
-                && useridDto.getPassword().equals(useridDtoFromDb.getPassword())) {
+        if (user_InfoDto.getUser_id().equals(user_InfoFromDb.getUser_id())
+                && user_InfoDto.getUser_pw().equals(user_InfoFromDb.getUser_pw())) {
             result = 1;
         }
 
         return result;
     }
 
-    public int insert(UseridDto useridDto){
+    public int insert(User_InfoDto user_InfoDto) {
         int result = 0;
 
-        if (useridDao.idCheck(useridDto) == 0) {
-            result = useridDao.insert(useridDto);
-        } else if (useridDao.idCheck(useridDto) > 0) {
+        if (user_InfoDao.existsById(user_InfoDto.getUser_id()) == 0) {
+            result = user_InfoDao.insert(user_InfoDto);
+        } else if (user_InfoDao.existsById(user_InfoDto.getUser_id()) > 0) {
             result = -1;
         }
         return result;
