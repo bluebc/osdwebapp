@@ -276,6 +276,11 @@
             }
         }
 
+        #top-btn{
+            bottom: 110px;
+            right: 20px;
+        }
+
     }
     
 }
@@ -318,6 +323,13 @@
                     }
                 }
             } 
+        }
+        #top-btn{
+            bottom: 100px;
+            width: 40px;
+            height: 40px;
+            font-size: 13px;
+            right: 15px;
         }
     }
 }
@@ -411,7 +423,7 @@
 }
 
 
-/* 모바일4 아이폰 375px */
+/* 모바일4 아이폰 344px */
 @include iphone{
     main{
         #health{

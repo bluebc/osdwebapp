@@ -357,4 +357,21 @@ main #event .content .swiper-container2 .swiper-wrapper .swiper-slide .ev-sw-tet
 main #event .content .swiper-container2 .swiper-wrapper .swiper-slide .ev-sw-tet h4 {
   font-size: 1.1rem;
   font-weight: 500;
+}
+main #top-btn {
+  display: none;
+  position: fixed;
+  bottom: 40px;
+  right: 40px;
+  z-index: 10;
+  background-color: white;
+  border: 2px solid #dbdbdb;
+  outline: none;
+  cursor: pointer;
+  border-radius: 50%;
+  width: 60px;
+  height: 60px;
+  font-size: 20px;
+  font-weight: 500;
+  color: #333333;
 }/*# sourceMappingURL=index.css.map */

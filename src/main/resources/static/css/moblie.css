@@ -207,6 +207,10 @@
     background-color: #ffffff;
     padding: 1rem 8rem;
   }
+  main #top-btn {
+    bottom: 110px;
+    right: 20px;
+  }
 }
 /* 모바일 767px*/
 /* 모바일2 576px */
@@ -229,6 +233,13 @@
   main #health .content .he-img .he-box .he-tit {
     right: 5rem;
     bottom: 15rem;
+  }
+  main #top-btn {
+    bottom: 100px;
+    width: 40px;
+    height: 40px;
+    font-size: 13px;
+    right: 15px;
   }
 }
 /* 모바일3 갤석시 425px */
@@ -284,7 +295,7 @@
     padding: 1rem 5rem;
   }
 }
-/* 모바일4 아이폰 375px */
+/* 모바일4 아이폰 344px */
 @media screen and (max-width: 344px) {
   main #health {
     padding: 4rem 0 0;

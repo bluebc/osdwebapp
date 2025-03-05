@@ -28,10 +28,6 @@ $(document).ready(function(){
 });
 
 
-  
-  
-
-
 // id="event" 이벤트&행사 
 $(document).ready(function(){
     var swiper2 = new Swiper(".swiper-container2", {
@@ -59,8 +55,6 @@ $(document).ready(function(){
       }
     })
 });
-
-
 
 
 /* 1. 초기화 이전에 슬라이드 복제 */
@@ -100,3 +94,5 @@ function paginationOverflow(index, className){
     return '<span class="' + className + '"></span>';
   }
 }
+
+

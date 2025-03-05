@@ -1,3 +1,4 @@
+@charset "UTF-8";
 /*footer*/
 footer .footer_info {
   padding: 1rem 15rem;
@@ -107,103 +108,6 @@ footer .footer_nav {
 }
 
 @media screen and (max-width: 768px) {
-  header .top-banner img {
-    -o-object-position: 0 0;
-       object-position: 0 0;
-  }
-  header .hd_all {
-    padding: 0;
-  }
-  header .hd_all article {
-    display: none;
-  }
-  header .hd_all .hd_m {
-    display: block;
-    width: 100%;
-    height: 6rem;
-  }
-  header .hd_all .hd_m .hd_info {
-    position: relative;
-    height: 100%;
-  }
-  header .hd_all .hd_m .hd_info .hd_logo {
-    position: absolute;
-    top: 1.5rem;
-    left: 2rem;
-    z-index: 1;
-  }
-  header .hd_all .hd_m .hd_info .hd_logo a img {
-    max-width: unset;
-    width: 70px;
-  }
-  header .hd_all .hd_m .hd_info .gnbbar {
-    width: 100%;
-    position: absolute;
-    top: 2.7rem;
-  }
-  header .hd_all .hd_m .hd_info .gnbbar .group_option .select_op {
-    background: none;
-    border: 0;
-    cursor: pointer;
-    align-items: center;
-    position: relative;
-    width: 100%;
-    font-size: 1.3rem;
-    font-weight: bold;
-  }
-  header .hd_all .hd_m .hd_info .gnbbar .group_option .select_op::after {
-    content: "";
-    display: inline-block;
-    width: 1.5rem;
-    height: 1.5rem;
-    vertical-align: middle;
-    border-radius: 50%;
-    background: #F2F2F2 url(../img/iconCateArrow.png) no-repeat;
-    background-size: cover;
-    margin-top: -0.5rem;
-    margin-left: 0.5rem;
-  }
-  header .hd_all .hd_m .hd_info .gnbbar .group_option .op_list {
-    height: 0;
-    overflow: hidden;
-    transition: all 0.2s;
-    text-align: center;
-  }
-  header .hd_all .hd_m .hd_info .gnbbar .group_option .op_list .op_item {
-    padding: 0.7rem 0;
-  }
-  header .hd_all .hd_m .hd_info .gnbbar .group_option .op_list .op_item button {
-    background: none;
-    border: 0;
-    cursor: pointer;
-    font-size: 1.3rem;
-    font-weight: bold;
-  }
-  header .hd_all .hd_m .hd_info .gnbbar .group_option .on {
-    margin-top: 2rem;
-    height: 100%;
-    background-color: #F2F2F2;
-  }
-  header .hd_all .hd_m .hd_info .hd_log_m {
-    position: absolute;
-    top: 1.3rem;
-    right: 2rem;
-  }
-  header .hd_all .hd_m .hd_info .hd_log_m .hd_util {
-    text-align: right;
-    margin-bottom: 1rem;
-  }
-  header .hd_all .hd_m .hd_info .hd_log_m .hd_util a {
-    align-items: center;
-    margin-left: 0.8rem;
-  }
-  header .hd_all .hd_m .hd_info .hd_log_m .hd_util a img {
-    width: 30px;
-    filter: grayscale(100%) brightness(0);
-  }
-  header .hd_all .hd_m .hd_info .hd_log_m .he_link_m a {
-    color: rgb(0, 0, 0);
-  }
   footer .footer_info {
     padding: 0 3rem 3rem;
   }
@@ -252,7 +156,8 @@ footer .footer_nav {
     bottom: 0;
     background: #fff;
     width: 100%;
-    max-width: 72rem;
+    height: 100%;
+    max-width: 100%;
     overflow-y: auto;
     overflow-x: hidden;
   }
@@ -311,21 +216,28 @@ footer .footer_nav {
     text-align: left;
     padding: 10px;
     font-size: 16px;
-    cursor: pointer;
     outline: none;
+    cursor: pointer;
+    position: relative;
   }
   footer .footer_nav .category_wrap .category-content .accordion .accordion-item .accordion-button:after {
     content: "+";
     color: EF4D74;
     float: right;
+    transition: transform 0.3s ease;
+  }
+  footer .footer_nav .category_wrap .category-content .accordion .accordion-item .accordion-button.open:after {
+    content: "−";
   }
   footer .footer_nav .category_wrap .category-content .accordion .accordion-item .accordion-button:hover {
     background-color: #6b7a5e;
     color: #ffffff;
   }
   footer .footer_nav .category_wrap .category-content .accordion .accordion-item .accordion-content {
-    display: none;
     background: #fff;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease-in-out;
   }
   footer .footer_nav .category_wrap .category-content .accordion .accordion-item .accordion-content li {
     display: flex;
@@ -351,6 +263,9 @@ footer .footer_nav {
     border-radius: 0.4rem;
     border: 1px solid #ccc;
     margin: 4rem;
+  }
+  footer .footer_nav .accordion_op {
+    display: block;
   }
   footer .footer_nav .footer_navbar {
     position: fixed;
