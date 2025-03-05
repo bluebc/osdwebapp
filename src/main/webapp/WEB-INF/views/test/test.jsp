@@ -54,3 +54,4 @@ login id : ${loginId}
 </html>
 
 <script src = "js/test/test.js"></script>
+<script src = "js/sessioncheck.js"></script>

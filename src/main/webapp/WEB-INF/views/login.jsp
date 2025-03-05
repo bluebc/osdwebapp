@@ -7,18 +7,18 @@
     <head>
     <title>osdwebapp</title>
     
-<script src = "js/login.js"></script>
+
 
     </head>
     <body>
         <h1>login</h1><br>
         
         <br>
-        <input type = "text", id = "id" placeholder = "id">
+        <input type = "text", id = "user_id" placeholder = "아이디">
         <br>
 
         <br>
-        <input type = "text", id = "pw" placeholder = "pw">
+        <input type = "text", id = "user_pw" placeholder = "비밀번호">
         <br>
 
         <br>
@@ -26,4 +26,5 @@
         <br>
 
     </body>
+    <script src = "js/login.js"></script>
 </html>
