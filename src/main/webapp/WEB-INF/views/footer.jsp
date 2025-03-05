@@ -173,7 +173,7 @@
                     </span>
                     <span class="text-wrap">홈</span>
                 </a>
-                <a href="#" class="navi-item">
+                <a href="#" class="navi-item nave-test">
                     <span class="icon-wrap btn-address2">
                         <img src="/img/로그인.svg" alt="로그인">
                     </span>

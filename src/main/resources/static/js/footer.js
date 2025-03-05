@@ -26,6 +26,7 @@ document.querySelectorAll('.accordion-button').forEach(button => {
 
 // 로그인 UI 업데이트
 $(document).ready(function () {
+    const $loginContainer = $(".nave-test"); // 푸터 로그인 컨테이너
     const $loginButtons = $(".loginBtn2"); // 푸터 로그인 버튼
     const $btbAddress = $(".btn-address2 img"); // 푸터 알람 이미지
 
@@ -41,8 +42,8 @@ $(document).ready(function () {
         }
     }
 
-    // 로그인 버튼 클릭 이벤트
-    $loginButtons.on("click", function (event) {
+    // 로그인 컨테이너 클릭 이벤트 (한번에 변경)
+    $loginContainer.on("click", function (event) {
         event.preventDefault();
         isLoggedIn = !isLoggedIn;
         localStorage.setItem("isLoggedIn", isLoggedIn);
