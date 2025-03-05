@@ -15,6 +15,17 @@ footer, header, hgroup, menu, nav, section {
 }
 
 
+*{margin:0; padding:0; box-sizing:border-box;}
+    a{text-decoration : none;}
+    a:focus{outline: none;}
+
+html,body{
+        margin: 0px;
+        overflow-x: hidden;
+        font-family: 'S-CoreDream-3Light';
+        scroll-behavior: smooth;
+}
+
 
 
 *,
