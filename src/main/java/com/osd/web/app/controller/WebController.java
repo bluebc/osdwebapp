@@ -20,6 +20,7 @@ public class WebController {
     @RequestMapping("/")
     public String indexPage(HttpServletRequest request, Model model) {
 
+        // index.jsp 열릴 때 세션정보 가져감.
         Map<String, Object> loginInfo = loginService.getSession(request);
         model.addAttribute("loginInfo", loginInfo);
      
