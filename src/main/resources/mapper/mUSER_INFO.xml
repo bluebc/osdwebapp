@@ -70,5 +70,12 @@
 			user_id = #{user_id}
 			</where> 
 		</select>
+
+		<delete id="deleteUser_InfoByIdAndPw" parameterType = "User_InfoDto">
+			delete user_info
+			<where>
+			user_id = #{user_id} and user_pw = #{user_pw}
+			</where>
+		</delete>
         
 </mapper>

@@ -15,6 +15,8 @@
 
 <h6><a href = "/">인덱스 페이지</a></h6>
 <h6><a href = "/signup">회원가입 페이지</a></h6>
+<h6><a href = "/withdraw">회원탈퇴 페이지</a></h6>
+<h6><a href = "/login">로그인 페이지</a></h6>
 
 <%-- <input type = "button" value = "test" onclick = "loginVisible('${loginId}')"> --%>
 
