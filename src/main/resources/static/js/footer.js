@@ -29,7 +29,6 @@ $(document).ready(function () {
     const $loginButtons = $(".loginBtn2"); // 푸터 로그인 버튼
     const $btbAddress = $(".btn-address2 img"); // 푸터 알람 이미지
 
-
     // 로그인 버튼 클릭 이벤트
     $loginButtons.on("click", function (event) {
         event.preventDefault();
@@ -38,8 +37,8 @@ $(document).ready(function () {
         window.dispatchEvent(new Event("storage"));
 
         // ++ 로그인 여부 세션 확인
-        sessionCheck("footer");
-
+        // sessioncheck.js 함수사용
+        sessionCheck("footerLogin");
 
     });
 
@@ -54,6 +53,7 @@ $(document).ready(function () {
 }); // document.ready end
 
 async function footerPageInit() {
+    // sessioncheck.js 함수사용
     var isLoggedIn = await sessionCheck() === true;
     localStorage.setItem("isLoggedIn", isLoggedIn);
     updateFooterUI(isLoggedIn);
@@ -68,36 +68,5 @@ function updateFooterUI(isLoggedIn) {
     } else {
         $loginButtons.text("로그인");
         $btbAddress.attr('src', '/img/로그인.svg?v=' + new Date().getTime());
-    }
-}
-
-
-// 로그인 세션 확인
-async function sessionCheck(page) {
-    
-    const response = await fetch("/getsession", {
-        method: "POST"
-    });
-    const result = await response.json();
-
-    var isLoggedIn = result.isLoggedIn === true;
-    
-    switch (page) {
-        case "header":
-            if (isLoggedIn != true) {
-                window.location.href = "/login";
-            } else {
-                window.location.href = "/logout";
-            }
-            break;
-        case "footer":
-            if (isLoggedIn != true) {
-                window.location.href = "/login";
-            } else {
-                window.location.href = "/mypage";
-            }
-            break;
-        default :
-            return isLoggedIn;
     }
 }

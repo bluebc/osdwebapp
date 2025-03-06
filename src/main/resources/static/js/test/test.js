@@ -75,7 +75,7 @@ async function loginCheck(id, pw) {
 }
 
 async function auth(id, pw) {
-    var user = { id: id, password: pw };
+    var user = { user_id: id, user_pw: pw };
 
     const response = await fetch("/auth", {
         method: "POST",
