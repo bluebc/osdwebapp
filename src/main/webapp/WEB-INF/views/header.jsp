@@ -33,7 +33,7 @@
                 <div class="he_link" >
                     <a href="#" class="loginBtn">로그인</a>
                     <a href="#" class="signupBtn">회원가입</a>
-                    <a href="/index.html" class="supportBtn">홈</a>
+                    <a href="index.jsp" class="supportBtn">홈</a>
                     <a href="#" class="supportBtn">고객센터</a>
                 </div>
 
