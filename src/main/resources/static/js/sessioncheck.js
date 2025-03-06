@@ -6,10 +6,7 @@ async function sessionCheck(page) {
     });
     const result = await response.json();
 
-    var isLoggedIn = false;
-    if (result.id != null && result.id != "") {
-        isLoggedIn = true;
-    }
+    var isLoggedIn = result.isLoggedIn === true;
 
     switch (page) {
         case "header":

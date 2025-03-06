@@ -31,7 +31,7 @@ async function loginCheck(id, pw) {
             break;
         case 1:
             alert("로그인되었습니다.");
-            localStorage.setItem("isLoggedIn",true);
+            // localStorage.setItem("isLoggedIn",true);
             window.location.href = "/";
             break;
         default:
