@@ -38,8 +38,6 @@
 
 </head>
 <body>
-<%-- 로그인 여부 --%>
-<%-- <input type = "hidden" id = "isLoggedIn" value = "${loginInfo.get("isLoggedIn")}"/> --%>
 
     <!-- header -->
     <jsp:include page="header.jsp"></jsp:include>

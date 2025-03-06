@@ -11,6 +11,7 @@ $(document).ready(function () {
         window.dispatchEvent(new Event("storage"));
 
         // 로그인 여부 세션 확인
+        // sessioncheck.js 함수사용
         sessionCheck("headerLogin");
     });
 
@@ -23,6 +24,7 @@ $(document).ready(function () {
         window.dispatchEvent(new Event("storage"));
 
         // 로그인 여부 세션 확인
+        // sessioncheck.js 함수사용
         sessionCheck("headerSignup");
     });
 
@@ -30,8 +32,8 @@ $(document).ready(function () {
 
 }); // document.ready end
 
-
 async function headerPageInit() {
+    // sessioncheck.js 함수사용
     var isLoggedIn = await sessionCheck() === true;
     localStorage.setItem("isLoggedIn", isLoggedIn);
     updateHeaderUI(isLoggedIn);
@@ -54,7 +56,6 @@ function updateHeaderUI(isLoggedIn) {
     }
 }
 
-
 // GNB 메뉴 관련 코드
 $(document).ready(function () {
     const opTitle = document.querySelector('.group_option .select_op');
@@ -70,40 +71,3 @@ $(document).ready(function () {
         opList.classList.remove('on');
     });
 });
-
-// // 로그인 세션 확인
-// async function sessionCheck(page) {
-
-//     const response = await fetch("/getsession", {
-//         method: "POST"
-//     });
-//     const result = await response.json();
-
-//     var isLoggedIn = result.isLoggedIn === true;
-
-//     switch (page) {
-//         case "headerLogin":
-//             if (isLoggedIn != true) {
-//                 window.location.href = "/login";
-//             } else {
-//                 window.location.href = "/logout";
-//             }
-//             break;
-//         case "footerLogin":
-//             if (isLoggedIn != true) {
-//                 window.location.href = "/login";
-//             } else {
-//                 window.location.href = "/mypage";
-//             }
-//             break;
-//         case "headerSignup":
-//             if (isLoggedIn != true) {
-//                 window.location.href = "/signup";
-//             } else {
-//                 window.location.href = "/mypage";
-//             }
-//             break;
-//         default:
-//             return isLoggedIn;
-//     }
-// }
