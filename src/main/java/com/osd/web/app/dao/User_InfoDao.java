@@ -36,4 +36,8 @@ public class User_InfoDao {
         return session.selectOne("User_Info.getUser_InfoById", user_InfoDto);
     }
 
+    public int deleteUser_InfoByIdAndPw(User_InfoDto user_InfoDto) {
+        return session.delete("User_Info.deleteUser_InfoByIdAndPw", user_InfoDto);
+    }
+
 }

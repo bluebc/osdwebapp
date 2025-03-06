@@ -55,7 +55,7 @@ $(document).ready(function () {
         window.dispatchEvent(new Event("storage"));
 
         // ++ 로그인 여부 세션 확인
-        sessionCheck("footer");
+        sessionCheck("footerLogin");
 
 
     });
@@ -93,32 +93,32 @@ function updateFooterUI(isLoggedIn) {
 }
 
 
-// 로그인 세션 확인
-async function sessionCheck(page) {
+// // 로그인 세션 확인
+// async function sessionCheck2(page) {
     
-    const response = await fetch("/getsession", {
-        method: "POST"
-    });
-    const result = await response.json();
+//     const response = await fetch("/getsession", {
+//         method: "POST"
+//     });
+//     const result = await response.json();
 
-    var isLoggedIn = result.isLoggedIn === true;
+//     var isLoggedIn = result.isLoggedIn === true;
     
-    switch (page) {
-        case "header":
-            if (isLoggedIn != true) {
-                window.location.href = "/login";
-            } else {
-                window.location.href = "/logout";
-            }
-            break;
-        case "footer":
-            if (isLoggedIn != true) {
-                window.location.href = "/login";
-            } else {
-                window.location.href = "/mypage";
-            }
-            break;
-        default :
-            return isLoggedIn;
-    }
-}
+//     switch (page) {
+//         case "header":
+//             if (isLoggedIn != true) {
+//                 window.location.href = "/login";
+//             } else {
+//                 window.location.href = "/logout";
+//             }
+//             break;
+//         case "footer":
+//             if (isLoggedIn != true) {
+//                 window.location.href = "/login";
+//             } else {
+//                 window.location.href = "/mypage";
+//             }
+//             break;
+//         default :
+//             return isLoggedIn;
+//     }
+// }

@@ -47,8 +47,7 @@ public class LoginController {
     @RequestMapping("/logout")
     public String logout(HttpServletRequest request) {
 
-        HttpSession session = request.getSession();
-        session.invalidate();
+        loginService.invalidateSession(request);
 
         return "logout";
     }
@@ -71,10 +70,31 @@ public class LoginController {
     @ResponseBody
     @PostMapping("/getsession")
     public Map<String, Object> getSession(HttpServletRequest request) {
-  
+
         Map<String, Object> sessionInfo = loginService.getSession(request);
 
         return sessionInfo;
+    }
+
+    @RequestMapping("/withdraw")
+    public String withdrawPage(HttpServletRequest request) {
+
+        return "withdraw";
+    }
+
+    @ResponseBody
+    @PostMapping("/withdrawuser")
+    public Map<String, Object> withdraw(HttpServletRequest request, @RequestBody User_InfoDto user_info) {
+
+        Map<String, Object> response = new HashMap<>();
+        int isDeleted = 0;
+
+        loginService.invalidateSession(request);
+        isDeleted = loginService.delete(user_info);
+
+        response.put("isDeleted", isDeleted);
+
+        return response;
     }
 
 }

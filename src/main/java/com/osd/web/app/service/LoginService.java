@@ -29,18 +29,23 @@ public class LoginService {
 
     }
 
-    public Map<String, Object> getSession(HttpServletRequest request){
+    public Map<String, Object> getSession(HttpServletRequest request) {
         Map<String, Object> sessionInfo = new HashMap<>();
         HttpSession session = request.getSession();
 
-        String loginId = (String)session.getAttribute("osdsession");
+        String loginId = (String) session.getAttribute("osdsession");
         boolean isLoggedIn = false;
-        if(loginId!=null && !loginId.equals("")){
+        if (loginId != null && !loginId.equals("")) {
             isLoggedIn = true;
         }
         sessionInfo.put("id", loginId);
         sessionInfo.put("isLoggedIn", isLoggedIn);
         return sessionInfo;
+    }
+
+    public void invalidateSession(HttpServletRequest request) {
+        HttpSession session = request.getSession();
+        session.invalidate();
     }
 
     public int auth(User_InfoDto user_InfoDto) {
@@ -71,6 +76,14 @@ public class LoginService {
         } else if (user_InfoDao.existsById(user_InfoDto.getUser_id()) > 0) {
             result = -1;
         }
+        return result;
+    }
+
+    public int delete(User_InfoDto user_InfoDto) {
+        int result = 0;
+
+        result = user_InfoDao.deleteUser_InfoByIdAndPw(user_InfoDto);
+
         return result;
     }
 
