@@ -116,5 +116,9 @@
 				user_id = #{user_id}
 			</where>
 		</update>
+
+		<update id="updateUser_Pw">
+			update user_info set user_pw = #{user_pw} where user_id = #{user_id}
+		</update>
         
 </mapper>

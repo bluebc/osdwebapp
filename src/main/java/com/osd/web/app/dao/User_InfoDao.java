@@ -46,5 +46,8 @@ public class User_InfoDao {
     public int updateUser_Info(User_InfoDto user_InfoDto){
         return session.update("User_Info.update", user_InfoDto);
     }
+    public int updateUser_Pw(User_InfoDto user_InfoDto){
+        return session.update("User_Info.updateUser_Pw", user_InfoDto);
+    }
 
 }

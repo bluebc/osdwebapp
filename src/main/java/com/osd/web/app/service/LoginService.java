@@ -87,4 +87,12 @@ public class LoginService {
         return result;
     }
 
+    public int updateUser_Pw(User_InfoDto user_InfoDto) {
+        int result = 0;
+
+        result = user_InfoDao.updateUser_Pw(user_InfoDto);
+
+        return result;
+    }
+
 }
