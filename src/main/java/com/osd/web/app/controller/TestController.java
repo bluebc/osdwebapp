@@ -23,11 +23,6 @@ public class TestController {
     @Autowired
     private User_InfoService user_InfoService;
 
-    @RequestMapping("/main")
-    public String testing() {
-        return "redirect:/test";
-    }
-
     @RequestMapping("/test")
     public String testPage(HttpServletRequest request, Model model) {
 
