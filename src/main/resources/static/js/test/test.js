@@ -4,6 +4,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     // 로그인 버튼 on/off
     loginVisible();
+    initUserInfo();
 
 
 });
@@ -89,14 +90,21 @@ async function auth(id, pw) {
 
 async function inquire() {
 
-    var user_info = await getUserInfo();
+    var iUser_id = document.getElementById("iUserId").value
+
+
+    var user_info = await getUserInfo(iUser_id);
     fillIn(user_info);
 
 }
 
-async function getUserInfo() {
-    var id = document.getElementById("iUserId").value;
-    var userobj = { user_id: id };
+async function getUserInfo(user_id) {
+
+    if(user_id == null || user_id == ""){
+        return;
+    }
+ 
+    var userobj = { user_id: user_id };
 
     const response = await fetch("/getuserinfo", {
         method: "POST",
@@ -148,4 +156,10 @@ async function updateUserInfo(user_info) {
     });
     const result = await response.json();
     return result;
+}
+
+async function initUserInfo(){
+    const sessionId = await sessionCheck("getId");
+    const user_info = await getUserInfo(sessionId);
+    fillIn(user_info);
 }

@@ -1,5 +1,5 @@
 // 로그인 세션 확인
-async function sessionCheck(page) {
+async function sessionCheck(request) {
 
     const response = await fetch("/getsession", {
         method: "POST"
@@ -7,8 +7,9 @@ async function sessionCheck(page) {
     const result = await response.json();
 
     var isLoggedIn = result.isLoggedIn === true;
+    result.isLoggedIn = isLoggedIn;
 
-    switch (page) {
+    switch (request) {
         case "headerLogin":
             if (isLoggedIn != true) {
                 window.location.href = "/login";
@@ -30,7 +31,11 @@ async function sessionCheck(page) {
                 window.location.href = "/mypage";
             }
             break;
-        default:
+        case "isLoggedIn":
             return isLoggedIn;
+        case "getId":
+            return result.id;
+        default:
+            return result;
     }
 }

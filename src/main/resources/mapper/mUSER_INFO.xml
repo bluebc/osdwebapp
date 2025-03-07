@@ -65,7 +65,7 @@
 		</insert>
 
 	 	<select id="getUser_InfoById" parameterType="User_InfoDto" resultMap="UserInfoResultMap">
-		 	select * from user_info 
+		 	select user_id, user_pw, user_name, user_hpno, user_email, user_addr, user_birth, user_gender from user_info 
 			<where>
 			user_id = #{user_id}
 			</where> 
