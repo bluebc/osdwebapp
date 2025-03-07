@@ -50,7 +50,7 @@ public class LoginService {
 
     public int auth(User_InfoDto user_InfoDto) {
         int result = 0;
-        User_InfoDto user_InfoFromDb = user_InfoDao.getUser_InfoById(user_InfoDto);
+        User_InfoDto user_InfoFromDb = user_InfoDao.getUser_InfoForAuth(user_InfoDto);
 
         if (user_InfoFromDb == null) {
             result = -1;

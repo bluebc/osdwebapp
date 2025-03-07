@@ -65,11 +65,19 @@
 		</insert>
 
 	 	<select id="getUser_InfoById" parameterType="User_InfoDto" resultMap="UserInfoResultMap">
-		 	select user_id, user_pw, user_name, user_hpno, user_email, user_addr, user_birth, user_gender from user_info 
+		 	select user_id, user_name, user_hpno, user_email, user_addr, user_birth, user_gender from user_info 
 			<where>
 			user_id = #{user_id}
 			</where> 
 		</select>
+
+		<select id="getUser_InfoForAuth" parameterType="User_InfoDto" resultMap="UserInfoResultMap">
+			select user_id, user_pw from user_info
+			<where>
+			user_id = #{user_id}
+			</where>
+		</select>
+
 
 		<delete id="deleteUser_InfoByIdAndPw" parameterType = "User_InfoDto">
 			delete user_info
