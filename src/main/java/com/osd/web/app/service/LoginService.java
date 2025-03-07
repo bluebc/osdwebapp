@@ -68,18 +68,18 @@ public class LoginService {
         return result;
     }
 
-    public int insert(User_InfoDto user_InfoDto) {
+    public int insertUser_Info(User_InfoDto user_InfoDto) {
         int result = 0;
 
-        if (user_InfoDao.existsById(user_InfoDto.getUser_id()) == 0) {
-            result = user_InfoDao.insert(user_InfoDto);
-        } else if (user_InfoDao.existsById(user_InfoDto.getUser_id()) > 0) {
+        if (user_InfoDao.existsUser_InfoById(user_InfoDto.getUser_id()) == 0) {
+            result = user_InfoDao.insertUser_Info(user_InfoDto);
+        } else if (user_InfoDao.existsUser_InfoById(user_InfoDto.getUser_id()) > 0) {
             result = -1;
         }
         return result;
     }
 
-    public int delete(User_InfoDto user_InfoDto) {
+    public int deleteUser_Info(User_InfoDto user_InfoDto) {
         int result = 0;
 
         result = user_InfoDao.deleteUser_InfoByIdAndPw(user_InfoDto);
