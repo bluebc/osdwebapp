@@ -58,7 +58,7 @@ public class LoginController {
     }
 
     @ResponseBody
-    @PostMapping("/usercreate")
+    @PostMapping("/createuser")
     public int userCreate(@RequestBody User_InfoDto user_info) {
         int result = 0;
 

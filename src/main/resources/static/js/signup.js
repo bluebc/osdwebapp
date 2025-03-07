@@ -74,7 +74,7 @@ var createTime = getTime();
         user_updated_at: createTime
     };
 
-    var result = await userCreate(user_info);
+    var result = await createUser(user_info);
 
     switch (result) {
         case -1:
@@ -93,8 +93,8 @@ var createTime = getTime();
 
 }
 
-async function userCreate(user_info) {
-    const response = await fetch("/usercreate", {
+async function createUser(user_info) {
+    const response = await fetch("/createuser", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(user_info),

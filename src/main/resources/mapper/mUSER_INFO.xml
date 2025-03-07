@@ -77,5 +77,36 @@
 			user_id = #{user_id} and user_pw = #{user_pw}
 			</where>
 		</delete>
+
+		<update id="update">
+			update user_info
+			<set>
+				<if test="#{user_pw}!=null">
+					user_pw = #{user_pw} ,
+				</if>
+				<if test="#{user_name}!=null">
+					user_name = #{user_name} ,
+				</if>
+				<if test="#{user_hpno}!=null">
+					user_hpno = #{user_hpno} ,
+				</if>
+				<if test="#{user_email}!=null">
+					user_email = #{user_email} ,
+				</if>
+				<if test="#{user_addr}!=null">
+					user_addr = #{user_addr} ,
+				</if>
+				<if test="#{user_birth}!=null">
+					user_birth = #{user_birth} ,
+				</if>
+				<if test="#{user_gender}!=null">
+					user_gender = #{user_gender} ,
+				</if>
+				user_updated_at = #{user_updated_at}
+			</set>
+			<where>
+				user_id = #{user_id}
+			</where>
+		</update>
         
 </mapper>
