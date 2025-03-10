@@ -95,7 +95,7 @@ async function inquire() {
 
     var user_info = await getUserInfo(iUser_id);
     fillIn(user_info);
-
+    readOnly();
 }
 
 async function getUserInfo(user_id) {
@@ -162,4 +162,8 @@ async function initUserInfo(){
     const sessionId = await sessionCheck("getId");
     const user_info = await getUserInfo(sessionId);
     fillIn(user_info);
+}
+
+function readOnly(){
+    document.getElementById("iUserGender").readOnly = true;
 }

@@ -117,8 +117,15 @@
 			</where>
 		</update>
 
-		<update id="updateUser_Pw">
-			update user_info set user_pw = #{user_pw} where user_id = #{user_id}
+		<update id="updateUser_Pw" parameterType="User_InfoDto">
+			update user_info 
+			<set>
+				user_pw = #{user_pw}, 
+				user_updated_at = #{user_updated_at}
+			</set>
+			<where>
+				user_id = #{user_id}
+			</where>
 		</update>
         
 </mapper>

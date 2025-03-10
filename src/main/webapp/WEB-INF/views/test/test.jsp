@@ -17,6 +17,8 @@
 <h6><a href = "/signup">회원가입 페이지</a></h6>
 <h6><a href = "/withdraw">회원탈퇴 페이지</a></h6>
 <h6><a href = "/login">로그인 페이지</a></h6>
+<h6><a href = "/changepw">비밀번호 수정 페이지</a></h6>
+
 
 <%-- <input type = "button" value = "test" onclick = "loginVisible('${loginId}')"> --%>
 

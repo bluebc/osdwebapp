@@ -1,5 +1,6 @@
 package com.osd.web.app.service;
 
+import java.time.LocalDateTime;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -90,6 +91,8 @@ public class LoginService {
     public int updateUser_Pw(User_InfoDto user_InfoDto) {
         int result = 0;
 
+        LocalDateTime updateTime = LocalDateTime.now();
+        user_InfoDto.setUser_updated_at(updateTime);
         result = user_InfoDao.updateUser_Pw(user_InfoDto);
 
         return result;
