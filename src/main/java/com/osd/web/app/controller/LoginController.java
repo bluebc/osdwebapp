@@ -1,8 +1,10 @@
 package com.osd.web.app.controller;
 
 import java.net.http.HttpRequest;
+import java.time.LocalDateTime;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -12,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.osd.web.app.dto.Auto_Login_TokenDto;
 import com.osd.web.app.dto.User_InfoDto;
 import com.osd.web.app.service.LoginService;
 
@@ -47,10 +50,21 @@ public class LoginController {
             loginService.setSession(request, user_InfoDto.getUser_id());
         }
 
-        if (autoLogin) {
-            Cookie autoLoginCookie = loginService.setCookie("autoLogin", user_InfoDto.getUser_id());
-            response.addCookie(autoLoginCookie);
+        String user_id = user_InfoDto.getUser_id();
+        String token = UUID.randomUUID().toString();
+        LocalDateTime expiry_date = LocalDateTime.now().plusMinutes(1);
 
+        Auto_Login_TokenDto auto_Login_TokenDto = new Auto_Login_TokenDto();
+        auto_Login_TokenDto.setToken(token);
+        auto_Login_TokenDto.setUser_id(user_id);
+        auto_Login_TokenDto.setExpiry_date(expiry_date);
+
+        if (autoLogin) {
+            Cookie autoLoginCookie = loginService.setCookie("autoLoginId", user_InfoDto.getUser_id());
+            Cookie autoLoginTokenCookie = loginService.setCookie("autoLoginToken", token);
+            response.addCookie(autoLoginCookie);
+            response.addCookie(autoLoginTokenCookie);
+            loginService.insertAutoLoginToken(auto_Login_TokenDto);
         }
         if (rememberMe) {
             Cookie rememberMeCookie = loginService.setCookie("rememberMe", user_InfoDto.getUser_id());
@@ -60,6 +74,7 @@ public class LoginController {
         return result;
     }
 
+    // 아이디 저장 값 불러오기
     @ResponseBody
     @PostMapping("/rememberMe")
     public Map<String, Object> rememberMe(HttpServletRequest request) {
@@ -74,7 +89,7 @@ public class LoginController {
                 user_id = cookie.getValue();
             }
         }
-        if(user_id != ""){
+        if (user_id != "") {
             stauts = 1;
         }
         result.put("user_id", user_id);

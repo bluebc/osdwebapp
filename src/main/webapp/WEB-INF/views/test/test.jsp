@@ -22,7 +22,7 @@
 
 <%-- <input type = "button" value = "test" onclick = "loginVisible('${loginId}')"> --%>
 
-<input type = "button" value = "test" onclick = "">
+<input type = "button" value = "test" onclick = "tokenmaker()">
 <br>
 
 <br>

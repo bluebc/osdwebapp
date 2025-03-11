@@ -7,7 +7,9 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.osd.web.app.dao.Auto_Login_TokenDao;
 import com.osd.web.app.dao.User_InfoDao;
+import com.osd.web.app.dto.Auto_Login_TokenDto;
 import com.osd.web.app.dto.User_InfoDto;
 
 import jakarta.servlet.http.Cookie;
@@ -22,6 +24,9 @@ public class LoginService {
 
     @Autowired
     private User_InfoDao user_InfoDao;
+
+    @Autowired
+    private Auto_Login_TokenDao auto_Login_TokenDao;
 
     // 세션 생성
     public void setSession(HttpServletRequest request, String id) {
@@ -59,8 +64,13 @@ public class LoginService {
         cookie.setSecure(true); // HTTPS에서만 쿠키 전송 (서버가 HTTPS 연결일 때만)
         cookie.setHttpOnly(true); // JavaScript에서 쿠키를 접근할 수 없도록 설정
         // cookie.setSameSite("Strict"); // SameSite 설정 (크로스사이트 요청에서 쿠키를 전송하지 않음)
-
+        
         return cookie;
+    }
+
+    // 토큰
+    public int insertAutoLoginToken(Auto_Login_TokenDto auto_Login_TokenDto){
+        return auto_Login_TokenDao.insert(auto_Login_TokenDto);
     }
 
     public void invalidateSession(HttpServletRequest request) {

@@ -100,10 +100,10 @@ async function inquire() {
 
 async function getUserInfo(user_id) {
 
-    if(user_id == null || user_id == ""){
+    if (user_id == null || user_id == "") {
         return;
     }
- 
+
     var userobj = { user_id: user_id };
 
     const response = await fetch("/getuserinfo", {
@@ -140,7 +140,7 @@ async function modify() {
 
     const result = await updateUserInfo(user_info);
 
-    if(result.result == 1){
+    if (result.result == 1) {
         alert("회원정보 수정 완료");
     }
     // console.log("update:", result.result);
@@ -158,12 +158,26 @@ async function updateUserInfo(user_info) {
     return result;
 }
 
-async function initUserInfo(){
+async function initUserInfo() {
     const sessionId = await sessionCheck("getId");
     const user_info = await getUserInfo(sessionId);
     fillIn(user_info);
 }
 
-function readOnly(){
+function readOnly() {
     document.getElementById("iUserGender").readOnly = true;
+}
+
+
+
+// ====================▼ 자동로그인 토큰 테스트 ▼====================
+
+function tokenmaker() {
+    var user_id = document.getElementById("iUserId").value;
+    fetch("/ttokenmaker?user_id=" + user_id, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: {},
+    });
+
 }

@@ -1,7 +1,9 @@
 package com.osd.web.app.controller;
 
+import java.time.LocalDateTime;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -9,8 +11,10 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.osd.web.app.dto.Auto_Login_TokenDto;
 import com.osd.web.app.dto.User_InfoDto;
 import com.osd.web.app.service.LoginService;
 import com.osd.web.app.service.User_InfoService;
@@ -33,7 +37,7 @@ public class TestController {
     public String testPage(HttpServletRequest request, HttpServletResponse response, Model model) {
 
         HttpSession session = request.getSession();
-        String loginId = (String) session.getAttribute("osdsession");
+        String loginId = (String) session.getAttribute("loginUser");
 
         model.addAttribute("loginId", loginId);
 
@@ -50,6 +54,24 @@ public class TestController {
         User_InfoDto user_info = user_InfoService.getUser_InfoById(user_InfoDto);
 
         return user_info;
+    }
+
+    @ResponseBody
+    @PostMapping("/ttokenmaker")
+    public void autoLoginTokenMaker(@RequestParam(name = "user_id") String user_id) {
+
+        UUID uuid = UUID.randomUUID();
+        String token = uuid.toString();
+        LocalDateTime expiry_date = LocalDateTime.now();
+
+        Auto_Login_TokenDto auto_Login_TokenDto = new Auto_Login_TokenDto();
+
+        auto_Login_TokenDto.setToken(token);
+        auto_Login_TokenDto.setUser_id(user_id);
+        auto_Login_TokenDto.setExpiry_date(expiry_date);
+
+        loginService.insertAutoLoginToken(auto_Login_TokenDto);
+
     }
 
 }

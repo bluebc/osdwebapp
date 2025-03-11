@@ -1,0 +1,19 @@
+package com.osd.web.app.dao;
+
+import org.apache.ibatis.session.SqlSession;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
+
+import com.osd.web.app.dto.Auto_Login_TokenDto;
+
+@Repository
+public class Auto_Login_TokenDao {
+
+    @Autowired
+    private SqlSession session;
+
+    public int insert(Auto_Login_TokenDto auto_Login_TokenDto) {
+return session.insert("Auto_Login_Token.insert", auto_Login_TokenDto);
+    }
+
+}
