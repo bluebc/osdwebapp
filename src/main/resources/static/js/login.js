@@ -2,13 +2,26 @@ async function login() {
     var user_id = document.getElementById("user_id");
     if (user_id.value == "") {
         user_id.focus();
-        alert("아이디를 입력하세요.");
+        Swal.fire({
+            icon: "warning",
+            title: "알림",
+            text: "아이디를 입력하세요.",
+            confirmButtonColor: "#82a90d", 
+            background: "#ffffff",
+        });
         return;
     }
+
     var user_pw = document.getElementById("user_pw");
-    if (user_pw == "") {
+    if (user_pw.value == "") { 
         user_pw.focus();
-        alert("비밀번호를 입력하세요.");
+        Swal.fire({
+            icon: "warning",
+            title: "알림",
+            text: "비밀번호를 입력하세요.",
+            confirmButtonColor: "#82a90d",
+            background: "#ffffff",
+        });
         return;
     }
 
@@ -17,11 +30,17 @@ async function login() {
 
 async function loginCheck(id, pw) {
     var check = await auth(id, pw);
-    //alert(check.status);
+    // alert(check.status);
 
     switch (check.status) {
         case -2:
-            alert("비밀번호를 확인하세요.");
+            Swal.fire({
+                title: "비밀번호가 일치하지 않습니다",
+                text: "비밀번호를 확인하세요",
+                icon: "error",
+                confirmButtonColor: "#82a90d", 
+                background: "#ffffff",
+            });
             break;
         case -1:
             alert("아이디를 확인하세요.");
@@ -30,9 +49,18 @@ async function loginCheck(id, pw) {
             alert("오류가 발생하였습니다.");
             break;
         case 1:
-            alert("로그인 되었습니다.");
-            // localStorage.setItem("isLoggedIn",true);
-            window.location.href = "/";
+            Swal.fire({
+                title: "로그인 되었습니다.",
+                text: "환영합니다.",
+                icon: "success",
+                confirmButtonColor: "#82a90d", 
+                background: "#ffffff", 
+                color: "#2E7D32", 
+                timer: 1500, 
+                showConfirmButton: false 
+            }).then(() => {
+                window.location.href = "/";
+            });
             break;
         default:
             alert("오류가 발생하였습니다.");

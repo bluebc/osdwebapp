@@ -97,7 +97,6 @@ header .top-banner {
   margin-bottom: 1rem;
 }
 .container .content #loginForm .boxBtnGroup .btnInp input {
-  font-weight: bold;
   width: 100%;
   min-width: 240px;
   height: 60px;
@@ -106,14 +105,14 @@ header .top-banner {
   font-size: 20px;
   border-radius: 2%;
   border: 1px solid;
-  background-color: #9bad73;
-  border-color: #9bad73;
+  background-color: #82a90d;
+  border-color: #82a90d;
   color: #ffffff;
 }
 .container .content #loginForm .boxBtnGroup .btnInp:nth-child(2) input {
   background-color: #ffffff;
-  border-color: #9bad73;
-  color: #9bad73;
+  border-color: #82a90d;
+  color: #82a90d;
 }
 .container .content #loginForm .formLink {
   margin-top: 20px;
