@@ -34,7 +34,7 @@ $(document).ready(function () {
 
 async function headerPageInit() {
     // sessioncheck.js 함수사용
-    var isLoggedIn = await sessionCheck() === true;
+    var isLoggedIn = await sessionCheck("isLoggedIn") === true;
     localStorage.setItem("isLoggedIn", isLoggedIn);
     updateHeaderUI(isLoggedIn);
 }
