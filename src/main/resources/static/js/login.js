@@ -8,7 +8,7 @@ async function login() {
     var user_pw = document.getElementById("user_pw");
     if (user_pw == "") {
         user_pw.focus();
-        alert("비밀번호를 입력해주세요.");
+        alert("비밀번호를 입력하세요.");
         return;
     }
 
@@ -30,7 +30,7 @@ async function loginCheck(id, pw) {
             alert("오류가 발생하였습니다.");
             break;
         case 1:
-            alert("로그인되었습니다.");
+            alert("로그인 되었습니다.");
             // localStorage.setItem("isLoggedIn",true);
             window.location.href = "/";
             break;
