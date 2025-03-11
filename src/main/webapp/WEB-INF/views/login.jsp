@@ -11,7 +11,7 @@
 
     </head>
     <body>
-        <h1>logins</h1><br>
+        <h1>login</h1><br>
         
         <br>
         <input type = "text", id = "user_id" placeholder = "아이디">
