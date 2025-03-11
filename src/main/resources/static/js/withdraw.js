@@ -8,7 +8,7 @@ async function withdraw() {
     var user_pw = document.getElementById("user_pw");
     if (user_pw == "") {
         user_pw.focus();
-        alert("비밀번호를 입력해주세요.");
+        alert("비밀번호를 입력하세요.");
         return;
     }
 

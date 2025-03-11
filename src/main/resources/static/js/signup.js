@@ -2,7 +2,7 @@ async function signup() {
 
     var user_id = document.getElementById("user_id");
     if (user_id.value == "") {
-        alert("아이디를 입력해 주세요.");
+        alert("아이디를 입력해주세요.");
         user_id.focus();
         return;
     }
@@ -23,37 +23,37 @@ async function signup() {
 
     var user_name = document.getElementById("user_name");
     if (user_name.value == "") {
-        alert("이름을 입력해 주세요.");
+        alert("이름을 입력해주세요.");
         user_name.focus();
         return;
     }
     var user_hpno = document.getElementById("user_hpno");
     if (user_hpno.value == "") {
-        alert("핸드폰 번호를 입력해 주세요.");
+        alert("핸드폰 번호를 입력해주세요.");
         user_hpno.focus();
         return;
     }
     var user_email = document.getElementById("user_email");
     if (user_email.value == "") {
-        alert("이메일을 입력해 주세요.");
+        alert("이메일을 입력해주세요.");
         user_email.focus();
         return;
     }
     var user_addr = document.getElementById("user_addr");
     if (user_addr.value == "") {
-        alert("주소를 입력해 주세요.");
+        alert("주소를 입력해주세요.");
         user_addr.focus();
         return;
     }
     var user_birth = document.getElementById("user_birth");
     if (user_birth.value == "") {
-        alert("생년월일을 입력해 주세요.");
+        alert("생년월일을 입력해주세요.");
         user_birth.focus();
         return;
     }
     var user_gender = document.getElementById("user_gender");
     if (user_gender.value == "") {
-        alert("성별을 선택해 주세요.");
+        alert("성별을 선택해주세요.");
         user_gender.focus();
         return;
     }

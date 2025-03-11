@@ -1,6 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 
-    
     <header  class="header" >
         <div class="top-banner">
             <img src="/img/top-banner.png" alt="배너알림">
@@ -9,7 +8,7 @@
             <article >
                 <hgroup class="gnb">
                     <div>
-                        <a href="#">
+                        <a href="/">
                             <h1 >
                                 <img src="img/uni-well-logo.png" alt="logo">
                             </h1>
@@ -33,7 +32,7 @@
                 <div class="he_link" >
                     <a href="#" class="loginBtn">로그인</a>
                     <a href="#" class="signupBtn">회원가입</a>
-                    <a href="/index.html" class="supportBtn">홈</a>
+                    <a href="/" class="supportBtn">홈</a>
                     <a href="#" class="supportBtn">고객센터</a>
                 </div>
 
@@ -49,7 +48,7 @@
             <div class="hd_m">
                 <div class="hd_info" >
                     <div class="hd_logo">
-                        <a href="#">
+                        <a href="/">
                             <img src="../img/uni-well-logo-sd.png">
                         </a>
                     </div>

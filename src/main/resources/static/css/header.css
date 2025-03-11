@@ -144,12 +144,14 @@ header .hd_all .hd_m {
     top: 2.7rem;
   }
   header .hd_all .hd_m .hd_info .gnbbar .group_option .select_op {
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     background: none;
     border: 0;
     cursor: pointer;
-    align-items: center;
     position: relative;
-    width: 100%;
     font-size: 1.3rem;
     font-weight: bold;
   }
