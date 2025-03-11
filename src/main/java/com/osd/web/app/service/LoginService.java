@@ -9,11 +9,15 @@ import org.springframework.stereotype.Service;
 import com.osd.web.app.dao.User_InfoDao;
 import com.osd.web.app.dto.User_InfoDto;
 
+import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 
 @Service
 public class LoginService {
+
+    private static final String loginSessionName = "loginUser";
 
     @Autowired
     private User_InfoDao user_InfoDao;
@@ -25,7 +29,7 @@ public class LoginService {
         // session.setMaxInactiveInterval(10 * 60);
         // 1분
         session.setMaxInactiveInterval(1 * 60);
-        session.setAttribute("osdsession", id);
+        session.setAttribute(loginSessionName, id);
 
     }
 
@@ -33,7 +37,7 @@ public class LoginService {
         Map<String, Object> sessionInfo = new HashMap<>();
         HttpSession session = request.getSession();
 
-        String loginId = (String) session.getAttribute("osdsession");
+        String loginId = (String) session.getAttribute(loginSessionName);
         boolean isLoggedIn = false;
         if (loginId != null && !loginId.equals("")) {
             isLoggedIn = true;
@@ -41,6 +45,21 @@ public class LoginService {
         sessionInfo.put("id", loginId);
         sessionInfo.put("isLoggedIn", isLoggedIn);
         return sessionInfo;
+    }
+
+    public Cookie setCookie(String cookieName, String cookieValue) {
+
+        Cookie cookie = new Cookie(cookieName, cookieValue);
+        // cookie.setMaxAge(7*24*60*60); // 7일간 유지
+        cookie.setPath("/"); // 모든 경로에서 사용 가능
+        cookie.setMaxAge(60); // 1분
+
+        // 보안을 강화하는 설정
+        cookie.setSecure(true); // HTTPS에서만 쿠키 전송 (서버가 HTTPS 연결일 때만)
+        cookie.setHttpOnly(true); // JavaScript에서 쿠키를 접근할 수 없도록 설정
+        // cookie.setSameSite("Strict"); // SameSite 설정 (크로스사이트 요청에서 쿠키를 전송하지 않음)
+
+        return cookie;
     }
 
     public void invalidateSession(HttpServletRequest request) {
