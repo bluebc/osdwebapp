@@ -12,9 +12,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.osd.web.app.dto.User_InfoDto;
+import com.osd.web.app.service.LoginService;
 import com.osd.web.app.service.User_InfoService;
 
+import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 
 @Controller
@@ -23,13 +26,19 @@ public class TestController {
     @Autowired
     private User_InfoService user_InfoService;
 
+    @Autowired
+    private LoginService loginService;
+
     @RequestMapping("/test")
-    public String testPage(HttpServletRequest request, Model model) {
+    public String testPage(HttpServletRequest request, HttpServletResponse response, Model model) {
 
         HttpSession session = request.getSession();
         String loginId = (String) session.getAttribute("osdsession");
 
         model.addAttribute("loginId", loginId);
+
+        Cookie cookie = loginService.setCookie("testCookie", "coocoo");
+        response.addCookie(cookie);
 
         return "test/test";
     }

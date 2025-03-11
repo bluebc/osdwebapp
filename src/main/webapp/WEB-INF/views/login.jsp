@@ -22,6 +22,14 @@
         <br>
 
         <br>
+        자동로그인
+        <input type = "checkbox", id = "autoLogin">
+        아이디저장
+        <input type = "checkbox", id = "rememberMe">
+        <br>
+        
+
+        <br>
         <input type = "button" value = "login" onclick = "login()">
         <br>
 
