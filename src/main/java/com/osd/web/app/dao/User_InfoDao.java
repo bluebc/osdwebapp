@@ -24,11 +24,11 @@ public class User_InfoDao {
 
     }
 
-    public int existsById(String user_id) {
+    public int existsUser_InfoById(String user_id) {
         return session.selectOne("User_Info.existsById", user_id);
     }
 
-    public int insert(User_InfoDto user_InfoDto) {
+    public int insertUser_Info(User_InfoDto user_InfoDto) {
         return session.insert("User_Info.insert", user_InfoDto);
     }
 
@@ -38,6 +38,10 @@ public class User_InfoDao {
 
     public int deleteUser_InfoByIdAndPw(User_InfoDto user_InfoDto) {
         return session.delete("User_Info.deleteUser_InfoByIdAndPw", user_InfoDto);
+    }
+
+    public int updateUser_Info(User_InfoDto user_InfoDto){
+        return session.update("User_Info.update", user_InfoDto);
     }
 
 }

@@ -4,6 +4,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     // 로그인 버튼 on/off
     loginVisible();
+    initUserInfo();
 
 
 });
@@ -12,7 +13,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
 function loginVisible() {
     var loginId = document.getElementById("loginId").value;
-    
+
     if (loginId != "" && loginId != null) {
         document.getElementById("loginSection").style.display = "none";
     } else {
@@ -84,4 +85,81 @@ async function auth(id, pw) {
     });
     const result = await response.json();
     return result;
+}
+// ====================▼ 회원 조회, 업데이트 ▼====================
+
+async function inquire() {
+
+    var iUser_id = document.getElementById("iUserId").value
+
+
+    var user_info = await getUserInfo(iUser_id);
+    fillIn(user_info);
+
+}
+
+async function getUserInfo(user_id) {
+
+    if(user_id == null || user_id == ""){
+        return;
+    }
+ 
+    var userobj = { user_id: user_id };
+
+    const response = await fetch("/getuserinfo", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(userobj),
+    });
+    const result = await response.json();
+    return result;
+}
+
+function fillIn(user_info) {
+    document.getElementById("iUserId").value = user_info.user_id;
+    document.getElementById("iUserPw").value = user_info.user_pw;
+    document.getElementById("iUserName").value = user_info.user_name;
+    document.getElementById("iUserHpNo").value = user_info.user_hpno;
+    document.getElementById("iUserEmail").value = user_info.user_email;
+    document.getElementById("iUserAddr").value = user_info.user_addr;
+    document.getElementById("iUserBirth").value = user_info.user_birth;
+    document.getElementById("iUserGender").value = user_info.user_gender;
+
+}
+
+async function modify() {
+    var user_info = {};
+    user_info.user_id = document.getElementById("iUserId").value;
+    user_info.user_pw = document.getElementById("iUserPw").value;
+    user_info.user_name = document.getElementById("iUserName").value;
+    user_info.user_hpno = document.getElementById("iUserHpNo").value;
+    user_info.user_email = document.getElementById("iUserEmail").value;
+    user_info.user_addr = document.getElementById("iUserAddr").value;
+    user_info.user_birth = document.getElementById("iUserBirth").value;
+    user_info.user_gender = document.getElementById("iUserGender").value;
+
+    const result = await updateUserInfo(user_info);
+
+    if(result.result == 1){
+        alert("회원정보 수정 완료");
+    }
+    // console.log("update:", result.result);
+
+}
+
+async function updateUserInfo(user_info) {
+
+    const response = await fetch("/updateuserinfo", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(user_info),
+    });
+    const result = await response.json();
+    return result;
+}
+
+async function initUserInfo(){
+    const sessionId = await sessionCheck("getId");
+    const user_info = await getUserInfo(sessionId);
+    fillIn(user_info);
 }
