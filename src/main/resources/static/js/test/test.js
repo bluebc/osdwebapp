@@ -181,3 +181,25 @@ function tokenmaker() {
     });
 
 }
+
+// ====================▼ 이메일 테스트 ▼====================
+
+function sendMail() {
+    var to = document.getElementById("emailTo").value;
+    var subject = document.getElementById("emailSubject").value;
+    var text = document.getElementById("emailText").value;
+
+    fetch("/tsendemail",
+        {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({
+                to: to,
+                subject: subject,
+                text: text
+            })
+        });
+
+
+
+}

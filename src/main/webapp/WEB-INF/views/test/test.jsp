@@ -72,6 +72,19 @@ login id : ${loginId}
 <br>
 
 </div>
+<hr>
+
+<div id = "mailSection">
+<br>
+<input type = "text" id = "emailTo" placeholder = "받는 주소">
+<br>
+<input type = "text" id = "emailSubject" placeholder = "제목">
+<br>
+<input type = "text" id = "emailText" placeholder = "내용">
+<br>
+<input type = "button" value = "send" onclick = "sendMail()">
+</div>
+
 
 <br>
 <br>

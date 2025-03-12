@@ -17,8 +17,10 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.osd.web.app.dto.Auto_Login_TokenDto;
 import com.osd.web.app.dto.User_InfoDto;
 import com.osd.web.app.service.LoginService;
+import com.osd.web.app.service.MailService;
 import com.osd.web.app.service.User_InfoService;
 
+import jakarta.mail.MessagingException;
 import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
@@ -32,6 +34,9 @@ public class TestController {
 
     @Autowired
     private LoginService loginService;
+
+    @Autowired
+    private MailService mailService;
 
     @RequestMapping("/test")
     public String testPage(HttpServletRequest request, HttpServletResponse response, Model model) {
@@ -72,10 +77,25 @@ public class TestController {
 
         loginService.insertAutoLoginToken(auto_Login_TokenDto);
 
-
         Auto_Login_TokenDto auto_Login_TokenFromDb = loginService.getAuto_Login_Token(auto_Login_TokenDto);
         System.out.println(auto_Login_TokenFromDb);
 
+    }
+
+    @ResponseBody
+    @PostMapping("/tsendemail")
+    public void sendEmail(@RequestBody Map<String, Object> emailMap) {
+
+        String to = (String) emailMap.get("to");
+        String subject = (String) emailMap.get("subject");
+        String text = (String) emailMap.get("text");
+
+        try {
+            mailService.sendEmail(to, subject, text);
+        } catch (MessagingException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
     }
 
 }

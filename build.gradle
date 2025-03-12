@@ -25,27 +25,9 @@ repositories {
 }
 
 dependencies {
-	// implementation 'org.springframework.boot:spring-boot-starter-web'
-	// implementation 'org.mybatis.spring.boot:mybatis-spring-boot-starter:3.0.4'
-	// compileOnly 'org.projectlombok:lombok'
-	// developmentOnly 'org.springframework.boot:spring-boot-devtools'
-	// runtimeOnly 'com.microsoft.sqlserver:mssql-jdbc'
-	// annotationProcessor 'org.projectlombok:lombok'
-	// providedRuntime 'org.springframework.boot:spring-boot-starter-tomcat'
-	// testImplementation 'org.springframework.boot:spring-boot-starter-test'
-	// testImplementation 'org.mybatis.spring.boot:mybatis-spring-boot-starter-test:3.0.4'
-	// testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
 
-	// /*jsp*/
-   	// implementation 'org.apache.tomcat.embed:tomcat-embed-jasper'
-
-	// /*jstl*/
-	// implementation group: 'org.glassfish.web', name: 'jakarta.servlet.jsp.jstl', version: '2.0.0'
-
-
-
-implementation 'org.springframework.boot:spring-boot-starter-web'
-	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+	// spring web
+	implementation 'org.springframework.boot:spring-boot-starter-web'
 	// spring devtool
 	developmentOnly 'org.springframework.boot:spring-boot-devtools'
 	// lombok
@@ -53,19 +35,18 @@ implementation 'org.springframework.boot:spring-boot-starter-web'
 	annotationProcessor 'org.projectlombok:lombok'
 	// mssql
 	runtimeOnly 'com.microsoft.sqlserver:mssql-jdbc'
-	// ? 초기생성
+	// 초기생성
+	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 	testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
-	// 프로젝트 생성 이후 추가
+	// mybatis
 	implementation 'org.mybatis.spring.boot:mybatis-spring-boot-starter:3.0.4'
 	testImplementation 'org.mybatis.spring.boot:mybatis-spring-boot-starter-test:3.0.4'
 	// jsp
 	implementation 'org.apache.tomcat.embed:tomcat-embed-jasper'
-
-// jstl 3 버전 실행 불가 (톰캣버전 영향)
-implementation group: 'org.glassfish.web', name: 'jakarta.servlet.jsp.jstl', version: '2.0.0'
-
-
-
+	// jstl 3 버전 실행 불가 (톰캣버전 영향)
+	implementation group: 'org.glassfish.web', name: 'jakarta.servlet.jsp.jstl', version: '2.0.0'
+	// email
+	implementation 'org.springframework.boot:spring-boot-starter-mail'
 
 }
 
