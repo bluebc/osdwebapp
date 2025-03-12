@@ -52,6 +52,8 @@ public class LoginController {
 
         String user_id = user_InfoDto.getUser_id();
         String token = UUID.randomUUID().toString();
+
+        // 토큰 만료 시점
         LocalDateTime expiry_date = LocalDateTime.now().plusMinutes(1);
 
         Auto_Login_TokenDto auto_Login_TokenDto = new Auto_Login_TokenDto();
@@ -64,6 +66,8 @@ public class LoginController {
             Cookie autoLoginTokenCookie = loginService.setCookie("autoLoginToken", token);
             response.addCookie(autoLoginCookie);
             response.addCookie(autoLoginTokenCookie);
+            // 기존 자동로그인 토큰 삭제
+            // loginService.deleteAuto_login_TokenById(auto_Login_TokenDto);
             loginService.insertAutoLoginToken(auto_Login_TokenDto);
         }
         if (rememberMe) {
@@ -116,9 +120,48 @@ public class LoginController {
     }
 
     @RequestMapping("/logout")
-    public String logout(HttpServletRequest request) {
+    public String logout(HttpServletRequest request, HttpServletResponse response) {
 
         loginService.invalidateSession(request);
+
+        Cookie[] cookies = request.getCookies();
+        String user_id = "";
+        String token = "";
+        Auto_Login_TokenDto auto_Login_TokenDto = new Auto_Login_TokenDto();
+
+        for (Cookie cookie : cookies) {
+            if ("autoLoginId".equals(cookie.getName())) {
+                user_id = cookie.getValue();
+                cookie.setMaxAge(0);
+                response.addCookie(cookie);
+                            }
+            if ("autoLoginToken".equals(cookie.getName())) {
+                token = cookie.getValue();
+                cookie.setMaxAge(0);
+                response.addCookie(cookie);
+            }
+
+        }
+        if (!token.equals("") && !user_id.equals("")) {
+            auto_Login_TokenDto.setToken(token);
+            auto_Login_TokenDto.setUser_id(user_id);
+        }
+
+        // DB 쿠키 토큰 삭제
+        loginService.deleteAuto_login_TokenByTokenAndId(auto_Login_TokenDto);
+        
+
+        // // 쿠키 삭제
+        // Cookie autoLoginIdCookie = new Cookie("autoLoginId", null);
+        // autoLoginIdCookie.setMaxAge(0); // 쿠키의 유효 시간을 0으로 설정하여 삭제
+        // autoLoginIdCookie.setPath("/"); // 사이트 전체에서 쿠키를 삭제
+
+        // Cookie autoLoginIdToken = new Cookie("autoLoginToken", null);
+        // autoLoginIdToken.setMaxAge(0);
+        // autoLoginIdToken.setPath("/");
+
+        // response.addCookie(autoLoginIdCookie);
+        // response.addCookie(autoLoginIdToken);
 
         return "logout";
     }

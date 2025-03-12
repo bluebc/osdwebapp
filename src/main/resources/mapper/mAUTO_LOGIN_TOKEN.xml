@@ -12,6 +12,31 @@
 <insert id = "insert" parameterType="Auto_Login_TokenDto">
 	insert into auto_login_token (TOKEN, USER_ID, EXPIRY_DATE) values(#{token}, #{user_id}, #{expiry_date})
 </insert>
+
+<select id="selectByTokenAndId" parameterType="Auto_Login_TokenDto" resultMap="AutoLoginTokenResultMap">
+    select * from AUTO_LOGIN_TOKEN
+    <where>
+    TOKEN = #{token} 
+    and 
+    USER_ID = #{user_id}
+    </where>
+</select>
+
+<delete id="deleteByTokenAndId" parameterType="Auto_Login_TokenDto">
+    delete AUTO_LOGIN_TOKEN
+    <where>
+        TOKEN = #{token} 
+        and
+        USER_ID = #{user_id} 
+    </where>
+</delete>
+
+<delete id="deleteById" parameterType="Auto_Login_TokenDto">
+    delete AUTO_LOGIN_TOKEN
+    <where>
+        USER_ID = #{user_id}
+    </where>
+</delete>
    		
         
 </mapper>

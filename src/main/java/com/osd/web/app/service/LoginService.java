@@ -64,15 +64,31 @@ public class LoginService {
         cookie.setSecure(true); // HTTPS에서만 쿠키 전송 (서버가 HTTPS 연결일 때만)
         cookie.setHttpOnly(true); // JavaScript에서 쿠키를 접근할 수 없도록 설정
         // cookie.setSameSite("Strict"); // SameSite 설정 (크로스사이트 요청에서 쿠키를 전송하지 않음)
-        
+
         return cookie;
     }
 
-    // 토큰
-    public int insertAutoLoginToken(Auto_Login_TokenDto auto_Login_TokenDto){
+    // 자동로그인 토큰 DB in
+    public int insertAutoLoginToken(Auto_Login_TokenDto auto_Login_TokenDto) {
         return auto_Login_TokenDao.insert(auto_Login_TokenDto);
     }
 
+    // 자동로그인 토큰 DB out
+    public Auto_Login_TokenDto getAuto_Login_Token(Auto_Login_TokenDto auto_Login_TokenDto) {
+        return auto_Login_TokenDao.selectByTokenAndId(auto_Login_TokenDto);
+    }
+
+    // 자동로그인 토큰 삭제 (로그아웃)
+    public int deleteAuto_login_TokenByTokenAndId(Auto_Login_TokenDto auto_Login_TokenDto) {
+        return auto_Login_TokenDao.deleteByTokenAndId(auto_Login_TokenDto);
+    }
+
+    // 자동로그인 토큰 삭제 (로그인)
+    public int deleteAuto_login_TokenById(Auto_Login_TokenDto auto_Login_TokenDto) {
+        return auto_Login_TokenDao.deleteById(auto_Login_TokenDto);
+    }
+
+    // 세션 종료
     public void invalidateSession(HttpServletRequest request) {
         HttpSession session = request.getSession();
         session.invalidate();

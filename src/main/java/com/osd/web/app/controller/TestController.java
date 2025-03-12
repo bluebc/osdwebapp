@@ -72,6 +72,10 @@ public class TestController {
 
         loginService.insertAutoLoginToken(auto_Login_TokenDto);
 
+
+        Auto_Login_TokenDto auto_Login_TokenFromDb = loginService.getAuto_Login_Token(auto_Login_TokenDto);
+        System.out.println(auto_Login_TokenFromDb);
+
     }
 
 }
