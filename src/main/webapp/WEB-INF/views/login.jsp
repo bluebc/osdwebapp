@@ -8,7 +8,7 @@
     <title>osdwebapp</title>
     
 
-
+<script src = "${pageContext.request.contextPath}/js/login.js"></script>
     </head>
     <body>
         <h1>login</h1><br>
@@ -34,5 +34,5 @@
         <br>
 
     </body>
-    <script src = "js/login.js"></script>
+    
 </html>

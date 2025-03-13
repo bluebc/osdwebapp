@@ -34,5 +34,5 @@
         <br>
 
     </body>
-    <script src = "js/changepw.js"></script>
+    <script src = "${pageContext.request.contextPath}/js/changepw.js"></script>
 </html>

@@ -4,6 +4,7 @@
 <head>
     <title>오생단</title>
 
+<script src = "${pageContext.request.contextPath}/js/signup.js"></script>
 </head>
 <body>
 
@@ -40,7 +41,7 @@
 </div>
 
 
-<script src = "js/signup.js"></script>
+
 
 </body>
 </html>

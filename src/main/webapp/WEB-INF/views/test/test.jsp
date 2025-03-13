@@ -97,5 +97,5 @@ login id : ${loginId}
 </body>
 </html>
 
-<script src = "js/test/test.js"></script>
-<script src = "js/sessioncheck.js"></script>
+<script src = "${pageContext.request.contextPath}/js/test/test.js"></script>
+<script src = "${pageContext.request.contextPath}/js/sessioncheck.js"></script>

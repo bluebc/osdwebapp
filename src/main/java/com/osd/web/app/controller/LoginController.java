@@ -46,8 +46,8 @@ public class LoginController {
 
     // 자동로그인, 아이디저장 기능
     @ResponseBody
-    @PostMapping("/userlogin")
-    public Map<Object, Object> userLogin(HttpServletRequest request, HttpServletResponse response,
+    @PostMapping("/login/requestLogin")
+    public Map<Object, Object> loginAuth(HttpServletRequest request, HttpServletResponse response,
             @RequestBody User_InfoDto user_InfoDto,
             @RequestParam(name = "autoLogin") boolean autoLogin,
             @RequestParam(name = "rememberMe") boolean rememberMe) {
@@ -90,7 +90,7 @@ public class LoginController {
 
     // 아이디 저장 값 불러오기
     @ResponseBody
-    @PostMapping("/rememberMe")
+    @PostMapping("/login/rememberMe")
     public Map<String, Object> rememberMe(HttpServletRequest request) {
         Map<String, Object> result = new HashMap<>();
         int stauts = 0;
@@ -171,14 +171,16 @@ public class LoginController {
     }
 
     @ResponseBody
-    @PostMapping("/createuser")
-    public int userCreate(@RequestBody User_InfoDto user_info) {
+    @PostMapping("/signup/insertUser")
+    public int signup(@RequestBody User_InfoDto user_info) {
         int result = 0;
 
         result = loginService.insertUser_Info(user_info);
 
         return result;
     }
+
+    // ==================== refatoring... ====================
 
     @ResponseBody
     @PostMapping("/getsession")
@@ -261,14 +263,16 @@ public class LoginController {
         return response;
     }
 
-    @RequestMapping("/findid")
+// ==================== ID, PW 찾기 ====================
+
+    @RequestMapping("/find/id")
     public String findUser_IdPage() {
 
-        return "findid";
+        return "findId";
     }
 
     @ResponseBody
-    @PostMapping("/findidbyemail")
+    @PostMapping("/find/id/email")
     public Map<String, Object> findIdByEmail(HttpServletRequest request, @RequestBody User_InfoDto user_InfoDto) {
         Map<String, Object> result = new HashMap<>();
         int status = 0;
@@ -329,18 +333,18 @@ public class LoginController {
         return result;
     }
 
-    @RequestMapping("/find/emailauth")
+    @RequestMapping("/find/emailAuth")
     public String emailAuthPage(HttpServletRequest request, Model model) {
 
         HttpSession session = request.getSession();
         String user_email = (String) session.getAttribute("auth_email");
         model.addAttribute("user_email", user_email);
 
-        return "findbyemail";
+        return "findByEmail";
     }
 
     @ResponseBody
-    @PostMapping("/emailAuth")
+    @PostMapping("/find/postEmailAuthCode")
     public Map<String, Object> emailAuth(HttpServletRequest request, @RequestBody Auth_EmailDto auth_EmailDto) {
         Map<String, Object> result = new HashMap<>();
         int status = 0;
@@ -391,14 +395,14 @@ public class LoginController {
         return result;
     }
 
-    @RequestMapping("findFoundId")
-    public String foundIdPage(HttpServletRequest request, Model model) {
+    @RequestMapping("find/id/found")
+    public String idFoundPage(HttpServletRequest request, Model model) {
 
         HttpSession session = request.getSession();
         String user_id = (String) session.getAttribute("found_user_id");
         model.addAttribute("user_id", user_id);
 
-        return "findFoundId";
+        return "findIdFound";
     }
 
 }

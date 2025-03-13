@@ -7,7 +7,7 @@ document.addEventListener("DOMContentLoaded", function () {
 async function rememberMe() {
 
 
-    const response = await fetch("/rememberMe", {
+    const response = await fetch("/login/rememberMe", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: {},
@@ -20,12 +20,6 @@ async function rememberMe() {
         document.getElementById("rememberMe").checked = true;
     }
 }
-
-
-
-
-
-
 
 async function login() {
 
@@ -81,7 +75,7 @@ async function auth(id, pw) {
 
     var user = { user_id: id, user_pw: pw };
 
-    const response = await fetch("/userlogin?autoLogin=" + autoLogin + "&rememberMe=" + rememberMe, {
+    const response = await fetch("/login/requestLogin?autoLogin=" + autoLogin + "&rememberMe=" + rememberMe, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(user)
@@ -89,15 +83,3 @@ async function auth(id, pw) {
     const result = await response.json();
     return result;
 }
-
-// async function auth(id, pw) {
-//     var user = { user_id: id, user_pw: pw };
-
-//     const response = await fetch("/auth", {
-//         method: "POST",
-//         headers: { "Content-Type": "application/json" },
-//         body: JSON.stringify(user),
-//     });
-//     const result = await response.json();
-//     return result;
-// }

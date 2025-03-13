@@ -94,7 +94,7 @@ var createTime = getTime();
 }
 
 async function createUser(user_info) {
-    const response = await fetch("/createuser", {
+    const response = await fetch("/signup/insertUser", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(user_info),
