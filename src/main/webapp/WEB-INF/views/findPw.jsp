@@ -8,6 +8,6 @@
 </head>
 <body>
 
-<a href = "/find/id/email">이메일 인증</a>
+<a href = "/find/pw/email">이메일 인증</a>
 
 </body>

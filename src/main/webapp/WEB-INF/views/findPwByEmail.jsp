@@ -8,12 +8,14 @@
 </head>
 <body>
 
-<h3>found id</h3>
+<h3>find pw by email</h3>
 
 <div id = "section">
-        ${user_id}
+        <input type = "text", id = "user_id" placeholder = "user_id">
         <br>
-        
+        <input type = "text", id = "user_email" placeholder = "email">
+        <br>
+        <input type = "button" value = "인증 이메일 요청" onclick = "requestAuthMail()">
 </div>
 
 

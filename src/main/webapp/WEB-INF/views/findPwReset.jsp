@@ -8,12 +8,14 @@
 </head>
 <body>
 
-<h3>found id</h3>
+<h3>find pw Reset</h3>
 
 <div id = "section">
-        ${user_id}
+        <input type = "text" id = "newPassword" placeholder = "비밀번호">
         <br>
-        
+        <input type = "text" id = "newPassword2" placeholder = "비밀번호(확인)">
+        <br>
+        <input type = "button" value = "비밀번호 변경" onclick = "requestResetPassword()">
 </div>
 
 

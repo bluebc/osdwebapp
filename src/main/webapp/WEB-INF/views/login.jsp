@@ -107,9 +107,9 @@
                     </div>
 
                     <div class="formLink">
-                        <a href="#">아이디 찾기</a>
+                        <a href="/find/id">아이디 찾기</a>
                         <span></span>
-                        <a href="#">비밀번호 찾기</a>
+                        <a href="/find/pw">비밀번호 찾기</a>
                     </div>        
             </form>
 
