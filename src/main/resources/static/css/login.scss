@@ -7,7 +7,7 @@ header{
 }
 
 .container{
-    padding: 15rem 0 15rem;
+    padding: 14rem 0 14rem;
     min-height: 800px;
     .content{
         padding: 0 6rem;
@@ -51,19 +51,16 @@ header{
                     word-wrap: initial;
                 }
                 input{
-                    
                     width: 100%;
                     height: 50px;
                     padding: 13px 15px;
                     border: 1px solid #ccc;
-                    border-radius: 4px;
                     box-sizing: border-box;
                     color: #222;
                     outline: none;
                     vertical-align: top;
                 }
             }
-
 
             .check {
             margin-top: 2rem;
@@ -98,12 +95,10 @@ header{
 
                 // 체크되었을 때 배경을 녹색으로 변경
                 input:checked + label::before {
-                    background-color: #9bad73;
+                    background-color: #90c31f;
                 }
             }
             }
-
-
 
             .boxBtnGroup{
                 margin-top: 40px;
@@ -119,24 +114,24 @@ header{
                         height: 60px;
                         line-height: 58px;
                         padding: 0 30px;
-                        font-size: 20px;
-                        border-radius: 2%;
+                        font-size: 18px;
                         border: 1px solid;
-                        background-color: #82a90d;
-                        border-color: #82a90d;
+                        background-color: #90c31f;
+                        border-color: #90c31f;
                         color: #ffffff;
                         
                     }
                     &:nth-child(2){
                         input{
                             background-color: #ffffff;
-                            border-color: #82a90d;
-                            color:#82a90d;
+                            border-color: #757575;
+                            color:#757575;
                         }
                     }
                 }
                 
             }
+
             .formLink{
                 margin-top: 20px;
                 display: flex;
@@ -151,6 +146,26 @@ header{
                     height: 13px;
                     margin: 3px 6px 0px;
                     background-color: #757575;
+                }
+            }
+
+            .non-member{
+                margin-top: 50px;
+                width: 100%;
+                .member-order{
+                    width: 100%;
+                    input{
+                        width: 100%;
+                        min-width: 240px;
+                        height: 60px;
+                        line-height: 58px;
+                        padding: 0 30px;
+                        font-size: 18px;
+                        border: 1px solid;
+                        background-color: #ffffff;
+                        border-color: #757575;
+                        color:#757575;
+                    }
                 }
             }
         }

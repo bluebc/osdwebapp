@@ -9,16 +9,11 @@
 
 <html>
     <head>
-    <title>osdwebapp</title>
+    <title>로그인</title>
 
     <!-- css -->
     <link rel="stylesheet" href="css/reset.css">
-    <link rel="stylesheet" href="css/header.css">
     <link rel="stylesheet" href="css/login.css">
-    <link rel="stylesheet" href="css/footer.css">
-    
-    <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
-    <script type="text/javascript" src="https://code.jquery.com/jquery-3.5.1.js"></script>
 
     <!--favicon--->
     <link href="img/favicon.ico" rel="icon">
@@ -30,9 +25,7 @@
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
 
-    <script src="js/header.js"></script>
     <script src = "js/login.js"></script>
-    <script  src="js/footer.js"></script>
 
     
     </head>
@@ -47,7 +40,7 @@
 
             <%-- pc --%>
             <div class="pc-type">
-                <a href="/p" class="btn-home">
+                <a href="/" class="btn-home">
                     <img src="img/홈.svg" alt="home">
                 </a> 
                 <h1>로그인</h1>
@@ -73,12 +66,12 @@
 
                     <div class="formInput">
                                 <label for="username" class="blind">아이디 입력</label>
-                                <input type="text" id="user_id" name="username"  placeholder="아이디를 입력하세요.">
+                                <input type="text" id="user_id" name="username"  placeholder="아이디를 입력해주세요.">
                     </div>
 
                     <div class="formInput">
                                 <label for="password" class="blind">비밀번호 입력</label>
-                                <input type="password" id="user_pw" name="password"  placeholder="비밀번호를 입력하세요.">
+                                <input type="password" id="user_pw" name="password"  placeholder="비밀번호를 입력해주세요.">
                                 <%-- <span class="inputMsg error"></span> --%>
                     </div>
 
@@ -101,7 +94,7 @@
                                 <input type = "button" value = "로그인" onclick = "login()">
                         </div>
                         <div class="btnInp">
-                                <input type = "button" value = "회원가입" onclick = "">
+                                <input type = "button" value = "회원가입" onclick=" location.href='/signup';">
                         </div>
                     </div>
 
@@ -110,6 +103,12 @@
                         <span></span>
                         <a href="#">비밀번호 찾기</a>
                     </div>        
+
+                    <div class="non-member">
+                        <div class="member-order">
+                            <input type = "button" value = "비회원 주문조회" onclick = "">
+                        </div>
+                    </div>
             </form>
 
         </div>
