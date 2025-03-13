@@ -49,5 +49,8 @@ public class User_InfoDao {
     public int updateUser_Pw(User_InfoDto user_InfoDto){
         return session.update("User_Info.updateUser_Pw", user_InfoDto);
     }
+    public User_InfoDto getUser_IdByEmail(User_InfoDto user_InfoDto){
+        return session.selectOne("User_Info.getUser_IdByEmail", user_InfoDto);
+    }
 
 }

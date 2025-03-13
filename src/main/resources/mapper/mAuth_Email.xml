@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="Auth_Email">
+
+<resultMap id="AuthEmailResultMap" type="com.osd.web.app.dto.Auth_EmailDto">
+    <result column="USER_EMAIL" property="user_email"/>
+	<result column="AUTH_CODE" property="auth_code"/>
+    <result column="AUTH_EXPIRY" property="auth_expiry"/>
+</resultMap>
+
+
+<insert id="insert" parameterType="Auth_EmailDto">
+    INSERT INTO AUTH_EMAIL(USER_EMAIL, AUTH_CODE, AUTH_EXPIRY) VALUES(#{user_email}, #{auth_code}, #{auth_expiry})
+</insert>
+
+<select id="selectByEmailAndCode" parameterType="Auth_EmailDto" resultMap="AuthEmailResultMap">
+    select * from auth_email
+    <where>
+        user_email = #{user_email} 
+        and 
+        auth_code = #{auth_code} 
+    </where>
+</select>
+
+
+</mapper>

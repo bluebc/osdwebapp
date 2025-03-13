@@ -128,4 +128,11 @@
 			</where>
 		</update>
         
+		<select id="getUser_IdByEmail" parameterType="User_InfoDto" resultMap="UserInfoResultMap">
+			select user_id, user_email from user_info
+			<where>
+				user_email = #{user_email}
+			</where>
+		</select>
+
 </mapper>

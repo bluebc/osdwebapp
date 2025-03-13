@@ -8,25 +8,37 @@ import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.osd.web.app.dao.Auth_EmailDao;
+import com.osd.web.app.dto.Auth_EmailDto;
 import com.osd.web.app.dto.Auto_Login_TokenDto;
 import com.osd.web.app.dto.User_InfoDto;
 import com.osd.web.app.service.LoginService;
+import com.osd.web.app.service.MailService;
+import com.osd.web.app.service.User_InfoService;
 
 import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 
 @Controller
 public class LoginController {
 
     @Autowired
     private LoginService loginService;
+
+    @Autowired
+    private User_InfoService user_InfoService;
+
+    @Autowired
+    private MailService mailService;
 
     @RequestMapping("/login")
     public String loginPage() {
@@ -134,7 +146,7 @@ public class LoginController {
                 user_id = cookie.getValue();
                 cookie.setMaxAge(0);
                 response.addCookie(cookie);
-                            }
+            }
             if ("autoLoginToken".equals(cookie.getName())) {
                 token = cookie.getValue();
                 cookie.setMaxAge(0);
@@ -149,7 +161,6 @@ public class LoginController {
 
         // DB 쿠키 토큰 삭제
         loginService.deleteAuto_login_TokenByTokenAndId(auto_Login_TokenDto);
-        
 
         // // 쿠키 삭제
         // Cookie autoLoginIdCookie = new Cookie("autoLoginId", null);
@@ -260,6 +271,146 @@ public class LoginController {
         response.put("status", status);
 
         return response;
+    }
+
+    @RequestMapping("/findid")
+    public String findUser_IdPage() {
+
+        return "findid";
+    }
+
+    @ResponseBody
+    @PostMapping("/findidbyemail")
+    public Map<String, Object> findIdByEmail(HttpServletRequest request, @RequestBody User_InfoDto user_InfoDto) {
+        Map<String, Object> result = new HashMap<>();
+        int status = 0;
+
+        User_InfoDto user_InfoFromDb = loginService.getUser_IdByEmail(user_InfoDto);
+        String user_email = user_InfoFromDb.getUser_email();
+
+        if (user_email == null || user_email.equals("")) {
+            // 이메일 없음
+            status = -1;
+            result.put("status", status);
+            return result;
+        }
+
+
+        Auth_EmailDto auth_EmailDto = new Auth_EmailDto();
+        auth_EmailDto.setUser_email(user_email);
+
+        Auth_EmailDto auth_EmailFromDb = loginService.setAuth_Email(auth_EmailDto);
+
+        if (auth_EmailFromDb == null) {
+            status = -2;
+        }
+        if (auth_EmailFromDb != null) {
+            status = 1;
+        }
+
+        String subject = "osdwebapp mail auth";
+        String text = "";
+
+        String auth_code = auth_EmailFromDb.getAuth_code();
+
+        text = auth_code;
+
+        int sended = 0;
+
+        try {
+            sended = mailService.sendEmail(user_email, subject, text);
+            // 메일이 보내지지 않음
+            if (sended == 0) {
+                status = -3;
+                result.put("status", status);
+                return result;
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+
+        result.put("status", status);
+
+        HttpSession session = request.getSession();
+        session.setAttribute("auth_email", user_email);
+
+        System.out.println(result);
+
+        return result;
+    }
+
+    @RequestMapping("/findemailauth")
+    public String emailAuthPage(HttpServletRequest request, Model model) {
+
+        HttpSession session = request.getSession();
+        String user_email = (String) session.getAttribute("auth_email");
+        model.addAttribute("user_email", user_email);
+
+        return "findbyemail";
+    }
+
+    @ResponseBody
+    @PostMapping("/emailAuth")
+    public Map<String, Object> emailAuth(HttpServletRequest request, @RequestBody Auth_EmailDto auth_EmailDto) {
+        Map<String, Object> result = new HashMap<>();
+        int status = 0;
+
+        HttpSession session = request.getSession();
+        String auth_email = (String) session.getAttribute("auth_email");
+        // 1. session 에 인증이메일이 없는 경우
+        if (auth_email == null || auth_email.equals("")) {
+            status = -1;
+            result.put("status", status);
+            return result;
+        }
+        auth_EmailDto.setUser_email(auth_email);
+
+        Auth_EmailDto auth_EmailFromDb = loginService.getAuth_Email(auth_EmailDto);
+        // 2. DB에 인증이메일이 없는 경우
+        if (auth_EmailFromDb == null) {
+            status = -2;
+            result.put("status", status);
+            return result;
+        }
+        // 3. 인증코드 유효기간 만료
+        if (auth_EmailFromDb.getAuth_expiry().isBefore(LocalDateTime.now())) {
+            status = -3;
+            result.put("status", status);
+            return result;
+        }
+        String user_email = auth_EmailFromDb.getUser_email();
+        User_InfoDto user_InfoDto = new User_InfoDto();
+        user_InfoDto.setUser_email(user_email);
+        User_InfoDto user_InfoDtoFromDb = loginService.getUser_IdByEmail(user_InfoDto);
+
+        // 4. 사용자 정보 없는 경우
+        if (user_InfoDtoFromDb == null) {
+            status = -4;
+            result.put("status", status);
+            return result;
+        }
+
+        String user_id = user_InfoDtoFromDb.getUser_id();
+
+        // result.put("user_id", user_id);
+
+        status = 1;
+        session.setAttribute("found_user_id", user_id);
+        result.put("status", status);
+
+        return result;
+    }
+
+    @RequestMapping("findFoundId")
+    public String foundIdPage(HttpServletRequest request, Model model) {
+
+        HttpSession session = request.getSession();
+        String user_id = (String) session.getAttribute("found_user_id");
+        model.addAttribute("user_id", user_id);
+
+        return "findFoundId";
     }
 
 }

@@ -3,12 +3,15 @@ package com.osd.web.app.service;
 import java.time.LocalDateTime;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Random;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.osd.web.app.dao.Auth_EmailDao;
 import com.osd.web.app.dao.Auto_Login_TokenDao;
 import com.osd.web.app.dao.User_InfoDao;
+import com.osd.web.app.dto.Auth_EmailDto;
 import com.osd.web.app.dto.Auto_Login_TokenDto;
 import com.osd.web.app.dto.User_InfoDto;
 
@@ -27,6 +30,9 @@ public class LoginService {
 
     @Autowired
     private Auto_Login_TokenDao auto_Login_TokenDao;
+
+    @Autowired
+    private Auth_EmailDao auth_EmailDao;
 
     // 세션 생성
     public void setSession(HttpServletRequest request, String id) {
@@ -141,6 +147,37 @@ public class LoginService {
         result = user_InfoDao.updateUser_Pw(user_InfoDto);
 
         return result;
+    }
+
+    public Auth_EmailDto setAuth_Email(Auth_EmailDto auth_EmailDto) {
+
+        Random random = new Random();
+        int code = random.nextInt(100000000); // 0 ~ 99999999 범위의 숫자 생성
+        String auth_code = String.format("%08d", code); // 8자리로 패딩 (앞에 0 포함 가능)
+        auth_EmailDto.setAuth_code(auth_code);
+
+        LocalDateTime auth_expiry = LocalDateTime.now().plusMinutes(30);
+        auth_EmailDto.setAuth_expiry(auth_expiry);
+
+        int result = auth_EmailDao.insert(auth_EmailDto);
+        if (result != 1) {
+            auth_EmailDto = null;
+        }
+
+        return auth_EmailDto;
+    }
+
+    public Auth_EmailDto getAuth_Email(Auth_EmailDto auth_EmailDto) {
+
+        Auth_EmailDto auth_EmailFromDb = auth_EmailDao.selectByEmailAndCode(auth_EmailDto);
+
+        return auth_EmailFromDb;
+
+    }
+
+    public User_InfoDto getUser_IdByEmail(User_InfoDto user_InfoDto) {
+        
+        return user_InfoDao.getUser_IdByEmail(user_InfoDto);
     }
 
 }
