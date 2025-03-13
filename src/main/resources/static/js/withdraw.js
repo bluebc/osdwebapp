@@ -17,8 +17,7 @@ async function withdraw() {
 
 async function withdrawCheck(id, pw) {
     var check = await auth(id, pw);
-    //alert(check.status);
-
+    
     switch (check.status) {
         case -2:
             alert("비밀번호를 확인하세요.");

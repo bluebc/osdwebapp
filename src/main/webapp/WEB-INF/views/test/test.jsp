@@ -50,6 +50,33 @@ login id : ${loginId}
 <br>
 <br>
 
+<div id = "userinfoSection">
+<input type = "text" id = "iUserId" placeholder = "id">
+<input type = "button" value = "조회" onclick = "inquire()"> <input type = "button" value = "수정" onclick = "modify()">
+<hr>
+<input type = "text" id = "iUserPw" placeholder = "pw">
+<br>
+<input type = "text" id = "iUserName" placeholder = "name">
+<br>
+<input type = "text" id = "iUserHpNo" placeholder = "phonenumber">
+<br>
+<input type = "text" id = "iUserEmail" placeholder = "email">
+<br>
+<input type = "text" id = "iUserAddr" placeholder = "address">
+<br>
+<input type = "text" id = "iUserBirth" placeholder = "birth">
+<br>
+<input type = "text" id = "iUserGender" placeholder = "gender">
+<br>
+
+</div>
+
+<br>
+<br>
+<br>
+
+
+
 
 
 </body>

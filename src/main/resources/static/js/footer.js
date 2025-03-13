@@ -54,7 +54,7 @@ $(document).ready(function () {
 
 async function footerPageInit() {
     // sessioncheck.js 함수사용
-    var isLoggedIn = await sessionCheck() === true;
+    var isLoggedIn = await sessionCheck("isLoggedIn") === true;
     localStorage.setItem("isLoggedIn", isLoggedIn);
     updateFooterUI(isLoggedIn);
 }
