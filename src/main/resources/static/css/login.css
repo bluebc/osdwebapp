@@ -1,0 +1,232 @@
+@charset "UTF-8";
+header .top-banner {
+  display: none;
+}
+
+.container {
+  padding: 15rem 0 15rem;
+  min-height: 800px;
+}
+.container .content {
+  padding: 0 6rem;
+  margin: 60px auto 0;
+  background-color: rgb(255, 255, 255);
+}
+.container .content .pc-type {
+  text-align: center;
+}
+.container .content .pc-type .btn-home img {
+  transform: translate(13rem, -1rem);
+  width: 30px;
+  height: 30px;
+}
+.container .content .pc-type h1 {
+  margin-bottom: 20px;
+  font-weight: bold;
+}
+.container .content .mobil-type {
+  display: none;
+}
+.container .content #loginForm {
+  margin: 0 auto;
+  width: 450px;
+}
+.container .content #loginForm .formInput {
+  display: block;
+  margin-bottom: 0.5em;
+}
+.container .content #loginForm .formInput .blind {
+  position: absolute;
+  height: 1px;
+  width: 1px;
+  overflow: hidden;
+  clip: rect(1px, 1px, 1px, 1px);
+  clip: rect(1px 1px 1px 1px);
+  word-break: initial;
+  word-wrap: initial;
+}
+.container .content #loginForm .formInput input {
+  width: 100%;
+  height: 50px;
+  padding: 13px 15px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+  color: #222;
+  outline: none;
+  vertical-align: top;
+}
+.container .content #loginForm .check {
+  margin-top: 2rem;
+}
+.container .content #loginForm .check .inp {
+  padding-right: 1rem;
+}
+.container .content #loginForm .check .inp input {
+  display: none;
+}
+.container .content #loginForm .check .inp label {
+  display: inline-block;
+  position: relative;
+  cursor: pointer;
+  padding-left: 2rem;
+  padding-right: 1rem;
+  min-height: 2rem;
+}
+.container .content #loginForm .check .inp label::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 1.3rem;
+  height: 1.3rem;
+  border-radius: 50%;
+  background: #fff url(../img/check.svg) no-repeat center/1.3rem auto;
+  transition: background-color 0.3s ease;
+}
+.container .content #loginForm .check .inp input:checked + label::before {
+  background-color: #9bad73;
+}
+.container .content #loginForm .boxBtnGroup {
+  margin-top: 40px;
+  width: 100%;
+  justify-content: center;
+}
+.container .content #loginForm .boxBtnGroup .btnInp {
+  width: 100%;
+  margin-bottom: 1rem;
+}
+.container .content #loginForm .boxBtnGroup .btnInp input {
+  width: 100%;
+  min-width: 240px;
+  height: 60px;
+  line-height: 58px;
+  padding: 0 30px;
+  font-size: 20px;
+  border-radius: 2%;
+  border: 1px solid;
+  background-color: #82a90d;
+  border-color: #82a90d;
+  color: #ffffff;
+}
+.container .content #loginForm .boxBtnGroup .btnInp:nth-child(2) input {
+  background-color: #ffffff;
+  border-color: #82a90d;
+  color: #82a90d;
+}
+.container .content #loginForm .formLink {
+  margin-top: 20px;
+  display: flex;
+  justify-content: flex-end;
+}
+.container .content #loginForm .formLink a {
+  text-decoration-line: none;
+  color: #757575;
+}
+.container .content #loginForm .formLink span {
+  display: block;
+  width: 1px;
+  height: 13px;
+  margin: 3px 6px 0px;
+  background-color: #757575;
+}
+
+/* 768px*/
+@media screen and (max-width: 768px) {
+  .header {
+    display: none;
+  }
+  .container {
+    padding: 0;
+  }
+  .container .content {
+    padding: 0 2rem;
+    margin: 40px auto 0;
+  }
+  .container .content .pc-type {
+    display: none;
+  }
+  .container .content .mobil-type {
+    display: flex;
+    position: relative;
+    z-index: 2;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    height: 5rem;
+    background: #fff;
+    color: #1d1d1d;
+    z-index: 1;
+  }
+  .container .content .mobil-type .tit-wrap {
+    display: flex;
+    align-items: center;
+  }
+  .container .content .mobil-type .tit-wrap .btn-back {
+    width: 4.8rem;
+    height: 5.3rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-left: -2rem;
+    background: url(../img/닫기.svg) no-repeat 50% 50%/0.8rem 1.4rem;
+  }
+  .container .content .mobil-type .tit-wrap .btn-back .hidden {
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    width: 1px;
+    height: 1px;
+    margin: -1px;
+    padding: 0;
+    border: 0;
+  }
+  .container .content .mobil-type .tit-wrap .header-sub-tit {
+    overflow: hidden;
+    text-align: left;
+    font-size: 2rem;
+  }
+  .container .content .mobil-type .header-util .btn-home img {
+    width: 50px;
+    height: 50px;
+  }
+  .container .content #loginForm {
+    margin-top: 3rem;
+    width: 100%;
+  }
+  .footer {
+    display: none;
+  }
+}
+/* 425px */
+@media screen and (max-width: 425px) {
+  .container .content .mobil-type .tit-wrap .btn-back {
+    margin-left: 0rem;
+    width: 2rem;
+    height: 3rem;
+    background: url(../img/닫기.svg) no-repeat 50% 50%/1rem 1rem;
+  }
+  .container .content .mobil-type .tit-wrap .header-sub-tit {
+    font-size: 1.2rem;
+  }
+  .container .content .mobil-type .header-util .btn-home img {
+    width: 30px;
+    height: 30px;
+  }
+  .container .content #loginForm .check .inp label .ftext {
+    font-size: 0.8rem;
+    font-weight: 300;
+  }
+  .container .content #loginForm .check .inp label::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 1rem;
+    height: 1rem;
+    border-radius: 50%;
+    background: #fff url(../img/check.svg) no-repeat 0 0/1rem auto;
+  }
+  .container .content #loginForm .boxBtnGroup .btnInp input {
+    font-size: 1rem;
+  }
+}/*# sourceMappingURL=login.css.map */

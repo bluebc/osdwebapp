@@ -1,38 +1,37 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 
-
-
 <footer class="footer">
 
     <div class="footer_info">
         <div class="ft-sns">
-        <ul>
-            <li>
-                <a href="https://www.facebook.com/ohslifefast" class="sns1" target="_blank">페이스북</a>
-            </li>
-            <li>
-                <a href="https://blog.naver.com/ohsgreen" class="sns2" target="_blank">블로그</a>
-            </li>
-            <li>
-                <a href="#" class="sns3" target="_blank">유튜브</a>
-            </li>
-            <li>
-                <a href="#" class="sns4" target="_blank">네이버티비</a>
-            </li>
-            <li>
-                <a href="#" class="sns5" target="_blank">인스타그램</a>
-            </li>
-            <li>
-                <a href="#" class="sns6" target="_blank">카카오플친</a>
-            </li>
-            <li>
-                <a href="#" class="sns7" target="_blank">네이버포스트</a>
-            </li>
-            <li>
-                <a href="#" class="sns8" target="_blank">네이버카페</a>
-            </li>
-        </ul>
+            <ul>
+                <li>
+                    <a href="https://www.facebook.com/ohslifefast" class="sns1" target="_blank">페이스북</a>
+                </li>
+                <li>
+                    <a href="https://blog.naver.com/ohsgreen" class="sns2" target="_blank">블로그</a>
+                </li>
+                <li>
+                    <a href="#" class="sns3" target="_blank">유튜브</a>
+                </li>
+                <li>
+                    <a href="#" class="sns4" target="_blank">네이버티비</a>
+                </li>
+                <li>
+                    <a href="#" class="sns5" target="_blank">인스타그램</a>
+                </li>
+                <li>
+                    <a href="#" class="sns6" target="_blank">카카오플친</a>
+                </li>
+                <li>
+                    <a href="#" class="sns7" target="_blank">네이버포스트</a>
+                </li>
+                <li>
+                    <a href="#" class="sns8" target="_blank">네이버카페</a>
+                </li>
+            </ul>
         </div>
+
         <div class="ft-fot">
             <div class="ft_logo">
             <a href="#health"><img src="img/uni-well-logo.png" alt="f_logo"></a>
@@ -167,13 +166,13 @@
                     </span>
                     <span class="text-wrap">검색</span>
                 </a>
-                <a href="#" class="navi-item">
+                <a href="/" class="navi-item">
                     <span class="icon-wrap">
                         <img src="/img/홈.svg" alt="홈">
                     </span>
                     <span class="text-wrap">홈</span>
                 </a>
-                <a href="#" class="navi-item">
+                <a href="#" class="navi-item nave-test">
                     <span class="icon-wrap btn-address2">
                         <img src="/img/로그인.svg" alt="로그인">
                     </span>
