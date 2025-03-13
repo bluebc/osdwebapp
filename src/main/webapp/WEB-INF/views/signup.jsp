@@ -21,7 +21,7 @@
     <!--js-->
     <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
     <script src="http://code.jquery.com/jquery-latest.min.js"></script>
-    
+
     
     <script src = "js/signup.js"></script>
 
@@ -150,8 +150,8 @@
                                     <div class="save-inp">
                                         <div class="mail-box">
                                             <input type="hidden" id="user_email" name="user_email" value="">
-                                            <input type="text" id="user_emailId" name="user_emailId" placeholder="예: uniwell"
-                                                required="" class="email-inp" value="">
+                                            <!-- 사용자 입력 (아이디 부분) -->
+                                            <input type="text" id="user_emailId" name="user_emailId" placeholder="예: uniwell" required class="email-inp">  
                                             <div class="at-sign">@</div>
                                             <div class="down-but">
                                                 <button type="button" class="btn-text empty">선택하기</button>
@@ -159,16 +159,18 @@
                                                     <img src="/img/arrowdown.svg" alt="arrow-down">
                                                 </button>
                                             </div>
-                                            <!-- 메일선택 -->
+                                            <!-- 드롭다운 -->
                                             <div class="dropdown-btn">
-                                                <button type="button" class="dropdown-item">naver.com</button>
-                                                <button type="button" class="dropdown-item">gmail.com</button>
-                                                <button type="button" class="dropdown-item">hanmail.net</button>
-                                                <button type="button" class="dropdown-item">kakao.com</button>
-                                                <button type="button" class="dropdown-item">daum.net</button>
-                                                <button type="button" class="dropdown-item">직접 입력</button>
+                                                <button type="button" class="dropdown-item" data-value="naver.com">naver.com</button>
+                                                <button type="button" class="dropdown-item" data-value="gmail.com">gmail.com</button>
+                                                <button type="button" class="dropdown-item" data-value="hanmail.net">hanmail.net</button>
+                                                <button type="button" class="dropdown-item" data-value="kakao.com">kakao.com</button>
+                                                <button type="button" class="dropdown-item" data-value="daum.net">daum.net</button>
+                                                <button type="button" class="dropdown-item" data-value="custom">직접 입력</button>
                                             </div>
-                                        </div>    
+
+                                            <input type="text" id="custom_email" name="custom_email" placeholder="도메인 입력" class="email-inp" style="display: none;">
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -185,18 +187,18 @@
                                 <div class="m_address">
 
                                     <div class="address_postcode">
-                                        <input type="text" name="zonecode" readonly="readonly" value="" placeholder="우편번호">
-                                        <button type="button" id="btnPostcode" class="btn_post_search">우편번호검색</button>
-                                        <input type="hidden" name="zipcode" value="">
+                                        <input type="text" id="sample6_postcode"readonly="readonly" placeholder="우편번호">
+                                        <input type="button" onclick="sample6_execDaumPostcode()" value="우편번호검색"><br>
                                     </div>
                                     <div class="address_input">
                                         <div class="member_warning">
-                                            <input type="text" name="address" placeholder="기본주소" readonly="readonly" value="">
+                                            <input type="text" id="sample6_address"  readonly="readonly" placeholder="기본주소"><br>
                                         </div>
                                         <div class="member_warning js_address_sub">
-                                            <input type="text" name="addressSub" placeholder="상세주소" value="">
+                                            <input type="text" id="sample6_detailAddress" placeholder="상세주소">
                                         </div>
                                     </div>
+
 
                                 </div>
                             </div>
@@ -293,6 +295,34 @@
                                     이용약관동의<span class="symbol">*</span>
                                 </label>
                             </div>
+
+                            <div>
+                                <input type="checkbox" id="chk_all">
+                                <label for="chk_all">모두 동의합니다</label>
+                            </div>
+
+                            <div>
+                                <input type="checkbox" name="service" id="service" class="chk_each">
+                                <label for="service">서비스 이용약관 동의 (필수)</label>
+                            </div>
+
+                            <div>
+                                <textarea>본 약관은 ...</textarea>
+                            </div>
+
+                            <div>
+                                <input type="checkbox" name="event" id="event" class="chk_each">
+                                <label for="event">이벤트 알림 동의 (선택)</label>
+                            </div>
+
+                            <div>
+                                <textarea>본 약관은 ...</textarea>
+                            </div>
+
+                            <div>
+                                <input type="checkbox" name="event" id="event" class="chk_each">
+                                <label for="age14">본인은 만 14세 이상입니다. <span>(필수)</sapn></label>
+                            </div>
                         </div>
                     </div>
 
@@ -314,4 +344,5 @@
 
 
 </body>
+    <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 </html>

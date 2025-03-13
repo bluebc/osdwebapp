@@ -209,15 +209,18 @@ header{
                                 }
                             }
                             // 성별
-                            .box-gender{
+                            .box-gender {
                                 display: flex;
-                                gap:3rem;
-                                .gender-element{
+                                gap: 3rem;
+                                
+                                .gender-element {
                                     position: relative;
                                     display: flex;
                                     align-items: center;
                                     padding: 12px 0px 9px;
-                                    input{
+                                    cursor: pointer;  
+                                    
+                                    input {
                                         box-sizing: border-box;
                                         padding: 0;
                                         overflow: hidden;
@@ -226,7 +229,8 @@ header{
                                         height: 1px;
                                         clip: rect(0px, 0px, 0px, 0px);
                                     }
-                                    .r-blank{
+                            
+                                    .r-blank {
                                         min-width: 24px;
                                         min-height: 24px;
                                         display: inline-block;
@@ -234,23 +238,37 @@ header{
                                         border-radius: 50%;
                                         background-color: white;
                                         border: 1px solid rgb(221, 221, 221);
-                                        .r-check{
+                                             
+                                        .r-check {
                                             width: 10px;
                                             height: 10px;
                                             position: absolute;
                                             left: 50%;
                                             top: 50%;
-                                            transform: translate(-50%, -50%);
                                             border-radius: 50%;
+                                            transform: translate(-50%, -50%);
+                                            background-color: transparent;
+                                            transition: background-color 0.3s, border-color 0.3s;
                                         }
                                     }
-                                    .gender-all{
+                            
+                                    // 선택된 라디오 버튼의 r-check에 색상 적용
+                                    input[type="radio"]:checked ~ .r-blank .r-check {
+                                        background-color: rgb(83, 83, 83); // 원하는 색상
+                                        border-color: rgb(83, 83, 83);
+                                    }
+                            
+                                    .gender-all {
                                         position: relative;
                                         font-size: 14px;
                                         margin-left: 12px;
                                     }
                                 }
                             }
+                            
+
+
+
                         }
                         .m_address{
                             .address_postcode{
@@ -325,7 +343,31 @@ header{
             }
             .lineDivide{}
             .t-c{}
-            .signUpButton{}
+
+
+            .signUpButton{
+                display: flex;
+                justify-content: center;
+                border-top: 1px solid rgb(247, 247, 247);
+                padding: 40px 0px;    
+                button{
+                    display: block;
+                    padding: 0px 10px;
+                    text-align: center;
+                    overflow: hidden;
+                    width: 240px;
+                    height: 56px;
+                    border-radius: 4px;
+                    color: rgb(255, 255, 255);
+                    background-color: rgb(83, 83, 83);
+                    border: 0px none;
+                    span{
+                        display: inline-block;
+                        font-size: 16px;
+                        font-weight: 500;
+                    }
+                }
+            }
         }
     }
 }

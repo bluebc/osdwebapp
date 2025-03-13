@@ -199,6 +199,7 @@ header .top-banner {
   display: flex;
   align-items: center;
   padding: 12px 0px 9px;
+  cursor: pointer;
 }
 .container .content #signupSection .list-form-area .form-item .form-cont .cont-box .box-gender .gender-element input {
   box-sizing: border-box;
@@ -224,8 +225,14 @@ header .top-banner {
   position: absolute;
   left: 50%;
   top: 50%;
-  transform: translate(-50%, -50%);
   border-radius: 50%;
+  transform: translate(-50%, -50%);
+  background-color: transparent;
+  transition: background-color 0.3s, border-color 0.3s;
+}
+.container .content #signupSection .list-form-area .form-item .form-cont .cont-box .box-gender .gender-element input[type=radio]:checked ~ .r-blank .r-check {
+  background-color: rgb(83, 83, 83);
+  border-color: rgb(83, 83, 83);
 }
 .container .content #signupSection .list-form-area .form-item .form-cont .cont-box .box-gender .gender-element .gender-all {
   position: relative;
@@ -295,4 +302,27 @@ header .top-banner {
 .container .content #signupSection .list-form-area .form-item .blank-space button:hover {
   background-color: rgb(83, 83, 83);
   color: #ffffff;
+}
+.container .content #signupSection .signUpButton {
+  display: flex;
+  justify-content: center;
+  border-top: 1px solid rgb(247, 247, 247);
+  padding: 40px 0px;
+}
+.container .content #signupSection .signUpButton button {
+  display: block;
+  padding: 0px 10px;
+  text-align: center;
+  overflow: hidden;
+  width: 240px;
+  height: 56px;
+  border-radius: 4px;
+  color: rgb(255, 255, 255);
+  background-color: rgb(83, 83, 83);
+  border: 0px none;
+}
+.container .content #signupSection .signUpButton button span {
+  display: inline-block;
+  font-size: 16px;
+  font-weight: 500;
 }/*# sourceMappingURL=signup.css.map */

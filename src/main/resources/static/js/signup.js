@@ -161,39 +161,68 @@ $(function(){
      });
 });
 
-// 이메일 드롭다운
+
+
+// 이메일
 document.addEventListener("DOMContentLoaded", function () {
-    const dropdownButton = document.querySelector(".btn-select");
-    const dropdownMenu = document.querySelector(".dropdown-btn");
-    const dropdownItems = document.querySelectorAll(".dropdown-item");
-    const emailInput = document.getElementById("user_emailId");
-    const emailHidden = document.getElementById("user_email");
-    const btnText = document.querySelector(".btn-text");
+    const dropdownButton = document.querySelector(".btn-select"); // 드롭다운 버튼 (화살표)
+    const dropdownMenu = document.querySelector(".dropdown-btn"); // 드롭다운 목록
+    const dropdownItems = document.querySelectorAll(".dropdown-item"); // 드롭다운 항목
+    const emailInput = document.getElementById("user_emailId"); // 이메일 아이디 입력 필드
+    const emailHidden = document.getElementById("user_email"); // 최종 이메일 저장 hidden input
+    const btnText = document.querySelector(".btn-text"); // 선택한 도메인 표시 버튼
+    const downBut = document.querySelector(".down-but"); // 버튼 그룹 
+
+    // 직접 입력 필드 생성
+    const customEmailInput = document.createElement("input");
+    customEmailInput.type = "text";
+    customEmailInput.id = "custom_email";
+    customEmailInput.name = "custom_email";
+    customEmailInput.placeholder = "도메인 입력";
+    customEmailInput.classList.add("email-inp");
+    customEmailInput.style.display = "none"; // 기본적으로 숨김
+
+    // `.btn-text` 위치에 `customEmailInput` 추가
+    btnText.parentNode.insertBefore(customEmailInput, btnText);
 
     // 드롭다운 버튼 클릭 시 메뉴 토글
     dropdownButton.addEventListener("click", function () {
         dropdownMenu.classList.toggle("active");
     });
 
-    // 드롭다운 항목 클릭 시 이메일 도메인 설정
+    // 드롭다운 항목 클릭 시 처리
     dropdownItems.forEach(item => {
         item.addEventListener("click", function () {
             const selectedDomain = item.textContent.trim();
-            
             if (selectedDomain === "직접 입력") {
-                btnText.textContent = "직접 입력";
-                emailHidden.value = "";
-                emailHidden.type = "text";
-                emailHidden.placeholder = "예: uniwell";
-                emailHidden.focus();
+                btnText.style.display = "none"; // 기존 도메인 텍스트 숨기기
+                customEmailInput.style.display = "inline-block"; // 입력 필드 표시
+                customEmailInput.value = "";
+                customEmailInput.focus();
             } else {
+                btnText.style.display = "inline-block"; // 기존 텍스트 다시 보이기
                 btnText.textContent = selectedDomain;
-                emailHidden.value = selectedDomain;
-                emailHidden.type = "hidden";
+                customEmailInput.style.display = "none"; // 입력 필드 숨기기
+                customEmailInput.value = "";
+                emailHidden.value = emailInput.value + "@" + selectedDomain;
             }
-
             dropdownMenu.classList.remove("active");
         });
+    });
+
+    // 직접 입력 필드 입력 시 hidden input 업데이트
+    customEmailInput.addEventListener("input", function () {
+        emailHidden.value = emailInput.value + "@" + customEmailInput.value;
+    });
+
+    // 이메일 아이디 입력 시 hidden input 업데이트
+    emailInput.addEventListener("input", function () {
+        let selectedDomain = btnText.textContent;
+        if (selectedDomain !== "선택하기" && selectedDomain !== "직접 입력") {
+            emailHidden.value = emailInput.value + "@" + selectedDomain;
+        } else if (selectedDomain === "직접 입력") {
+            emailHidden.value = emailInput.value + "@" + customEmailInput.value;
+        }
     });
 
     // 드롭다운 외부 클릭 시 닫기
@@ -203,3 +232,31 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     });
 });
+
+
+// 주소 카카오api 
+function sample6_execDaumPostcode() {
+    new daum.Postcode({
+        oncomplete: function(data) {
+            // 팝업에서 검색결과 항목을 클릭했을때 실행할 코드를 작성하는 부분.
+
+            // 각 주소의 노출 규칙에 따라 주소를 조합한다.
+            // 내려오는 변수가 값이 없는 경우엔 공백('')값을 가지므로, 이를 참고하여 분기 한다.
+            var addr = ''; // 주소 변수
+
+            //사용자가 선택한 주소 타입에 따라 해당 주소 값을 가져온다.
+            if (data.userSelectedType === 'R') { // 사용자가 도로명 주소를 선택했을 경우
+                addr = data.roadAddress;
+            } else { // 사용자가 지번 주소를 선택했을 경우(J)
+                addr = data.jibunAddress;
+            }
+            // 우편번호와 주소 정보를 해당 필드에 넣는다.
+            document.getElementById('sample6_postcode').value = data.zonecode;
+            document.getElementById("sample6_address").value = addr;
+            // 커서를 상세주소 필드로 이동한다.
+            document.getElementById("sample6_detailAddress").focus();
+        }
+    }).open();
+}
+
+
