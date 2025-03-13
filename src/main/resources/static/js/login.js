@@ -5,7 +5,7 @@ async function login() {
         Swal.fire({
             icon: "warning",
             title: "알림",
-            text: "아이디를 입력하세요.",
+            text: "아이디를 입력해주세요.",
             confirmButtonColor: "#82a90d", 
             background: "#ffffff",
         });
@@ -18,7 +18,7 @@ async function login() {
         Swal.fire({
             icon: "warning",
             title: "알림",
-            text: "비밀번호를 입력하세요.",
+            text: "비밀번호를 입력해주세요.",
             confirmButtonColor: "#82a90d",
             background: "#ffffff",
         });
@@ -36,7 +36,7 @@ async function loginCheck(id, pw) {
         case -2:
             Swal.fire({
                 title: "비밀번호가 일치하지 않습니다",
-                text: "비밀번호를 확인하세요",
+                text: "비밀번호를 확인해주세요.",
                 icon: "error",
                 confirmButtonColor: "#82a90d", 
                 background: "#ffffff",

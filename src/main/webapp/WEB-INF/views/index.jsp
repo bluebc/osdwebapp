@@ -13,9 +13,7 @@
 
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <link rel="stylesheet" href="css/reset.css">
-    <link rel="stylesheet" href="css/header.css">
     <link rel="stylesheet" href="css/index.css">
-    <link rel="stylesheet" href="css/footer.css">
     
     
     <!--favicon--->
@@ -26,10 +24,8 @@
     <script src="http://code.jquery.com/jquery-latest.min.js"></script>
     <script type="text/javascript" src="https://code.jquery.com/jquery-3.5.1.js"></script>
     
-    <script src="js/header.js"></script>
     <script src="js/menu_scroll.js"></script>
     <script src="js/swiper.js"></script>
-    <script defer src="js/footer.js"></script>
     <script src="js/sessioncheck.js"></script>
 
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
