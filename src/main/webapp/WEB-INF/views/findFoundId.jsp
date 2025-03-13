@@ -4,7 +4,7 @@
 <head>
     <title>오생단</title>
 
-<script src = "js/lostandfound.js"></script>
+<script src = "${pageContext.request.contextPath}/js/lostandfound.js"></script>
 </head>
 <body>
 

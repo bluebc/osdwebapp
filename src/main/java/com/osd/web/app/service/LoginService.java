@@ -9,10 +9,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.osd.web.app.dao.Auth_EmailDao;
-import com.osd.web.app.dao.Auto_Login_TokenDao;
+import com.osd.web.app.dao.AutoLogin_InfoDao;
 import com.osd.web.app.dao.User_InfoDao;
 import com.osd.web.app.dto.Auth_EmailDto;
-import com.osd.web.app.dto.Auto_Login_TokenDto;
+import com.osd.web.app.dto.AutoLogin_InfoDto;
 import com.osd.web.app.dto.User_InfoDto;
 
 import jakarta.servlet.http.Cookie;
@@ -23,13 +23,14 @@ import jakarta.servlet.http.HttpSession;
 @Service
 public class LoginService {
 
-    private static final String loginSessionName = "loginUser";
+    // 세션_로그인 정보
+    private static final String loginSessionName = "login_user_id";
 
     @Autowired
     private User_InfoDao user_InfoDao;
 
     @Autowired
-    private Auto_Login_TokenDao auto_Login_TokenDao;
+    private AutoLogin_InfoDao autoLogin_InfoDao;
 
     @Autowired
     private Auth_EmailDao auth_EmailDao;
@@ -75,23 +76,23 @@ public class LoginService {
     }
 
     // 자동로그인 토큰 DB in
-    public int insertAutoLoginToken(Auto_Login_TokenDto auto_Login_TokenDto) {
-        return auto_Login_TokenDao.insert(auto_Login_TokenDto);
+    public int insertAutoLogin_info(AutoLogin_InfoDto autoLogin_InfoDto) {
+        return autoLogin_InfoDao.insert(autoLogin_InfoDto);
     }
 
     // 자동로그인 토큰 DB out
-    public Auto_Login_TokenDto getAuto_Login_Token(Auto_Login_TokenDto auto_Login_TokenDto) {
-        return auto_Login_TokenDao.selectByTokenAndId(auto_Login_TokenDto);
+    public AutoLogin_InfoDto getAutoLogin_Info(AutoLogin_InfoDto autoLogin_InfoDto) {
+        return autoLogin_InfoDao.selectByTokenAndId(autoLogin_InfoDto);
     }
 
     // 자동로그인 토큰 삭제 (로그아웃)
-    public int deleteAuto_login_TokenByTokenAndId(Auto_Login_TokenDto auto_Login_TokenDto) {
-        return auto_Login_TokenDao.deleteByTokenAndId(auto_Login_TokenDto);
+    public int deleteAuto_login_TokenByTokenAndId(AutoLogin_InfoDto autoLogin_InfoDto) {
+        return autoLogin_InfoDao.deleteByTokenAndId(autoLogin_InfoDto);
     }
 
     // 자동로그인 토큰 삭제 (로그인)
-    public int deleteAuto_login_TokenById(Auto_Login_TokenDto auto_Login_TokenDto) {
-        return auto_Login_TokenDao.deleteById(auto_Login_TokenDto);
+    public int deleteAuto_login_TokenById(AutoLogin_InfoDto autoLogin_InfoDto) {
+        return autoLogin_InfoDao.deleteById(autoLogin_InfoDto);
     }
 
     // 세션 종료
@@ -176,7 +177,7 @@ public class LoginService {
     }
 
     public User_InfoDto getUser_IdByEmail(User_InfoDto user_InfoDto) {
-        
+
         return user_InfoDao.getUser_IdByEmail(user_InfoDto);
     }
 

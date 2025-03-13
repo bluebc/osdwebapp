@@ -22,7 +22,7 @@ async function sendAuthMailForId() {
 
     if (result.status == 1) {
         // goAuthPage(email);
-        window.location.href = "/findemailauth";
+        window.location.href = "/find/emailauth";
     }
 
 }

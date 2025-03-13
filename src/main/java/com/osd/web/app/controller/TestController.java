@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.osd.web.app.dto.Auto_Login_TokenDto;
+import com.osd.web.app.dto.AutoLogin_InfoDto;
 import com.osd.web.app.dto.User_InfoDto;
 import com.osd.web.app.service.LoginService;
 import com.osd.web.app.service.MailService;
@@ -69,15 +69,15 @@ public class TestController {
         String token = uuid.toString();
         LocalDateTime expiry_date = LocalDateTime.now();
 
-        Auto_Login_TokenDto auto_Login_TokenDto = new Auto_Login_TokenDto();
+        AutoLogin_InfoDto auto_Login_TokenDto = new AutoLogin_InfoDto();
 
-        auto_Login_TokenDto.setToken(token);
+        auto_Login_TokenDto.setAutoLogin_token(token);
         auto_Login_TokenDto.setUser_id(user_id);
-        auto_Login_TokenDto.setExpiry_date(expiry_date);
+        auto_Login_TokenDto.setAutoLogin_expiry(expiry_date);
 
-        loginService.insertAutoLoginToken(auto_Login_TokenDto);
+        loginService.insertAutoLogin_info(auto_Login_TokenDto);
 
-        Auto_Login_TokenDto auto_Login_TokenFromDb = loginService.getAuto_Login_Token(auto_Login_TokenDto);
+        AutoLogin_InfoDto auto_Login_TokenFromDb = loginService.getAutoLogin_Info(auto_Login_TokenDto);
         System.out.println(auto_Login_TokenFromDb);
 
     }
@@ -96,6 +96,18 @@ public class TestController {
             // TODO Auto-generated catch block
             e.printStackTrace();
         }
+    }
+
+    @ResponseBody
+    @PostMapping("/tupdateuserinfo")
+    public Map<String, Object> updateUser_Info(@RequestBody User_InfoDto user_InfoDto) {
+        Map<String, Object> response = new HashMap<>();
+
+        int result = user_InfoService.updateUser_Info(user_InfoDto);
+
+        response.put("result", result);
+
+        return response;
     }
 
 }

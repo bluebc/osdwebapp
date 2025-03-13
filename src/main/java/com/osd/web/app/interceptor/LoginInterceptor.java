@@ -11,7 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.web.servlet.HandlerInterceptor;
 
-import com.osd.web.app.dto.Auto_Login_TokenDto;
+import com.osd.web.app.dto.AutoLogin_InfoDto;
 import com.osd.web.app.service.LoginService;
 
 @Component
@@ -33,7 +33,7 @@ public class LoginInterceptor implements HandlerInterceptor {
             Cookie[] cookies = request.getCookies();
             if (cookies != null) {
                 String user_id = "";
-                String token = "";
+                String autologin_token = "";
                 for (Cookie cookie : cookies) {
                     if ("autoLoginId".equals(cookie.getName())) {
                         user_id = cookie.getValue();
@@ -41,45 +41,30 @@ public class LoginInterceptor implements HandlerInterceptor {
                         // break;
                     }
                     if ("autoLoginToken".equals(cookie.getName())) {
-                        token = cookie.getValue();
+                        autologin_token = cookie.getValue();
                     }
                 }
                 // DB 에서 토큰 확인작업
                 // 1) 쿠키 확인
-                if (!user_id.equals("") && !token.equals("")) {
-                    Auto_Login_TokenDto auto_Login_TokenDto = new Auto_Login_TokenDto();
-                    auto_Login_TokenDto.setToken(token);
-                    auto_Login_TokenDto.setUser_id(user_id);
+                if (!user_id.equals("") && !autologin_token.equals("")) {
+                    AutoLogin_InfoDto autologin_InfoDto = new AutoLogin_InfoDto();
+                    autologin_InfoDto.setAutoLogin_token(autologin_token);
+                    autologin_InfoDto.setUser_id(user_id);
                     // 2) 쿠키 값 DB 확인
-                    Auto_Login_TokenDto auto_Login_TokenFromDb = loginService.getAuto_Login_Token(auto_Login_TokenDto);
-                    if (auto_Login_TokenFromDb.getToken() != null) {
+                    AutoLogin_InfoDto autoLogin_InfoFromDb = loginService.getAutoLogin_Info(autologin_InfoDto);
+                    if (autoLogin_InfoFromDb.getAutoLogin_token() != null) {
                         // 3) 토큰 만료 확인
-                        if (auto_Login_TokenFromDb.getExpiry_date().isAfter(LocalDateTime.now())) {
+                        if (autoLogin_InfoFromDb.getAutoLogin_expiry().isAfter(LocalDateTime.now())) {
                             // 4) 세션
-                            session.setAttribute("loginUser", auto_Login_TokenFromDb.getUser_id());
+                            session.setAttribute("loginUser", autoLogin_InfoFromDb.getUser_id());
                         } else {
-                            loginService.deleteAuto_login_TokenByTokenAndId(auto_Login_TokenDto);
+                            loginService.deleteAuto_login_TokenByTokenAndId(autologin_InfoDto);
                         }
 
                     }
                 }
             }
         }
-
-        // 로그아웃 요청 시 쿠키 삭제 -- 컨트롤러로 이관
-        // if (request.getRequestURI().equals("/logout")) { // 로그아웃 URL 확인
-        // // 쿠키 삭제
-        // Cookie autoLoginIdCookie = new Cookie("autoLoginId", null);
-        // autoLoginIdCookie.setMaxAge(0); // 쿠키의 유효 시간을 0으로 설정하여 삭제
-        // autoLoginIdCookie.setPath("/"); // 사이트 전체에서 쿠키를 삭제
-
-        // Cookie autoLoginIdToken = new Cookie("autoLoginToken", null);
-        // autoLoginIdToken.setMaxAge(0);
-        // autoLoginIdToken.setPath("/");
-
-        // response.addCookie(autoLoginIdCookie);
-        // response.addCookie(autoLoginIdToken);
-        // }
 
         return true; // 아무 동작 없이 요청을 그대로 진행
     }

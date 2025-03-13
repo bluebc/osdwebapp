@@ -149,7 +149,7 @@ async function modify() {
 
 async function updateUserInfo(user_info) {
 
-    const response = await fetch("/updateuserinfo", {
+    const response = await fetch("/tupdateuserinfo", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(user_info),

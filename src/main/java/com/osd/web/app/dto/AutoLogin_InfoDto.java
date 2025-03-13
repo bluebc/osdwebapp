@@ -5,10 +5,10 @@ import java.time.LocalDateTime;
 import lombok.Data;
 
 @Data
-public class Auto_Login_TokenDto {
+public class AutoLogin_InfoDto {
 
-    private String token;
+    private String autoLogin_token;
     private String user_id;
-    private LocalDateTime expiry_date;
+    private LocalDateTime autoLogin_expiry;
 
 }

@@ -1,6 +1,5 @@
 package com.osd.web.app.controller;
 
-import java.net.http.HttpRequest;
 import java.time.LocalDateTime;
 import java.util.HashMap;
 import java.util.Map;
@@ -15,13 +14,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.osd.web.app.dao.Auth_EmailDao;
 import com.osd.web.app.dto.Auth_EmailDto;
-import com.osd.web.app.dto.Auto_Login_TokenDto;
+import com.osd.web.app.dto.AutoLogin_InfoDto;
 import com.osd.web.app.dto.User_InfoDto;
 import com.osd.web.app.service.LoginService;
 import com.osd.web.app.service.MailService;
-import com.osd.web.app.service.User_InfoService;
 
 import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServletRequest;
@@ -33,12 +30,13 @@ public class LoginController {
 
     @Autowired
     private LoginService loginService;
-
-    @Autowired
-    private User_InfoService user_InfoService;
-
+    
     @Autowired
     private MailService mailService;
+
+
+    // ==================== 로그인 시작 ====================
+
 
     @RequestMapping("/login")
     public String loginPage() {
@@ -66,12 +64,12 @@ public class LoginController {
         String token = UUID.randomUUID().toString();
 
         // 토큰 만료 시점
-        LocalDateTime expiry_date = LocalDateTime.now().plusMinutes(1);
+        LocalDateTime autoLogin_expiry = LocalDateTime.now().plusMinutes(1);
 
-        Auto_Login_TokenDto auto_Login_TokenDto = new Auto_Login_TokenDto();
-        auto_Login_TokenDto.setToken(token);
-        auto_Login_TokenDto.setUser_id(user_id);
-        auto_Login_TokenDto.setExpiry_date(expiry_date);
+        AutoLogin_InfoDto autoLogin_InfoDto = new AutoLogin_InfoDto();
+        autoLogin_InfoDto.setAutoLogin_token(token);
+        autoLogin_InfoDto.setUser_id(user_id);
+        autoLogin_InfoDto.setAutoLogin_expiry(autoLogin_expiry);
 
         if (autoLogin) {
             Cookie autoLoginCookie = loginService.setCookie("autoLoginId", user_InfoDto.getUser_id());
@@ -80,7 +78,7 @@ public class LoginController {
             response.addCookie(autoLoginTokenCookie);
             // 기존 자동로그인 토큰 삭제
             // loginService.deleteAuto_login_TokenById(auto_Login_TokenDto);
-            loginService.insertAutoLoginToken(auto_Login_TokenDto);
+            loginService.insertAutoLogin_info(autoLogin_InfoDto);
         }
         if (rememberMe) {
             Cookie rememberMeCookie = loginService.setCookie("rememberMe", user_InfoDto.getUser_id());
@@ -138,8 +136,8 @@ public class LoginController {
 
         Cookie[] cookies = request.getCookies();
         String user_id = "";
-        String token = "";
-        Auto_Login_TokenDto auto_Login_TokenDto = new Auto_Login_TokenDto();
+        String autoLogin_token = "";
+        AutoLogin_InfoDto autoLogin_InfoDto = new AutoLogin_InfoDto();
 
         for (Cookie cookie : cookies) {
             if ("autoLoginId".equals(cookie.getName())) {
@@ -148,34 +146,24 @@ public class LoginController {
                 response.addCookie(cookie);
             }
             if ("autoLoginToken".equals(cookie.getName())) {
-                token = cookie.getValue();
+                autoLogin_token = cookie.getValue();
                 cookie.setMaxAge(0);
                 response.addCookie(cookie);
             }
 
         }
-        if (!token.equals("") && !user_id.equals("")) {
-            auto_Login_TokenDto.setToken(token);
-            auto_Login_TokenDto.setUser_id(user_id);
+        if (!autoLogin_token.equals("") && !user_id.equals("")) {
+            autoLogin_InfoDto.setAutoLogin_token(autoLogin_token);
+            autoLogin_InfoDto.setUser_id(user_id);
         }
 
         // DB 쿠키 토큰 삭제
-        loginService.deleteAuto_login_TokenByTokenAndId(auto_Login_TokenDto);
-
-        // // 쿠키 삭제
-        // Cookie autoLoginIdCookie = new Cookie("autoLoginId", null);
-        // autoLoginIdCookie.setMaxAge(0); // 쿠키의 유효 시간을 0으로 설정하여 삭제
-        // autoLoginIdCookie.setPath("/"); // 사이트 전체에서 쿠키를 삭제
-
-        // Cookie autoLoginIdToken = new Cookie("autoLoginToken", null);
-        // autoLoginIdToken.setMaxAge(0);
-        // autoLoginIdToken.setPath("/");
-
-        // response.addCookie(autoLoginIdCookie);
-        // response.addCookie(autoLoginIdToken);
+        loginService.deleteAuto_login_TokenByTokenAndId(autoLogin_InfoDto);
 
         return "logout";
     }
+
+    // ==================== 로그인 끝 ====================
 
     @RequestMapping("/signup")
     public String signupPage() {
@@ -341,7 +329,7 @@ public class LoginController {
         return result;
     }
 
-    @RequestMapping("/findemailauth")
+    @RequestMapping("/find/emailauth")
     public String emailAuthPage(HttpServletRequest request, Model model) {
 
         HttpSession session = request.getSession();
