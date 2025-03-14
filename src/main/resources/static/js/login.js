@@ -1,4 +1,29 @@
+document.addEventListener("DOMContentLoaded", function () {
+
+    rememberMe();
+
+});
+
+async function rememberMe() {
+
+
+    const response = await fetch("/login/rememberMe", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: {},
+    });
+    const result = await response.json();
+
+    const user_id = result.user_id;
+    if (result.status == 1) {
+        document.getElementById("user_id").value = user_id;
+        document.getElementById("saveIdCheck").checked = true;
+    }
+}
+
 async function login() {
+
+
     var user_id = document.getElementById("user_id");
     if (user_id.value == "") {
         user_id.focus();
@@ -31,6 +56,8 @@ async function login() {
 async function loginCheck(id, pw) {
     var check = await auth(id, pw);
     // alert(check.status);
+
+
 
     switch (check.status) {
         case -2:
@@ -68,13 +95,18 @@ async function loginCheck(id, pw) {
     }
 }
 
+
 async function auth(id, pw) {
+
+    var autoLogin = document.getElementById("autoLogin").checked;
+    var rememberMe = document.getElementById("saveIdCheck").checked;
+
     var user = { user_id: id, user_pw: pw };
 
-    const response = await fetch("/auth", {
+    const response = await fetch("/login/requestLogin?autoLogin=" + autoLogin + "&rememberMe=" + rememberMe, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(user),
+        body: JSON.stringify(user)
     });
     const result = await response.json();
     return result;

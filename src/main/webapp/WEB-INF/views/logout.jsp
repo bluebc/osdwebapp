@@ -7,7 +7,7 @@
     <head>
     <title>osdwebapp</title>
     
-<script src = "js/logout.js"></script>
+<script src = "${pageContext.request.contextPath}/js/logout.js"></script>
 
     </head>
     <body>
