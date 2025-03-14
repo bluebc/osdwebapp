@@ -25,7 +25,7 @@
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
 
-    <script src = "js/login.js"></script>
+    <script src = "${pageContext.request.contextPath}/js/login.js"></script>
 
     
     </head>
