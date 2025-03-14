@@ -1,29 +1,5 @@
-function requestAuthMail() {
+async function requestAuthMail() {
 
-    sendAuthMail();
-
-    // DB user 정보에서 일치하는 메일 찾기
-    // 비번찾기는 변경으로 진행
-}
-
-async function sendAuthMailForId() {
-
-    var user_email = document.getElementById("user_email").value;
-
-    const response = await fetch("/find/id/requestEmail", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ user_email: email })
-    });
-
-    const result = await response.json();
-
-    if (result.status == 1) {
-        window.location.href = "/find/emailAuth";
-    }
-}
-
-async function sendAuthMail() {
     var user_id = document.getElementById("user_id").value;
     var user_email = document.getElementById("user_email").value;
 
@@ -55,12 +31,43 @@ async function emailAuth() {
     });
 
     const result = await response.json();
-    if (result.status == 1) {
-        window.location.href = "/find/id/found";
+
+    switch (result.status) {
+        case 0:
+            alert("server error");
+            return;
+        case -1:
+            alert("session만료");
+            // 초기화면으로 이동
+            return;
+        case -2:
+            alert("이메일 정보 오류");
+            return;
+        case -3:
+            alert("인증코드 만료");
+            break;
+        case -4:
+            alert("인증코드 틀림");
+            break;
+        case -5:
+            alert("사용자 정보 없음");
+            break;
+        case 1:
+            window.location.href = "/find/result/id";
+            break;
+        case 2:
+            window.location.href = "/find/result/pw";
+            break;
+        default:
+            alert("script error");
     }
-    if (result.status == 2) {
-        window.location.href = "/find/pw/reset";
-    }
+
+    // if (result.status == 1) {
+    //     window.location.href = "/find/id/found";
+    // }
+    // if (result.status == 2) {
+    //     window.location.href = "/find/pw/reset";
+    // }
 }
 
 async function requestResetPassword() {
@@ -97,12 +104,14 @@ async function requestResetPassword() {
             return;
         case -1:
             alert("session만료");
+            // 초기화면으로 이동
             return;
         case -2:
             alert("비밀번호 변경 실패");
             return;
         case 1:
             alert("비밀번호 변경 완료");
+            window.location.href = "/login";
             break;
         default:
             alert("script error");

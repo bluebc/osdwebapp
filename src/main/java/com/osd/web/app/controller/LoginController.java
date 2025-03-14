@@ -55,7 +55,7 @@ public class LoginController {
         result.put("status", status);
 
         if (status == 1) {
-            loginService.setSession(request, user_InfoDto.getUser_id());
+            loginService.setLoginSession(request, user_InfoDto.getUser_id());
         }
 
         String user_id = user_InfoDto.getUser_id();
@@ -121,7 +121,7 @@ public class LoginController {
         result.put("status", status);
 
         if (status == 1) {
-            loginService.setSession(request, user_InfoDto.getUser_id());
+            loginService.setLoginSession(request, user_InfoDto.getUser_id());
         }
 
         return result;
@@ -263,27 +263,38 @@ public class LoginController {
 
     // ==================== ID, PW 찾기 시작 ====================
 
+    // ID
     @RequestMapping("/find/id")
     public String findIdPage() {
 
         return "findId";
     }
 
+    // ID/email/1
     @RequestMapping("/find/id/email")
     public String findIdByEmailPage() {
+
         return "findIdByEmail";
     }
 
+    // ID/email/1-1
+    // PW/email/1-1
+    // 회원정보 찾기 아이디 세션 생성
     @ResponseBody
     @PostMapping("/find/requestEmail")
     public Map<String, Object> findIdByEmail(HttpServletRequest request, @RequestBody User_InfoDto user_InfoDto) {
         Map<String, Object> result = new HashMap<>();
         int status = 0;
+        HttpSession session = request.getSession();
+        // 로그인 정보 찾기 세션 제거
+        session.setAttribute("find_user_email", null);
+        session.setAttribute("find_user_id", null);
 
         User_InfoDto user_InfoFromDb = loginService.getUser_IdByEmail(user_InfoDto);
         String user_email = user_InfoFromDb.getUser_email();
 
         if (user_email == null || user_email.equals("")) {
+
             // 이메일 없음
             status = -1;
             result.put("status", status);
@@ -326,25 +337,35 @@ public class LoginController {
 
         result.put("status", status);
 
-        HttpSession session = request.getSession();
         String user_id = user_InfoDto.getUser_id();
+
         if (user_id != null && !user_id.equals("")) {
             session.setAttribute("find_user_id", user_id);
         }
         session.setAttribute("find_user_email", user_email);
+        // session.setMaxInactiveInterval(1*60); // 1분
+        session.setMaxInactiveInterval(10 * 60); // 10분
 
         System.out.println(result);
 
         return result;
     }
 
+    // ID/email/2
     // 인증코드 입력 화면
     @RequestMapping("/find/emailAuth")
     public String emailAuthPage(HttpServletRequest request, Model model) {
 
         HttpSession session = request.getSession();
+
         String user_email = (String) session.getAttribute("find_user_email");
         String user_id = (String) session.getAttribute("find_user_id");
+
+        // 세션없이 url 진입 시 내보냄
+        if (user_email == null || user_email.equals("")) {
+            return "redirect:/wrongPath";
+        }
+
         model.addAttribute("user_email", user_email);
 
         return "findByEmail";
@@ -385,20 +406,26 @@ public class LoginController {
         user_InfoDto.setUser_email(user_email);
         User_InfoDto user_InfoDtoFromDb = loginService.getUser_IdByEmail(user_InfoDto);
 
-        // 4. 사용자 정보 없는 경우
-        if (user_InfoDtoFromDb == null) {
+        // 4. 인증번호가 틀린 경우
+        if (!auth_EmailFromDb.getAuth_code().equals(auth_EmailDto.getAuth_code())) {
             status = -4;
             result.put("status", status);
             return result;
         }
 
+        // 5. 사용자 정보 없는 경우
+        if (user_InfoDtoFromDb == null) {
+            status = -5;
+            result.put("status", status);
+            return result;
+        }
+
+        // ID 조회 완료
         String user_id = user_InfoDtoFromDb.getUser_id();
-
-        // result.put("user_id", user_id);
-
         status = 1;
 
         String find_user_id = (String) session.getAttribute("find_user_id");
+        System.out.println("find_user_id: " + find_user_id);
         if (find_user_id != null && !find_user_id.equals("")) {
             if (find_user_id.equals(user_id)) {
                 status = 2;
@@ -411,12 +438,23 @@ public class LoginController {
         return result;
     }
 
-    @RequestMapping("/find/id/found")
+    @RequestMapping("/find/result/id")
     public String idFoundPage(HttpServletRequest request, Model model) {
 
         HttpSession session = request.getSession();
         String user_id = (String) session.getAttribute("found_user_id");
+
+        String find_user_id = (String) session.getAttribute("find_user_id");
+        if (find_user_id != null && !find_user_id.equals("")) {
+            // 로그인 정보 찾기 세션 제거
+            session.setAttribute("find_user_email", null);
+            session.setAttribute("find_user_id", null);
+            return "redirect:/wrongPath";
+        }
         model.addAttribute("user_id", user_id);
+
+        // 페이지에 아이디 값 올려주고 세션정보 삭제
+        session.setAttribute("found_user_id", null);
 
         return "findIdFound";
     }
@@ -431,8 +469,17 @@ public class LoginController {
         return "findPwByEmail";
     }
 
-    @RequestMapping("/find/pw/reset")
-    public String pwResetPage() {
+    @RequestMapping("/find/result/pw")
+    public String pwResetPage(HttpServletRequest request) {
+
+        HttpSession session = request.getSession();
+        String user_id = (String) session.getAttribute("find_user_id");
+        if (user_id == null || user_id.equals("")) {
+            session.setAttribute("find_user_email", null);
+            session.setAttribute("find_user_id", null);
+            return "redirect:/wrongPath";
+        }
+
         return "findPwReset";
     }
 
@@ -444,15 +491,15 @@ public class LoginController {
 
         HttpSession session = request.getSession();
 
-        String user_id = (String) session.getAttribute("found_user_id");
-        
+        String user_id = (String) session.getAttribute("find_user_id");
+
         // 아이디 찾기 세션에 아이디가 없을 경우
         if (user_id == null || user_id.equals("")) {
             status = -1;
             result.put("status", status);
             return result;
         }
-        
+
         user_InfoDto.setUser_id(user_id);
         // DB 변경
         int updated = loginService.updateUser_Pw(user_InfoDto);
@@ -465,6 +512,11 @@ public class LoginController {
             status = 1;
         }
         result.put("status", status);
+
+        // 비밀번호 변경 후 세션정보 삭제
+        session.setAttribute("find_user_email", null);
+        session.setAttribute("find_user_id", null);
+        session.invalidate();
 
         return result;
     }

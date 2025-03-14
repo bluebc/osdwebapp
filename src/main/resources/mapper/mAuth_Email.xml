@@ -14,12 +14,8 @@
 </insert>
 
 <select id="selectByEmailAndCode" parameterType="Auth_EmailDto" resultMap="AuthEmailResultMap">
-    select * from auth_email
-    <where>
-        user_email = #{user_email} 
-        and 
-        auth_code = #{auth_code} 
-    </where>
+    SELECT USER_EMAIL, AUTH_CODE, AUTH_EXPIRY FROM AUTH_EMAIL 
+        WHERE AUTH_EXPIRY = (SELECT MAX(AUTH_EXPIRY) as AUTH_EXPIRY FROM AUTH_EMAIL WHERE USER_EMAIL = #{user_email})
 </select>
 
 

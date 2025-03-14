@@ -26,10 +26,10 @@ public class LoginInterceptor implements HandlerInterceptor {
         System.out.println("LoginInterceptor: 요청이 들어옴 - " + request.getRequestURI());
 
         HttpSession session = request.getSession();
-        Object loginUser = session.getAttribute("loginUser");
+        Object login_user_id = session.getAttribute("login_user_id");
 
         // 자동로그인
-        if (loginUser == null) {
+        if (login_user_id == null) {
             Cookie[] cookies = request.getCookies();
             if (cookies != null) {
                 String user_id = "";
@@ -37,8 +37,7 @@ public class LoginInterceptor implements HandlerInterceptor {
                 for (Cookie cookie : cookies) {
                     if ("autoLoginId".equals(cookie.getName())) {
                         user_id = cookie.getValue();
-                        // session.setAttribute("loginUser", user_id);
-                        // break;
+ 
                     }
                     if ("autoLoginToken".equals(cookie.getName())) {
                         autologin_token = cookie.getValue();
@@ -56,7 +55,7 @@ public class LoginInterceptor implements HandlerInterceptor {
                         // 3) 토큰 만료 확인
                         if (autoLogin_InfoFromDb.getAutoLogin_expiry().isAfter(LocalDateTime.now())) {
                             // 4) 세션
-                            session.setAttribute("loginUser", autoLogin_InfoFromDb.getUser_id());
+                            session.setAttribute("login_user_id", autoLogin_InfoFromDb.getUser_id());
                         } else {
                             loginService.deleteAuto_login_TokenByTokenAndId(autologin_InfoDto);
                         }

@@ -36,12 +36,12 @@ public class LoginService {
     private Auth_EmailDao auth_EmailDao;
 
     // 세션 생성
-    public void setSession(HttpServletRequest request, String id) {
+    public void setLoginSession(HttpServletRequest request, String id) {
         HttpSession session = request.getSession(true);
         // 10분
-        // session.setMaxInactiveInterval(10 * 60);
+        session.setMaxInactiveInterval(10 * 60);
         // 1분
-        session.setMaxInactiveInterval(1 * 60);
+        // session.setMaxInactiveInterval(1 * 60);
         session.setAttribute(loginSessionName, id);
 
     }
@@ -65,7 +65,8 @@ public class LoginService {
         Cookie cookie = new Cookie(cookieName, cookieValue);
         // cookie.setMaxAge(7*24*60*60); // 7일간 유지
         cookie.setPath("/"); // 모든 경로에서 사용 가능
-        cookie.setMaxAge(60); // 1분
+        // cookie.setMaxAge(60); // 1분
+        cookie.setMaxAge(10*60); // 10분
 
         // 보안을 강화하는 설정
         cookie.setSecure(true); // HTTPS에서만 쿠키 전송 (서버가 HTTPS 연결일 때만)

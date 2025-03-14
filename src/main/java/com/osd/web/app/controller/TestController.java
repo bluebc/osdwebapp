@@ -110,4 +110,9 @@ public class TestController {
         return response;
     }
 
+    @RequestMapping("/wrongPath")
+    public String wrongPathPage(){
+        return "wrongPath";
+    }
+
 }
