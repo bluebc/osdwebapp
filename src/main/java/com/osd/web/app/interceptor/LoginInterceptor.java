@@ -23,7 +23,7 @@ public class LoginInterceptor implements HandlerInterceptor {
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler)
             throws Exception {
-        System.out.println("LoginInterceptor: 요청이 들어옴 - " + request.getRequestURI());
+        // System.out.println("LoginInterceptor: 요청이 들어옴 - " + request.getRequestURI());
 
         HttpSession session = request.getSession();
         Object login_user_id = session.getAttribute("login_user_id");
