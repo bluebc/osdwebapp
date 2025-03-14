@@ -17,10 +17,12 @@
 <h6><a href = "/signup">회원가입 페이지</a></h6>
 <h6><a href = "/withdraw">회원탈퇴 페이지</a></h6>
 <h6><a href = "/login">로그인 페이지</a></h6>
+<h6><a href = "/changepw">비밀번호 수정 페이지</a></h6>
+
 
 <%-- <input type = "button" value = "test" onclick = "loginVisible('${loginId}')"> --%>
 
-<input type = "button" value = "test" onclick = "">
+<input type = "button" value = "test" onclick = "tokenmaker()">
 <br>
 
 <br>
@@ -70,6 +72,19 @@ login id : ${loginId}
 <br>
 
 </div>
+<hr>
+
+<div id = "mailSection">
+<br>
+<input type = "text" id = "emailTo" placeholder = "받는 주소">
+<br>
+<input type = "text" id = "emailSubject" placeholder = "제목">
+<br>
+<input type = "text" id = "emailText" placeholder = "내용">
+<br>
+<input type = "button" value = "send" onclick = "sendMail()">
+</div>
+
 
 <br>
 <br>
@@ -82,5 +97,5 @@ login id : ${loginId}
 </body>
 </html>
 
-<script src = "js/test/test.js"></script>
-<script src = "js/sessioncheck.js"></script>
+<script src = "${pageContext.request.contextPath}/js/test/test.js"></script>
+<script src = "${pageContext.request.contextPath}/js/sessioncheck.js"></script>

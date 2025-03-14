@@ -26,5 +26,5 @@
         <br>
 
     </body>
-    <script src = "js/withdraw.js"></script>
+    <script src = "${pageContext.request.contextPath}/js/withdraw.js"></script>
 </html>
