@@ -29,7 +29,7 @@
 <update id="updateConfirmed" parameterType="Auth_EmailDto">
     update auth_email set auth_confirmed = 1
     <where>
-        auth_email = #{auth_email} 
+        user_email = #{user_email} 
         and
         auth_code = #{auth_code} 
         and 

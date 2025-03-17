@@ -58,6 +58,7 @@ public class MailService {
         // 오류 1. 이메일 없음
         if (auth_EmailDto.getUser_email() == null || auth_EmailDto.equals("")) {
             result = -1;
+            return result;
         }
 
         // 예외에 대해 케이스문으로 회피
@@ -76,7 +77,7 @@ public class MailService {
 
                 // 오류 1-1. 이메일이 DB에 없음
                 if (user_InfoDtoFromDb == null) {
-                    result = -2;
+                    result = -1;
                     return result;
                 }
                 break;
@@ -157,7 +158,7 @@ public class MailService {
         }
         // 오류 6. DB update 실패
         int updated = 0;
-        updated = auth_EmailDao.updateConfirmed(auth_EmailDto);
+        updated = auth_EmailDao.updateConfirmed(auth_EmailFromDb);
         if (updated == 0) {
             result = -6;
             return result;
