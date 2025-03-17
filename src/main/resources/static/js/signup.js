@@ -1,5 +1,4 @@
 async function signup() {
-
     var user_id = document.getElementById("user_id");
     if (user_id.value == "") {
         alert("아이디를 입력해주세요.");
@@ -27,44 +26,64 @@ async function signup() {
         user_name.focus();
         return;
     }
+
     var user_hpno = document.getElementById("user_hpno");
     if (user_hpno.value == "") {
         alert("핸드폰 번호를 입력해주세요.");
         user_hpno.focus();
         return;
     }
+
     var user_email = document.getElementById("user_email");
     if (user_email.value == "") {
         alert("이메일을 입력해주세요.");
         user_email.focus();
         return;
     }
+
     var user_addr = document.getElementById("user_addr");
     if (user_addr.value == "") {
         alert("주소를 입력해주세요.");
         user_addr.focus();
         return;
     }
-    var user_addr = document.getElementById("user_detail");
-    if (user_addr.value == "") {
+
+    var user_detail = document.getElementById("user_detail");
+    if (user_detail.value == "") {
         alert("상세주소를 입력해주세요.");
-        user_addr.focus();
-        return;
-    }
-    var user_birth = document.getElementById("user_birth");
-    if (user_birth.value == "") {
-        alert("생년월일을 입력해주세요.");
-        user_birth.focus();
-        return;
-    }
-    var user_gender = document.getElementById("user_gender");
-    if (user_gender.value == "") {
-        alert("성별을 선택해주세요.");
-        user_gender.focus();
+        user_detail.focus();
         return;
     }
 
-var createTime = getTime();
+    var user_birthy = document.getElementById("user_birthy");
+    if (user_birthy.value == "") {
+        alert("출생 연도를 입력해주세요.");
+        user_birthy.focus();
+        return;
+    }
+
+    var user_birthm = document.getElementById("user_birthm");
+    if (user_birthm.value == "") {
+        alert("출생 월을 입력해주세요.");
+        user_birthm.focus();
+        return;
+    }
+
+    var user_birthd = document.getElementById("user_birthd");
+    if (user_birthd.value == "") {
+        alert("출생 일을 입력해주세요.");
+        user_birthd.focus();
+        return;
+    }
+
+    // 성별 체크
+    if (!genderChkFn()) {
+        return;
+    }
+
+    var user_gender = document.querySelector('input[name="gender"]:checked');
+
+    var createTime = getTime();
 
     var user_info = {
         user_id: user_id.value,
@@ -74,14 +93,17 @@ var createTime = getTime();
         user_email: user_email.value,
         user_addr: user_addr.value,
         user_detail: user_detail.value,
-        user_birth: user_birth.value,
+        user_birthy: user_birthy.value,
+        user_birthm: user_birthm.value,
+        user_birthd: user_birthd.value,
         user_gender: user_gender.value,
-        //
         user_created_at: createTime,
         user_updated_at: createTime
     };
 
     var result = await createUser(user_info);
+
+    // result = 1;  // 강제로 한거, 서버 오류 
 
     switch (result) {
         case -1:
@@ -98,7 +120,10 @@ var createTime = getTime();
             alert("Error1");
     }
 
+
 }
+
+
 
 async function createUser(user_info) {
     const response = await fetch("/createuser", {
@@ -106,6 +131,14 @@ async function createUser(user_info) {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(user_info),
     });
+
+    // 응답 상태 코드 확인
+    if (!response.ok) {
+        console.error("서버 오류:", response.status, response.statusText);
+        return null;  // 서버에서 오류가 발생한 경우 null 반환
+    }
+
+
     const result = await response.json();
     return result;
 }
@@ -123,9 +156,14 @@ function getTime() {
 
 
 // input 글자수 제한
-function handleInputLength(el, max) {
-    if(el.value.length > max) {
-      el.value = el.value.substr(0, max);
+function handleInputLength(el, min, max) {
+    if (el.value.length > max) {
+        el.value = el.value.substr(0, max);
+    }
+    if (el.value.length < min) {
+        el.setCustomValidity(`최소 ${min}자 이상 입력해야 합니다.`);
+    } else {
+        el.setCustomValidity('');
     }
 }
 
@@ -330,6 +368,24 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     });
 });
+
+// 성별
+function genderChkFn() {
+    var selectedGender = document.querySelector('input[name="gender"]:checked');
+
+    if (!selectedGender) {
+        alert("성별을 선택해주세요.");
+        return false;
+    }
+
+    if (selectedGender.value !== "MALE" && selectedGender.value !== "FEMALE") {
+        alert("성별을 선택해 주세요.");
+        return false;
+    }
+
+    return true;
+}
+
 
 
 // 주소 카카오api 
