@@ -263,7 +263,7 @@ public class LoginController {
         String user_id = user_InfoDto.getUser_id();
         String auth_purpose = "";
 
-        
+
         if (user_id != null && !user_id.equals("")) {
             // 비번 찾기
             session.setAttribute("find_user_id", user_id);
@@ -275,11 +275,8 @@ public class LoginController {
         }
 
         auth_EmailDto.setAuth_purpose(auth_purpose);
-
         session.setAttribute("auth_purpose", auth_purpose);
-
         int sended = mailService.sendAuthEmail(auth_EmailDto);
-
         status = sended;
 
         result.put("status", status);
