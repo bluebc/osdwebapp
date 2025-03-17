@@ -23,9 +23,10 @@
     <script src="http://code.jquery.com/jquery-latest.min.js"></script>
 
     
-    <script src = "js/signup.js"></script>
+
 
 <script src = "${pageContext.request.contextPath}/js/signup.js"></script>
+<script src = "${pageContext.request.contextPath}/js/sessioncheck.js"></script>
 </head>
 <body>
 
