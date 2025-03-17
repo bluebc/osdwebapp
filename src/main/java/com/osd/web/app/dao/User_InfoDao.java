@@ -14,15 +14,6 @@ public class User_InfoDao {
     @Autowired
     private SqlSession session;
 
-    public User_InfoDto getUser_Info(String user_Id) {
-        return session.selectOne("User_Info.getUser_Info", user_Id);
-
-    }
-
-    public List<User_InfoDto> getUser_InfoAll() {
-        return session.selectList("User_Info.getUser_InfoAll");
-
-    }
 
     public int existsUser_InfoById(String user_id) {
         return session.selectOne("User_Info.existsById", user_id);

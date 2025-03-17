@@ -57,6 +57,16 @@ public class LoginController {
     }
 
     @ResponseBody
+    @PostMapping("/existsUser")
+    public int idcheck(@RequestBody User_InfoDto user_info) {
+        int result = 0;
+
+        result = loginService.existsUser_InfoById(user_info);
+
+        return result;
+    }
+
+    @ResponseBody
     @PostMapping("/createuser")
     public int userCreate(@RequestBody User_InfoDto user_info) {
         int result = 0;

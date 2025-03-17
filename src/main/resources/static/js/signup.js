@@ -7,6 +7,13 @@ async function signup() {
         return;
     }
 
+    var idCheck = document.getElementById("IdCheck");
+    if (idCheck.value == 0) {
+        alert("아이디 중복체크를 해주세요.");
+        idCheck.focus();
+        return;
+    } 
+
     var user_pw = document.getElementById("user_pw");
     if (user_pw.value == "") {
         alert("패스워드를 입력해주세요.");
@@ -93,6 +100,54 @@ var createTime = getTime();
 
 }
 
+
+async function idcheck() {
+   
+    var user_id = document.getElementById("user_id");
+    if (user_id.value == "") {
+        alert("아이디를 입력해주세요.");
+        user_id.focus();
+        return;
+    }
+    
+    var idCheck = document.getElementById("IdCheck");
+    var user_info = {
+        user_id: user_id.value
+    };
+
+    var result = await existsUser(user_info);
+
+    switch (result) {
+        case -1:
+            alert("해당 아이디는 이미 사용중입니다.");
+            idCheck.value = 0;
+            break;
+        case 0:
+            alert("DB Error");
+            break;
+        case 1:
+            alert("사용하실 수 있는 아이디입니다.");
+            idCheck.value = 1;
+            break;
+        default:
+            alert("Error1");
+    }
+
+}
+
+async function existsUser(user_info) {
+
+
+    const response = await fetch("/existsUser", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(user_info),
+    });
+    const result = await response.json();
+    return result;
+
+}
+
 async function createUser(user_info) {
     const response = await fetch("/createuser", {
         method: "POST",
@@ -113,6 +168,19 @@ function getTime() {
     var sec = ("0" + date.getSeconds()).slice(-2);
     return year + "-" + month + "-" + day + "T" + hour + ":" + min + ":" + sec;
 }
+
+
+
+// 파일이 열렸을 때 실행
+document.addEventListener("DOMContentLoaded", function () {
+
+         str = "테스트 ..."
+        //str = showFeeds(feedList);
+        document.getElementById("list").insertAdjacentHTML("beforeend", str);
+
+});
+
+
 
 
 // input 글자수 제한

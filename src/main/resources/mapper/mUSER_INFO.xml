@@ -16,38 +16,6 @@
     <result column="USER_UPDATED_AT" property="user_updated_at"/>
 </resultMap>
 
-
-   		
-   		 <select id = "getUser_InfoSelect"  parameterType = "String"   resultType="com.osd.web.app.dto.User_InfoDto">
-   		 	SELECT   USER_ID
-					,USER_PW
-					,USER_NAME
-					,USER_HPNO
-					,USER_EMAIL
-					,USER_ADDR
-					,USER_BIRTH
-					,USER_GENDER
-					,USER_UPDATED_AT
-					,USER_UPDATED_AT
-				FROM USER_INFO
-				WHERE USER_ID = #{USER_ID}
-   		 </select>
-   		 
-   		 
-   		 <select id="getUser_InfoSelectAll" resultType="com.osd.web.app.dto.User_InfoDto">
-   		 	SELECT 	 USER_ID
-					,USER_PW
-					,USER_NAME
-					,USER_HPNO
-					,USER_EMAIL
-					,USER_ADDR
-					,USER_BIRTH
-					,USER_GENDER
-					,USER_UPDATED_AT
-					,USER_UPDATED_AT
-				FROM USER_INFO
-   		 </select>
-
 		<select id="existsById" parameterType="String" resultType="int">
 		 	select count(user_id) from user_info
 			<where>

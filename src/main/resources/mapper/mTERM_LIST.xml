@@ -14,33 +14,13 @@
     <result column="TERM_CREATED_AT" property="term_created_at"/>
     <result column="TERM_UPDATED_AT" property="term_updated_at"/>
 </resultMap>
-
-
-   		
-   		 <select id = "getTerm_ListSelect"  parameterType = "String"   resultType="com.osd.web.app.dto.Term_ListDto">
-   		 	SELECT   TERM_ID
-					,TERM_NAME
-					,TERM_CONTENT
-					,TERM_TYPE
-					,TERM_GB
-					,TERM_USE_YN
-					,TERM_CREATED_AT
-					,TERM_UPDATED_AT
-				FROM TERM_LIST
-				WHERE TERM_ID = #{TERM_ID}
-   		 </select>
+		 
    		 
-   		 
-   		 <select id="getTerm_ListSelectAll" resultType="com.osd.web.app.dto.Term_ListDto">
-   			SELECT   TERM_ID
-					,TERM_NAME
-					,TERM_CONTENT
-					,TERM_TYPE
-					,TERM_GB
-					,TERM_USE_YN
-					,TERM_CREATED_AT
-					,TERM_UPDATED_AT
-				FROM TERM_LIST
+   		 <select id = "getTerm_ListByAll"  resultMap="TermListResultMap">
+		 select term_id, term_name, term_content, term_type, term_gb, term_sort, term_use_yn  from term_list
+		 <where>
+			term_use_yn = 'Y'
+		</where> 
    		 </select>
 
         
