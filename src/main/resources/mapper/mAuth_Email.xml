@@ -6,11 +6,14 @@
     <result column="USER_EMAIL" property="user_email"/>
 	<result column="AUTH_CODE" property="auth_code"/>
     <result column="AUTH_EXPIRY" property="auth_expiry"/>
+    <result column="AUTH_PURPOSE" property="auth_purpose"/>
+    <result column="AUTH_CONFIRMED" property="auth_confirmed"/>
 </resultMap>
 
 
 <insert id="insert" parameterType="Auth_EmailDto">
-    INSERT INTO AUTH_EMAIL(USER_EMAIL, AUTH_CODE, AUTH_EXPIRY) VALUES(#{user_email}, #{auth_code}, #{auth_expiry})
+    INSERT INTO AUTH_EMAIL(USER_EMAIL, AUTH_CODE, AUTH_EXPIRY, AUTH_PURPOSE, AUTH_CONFIRMED) 
+        VALUES(#{user_email}, #{auth_code}, #{auth_expiry}, #{auth_purpose}, #{auth_confirmed})
 </insert>
 
 <select id="selectByEmailAndCode" parameterType="Auth_EmailDto" resultMap="AuthEmailResultMap">
@@ -18,5 +21,22 @@
         WHERE AUTH_EXPIRY = (SELECT MAX(AUTH_EXPIRY) as AUTH_EXPIRY FROM AUTH_EMAIL WHERE USER_EMAIL = #{user_email})
 </select>
 
+<select id="selectByEmail" parameterType="Auth_EmailDto" resultMap="AuthEmailResultMap">
+    SELECT USER_EMAIL, AUTH_CODE, AUTH_EXPIRY, AUTH_PURPOSE, AUTH_CONFIRMED FROM AUTH_EMAIL 
+        WHERE AUTH_EXPIRY = (SELECT MAX(AUTH_EXPIRY) as AUTH_EXPIRY FROM AUTH_EMAIL WHERE USER_EMAIL = #{user_email})
+</select>
+
+<update id="updateConfirmed" parameterType="Auth_EmailDto">
+    update auth_email set auth_confirmed = 1
+    <where>
+        auth_email = #{auth_email} 
+        and
+        auth_code = #{auth_code} 
+        and 
+        auth_expiry = #{auth_expiry} 
+        and 
+        auth_purpose = #{auth_purpose} 
+    </where>
+</update>
 
 </mapper>
