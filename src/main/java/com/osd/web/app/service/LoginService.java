@@ -122,6 +122,16 @@ public class LoginService {
         return result;
     }
 
+    public int updateUser_Pw(User_InfoDto user_InfoDto) {
+        int result = 0;
+
+        LocalDateTime updateTime = LocalDateTime.now();
+        user_InfoDto.setUser_updated_at(updateTime);
+        result = user_InfoDao.updateUser_Pw(user_InfoDto);
+
+        return result;
+    }
+    
     public Auth_EmailDto setAuth_Email(Auth_EmailDto auth_EmailDto) {
 
         Random random = new Random();

@@ -38,7 +38,17 @@ public class SignupController {
     }
 
     @ResponseBody
-    @PostMapping("/signup/insertUser")
+    @PostMapping("/existsUser")
+    public int idcheck(@RequestBody User_InfoDto user_info) {
+        int result = 0;
+
+        result = signupService.existsUser_InfoById(user_info);
+
+        return result;
+    }
+
+    @ResponseBody
+    @PostMapping("/insertUser")
     public int signup(@RequestBody User_InfoDto user_info) {
         int result = 0;
 
