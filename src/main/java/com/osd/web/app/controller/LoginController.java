@@ -263,10 +263,14 @@ public class LoginController {
         String user_id = user_InfoDto.getUser_id();
         String auth_purpose = "";
 
+        
         if (user_id != null && !user_id.equals("")) {
+            // 비번 찾기
             session.setAttribute("find_user_id", user_id);
             auth_purpose = "find_reset_pw";
+
         } else {
+            // 아이디 찾기
             auth_purpose = "find_find_id";
         }
 
