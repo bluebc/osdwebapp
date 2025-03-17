@@ -26,7 +26,7 @@
 
 
 <script src = "${pageContext.request.contextPath}/js/signup.js"></script>
-<script src = "${pageContext.request.contextPath}/js/sessioncheck.js"></script>
+
 </head>
 <body>
 
