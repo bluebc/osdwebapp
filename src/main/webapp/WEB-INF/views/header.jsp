@@ -8,7 +8,7 @@
     <script src="http://code.jquery.com/jquery-latest.min.js"></script>
     <script src="${pageContext.request.contextPath}/js/header.js"></script>
     <script src = "${pageContext.request.contextPath}/js/sessioncheck.js"></script>
-    
+
     
     <header  class="header" >
         <div class="top-banner">

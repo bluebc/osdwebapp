@@ -163,21 +163,7 @@ public class LoginController {
 
     // ==================== 로그인 끝 ====================
 
-    @RequestMapping("/signup")
-    public String signupPage() {
-        return "signup";
-    }
-
-    @ResponseBody
-    @PostMapping("/signup/insertUser")
-    public int signup(@RequestBody User_InfoDto user_info) {
-        int result = 0;
-
-        result = loginService.insertUser_Info(user_info);
-
-        return result;
-    }
-
+    
     // ==================== refatoring... ====================
 
     @ResponseBody
@@ -187,27 +173,6 @@ public class LoginController {
         Map<String, Object> sessionInfo = loginService.getSession(request);
 
         return sessionInfo;
-    }
-
-    @RequestMapping("/withdraw")
-    public String withdrawPage(HttpServletRequest request) {
-
-        return "withdraw";
-    }
-
-    @ResponseBody
-    @PostMapping("/withdrawuser")
-    public Map<String, Object> withdraw(HttpServletRequest request, @RequestBody User_InfoDto user_info) {
-
-        Map<String, Object> response = new HashMap<>();
-        int isDeleted = 0;
-
-        loginService.invalidateSession(request);
-        isDeleted = loginService.deleteUser_Info(user_info);
-
-        response.put("isDeleted", isDeleted);
-
-        return response;
     }
 
     @RequestMapping("/changepw")

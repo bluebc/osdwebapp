@@ -1,6 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 
-
 <!DOCTYPE html>
 <html lang="ko" dir="ltr">
 
@@ -21,9 +20,6 @@
     <!--js-->
     <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
     <script src="http://code.jquery.com/jquery-latest.min.js"></script>
-
-    
-
 
 <script src = "${pageContext.request.contextPath}/js/signup.js"></script>
 
@@ -54,16 +50,17 @@
                                 <div class="cont-box">
                                     <div class="save-inp">
                                         <input type="text" id="user_id" name="user_id" placeholder="아이디를 입력해주세요"
-                                            data-testid="input-box" maxlength='16' oninput="handleInputLength(this, 16)">
+                                            data-testid="input-box" minlength="6" maxlength='16' oninput="handleInputLength(this, 6,16)">
                                         <%-- <button type="button" class="btn-point">중복확인</button> --%>
                                     </div>
-                                    <p class="validator">최소 4자 이상 16자 이하의 영문소문자/숫자를 조합, 공백불가</p>
+                                    <p class="validator">최소 6자 이상 15자 이하의 영문 혹은 영문과 숫자를 조합</p>
                                 </div>
                             </div>
 
                             <div class="blank-space">
-                                <button type="button" class="btn-point">중복확인</button>
+                                <input type="button" id="confirmId" class="btn-point" value="중복확인" onclick="idcheck()">
                             </div>
+                            <input type="hidden" id="IdCheck" name="IdCheck" value=0>
                         </div>
                         <!-- 비밀번호 -->
                         <div class="form-item">
@@ -75,10 +72,10 @@
                                 <div class="cont-box">
                                     <div class="save-inp">
                                         <input type="password" id="user_pw" name="user_pw" placeholder="비밀번호를 입력해주세요"
-                                            data-testid="input-box" maxlength='16' oninput="handleInputLength(this, 16)">
+                                            data-testid="input-box" minlength="8" maxlength='20' oninput="handleInputLength(this, 8,20)">
                                     </div>
-                                    <p class="validator">최소 10자 이상 16자 이하 입력</p>
-                                    <p class="validator">영문/숫자/특수문자(공백 제외)만 허용하며, 2가지 이상 문자 전부 조합</p>
+                                    <p class="validator">최소 8자 이상 20자 이하 입력</p>
+                                    <p class="validator">영문/숫자/특수문자(공백 제외)만 허용하며, 세가지 문자 전부 조합</p>
                                 </div>
                             </div>
 
@@ -93,7 +90,7 @@
                                 <div class="cont-box">
                                     <div class="save-inp">
                                         <input type="password" id="user_pw2" name="user_pw2" placeholder="비밀번호를 한번더 입력해주세요"
-                                            data-testid="input-box" maxlength='16' oninput="handleInputLength(this, 16)">
+                                            data-testid="input-box" minlength="8" maxlength='20' oninput="handleInputLength(this, 8,20)">
                                     </div>
                                     <p class="validator">비밀번호 재입력 확인</p>
                                 </div>
@@ -111,7 +108,7 @@
                                 <div class="cont-box">
                                     <div class="save-inp">
                                         <input type="text" id="user_name" name="user_name" placeholder="이름을 입력해주세요"
-                                            data-testid="input-box">
+                                            data-testid="input-box" maxlength='7'>
                                     </div>
                                     <p class="validator">한글만 가능,공백불가</p>
                                 </div>
@@ -129,7 +126,7 @@
                                 <div class="cont-box">
                                     <div class="save-inp">
                                         <input type="text" id="user_hpno" name="user_hpno" placeholder="- 없이 숫자만 입력해주세요."
-                                            data-testid="input-box" maxlength='11' oninput="handleInputLength(this, 11)">
+                                            data-testid="input-box" pattern="\d*" minlength="10" maxlength="11" oninput="handleInputLength(this, 10,11)">
                                         <!-- <div class="number-box">
                                             <button class="number-btn" type="button" disabled="">
                                                 <span class="number-spn">인증번호 받기</span>
@@ -171,7 +168,7 @@
                                                 <button type="button" class="dropdown-item" data-value="custom">직접 입력</button>
                                             </div>
 
-                                            <input type="text" id="custom_email" name="custom_email" placeholder="도메인 입력" class="email-inp" style="display: none;">
+                                            <%-- <input type="text" id="custom_email" name="custom_email" placeholder="도메인 입력" class="email-inp" style="display: none;"> --%>
                                         </div>
                                     </div>
                                 </div>
@@ -189,15 +186,15 @@
                                 <div class="m_address">
 
                                     <div class="address_postcode">
-                                        <input type="text" id="sample6_postcode"readonly="readonly" placeholder="우편번호">
+                                        <input type="text" id="user_postcode"readonly="readonly" placeholder="우편번호">
                                         <input type="button" onclick="sample6_execDaumPostcode()" value="우편번호검색"><br>
                                     </div>
                                     <div class="address_input">
                                         <div class="member_warning">
-                                            <input type="text" id="sample6_address"  readonly="readonly" placeholder="기본주소"><br>
+                                            <input type="text" id="user_addr"  readonly="readonly" placeholder="기본주소"><br>
                                         </div>
                                         <div class="member_warning js_address_sub">
-                                            <input type="text" id="sample6_detailAddress" placeholder="상세주소">
+                                            <input type="text" id="user_detail" placeholder="상세주소">
                                         </div>
                                     </div>
 
@@ -215,27 +212,27 @@
 
                             <div class="form-cont">
                                 <div class="cont-box">
-                                    <div class="date-bundle">
+                                    <div class="date-bundle" >
                                         <div class="box-date">
                                             <div height="40" >
-                                                <input type="text" name="birthYear" placeholder="YYYY" data-testid="input-box"
-                                                    height="40" value="" maxlength='4' oninput="handleInputLength(this, 4)" onKeyup="this.value=this.value.replace(/[^0-9]/g,'');">
+                                                <input type="text" id="user_birthy" name="birthYear" placeholder="YYYY" data-testid="input-box"
+                                                    height="40" value="" minlength="4" maxlength='4' oninput="handleInputLength(this, 4,4)" onKeyup="this.value=this.value.replace(/[^0-9]/g,'');">
                                             </div>
                                         </div>
                                         <span class="slash"></span>
 
                                         <div class="box-date">
                                             <div height="40" >
-                                                <input type="text" name="birthMonth" placeholder="MM" data-testid="input-box"
-                                                    height="40" value="" maxlength='2' oninput="handleInputLength(this, 2)" onKeyup="this.value=this.value.replace(/[^0-9]/g,'');">
+                                                <input type="text" id="user_birthm" name="birthMonth" placeholder="MM" data-testid="input-box"
+                                                    height="40" value="" minlength="2" maxlength='2' oninput="handleInputLength(this, 2,2)" onKeyup="this.value=this.value.replace(/[^0-9]/g,'');">
                                             </div>
                                         </div>
                                         <span class="slash"></span>
 
                                         <div class="box-date">
                                             <div height="40">
-                                                <input type="text" name="birthDay" placeholder="DD" data-testid="input-box"
-                                                    height="40" value="" maxlength='2'oninput="handleInputLength(this, 2)" onKeyup="this.value=this.value.replace(/[^0-9]/g,'');">
+                                                <input type="text" id="user_birthd" name="birthDay" placeholder="DD" data-testid="input-box"
+                                                    height="40" value="" minlength="2" maxlength='2'oninput="handleInputLength(this, 2,2)" onKeyup="this.value=this.value.replace(/[^0-9]/g,'');">
                                             </div>
                                         </div>
                                     </div>    
@@ -271,14 +268,6 @@
                                             <span aria-labelledby="gender-all">여자</span>
                                         </label>
 
-                                        <label class="gender-element" for="gender-none">
-                                            <input type="radio" id="gender-none" name="gender" class="gnone"
-                                                data-testid="radio-NONE" value="NONE" checked="">
-                                            <span class="r-blank">
-                                                <div class="r-check"></div>
-                                            </span>
-                                            <span aria-labelledby="gender-all">선택안함</span>
-                                        </label>
                                     </div>
                                 </div>
                             </div>
@@ -307,7 +296,7 @@
                                 <input type="checkbox" name="service" id="service" class="chk_each">
                                 <label for="service">서비스 이용약관 동의 (필수)</label>
                             </div>
-
+                            <div id="list" class="section"></div>
                             <div>
                                 <textarea>본 약관은 ...</textarea>
                             </div>

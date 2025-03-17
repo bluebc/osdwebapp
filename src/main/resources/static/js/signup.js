@@ -1,11 +1,17 @@
 async function signup() {
-
     var user_id = document.getElementById("user_id");
     if (user_id.value == "") {
         alert("아이디를 입력해주세요.");
         user_id.focus();
         return;
     }
+
+    var idCheck = document.getElementById("IdCheck");
+    if (idCheck.value == 0) {
+        alert("아이디 중복체크를 해주세요.");
+        idCheck.focus();
+        return;
+    } 
 
     var user_pw = document.getElementById("user_pw");
     if (user_pw.value == "") {
@@ -27,38 +33,64 @@ async function signup() {
         user_name.focus();
         return;
     }
+
     var user_hpno = document.getElementById("user_hpno");
     if (user_hpno.value == "") {
         alert("핸드폰 번호를 입력해주세요.");
         user_hpno.focus();
         return;
     }
+
     var user_email = document.getElementById("user_email");
     if (user_email.value == "") {
         alert("이메일을 입력해주세요.");
         user_email.focus();
         return;
     }
+
     var user_addr = document.getElementById("user_addr");
     if (user_addr.value == "") {
         alert("주소를 입력해주세요.");
         user_addr.focus();
         return;
     }
-    var user_birth = document.getElementById("user_birth");
-    if (user_birth.value == "") {
-        alert("생년월일을 입력해주세요.");
-        user_birth.focus();
-        return;
-    }
-    var user_gender = document.getElementById("user_gender");
-    if (user_gender.value == "") {
-        alert("성별을 선택해주세요.");
-        user_gender.focus();
+
+    var user_detail = document.getElementById("user_detail");
+    if (user_detail.value == "") {
+        alert("상세주소를 입력해주세요.");
+        user_detail.focus();
         return;
     }
 
-var createTime = getTime();
+    var user_birthy = document.getElementById("user_birthy");
+    if (user_birthy.value == "") {
+        alert("출생 연도를 입력해주세요.");
+        user_birthy.focus();
+        return;
+    }
+
+    var user_birthm = document.getElementById("user_birthm");
+    if (user_birthm.value == "") {
+        alert("출생 월을 입력해주세요.");
+        user_birthm.focus();
+        return;
+    }
+
+    var user_birthd = document.getElementById("user_birthd");
+    if (user_birthd.value == "") {
+        alert("출생 일을 입력해주세요.");
+        user_birthd.focus();
+        return;
+    }
+
+    // 성별 체크
+    if (!genderChkFn()) {
+        return;
+    }
+
+    var user_gender = document.querySelector('input[name="gender"]:checked');
+
+    var createTime = getTime();
 
     var user_info = {
         user_id: user_id.value,
@@ -67,14 +99,18 @@ var createTime = getTime();
         user_hpno: user_hpno.value,
         user_email: user_email.value,
         user_addr: user_addr.value,
-        user_birth: user_birth.value,
+        user_detail: user_detail.value,
+        user_birthy: user_birthy.value,
+        user_birthm: user_birthm.value,
+        user_birthd: user_birthd.value,
         user_gender: user_gender.value,
-        //
         user_created_at: createTime,
         user_updated_at: createTime
     };
 
     var result = await createUser(user_info);
+
+    // result = 1;  // 강제로 한거, 서버 오류 
 
     switch (result) {
         case -1:
@@ -93,12 +129,67 @@ var createTime = getTime();
 
 }
 
+async function idcheck() {
+   
+    var user_id = document.getElementById("user_id");
+    if (user_id.value == "") {
+        alert("아이디를 입력해주세요.");
+        user_id.focus();
+        return;
+    }
+    
+    var idCheck = document.getElementById("IdCheck");
+    var user_info = {
+        user_id: user_id.value
+    };
+
+    var result = await existsUser(user_info);
+
+    switch (result) {
+        case -1:
+            alert("해당 아이디는 이미 사용중입니다.");
+            idCheck.value = 0;
+            break;
+        case 0:
+            alert("DB Error");
+            break;
+        case 1:
+            alert("사용하실 수 있는 아이디입니다.");
+            idCheck.value = 1;
+            break;
+        default:
+            alert("Error1");
+    }
+
+}
+
+async function existsUser(user_info) {
+
+
+    const response = await fetch("/existsUser", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(user_info),
+    });
+    const result = await response.json();
+    return result;
+
+}
+
 async function createUser(user_info) {
     const response = await fetch("/signup/insertUser", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(user_info),
     });
+
+    // 응답 상태 코드 확인
+    if (!response.ok) {
+        console.error("서버 오류:", response.status, response.statusText);
+        return null;  // 서버에서 오류가 발생한 경우 null 반환
+    }
+
+
     const result = await response.json();
     return result;
 }
@@ -115,14 +206,36 @@ function getTime() {
 }
 
 
-// input 글자수 제한
-function handleInputLength(el, max) {
-    if(el.value.length > max) {
-      el.value = el.value.substr(0, max);
-    }
-  }
 
-// 한글만 입력
+// 파일이 열렸을 때 실행
+document.addEventListener("DOMContentLoaded", function () {
+
+         str = "테스트 ..."
+        //str = showFeeds(feedList);
+        document.getElementById("list").insertAdjacentHTML("beforeend", str);
+
+});
+
+
+
+
+// input 글자수 제한
+function handleInputLength(el, min, max) {
+    if (el.value.length > max) {
+        el.value = el.value.substr(0, max);
+    }
+    if (el.value.length < min) {
+        el.setCustomValidity(`최소 ${min}자 이상 입력해야 합니다.`);
+    } else {
+        el.setCustomValidity('');
+    }
+}
+
+
+
+
+
+// 한글만 입력 - 이름
 $(function(){
     $("#user_name").keyup(function (event) {
          regexp = /[a-z0-9]|[ \[\]{}()<>?|`~!@#$%^&*-_+=,.;:\"'\\]/g;
@@ -135,21 +248,36 @@ $(function(){
      });
 });
 
-// 한글입력 막기
-$(function () {
-    $('#user_id, #user_pw, #user_pw2, #user_email, #user_emailId').on("blur keyup", function () {
-        var inputVal = $(this).val();
-        var cleanedVal = inputVal.replace(/[ㄱ-ㅎ|ㅏ-ㅣ|가-힣]/g, '');
-        
-        if (inputVal !== cleanedVal) {
-            alert("영문 숫자만 입력가능 합니다.");
-        }
+// 한글입력 막기 - 이메일 1
+// $(function () {
+//     $('#user_id, #user_email, #user_emailId').on("blur keyup", function () {
+//         var inputVal = $(this).val();
+//         var cleanedVal = inputVal.replace(/[^a-zA-Z0-9]/g, ''); // 영문, 숫자만 허용
+//         if (inputVal !== cleanedVal) {
+//             alert("영문과 숫자만 입력 가능합니다.");
+//         }
+//         $(this).val(cleanedVal);
+//     });
+// });
 
+// 한글입력 막기 - 이메일 alert안뜨게하기 2
+$(function () {
+    $('#user_id, #user_email, #user_emailId').on("input", function () {
+        var cleanedVal = $(this).val().replace(/[^a-zA-Z0-9]/g, ''); 
         $(this).val(cleanedVal);
     });
 });
 
-// 숫자만 입력
+// 비밀번호
+$(function () {
+    $('#user_pw, #user_pw2').on("input", function () {
+        var cleanedVal = $(this).val().replace(/[^a-zA-Z0-9!@#$%^&*()_+={}\[\]:;"'<>,.?\\/|`~\-]/g, ''); // 한글과 공백을 제외한 모든 문자 허용
+        $(this).val(cleanedVal);
+    });
+});
+
+
+// 숫자만 입력 - 핸드폰
 $(function(){
     $("#user_hpno").keyup(function (event) {
          regexp = /[^0-9]/gi;
@@ -161,6 +289,78 @@ $(function(){
      });
 });
 
+// 유효성 검사-색상변경
+document.addEventListener("DOMContentLoaded", function () {
+    // 각 입력 필드에 대한 이벤트 리스너 추가
+    document.getElementById("user_id").addEventListener("input", validateUserId);
+    document.getElementById("user_pw").addEventListener("input", validateUserPw);
+    document.getElementById("user_pw2").addEventListener("input", validateUserPw2);
+    document.getElementById("user_name").addEventListener("input", validateUserName);
+
+    // 아이디 검증
+    function validateUserId() {
+        const userId = document.getElementById("user_id").value;
+        const validator = document.getElementById("user_id").closest(".cont-box").querySelector(".validator");
+
+        const isValid = /^[a-zA-Z0-9]{6,15}$/.test(userId); 
+        updateValidator(validator, isValid, "최소 6자 이상 15자 이하의 영문 혹은 영문과 숫자를 조합");
+    }
+
+    // 비밀번호 검증
+    function validateUserPw() {
+        const password = document.getElementById("user_pw").value;
+        const validatorBox = document.getElementById("user_pw").closest(".cont-box");
+
+        // 개별 조건 확인
+        const lengthCheck = password.length >= 8 && password.length <= 20;
+        const hasUpperCase = /[A-Z]/.test(password);
+        const hasLowerCase = /[a-z]/.test(password);
+        const hasNumber = /[0-9]/.test(password);
+        const hasSpecialChar = /[!@#$%^&*(),.?":{}|<>]/.test(password);
+        const noSpaces = !/\s/.test(password); 
+        const isValidLength = lengthCheck;
+        const isValidContent = hasUpperCase || hasLowerCase && hasNumber && hasSpecialChar && noSpaces; 
+
+        // 각각의 validator 메시지
+        const lengthValidator = validatorBox.querySelectorAll(".validator")[0]; // 첫 번째 조건 (길이 체크)
+        const contentValidator = validatorBox.querySelectorAll(".validator")[1]; // 두 번째 조건 (영문/숫자/특수문자 조합)
+
+        // 길이 조건에 대한 색상 변경
+        updateValidator(lengthValidator, isValidLength, "최소 8자 이상 20자 이하 입력");
+
+        // 내용 조건에 대한 색상 변경
+        updateValidator(contentValidator, isValidContent, "영문/숫자/특수문자(공백 제외)만 허용하며, 세가지 문자 전부 조합");
+    }
+
+    // 비밀번호 재입력 검증
+    function validateUserPw2() {
+        const password = document.getElementById("user_pw").value;
+        const password2 = document.getElementById("user_pw2").value;
+        const validator = document.getElementById("user_pw2").closest(".cont-box").querySelector(".validator");
+
+        const isValid = password2.length > 0 && password === password2;
+        updateValidator(validator, isValid, "비밀번호 재입력 확인");
+    }
+
+    // 이름 검증
+    function validateUserName() {
+        const userName = document.getElementById("user_name").value;
+        const validator = document.getElementById("user_name").closest(".cont-box").querySelector(".validator");
+
+        const isValid = /^[가-힣]+$/.test(userName); // 한글만, 공백 불가
+        updateValidator(validator, isValid, "한글만 가능, 공백 불가");
+    }
+
+    // 유효성 검사 후, 조건 메시지와 색상 변경
+    function updateValidator(validator, isValid, message) {
+        if (isValid) {
+            validator.classList.add("valid");
+        } else {
+            validator.classList.remove("valid");
+        }
+        validator.textContent = message;
+    }
+});
 
 
 // 이메일
@@ -233,6 +433,24 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 });
 
+// 성별
+function genderChkFn() {
+    var selectedGender = document.querySelector('input[name="gender"]:checked');
+
+    if (!selectedGender) {
+        alert("성별을 선택해주세요.");
+        return false;
+    }
+
+    if (selectedGender.value !== "MALE" && selectedGender.value !== "FEMALE") {
+        alert("성별을 선택해 주세요.");
+        return false;
+    }
+
+    return true;
+}
+
+
 
 // 주소 카카오api 
 function sample6_execDaumPostcode() {
@@ -251,12 +469,13 @@ function sample6_execDaumPostcode() {
                 addr = data.jibunAddress;
             }
             // 우편번호와 주소 정보를 해당 필드에 넣는다.
-            document.getElementById('sample6_postcode').value = data.zonecode;
-            document.getElementById("sample6_address").value = addr;
+            document.getElementById('user_postcode').value = data.zonecode;
+            document.getElementById("user_addr").value = addr;
             // 커서를 상세주소 필드로 이동한다.
-            document.getElementById("sample6_detailAddress").focus();
+            document.getElementById("user_detail").focus();
         }
     }).open();
 }
+
 
 
