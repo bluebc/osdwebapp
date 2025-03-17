@@ -23,7 +23,7 @@
     <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
     <script src="http://code.jquery.com/jquery-latest.min.js"></script>
     <script type="text/javascript" src="https://code.jquery.com/jquery-3.5.1.js"></script>
-    
+
     <script src="${pageContext.request.contextPath}/js/menu_scroll.js"></script>
     <script src="${pageContext.request.contextPath}/js/swiper.js"></script>
     <script src="${pageContext.request.contextPath}/js/sessioncheck.js"></script>
