@@ -13,7 +13,7 @@
 
 
    		
-   		 <select id = "getUser_TermSelect"  parameterType = "String"   resultType="com.osd.web.app.dto.User_TermDto">
+   		 <select id = "getUser_TermSelect"  parameterType = "String"   resultType="User_TermDto">
    		 	SELECT   USER_ID
 					,TERM_ID
 					,TERM_AGREED
@@ -24,7 +24,7 @@
    		 </select>
    		 
    		 
-   		 <select id="getUser_TermSelectAll" resultType="com.osd.web.app.dto.User_TermDto">
+   		 <select id="getUser_TermSelectAll" resultType="User_TermDto">
    			SELECT   USER_ID
 					,TERM_ID
 					,TERM_AGREED

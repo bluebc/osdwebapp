@@ -60,8 +60,9 @@
                             </div>
 
                             <div class="blank-space">
-                                <input type="button" id="confirmId" class="btn-point" value="중복확인" onclick="signup()">
+                                <input type="button" id="confirmId" class="btn-point" value="중복확인" onclick="idcheck()">
                             </div>
+                            <input type="hidden" id="IdCheck" name="IdCheck" value=0>
                         </div>
                         <!-- 비밀번호 -->
                         <div class="form-item">
@@ -297,7 +298,7 @@
                                 <input type="checkbox" name="service" id="service" class="chk_each">
                                 <label for="service">서비스 이용약관 동의 (필수)</label>
                             </div>
-
+                            <div id="list" class="section"></div>
                             <div>
                                 <textarea>본 약관은 ...</textarea>
                             </div>

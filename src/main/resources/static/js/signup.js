@@ -6,6 +6,13 @@ async function signup() {
         return;
     }
 
+    var idCheck = document.getElementById("IdCheck");
+    if (idCheck.value == 0) {
+        alert("아이디 중복체크를 해주세요.");
+        idCheck.focus();
+        return;
+    } 
+
     var user_pw = document.getElementById("user_pw");
     if (user_pw.value == "") {
         alert("패스워드를 입력해주세요.");
@@ -120,7 +127,6 @@ async function signup() {
             alert("Error1");
     }
 
-
 }
 
 
@@ -153,6 +159,19 @@ function getTime() {
     var sec = ("0" + date.getSeconds()).slice(-2);
     return year + "-" + month + "-" + day + "T" + hour + ":" + min + ":" + sec;
 }
+
+
+
+// 파일이 열렸을 때 실행
+document.addEventListener("DOMContentLoaded", function () {
+
+         str = "테스트 ..."
+        //str = showFeeds(feedList);
+        document.getElementById("list").insertAdjacentHTML("beforeend", str);
+
+});
+
+
 
 
 // input 글자수 제한
