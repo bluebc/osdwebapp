@@ -1,14 +1,34 @@
 async function signup() {
     var user_id = document.getElementById("user_id");
-    if (user_id.value == "") {
+    if (user_id.value.trim() === "") {
         alert("아이디를 입력해주세요.");
+        user_id.focus();
+        return;
+    }
+    if (user_id.value.length < 6) {
+        alert("아이디는 6~15자의 영문,숫자로 만들어 주세요.");
         user_id.focus();
         return;
     }
 
     var user_pw = document.getElementById("user_pw");
+    var pwValue = user_pw.value;
     if (user_pw.value == "") {
         alert("패스워드를 입력해주세요.");
+        user_pw.focus();
+        return;
+    }
+    if (pwValue.length < 8 || pwValue.length > 20) {
+        alert("비밀번호는 최소 8자 이상, 20자 이하로 입력해야 합니다.");
+        user_pw.focus();
+        return;
+    }
+    var hasLetter = /[a-zA-Z]/.test(pwValue);
+    var hasNumber = /\d/.test(pwValue);
+    var hasSpecial = /[!@#$%^&*(),.?":{}|<>]/.test(pwValue);
+
+    if (!(hasLetter && hasNumber && hasSpecial)) {
+        alert("비밀번호는 영문, 숫자, 특수문자를 모두 포함해야 합니다.");
         user_pw.focus();
         return;
     }
@@ -20,16 +40,23 @@ async function signup() {
         return;
     }
 
+    
     var user_name = document.getElementById("user_name");
     if (user_name.value == "") {
         alert("이름을 입력해주세요.");
         user_name.focus();
         return;
     }
+    
 
     var user_hpno = document.getElementById("user_hpno");
     if (user_hpno.value == "") {
         alert("핸드폰 번호를 입력해주세요.");
+        user_hpno.focus();
+        return;
+    }
+    if (user_hpno.value.length < 11) {
+        alert("핸드폰 번호 11자리를 입력해주세요.");
         user_hpno.focus();
         return;
     }
@@ -56,22 +83,22 @@ async function signup() {
     }
 
     var user_birthy = document.getElementById("user_birthy");
-    if (user_birthy.value == "") {
-        alert("출생 연도를 입력해주세요.");
+    if (user_birthy.value.length < 4) {
+        alert("출생 연도 4자리 숫자를 입력해주세요.");
         user_birthy.focus();
         return;
     }
 
     var user_birthm = document.getElementById("user_birthm");
-    if (user_birthm.value == "") {
-        alert("출생 월을 입력해주세요.");
+    if (user_birthm.value.length < 2) {
+        alert("출생 월 2자리 숫자를 입력해주세요.");
         user_birthm.focus();
         return;
     }
 
     var user_birthd = document.getElementById("user_birthd");
-    if (user_birthd.value == "") {
-        alert("출생 일을 입력해주세요.");
+    if (user_birthd.value.length < 2) {
+        alert("출생 일 2자리 숫자를 입력해주세요.");
         user_birthd.focus();
         return;
     }
@@ -80,7 +107,7 @@ async function signup() {
     if (!genderChkFn()) {
         return;
     }
-
+    
     var user_gender = document.querySelector('input[name="gender"]:checked');
 
     var createTime = getTime();
@@ -124,7 +151,6 @@ async function signup() {
 }
 
 
-
 async function createUser(user_info) {
     const response = await fetch("/signup/insertUser", {
         method: "POST",
@@ -155,19 +181,6 @@ function getTime() {
 }
 
 
-// input 글자수 제한
-function handleInputLength(el, min, max) {
-    if (el.value.length > max) {
-        el.value = el.value.substr(0, max);
-    }
-    if (el.value.length < min) {
-        el.setCustomValidity(`최소 ${min}자 이상 입력해야 합니다.`);
-    } else {
-        el.setCustomValidity('');
-    }
-}
-
-
 
 
 
@@ -184,30 +197,11 @@ $(function(){
      });
 });
 
-// 한글입력 막기 - 이메일 1
-// $(function () {
-//     $('#user_id, #user_email, #user_emailId').on("blur keyup", function () {
-//         var inputVal = $(this).val();
-//         var cleanedVal = inputVal.replace(/[^a-zA-Z0-9]/g, ''); // 영문, 숫자만 허용
-//         if (inputVal !== cleanedVal) {
-//             alert("영문과 숫자만 입력 가능합니다.");
-//         }
-//         $(this).val(cleanedVal);
-//     });
-// });
 
-// 한글입력 막기 - 이메일 alert안뜨게하기 2
+// 한글입력 막기 
 $(function () {
     $('#user_id, #user_email, #user_emailId').on("input", function () {
         var cleanedVal = $(this).val().replace(/[^a-zA-Z0-9]/g, ''); 
-        $(this).val(cleanedVal);
-    });
-});
-
-// 비밀번호
-$(function () {
-    $('#user_pw, #user_pw2').on("input", function () {
-        var cleanedVal = $(this).val().replace(/[^a-zA-Z0-9!@#$%^&*()_+={}\[\]:;"'<>,.?\\/|`~\-]/g, ''); // 한글과 공백을 제외한 모든 문자 허용
         $(this).val(cleanedVal);
     });
 });
@@ -224,6 +218,7 @@ $(function(){
          }
      });
 });
+
 
 // 유효성 검사-색상변경
 document.addEventListener("DOMContentLoaded", function () {
@@ -387,7 +382,6 @@ function genderChkFn() {
 }
 
 
-
 // 주소 카카오api 
 function sample6_execDaumPostcode() {
     new daum.Postcode({
@@ -413,5 +407,21 @@ function sample6_execDaumPostcode() {
     }).open();
 }
 
+// 이용약관
+document.addEventListener("DOMContentLoaded", function () {
+    const chkAll = document.getElementById("chk_all");
+    const chkEach = document.querySelectorAll(".chk_each");
+
+    chkAll.addEventListener("change", function () {
+        chkEach.forEach(chk => chk.checked = chkAll.checked);
+    });
+
+    // 개별 체크박스를 변경하면 "전체 동의" 상태도 변경
+    chkEach.forEach(chk => {
+        chk.addEventListener("change", function () {
+            chkAll.checked = [...chkEach].every(chk => chk.checked);
+        });
+    });
+});
 
 
