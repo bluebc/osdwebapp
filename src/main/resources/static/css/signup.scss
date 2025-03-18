@@ -11,6 +11,8 @@ header{
     font-size: 0.8rem;
 }
 
+
+
 .container{
     padding: 15rem 0 15rem;
     min-height: 800px;
@@ -99,6 +101,9 @@ header{
                                         display: flex;
                                         align-items: center;
                                         justify-content: space-between;
+                                        .email-inp{
+                                            padding: 0;
+                                        }
                                         .empty{
                                             text-align: left;
                                             font-weight: 400;
@@ -277,6 +282,9 @@ header{
 
 
 
+                        }
+                        .m-duplication{
+                            display: none;
                         }
                         .m_address{
                             .address_postcode{

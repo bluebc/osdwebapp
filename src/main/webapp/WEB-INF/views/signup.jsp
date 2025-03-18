@@ -13,7 +13,8 @@
     <!-- css -->
     <link rel="stylesheet" href="css/reset.css">
     <link rel="stylesheet" href="css/signup.css">
-
+    <link rel="stylesheet" href="css/privacyAgree.css">
+    
     <!--favicon--->
     <link href="img/favicon.ico" rel="icon">
 
@@ -21,7 +22,7 @@
     <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
     <script src="http://code.jquery.com/jquery-latest.min.js"></script>
 
-    
+    <script src = "js/privacyAgree.js"></script>
     <script src = "${pageContext.request.contextPath}/js/signup.js"></script>
     
 
@@ -55,6 +56,9 @@
                                             data-testid="input-box" minlength="6" maxlength='15' >
                                     </div>
                                     <p class="validator">최소 6자 이상 15자 이하의 영문 혹은 영문과 숫자를 조합</p>
+                                </div>
+                                <div class="m-duplication">
+                                    <input type="button" id="confirmId" class="btn-point" value="중복확인" onclick="signup()">
                                 </div>
                             </div>
 
@@ -149,16 +153,14 @@
                                     <div class="save-inp">
                                         <div class="mail-box">
                                             <input type="hidden" id="user_email" name="user_email" value="">
-                                            <!-- 사용자 입력 (아이디 부분) -->
-                                            <input type="text" id="user_emailId" name="user_emailId" placeholder="예: uniwell" required class="email-inp">  
+                                            <input type="text" id="user_emailId" name="user_emailId" placeholder="예: uniwell" required class="email-inp">
                                             <div class="at-sign">@</div>
                                             <div class="down-but">
-                                                <button type="button" class="btn-text empty">선택하기</button>
+                                                <button type="button" class="btn-text">선택하기</button>
                                                 <button type="button" class="btn-select">
                                                     <img src="/img/arrowdown.svg" alt="arrow-down">
                                                 </button>
                                             </div>
-                                            <!-- 드롭다운 -->
                                             <div class="dropdown-btn">
                                                 <button type="button" class="dropdown-item" data-value="custom">직접 입력</button>
                                                 <button type="button" class="dropdown-item" data-value="naver.com">naver.com</button>
@@ -167,7 +169,6 @@
                                                 <button type="button" class="dropdown-item" data-value="kakao.com">kakao.com</button>
                                                 <button type="button" class="dropdown-item" data-value="daum.net">daum.net</button>
                                             </div>
-
                                         </div>
                                     </div>
                                 </div>
@@ -175,6 +176,7 @@
 
                             <div class="blank-space"></div>
                         </div>
+
                         <!-- 주소 -->
                         <div class="form-item">
                             <div class="form-tit">
@@ -297,24 +299,30 @@
                                 </div>
                                 <div class="service-box">
                                     <div class="tc-service">
-                                        <input type="checkbox" name="service" id="service" class="chk_each">
-                                        <label for="service"><span class="tc-text">서비스 이용약관 동의<span>(필수)</span></span></label>
+                                        <input type="checkbox" name='term1' id='term1' class="chk_each">
+                                        <label for='term1'><span class="tc-text">서비스 이용약관 동의<span>(필수)</span></span></label>
+                                        <div>
+                                            <p>내용</p>
+                                        </div>
                                     </div>
-                                    <button class="tc-arrow">약관보기</button>
+
+                                    <button type="button" id="modal-open" class="tc-arrow" >약관보기</button>
+                                    <jsp:include page="privacyAgree.jsp"></jsp:include>
+
                                 </div>
                                 <div class="service-box">
                                     <div class="tc-service">
-                                        <input type="checkbox" name="event" id="event" class="chk_each">
-                                        <label for="event"><span class="tc-text">이벤트 알림 동의<span>(선택)</span></span></label>
+                                        <input type="checkbox" name='term2' id='term2' class="chk_each">
+                                        <label for='term2'><span class="tc-text">이벤트 알림 동의<span>(선택)</span></span></label>
                                     </div>
                                     <button class="tc-arrow">약관보기</button>
+
                                 </div>
                                 <div class="service-box">
                                     <div class="tc-service">
-                                        <input type="checkbox"  name="age" id="age" class="chk_each">
-                                        <label for="age"><span class="tc-text">만 14세 이상입니다.<span>(필수)</span></span></label>
+                                        <input type="checkbox"  name='term3' id='term3' class="chk_each">
+                                        <label for='term3'><span class="tc-text">만 14세 이상입니다.<span>(필수)</span></span></label>
                                     </div>
-                                    <button class="tc-arrow">약관보기</button>
                                 </div>
 
                             </div>

@@ -182,8 +182,6 @@ function getTime() {
 
 
 
-
-
 // 한글만 입력 - 이름
 $(function(){
     $("#user_name").keyup(function (event) {
@@ -296,45 +294,40 @@ document.addEventListener("DOMContentLoaded", function () {
 
 // 이메일
 document.addEventListener("DOMContentLoaded", function () {
-    const dropdownButton = document.querySelector(".btn-select"); // 드롭다운 버튼 (화살표)
-    const dropdownMenu = document.querySelector(".dropdown-btn"); // 드롭다운 목록
-    const dropdownItems = document.querySelectorAll(".dropdown-item"); // 드롭다운 항목
-    const emailInput = document.getElementById("user_emailId"); // 이메일 아이디 입력 필드
-    const emailHidden = document.getElementById("user_email"); // 최종 이메일 저장 hidden input
-    const btnText = document.querySelector(".btn-text"); // 선택한 도메인 표시 버튼
-    const downBut = document.querySelector(".down-but"); // 버튼 그룹 
+    const dropdownButton = document.querySelector(".btn-select");
+    const dropdownMenu = document.querySelector(".dropdown-btn");
+    const dropdownItems = document.querySelectorAll(".dropdown-item");
+    const emailInput = document.getElementById("user_emailId");
+    const emailHidden = document.getElementById("user_email");
+    const btnText = document.querySelector(".btn-text");
 
     // 직접 입력 필드 생성
     const customEmailInput = document.createElement("input");
     customEmailInput.type = "text";
     customEmailInput.id = "custom_email";
     customEmailInput.name = "custom_email";
-    customEmailInput.placeholder = "도메인 입력";
     customEmailInput.classList.add("email-inp");
-    customEmailInput.style.display = "none"; // 기본적으로 숨김
+    customEmailInput.style.display = "none";
 
     // `.btn-text` 위치에 `customEmailInput` 추가
     btnText.parentNode.insertBefore(customEmailInput, btnText);
 
     // 드롭다운 버튼 클릭 시 메뉴 토글
-    dropdownButton.addEventListener("click", function () {
-        dropdownMenu.classList.toggle("active");
-    });
+    dropdownButton.addEventListener("click", () => dropdownMenu.classList.toggle("active"));
 
     // 드롭다운 항목 클릭 시 처리
     dropdownItems.forEach(item => {
         item.addEventListener("click", function () {
-            const selectedDomain = item.textContent.trim();
+            const selectedDomain = item.textContent;
             if (selectedDomain === "직접 입력") {
-                btnText.style.display = "none"; // 기존 도메인 텍스트 숨기기
-                customEmailInput.style.display = "inline-block"; // 입력 필드 표시
+                btnText.style.display = "none";
+                customEmailInput.style.display = "inline-block";
                 customEmailInput.value = "";
                 customEmailInput.focus();
             } else {
-                btnText.style.display = "inline-block"; // 기존 텍스트 다시 보이기
+                btnText.style.display = "inline-block";
                 btnText.textContent = selectedDomain;
-                customEmailInput.style.display = "none"; // 입력 필드 숨기기
-                customEmailInput.value = "";
+                customEmailInput.style.display = "none";
                 emailHidden.value = emailInput.value + "@" + selectedDomain;
             }
             dropdownMenu.classList.remove("active");
@@ -342,12 +335,12 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 
     // 직접 입력 필드 입력 시 hidden input 업데이트
-    customEmailInput.addEventListener("input", function () {
+    customEmailInput.addEventListener("input", () => {
         emailHidden.value = emailInput.value + "@" + customEmailInput.value;
     });
 
     // 이메일 아이디 입력 시 hidden input 업데이트
-    emailInput.addEventListener("input", function () {
+    emailInput.addEventListener("input", () => {
         let selectedDomain = btnText.textContent;
         if (selectedDomain !== "선택하기" && selectedDomain !== "직접 입력") {
             emailHidden.value = emailInput.value + "@" + selectedDomain;
@@ -357,12 +350,13 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 
     // 드롭다운 외부 클릭 시 닫기
-    document.addEventListener("click", function (event) {
+    document.addEventListener("click", event => {
         if (!dropdownButton.contains(event.target) && !dropdownMenu.contains(event.target)) {
             dropdownMenu.classList.remove("active");
         }
     });
 });
+
 
 // 성별
 function genderChkFn() {
@@ -416,7 +410,7 @@ document.addEventListener("DOMContentLoaded", function () {
         chkEach.forEach(chk => chk.checked = chkAll.checked);
     });
 
-    // 개별 체크박스를 변경하면 "전체 동의" 상태도 변경
+
     chkEach.forEach(chk => {
         chk.addEventListener("change", function () {
             chkAll.checked = [...chkEach].every(chk => chk.checked);

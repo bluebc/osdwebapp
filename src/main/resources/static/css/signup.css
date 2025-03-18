@@ -97,6 +97,9 @@ header .top-banner {
   align-items: center;
   justify-content: space-between;
 }
+.container .content #signupSection .list-form-area .form-item .form-cont .cont-box .save-inp .mail-box .down-but .email-inp {
+  padding: 0;
+}
 .container .content #signupSection .list-form-area .form-item .form-cont .cont-box .save-inp .mail-box .down-but .empty {
   text-align: left;
   font-weight: 400;
@@ -245,6 +248,9 @@ header .top-banner {
   position: relative;
   font-size: 14px;
   margin-left: 12px;
+}
+.container .content #signupSection .list-form-area .form-item .form-cont .m-duplication {
+  display: none;
 }
 .container .content #signupSection .list-form-area .form-item .form-cont .m_address .address_postcode {
   overflow: hidden;
