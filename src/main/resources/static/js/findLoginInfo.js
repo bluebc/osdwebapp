@@ -32,6 +32,7 @@ async function emailAuth() {
 
     const result = await response.json();
 
+    console.log(result.status);
     switch (result.status) {
         case 0:
             alert("server error");
@@ -51,6 +52,24 @@ async function emailAuth() {
             break;
         case -5:
             alert("사용자 정보 없음");
+            break;
+        case -11:
+            alert("인증 요청 정보 없음");
+            break;
+        case -12:
+            alert("인증코드 유효기간 만료");
+            break;
+        case -13:
+            alert("이미 인증이 완료된 코드");
+            break;
+        case -14:
+            alert("입력한 인증번호 틀림");
+            break;
+        case -15:
+            alert("인증 목적 불일치");
+            break;
+        case -16:
+            alert("DB update 실패");
             break;
         case 1:
             window.location.href = "/find/result/id";
