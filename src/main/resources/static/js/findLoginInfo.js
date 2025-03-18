@@ -129,3 +129,25 @@ async function requestResetPassword() {
             alert("script error");
     }
 }
+
+
+async function goAuthEmail() {
+    var user_id = document.getElementById("user_id");
+    user_id = user_id ? user_id.value : "";
+
+    const response = await fetch("/setAuthSession", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+            auth_purpose: "find_reset_pw",
+            user_id: user_id
+        })
+    });
+
+    const result = await response.json();
+    console.log(result.code);
+    if (result.code == 1) {
+        window.location.href = "/auth/email/request";
+    }
+
+}

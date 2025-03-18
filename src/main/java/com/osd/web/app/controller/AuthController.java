@@ -23,6 +23,31 @@ public class AuthController {
     @Autowired
     private MailService mailService;
 
+    // 인증작업 전 세션 설정
+    @ResponseBody
+    @PostMapping("/setAuthSession")
+    public Map<String, Object> setAuthSession(HttpServletRequest request, @RequestBody Map<String, Object> requestMap) {
+        Map<String, Object> result = new HashMap<>();
+        int code = 0;
+        HttpSession session = request.getSession();
+
+        String auth_purpose = (String) requestMap.get("auth_purpose");
+        if (auth_purpose != null || auth_purpose.equals("")) {
+            session.setAttribute("auth_purpose", auth_purpose);
+        }
+        String user_id = (String) requestMap.get("user_id");
+
+        if (auth_purpose.equals("find_reset_pw")) {
+            if (user_id != null || user_id.equals("")) {
+                session.setAttribute("find_user_id", user_id);
+            }
+        }
+
+        code = 1;
+        result.put("code", code);
+        return result;
+    }
+
     // 1. 이메일 인증 요청 페이지
     @RequestMapping("/auth/email/request")
     public String authEmailRequestPage(HttpServletRequest request) {
@@ -107,17 +132,16 @@ public class AuthController {
         auth_EmailDto.setAuth_purpose(auth_purpose);
 
         // DB 확인
-        int checkAuthCode = mailService.checkAuthCode(auth_EmailDto);
-
+        code = mailService.checkAuthCode(auth_EmailDto);
         // 에러코드
-        if (checkAuthCode != 1) {
-            code = checkAuthCode;
+        if (code != 1) {
             result.put("code", code);
             return result;
         }
 
         // 인증 완료 후
         session.setAttribute("auth_email", null);
+        session.setAttribute("auth_purpose", null);
         result.put("code", code);
         result.put("auth_purpose", auth_purpose);
 

@@ -232,11 +232,20 @@ public class LoginController {
         return "findId";
     }
 
-    // ID/email/1
-    @RequestMapping("/find/id/email")
-    public String findIdByEmailPage() {
+    // // ID/email/1
+    // @RequestMapping("/find/id/email")
+    // public String findIdByEmailPage() {
 
-        return "findIdByEmail";
+    //     return "findIdByEmail";
+    // }
+
+    @RequestMapping("/find/id/email")
+    public String findIdByEmailPage(HttpServletRequest request) {
+HttpSession session = request.getSession();
+session.setAttribute("auth_purpose", "find_find_id");
+
+
+        return "redirect:/auth/email/request";
     }
 
     // ID/email/1-1
@@ -394,6 +403,17 @@ public class LoginController {
     public String findPwByEmailPage() {
         return "findPwByEmail";
     }
+
+
+    // @RequestMapping("/find/pw/email")
+    // public String findPwByEmailPage(HttpServletRequest request, @RequestBody String user_id) {
+    // HttpSession session = request.getSession();
+    // session.setAttribute("auth_purpose", "find_reset_pw");
+    // session.setAttribute("find_user_id", user_id);
+    
+    //     return "redirect:/auth/email/request";
+    // }
+
 
     @RequestMapping("/find/result/pw")
     public String pwResetPage(HttpServletRequest request) {

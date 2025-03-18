@@ -1,7 +1,7 @@
 // 인증 이메일 요청
 async function requestEmail() {
 
-    var user_email = document.getElementById("user_id").value;
+    var user_email = document.getElementById("user_email").value;
     if (user_email == null || user_email == "") {
         alert("이메일을 입력하세요");
         return;
@@ -88,7 +88,9 @@ async function verifyCode() {
     }
     switch (result.auth_purpose) {
         case "find_find_id":
-            window.location.href = "/";
+            window.location.href = "/find/result/id";
+        case "find_reset_pw":
+            window.location.href = "/find/result/pw";
     }
 }
 
@@ -104,6 +106,6 @@ async function postVerify(auth_code) {
     });
 
     const result = await response.json();
-    
+
     return result;
 }

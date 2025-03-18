@@ -14,7 +14,8 @@
 <input type = "hidden", id = "user_id" value = "">
         <input type = "text", id = "user_email" placeholder = "email">
         <br>
-        <input type = "button" value = "인증 이메일 요청" onclick = "requestAuthMail()">
+        <%-- <input type = "button" value = "인증 이메일 요청" onclick = "requestAuthMail()"> --%>
+        <input type = "button" value = "다음" onclick = "goAuthEmail()">
 </div>
 
 

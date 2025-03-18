@@ -3,7 +3,7 @@
 <html lang="ko" dir="ltr">
 <head>
     <title>오생단</title>
-<script src = "${pageContext.request.contextPath}/js/findLoginInfo.js"></script>
+<script src = "${pageContext.request.contextPath}/js/authEmail.js"></script>
 </head>
 <body>
 
@@ -16,5 +16,5 @@
 ${user_email}
 <br>
 
-  <input type = "button" value = "확인" onclick = "emailAuth()">
+  <input type = "button" value = "확인" onclick = "verifyCode()">
 </body>
