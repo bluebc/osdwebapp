@@ -19,8 +19,9 @@ public class FindLoginInfoInterceptor implements HandlerInterceptor {
         String find_user_email = (String) session.getAttribute("find_user_email");
 
         if (find_user_email == null || find_user_email.equals("")) {
-            response.sendRedirect("/wrongPath");
-            return false;
+            // response.sendRedirect("/wrongPath");
+            // return false;
+            System.out.println("FindLoginInfoInterceptor");
         }
         
         return true;

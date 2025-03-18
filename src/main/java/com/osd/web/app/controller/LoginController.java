@@ -242,142 +242,151 @@ public class LoginController {
     @RequestMapping("/find/id/email")
     public String findIdByEmailPage(HttpServletRequest request) {
 HttpSession session = request.getSession();
+session.setAttribute("auth_purpose", null);
+session.setAttribute("find_user_id", null);
 session.setAttribute("auth_purpose", "find_find_id");
 
 
         return "redirect:/auth/email/request";
     }
 
-    // ID/email/1-1
-    // PW/email/1-1
-    // 회원정보 찾기 아이디 세션 생성
-    @ResponseBody
-    @PostMapping("/find/requestEmail")
-    public Map<String, Object> findIdByEmail(HttpServletRequest request, @RequestBody User_InfoDto user_InfoDto) {
-        Map<String, Object> result = new HashMap<>();
-        int status = 0;
-        HttpSession session = request.getSession();
-        // 로그인 정보 찾기 세션 제거
-        session.setAttribute("find_user_email", null);
-        session.setAttribute("find_user_id", null);
+    // // ID/email/1-1
+    // // PW/email/1-1
+    // // 회원정보 찾기 아이디 세션 생성
+    // @ResponseBody
+    // @PostMapping("/find/requestEmail")
+    // public Map<String, Object> findIdByEmail(HttpServletRequest request, @RequestBody User_InfoDto user_InfoDto) {
+    //     Map<String, Object> result = new HashMap<>();
+    //     int status = 0;
+    //     HttpSession session = request.getSession();
+    //     // 로그인 정보 찾기 세션 제거
+    //     session.setAttribute("find_user_email", null);
+    //     session.setAttribute("find_user_id", null);
 
-        User_InfoDto user_InfoFromDb = loginService.getUser_IdByEmail(user_InfoDto);
-        String user_email = "";
-        if (user_InfoFromDb != null) {
-            user_email = user_InfoFromDb.getUser_email();
-        }
+    //     User_InfoDto user_InfoFromDb = loginService.getUser_IdByEmail(user_InfoDto);
+    //     String user_email = "";
+    //     if (user_InfoFromDb != null) {
+    //         user_email = user_InfoFromDb.getUser_email();
+    //     }
 
-        Auth_EmailDto auth_EmailDto = new Auth_EmailDto();
-        auth_EmailDto.setUser_email(user_InfoDto.getUser_email());
+    //     Auth_EmailDto auth_EmailDto = new Auth_EmailDto();
+    //     auth_EmailDto.setUser_email(user_InfoDto.getUser_email());
 
-        String auth_purpose = "";
-        String user_id = user_InfoDto.getUser_id();
-        if (user_id != null && !user_id.equals("")) {
-            // 비번 찾기
-            session.setAttribute("find_user_id", user_id);
-            auth_purpose = "find_reset_pw";
-        } else {
-            // 아이디 찾기
-            auth_purpose = "find_find_id";
-        }
+    //     String auth_purpose = "";
+    //     String user_id = user_InfoDto.getUser_id();
+    //     if (user_id != null && !user_id.equals("")) {
+    //         // 비번 찾기
+    //         session.setAttribute("find_user_id", user_id);
+    //         auth_purpose = "find_reset_pw";
+    //     } else {
+    //         // 아이디 찾기
+    //         auth_purpose = "find_find_id";
+    //     }
 
-        auth_EmailDto.setAuth_purpose(auth_purpose);
-        session.setAttribute("auth_purpose", auth_purpose);
-        int sended = mailService.sendAuthEmail(auth_EmailDto);
-        status = sended;
+    //     auth_EmailDto.setAuth_purpose(auth_purpose);
+    //     session.setAttribute("auth_purpose", auth_purpose);
+    //     int sended = mailService.sendAuthEmail(auth_EmailDto);
+    //     status = sended;
 
-        result.put("status", status);
+    //     result.put("status", status);
 
-        session.setAttribute("find_user_email", user_email);
-        // session.setMaxInactiveInterval(1*60); // 1분
-        session.setMaxInactiveInterval(10 * 60); // 10분
+    //     session.setAttribute("find_user_email", user_email);
+    //     // session.setMaxInactiveInterval(1*60); // 1분
+    //     session.setMaxInactiveInterval(10 * 60); // 10분
 
-        System.out.println(result);
+    //     System.out.println(result);
 
-        return result;
-    }
+    //     return result;
+    // }
 
-    // ID/email/2
-    // 인증코드 입력 화면
-    @RequestMapping("/find/emailAuth")
-    public String emailAuthPage(HttpServletRequest request, Model model) {
+    // // ID/email/2
+    // // 인증코드 입력 화면
+    // @RequestMapping("/find/emailAuth")
+    // public String emailAuthPage(HttpServletRequest request, Model model) {
 
-        HttpSession session = request.getSession();
+    //     HttpSession session = request.getSession();
 
-        String user_email = (String) session.getAttribute("find_user_email");
-        String user_id = (String) session.getAttribute("find_user_id");
+    //     String user_email = (String) session.getAttribute("find_user_email");
+    //     String user_id = (String) session.getAttribute("find_user_id");
 
-        // 세션없이 url 진입 시 내보냄
-        if (user_email == null || user_email.equals("")) {
-            return "redirect:/wrongPath";
-        }
+    //     // 세션없이 url 진입 시 내보냄
+    //     if (user_email == null || user_email.equals("")) {
+    //         return "redirect:/wrongPath";
+    //     }
 
-        model.addAttribute("user_email", user_email);
+    //     model.addAttribute("user_email", user_email);
 
-        return "findByEmail";
-    }
+    //     return "findByEmail";
+    // }
 
-    // 인증코드 입력
-    @ResponseBody
-    @PostMapping("/find/postEmailAuthCode")
-    public Map<String, Object> emailAuth(HttpServletRequest request, @RequestBody Auth_EmailDto auth_EmailDto) {
-        Map<String, Object> result = new HashMap<>();
-        int status = 0;
+    // // 인증코드 입력
+    // @ResponseBody
+    // @PostMapping("/find/postEmailAuthCode")
+    // public Map<String, Object> emailAuth(HttpServletRequest request, @RequestBody Auth_EmailDto auth_EmailDto) {
+    //     Map<String, Object> result = new HashMap<>();
+    //     int status = 0;
 
-        HttpSession session = request.getSession();
-        String auth_email = (String) session.getAttribute("find_user_email");
-        // 1. session 에 인증이메일이 없는 경우
-        if (auth_email == null || auth_email.equals("")) {
-            status = -10;
-            result.put("status", status);
-            return result;
-        }
+    //     HttpSession session = request.getSession();
+    //     String auth_email = (String) session.getAttribute("find_user_email");
+    //     // 1. session 에 인증이메일이 없는 경우
+    //     if (auth_email == null || auth_email.equals("")) {
+    //         status = -10;
+    //         result.put("status", status);
+    //         return result;
+    //     }
 
-        auth_EmailDto.setUser_email(auth_email);
-        auth_EmailDto.setAuth_purpose((String) session.getAttribute("auth_purpose"));
+    //     auth_EmailDto.setUser_email(auth_email);
+    //     auth_EmailDto.setAuth_purpose((String) session.getAttribute("auth_purpose"));
 
-        int checkAuthCode = mailService.checkAuthCode(auth_EmailDto);
+    //     int checkAuthCode = mailService.checkAuthCode(auth_EmailDto);
 
-        // 에러코드
-        if (checkAuthCode != 1) {
-            status = checkAuthCode;
-            result.put("status", status);
-            return result;
-        }
+    //     // 에러코드
+    //     if (checkAuthCode != 1) {
+    //         status = checkAuthCode;
+    //         result.put("status", status);
+    //         return result;
+    //     }
 
-        String user_email = auth_EmailDto.getUser_email();
+    //     String user_email = auth_EmailDto.getUser_email();
 
-        User_InfoDto user_InfoDto = new User_InfoDto();
-        user_InfoDto.setUser_email(user_email);
-        User_InfoDto user_InfoDtoFromDb = loginService.getUser_IdByEmail(user_InfoDto);
+    //     User_InfoDto user_InfoDto = new User_InfoDto();
+    //     user_InfoDto.setUser_email(user_email);
+    //     User_InfoDto user_InfoDtoFromDb = loginService.getUser_IdByEmail(user_InfoDto);
 
-        // ID 조회 완료
-        String user_id = user_InfoDtoFromDb.getUser_id();
-        if (checkAuthCode == 1) {
+    //     // ID 조회 완료
+    //     String user_id = user_InfoDtoFromDb.getUser_id();
+    //     if (checkAuthCode == 1) {
 
-            status = 1;
+    //         status = 1;
 
-            String find_user_id = (String) session.getAttribute("find_user_id");
-            System.out.println("find_user_id: " + find_user_id);
-            if (find_user_id != null && !find_user_id.equals("")) {
-                if (find_user_id.equals(user_id)) {
-                    status = 2;
-                }
+    //         String find_user_id = (String) session.getAttribute("find_user_id");
+    //         System.out.println("find_user_id: " + find_user_id);
+    //         if (find_user_id != null && !find_user_id.equals("")) {
+    //             if (find_user_id.equals(user_id)) {
+    //                 status = 2;
+    //             }
 
-            }
-            session.setAttribute("found_user_id", user_id);
-            session.setAttribute("auth_purpose", null);
-            result.put("status", status);
-        }
+    //         }
+    //         session.setAttribute("found_user_id", user_id);
+    //         session.setAttribute("auth_purpose", null);
+    //         result.put("status", status);
+    //     }
 
-        return result;
-    }
+    //     return result;
+    // }
 
     @RequestMapping("/find/result/id")
     public String idFoundPage(HttpServletRequest request, Model model) {
 
         HttpSession session = request.getSession();
-        String user_id = (String) session.getAttribute("found_user_id");
+        // String user_id = (String) session.getAttribute("found_user_id");
+        String auth_purpose = (String)session.getAttribute("auth_purpose");
+        boolean auth_confirmed = (boolean)session.getAttribute("auth_confirmed");
+        
+        String user_id = "";
+        if(auth_confirmed){
+            user_id = "found";
+        }
 
         String find_user_id = (String) session.getAttribute("find_user_id");
         if (find_user_id != null && !find_user_id.equals("")) {

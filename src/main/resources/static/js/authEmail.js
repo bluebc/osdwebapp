@@ -89,8 +89,10 @@ async function verifyCode() {
     switch (result.auth_purpose) {
         case "find_find_id":
             window.location.href = "/find/result/id";
+            break;
         case "find_reset_pw":
             window.location.href = "/find/result/pw";
+            break;
     }
 }
 

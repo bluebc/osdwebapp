@@ -19,6 +19,7 @@ public class AuthInterceptor implements HandlerInterceptor {
         String auth_purpose = (String) session.getAttribute("auth_purpose");
 
         if (auth_purpose == null || auth_purpose.equals("")) {
+            // System.out.println("AuthInterceptor:false");
             response.sendRedirect("/wrongPath");
             return false;
         }

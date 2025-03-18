@@ -30,6 +30,8 @@ public class AuthController {
         Map<String, Object> result = new HashMap<>();
         int code = 0;
         HttpSession session = request.getSession();
+        session.setAttribute("auth_purpose", null);
+        session.setAttribute("find_user_id", null);
 
         String auth_purpose = (String) requestMap.get("auth_purpose");
         if (auth_purpose != null || auth_purpose.equals("")) {
@@ -104,6 +106,8 @@ public class AuthController {
         HttpSession session = request.getSession();
         String auth_purpose = (String) session.getAttribute("auth_purpose");
 
+System.out.println(auth_purpose);
+
         return "authEmailVerify";
     }
 
@@ -141,7 +145,8 @@ public class AuthController {
 
         // 인증 완료 후
         session.setAttribute("auth_email", null);
-        session.setAttribute("auth_purpose", null);
+        // session.setAttribute("auth_purpose", null);
+        session.setAttribute("auth_confirmed", true);
         result.put("code", code);
         result.put("auth_purpose", auth_purpose);
 
