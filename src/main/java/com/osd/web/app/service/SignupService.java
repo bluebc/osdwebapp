@@ -1,6 +1,5 @@
 package com.osd.web.app.service;
 
-<<<<<<< HEAD
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,12 +8,6 @@ import org.springframework.stereotype.Service;
 import com.osd.web.app.dao.Term_ListDao;
 import com.osd.web.app.dao.User_InfoDao;
 import com.osd.web.app.dto.Term_ListDto;
-=======
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-
-import com.osd.web.app.dao.User_InfoDao;
->>>>>>> f635c65e4b52e8940b84821050559df8d879a781
 import com.osd.web.app.dto.User_InfoDto;
 
 
@@ -25,13 +18,11 @@ public class SignupService {
     @Autowired
     private User_InfoDao user_InfoDao;
 
-<<<<<<< HEAD
+
     @Autowired
     private Term_ListDao term_ListDao;
 
     //아이디 중복 여부 체크
-=======
->>>>>>> f635c65e4b52e8940b84821050559df8d879a781
     public int existsUser_InfoById(User_InfoDto user_InfoDto) {
         int result = 0;
 
@@ -43,10 +34,9 @@ public class SignupService {
         return result;
     }
     
-<<<<<<< HEAD
+
     //회원 정보 입력
-=======
->>>>>>> f635c65e4b52e8940b84821050559df8d879a781
+
     public int insertUser_Info(User_InfoDto user_InfoDto) {
         int result = 0;
 
@@ -58,10 +48,9 @@ public class SignupService {
         return result;
     }
 
-<<<<<<< HEAD
+
     //회원 정보 삭제
-=======
->>>>>>> f635c65e4b52e8940b84821050559df8d879a781
+
     public int deleteUser_Info(User_InfoDto user_InfoDto) {
         int result = 0;
 
@@ -70,7 +59,7 @@ public class SignupService {
         return result;
     }
 
-<<<<<<< HEAD
+    
     //약관 정보 리스트
     public List<Term_ListDto> getTerm_ListAll() {
 
@@ -89,7 +78,6 @@ public class SignupService {
         return term_ListDao.getTerm_ListByOne();
 
     }
-=======
->>>>>>> f635c65e4b52e8940b84821050559df8d879a781
+
 }
     
