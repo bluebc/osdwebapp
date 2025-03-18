@@ -206,19 +206,6 @@ function getTime() {
 }
 
 
-
-// 파일이 열렸을 때 실행
-document.addEventListener("DOMContentLoaded", function () {
-
-         str = "테스트 ..."
-        //str = showFeeds(feedList);
-        document.getElementById("list").insertAdjacentHTML("beforeend", str);
-
-});
-
-
-
-
 // input 글자수 제한
 function handleInputLength(el, min, max) {
     if (el.value.length > max) {
@@ -479,3 +466,87 @@ function sample6_execDaumPostcode() {
 
 
 
+// 파일이 열렸을 때 실행
+document.addEventListener("DOMContentLoaded", function () {
+  
+     callTerms();
+});
+
+// 1. 버튼 클릭
+async function callTerms() {
+    
+    const  terms = await getTermListAll();
+    var    str = await showTerms(terms);
+        document.getElementById("list").insertAdjacentHTML("beforeend", str);
+    }
+
+
+async function showTerms(terms) {
+    var str = "";
+    for (var i = 0; i < terms.length; i++) {
+        str += await getTermCode(terms[i],i+1,terms.length);
+    }
+
+    return str;
+}
+
+//약관 리스트 가져오기
+async function getTermListAll() {
+
+    const response = await fetch("/getTermAll", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({}),
+    });
+    const result = await response.json();
+    console.log(result);
+    return result;
+}
+
+//html 태그 생성
+
+async function getTermCode(term,num,max){
+    
+    var termname = term.term_name;
+    var content = term.term_content;
+    var type = (term.term_type == "M") ? "필수" : "선택" ; 
+    
+    var str = ""
+    
+    //윗부분은 처음 한번
+    if(num==1){
+    str += "<!-- 이용약관 -->";
+    str += "<div class='t-c'>";
+    str += "  <div class='tcFrom'>"
+    str += "    <div class='tcAgreement'>"
+    str += "        <label class='tcLab'>"
+    str += "          이용약관동의<span class='symbol'>*</span>"
+    str += "        </label>"
+    str += "    </div>"
+    str += "    <div>"
+    str += "      <input type='checkbox' id='chk_all/>"
+    str += "      <label for='chk_all'>모두 동의합니다</label>"
+    str += "    </div>"
+    }
+    
+    //약관 본문 내용은 반복 만큼
+    str += "    <div>";
+    str += "        <input type='checkbox' name='term"+num+"'"+ "id='term"+num+"' class='chk_each'>";
+    str += "        <label for='term"+num+"'>"+termname+"("+type+")"+"</label>";
+    str += "    </div>" ;
+    /*
+    if(content!=""&&content!=null){  //내용이 없으면 출력 안함
+    str += "    <div>" ;
+    str += "    <textarea>"+content+"</textarea>" ;  
+    str += "    </div>" ;                    
+    }  
+    */
+    //아랫부분은 마지막 한번
+    if(num == max){
+       str += " </div>"
+       str += "</div>"
+    }
+
+    return str;
+
+}

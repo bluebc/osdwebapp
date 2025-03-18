@@ -14,7 +14,11 @@ public class Term_ListDao {
     @Autowired
     private SqlSession session;
 
-    
+    public Term_ListDto getTerm_ListByOne() {
+        return session.selectOne("Term_List.getTerm_ListByAll");
+
+    }
+
     public List<Term_ListDto> getTerm_ListByAll() {
         return session.selectList("Term_List.getTerm_ListByAll");
 

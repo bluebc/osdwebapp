@@ -2,19 +2,20 @@ package com.osd.web.app.controller;
 
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import org.springframework.web.bind.annotation.ResponseBody;
 
-
+import com.osd.web.app.dto.Term_ListDto;
 import com.osd.web.app.dto.User_InfoDto;
 import com.osd.web.app.service.LoginService;
 import com.osd.web.app.service.SignupService;
@@ -37,6 +38,8 @@ public class SignupController {
         return "signup";
     }
 
+    // ==================== 회원정보 ====================
+
     @ResponseBody
     @PostMapping("/existsUser")
     public int idcheck(@RequestBody User_InfoDto user_info) {
@@ -48,7 +51,7 @@ public class SignupController {
     }
 
     @ResponseBody
-    @PostMapping("/insertUser")
+    @PostMapping("/signup/insertUser")
     public int signup(@RequestBody User_InfoDto user_info) {
         int result = 0;
 
@@ -79,4 +82,25 @@ public class SignupController {
         return response;
     }
 
+    // ==================== 약관정보 ====================
+
+    @ResponseBody
+    @PostMapping("/getTermAll")
+    public List<Term_ListDto> getTermAll() {
+
+        List<Term_ListDto> list = signupService.getTerm_ListAll();
+
+        return list;
+    }
+
+    @ResponseBody
+    @PostMapping("/getTermOne")
+    public Term_ListDto getTermOne() {
+
+        Term_ListDto list = signupService.getTerm_ListOne();
+
+        return list;
+    }
+
 }
+

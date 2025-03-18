@@ -1,3 +1,7 @@
+
+#주소 외
+src/main/resources/application.properties
+
 HELP.md
 .gradle
 build/

@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<!-- <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 
 <!DOCTYPE html>
 <html lang="ko" dir="ltr">
@@ -24,7 +24,6 @@
     
     <script src = "${pageContext.request.contextPath}/js/signup.js"></script>
 
-<script src = "${pageContext.request.contextPath}/js/signup.js"></script>
 </head>
 <body>
 
@@ -34,7 +33,6 @@
 <div class="container">
     <div class="content">
             <div class="fromSignup">회원가입</div>
-
             <div id="signupSection" class="memberWrap">
                     <!-- 필수입력사항 -->
                     <div class="required">
@@ -279,9 +277,10 @@
                     </div>
 
                     <div class="lineDivide"></div>
-
+                    <div id="list"></div>
+                    
                     <!-- 이용약관 -->
-                    <div class="t-c">
+                    <!--<div class="t-c">
                         <div class="tcFrom">
                             <div class="tcAgreement">
                                 <label class="tcLab">
@@ -298,7 +297,6 @@
                                 <input type="checkbox" name="service" id="service" class="chk_each">
                                 <label for="service">서비스 이용약관 동의 (필수)</label>
                             </div>
-                            <div id="list" class="section"></div>
                             <div>
                                 <textarea>본 약관은 ...</textarea>
                             </div>
@@ -317,7 +315,7 @@
                                 <label for="age14">본인은 만 14세 이상입니다. <span>(필수)</sapn></label>
                             </div>
                         </div>
-                    </div>
+                    </div> -->
 
                     <!-- 가입버튼 -->
                     <div class="signUpButton">
@@ -336,4 +334,4 @@
 
 </body>
     <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
-</html>
+</html> -->
