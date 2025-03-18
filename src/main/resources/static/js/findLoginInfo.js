@@ -14,8 +14,20 @@ async function requestAuthMail() {
 
     const result = await response.json();
 
-    if (result.status == 1) {
-        window.location.href = "/find/emailAuth";
+    switch (result.status) {
+        case -1:
+            alert("등록된 이메일 주소가 맞지않음");
+            break;
+        case -2:
+            alert("DB 오류");
+            break;
+        case -3:
+            alert("메일 발송 실패");
+            break;
+        case 1:
+            alert("메일이 발송되었습니다.")
+            window.location.href = "/find/emailAuth";
+            break;
     }
 
     return result;
@@ -37,38 +49,26 @@ async function emailAuth() {
         case 0:
             alert("server error");
             return;
-        case -1:
+        case -10:
             alert("session만료");
-            // 초기화면으로 이동
+            window.location.href = "/login";
             return;
-        case -2:
-            alert("이메일 정보 오류");
-            return;
-        case -3:
-            alert("인증코드 만료");
-            break;
-        case -4:
-            alert("인증코드 틀림");
-            break;
-        case -5:
-            alert("사용자 정보 없음");
-            break;
-        case -11:
+        case -1:
             alert("인증 요청 정보 없음");
             break;
-        case -12:
+        case -2:
             alert("인증코드 유효기간 만료");
             break;
-        case -13:
+        case -3:
             alert("이미 인증이 완료된 코드");
             break;
-        case -14:
+        case -4:
             alert("입력한 인증번호 틀림");
             break;
-        case -15:
+        case -5:
             alert("인증 목적 불일치");
             break;
-        case -16:
+        case -6:
             alert("DB update 실패");
             break;
         case 1:
@@ -80,13 +80,6 @@ async function emailAuth() {
         default:
             alert("script error");
     }
-
-    // if (result.status == 1) {
-    //     window.location.href = "/find/id/found";
-    // }
-    // if (result.status == 2) {
-    //     window.location.href = "/find/pw/reset";
-    // }
 }
 
 async function requestResetPassword() {

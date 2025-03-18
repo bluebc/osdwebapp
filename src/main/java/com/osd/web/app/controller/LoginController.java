@@ -253,15 +253,17 @@ public class LoginController {
         session.setAttribute("find_user_id", null);
 
         User_InfoDto user_InfoFromDb = loginService.getUser_IdByEmail(user_InfoDto);
-        String user_email = user_InfoFromDb.getUser_email();
+        String user_email = "";
+        if (user_InfoFromDb != null) {
+            user_email = user_InfoFromDb.getUser_email();
+
+        }
 
         Auth_EmailDto auth_EmailDto = new Auth_EmailDto();
         auth_EmailDto.setUser_email(user_InfoDto.getUser_email());
 
-        String user_id = user_InfoDto.getUser_id();
         String auth_purpose = "";
-
-
+        String user_id = user_InfoDto.getUser_id();
         if (user_id != null && !user_id.equals("")) {
             // 비번 찾기
             session.setAttribute("find_user_id", user_id);
@@ -319,7 +321,7 @@ public class LoginController {
         String auth_email = (String) session.getAttribute("find_user_email");
         // 1. session 에 인증이메일이 없는 경우
         if (auth_email == null || auth_email.equals("")) {
-            status = -1;
+            status = -10;
             result.put("status", status);
             return result;
         }
@@ -331,7 +333,7 @@ public class LoginController {
 
         // 에러코드
         if (checkAuthCode != 1) {
-            status = checkAuthCode - 10;
+            status = checkAuthCode;
             result.put("status", status);
             return result;
         }
