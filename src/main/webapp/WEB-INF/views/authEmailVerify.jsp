@@ -11,7 +11,7 @@
 
 <div id = "authSection">
 <br>
-<input type = "text" id = "emailAuthCode">
+<input type = "text" id = "auth_code">
 <br>
 ${user_email}
 <br>
