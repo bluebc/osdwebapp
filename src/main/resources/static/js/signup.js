@@ -1,7 +1,12 @@
 async function signup() {
     var user_id = document.getElementById("user_id");
-    if (user_id.value == "") {
+    if (user_id.value.trim() === "") {
         alert("아이디를 입력해주세요.");
+        user_id.focus();
+        return;
+    }
+    if (user_id.value.length < 6) {
+        alert("아이디는 6~15자의 영문,숫자로 만들어 주세요.");
         user_id.focus();
         return;
     }
@@ -14,8 +19,23 @@ async function signup() {
     } 
 
     var user_pw = document.getElementById("user_pw");
+    var pwValue = user_pw.value;
     if (user_pw.value == "") {
         alert("패스워드를 입력해주세요.");
+        user_pw.focus();
+        return;
+    }
+    if (pwValue.length < 8 || pwValue.length > 20) {
+        alert("비밀번호는 최소 8자 이상, 20자 이하로 입력해야 합니다.");
+        user_pw.focus();
+        return;
+    }
+    var hasLetter = /[a-zA-Z]/.test(pwValue);
+    var hasNumber = /\d/.test(pwValue);
+    var hasSpecial = /[!@#$%^&*(),.?":{}|<>]/.test(pwValue);
+
+    if (!(hasLetter && hasNumber && hasSpecial)) {
+        alert("비밀번호는 영문, 숫자, 특수문자를 모두 포함해야 합니다.");
         user_pw.focus();
         return;
     }
@@ -27,16 +47,23 @@ async function signup() {
         return;
     }
 
+    
     var user_name = document.getElementById("user_name");
     if (user_name.value == "") {
         alert("이름을 입력해주세요.");
         user_name.focus();
         return;
     }
+    
 
     var user_hpno = document.getElementById("user_hpno");
     if (user_hpno.value == "") {
         alert("핸드폰 번호를 입력해주세요.");
+        user_hpno.focus();
+        return;
+    }
+    if (user_hpno.value.length < 11) {
+        alert("핸드폰 번호 11자리를 입력해주세요.");
         user_hpno.focus();
         return;
     }
@@ -63,22 +90,22 @@ async function signup() {
     }
 
     var user_birthy = document.getElementById("user_birthy");
-    if (user_birthy.value == "") {
-        alert("출생 연도를 입력해주세요.");
+    if (user_birthy.value.length < 4) {
+        alert("출생 연도 4자리 숫자를 입력해주세요.");
         user_birthy.focus();
         return;
     }
 
     var user_birthm = document.getElementById("user_birthm");
-    if (user_birthm.value == "") {
-        alert("출생 월을 입력해주세요.");
+    if (user_birthm.value.length < 2) {
+        alert("출생 월 2자리 숫자를 입력해주세요.");
         user_birthm.focus();
         return;
     }
 
     var user_birthd = document.getElementById("user_birthd");
-    if (user_birthd.value == "") {
-        alert("출생 일을 입력해주세요.");
+    if (user_birthd.value.length < 2) {
+        alert("출생 일 2자리 숫자를 입력해주세요.");
         user_birthd.focus();
         return;
     }
@@ -87,7 +114,7 @@ async function signup() {
     if (!genderChkFn()) {
         return;
     }
-
+    
     var user_gender = document.querySelector('input[name="gender"]:checked');
 
     var createTime = getTime();
@@ -166,16 +193,6 @@ async function idcheck() {
 async function existsUser(user_info) {
 
 
-    const response = await fetch("/existsUser", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(user_info),
-    });
-    const result = await response.json();
-    return result;
-
-}
-
 async function createUser(user_info) {
     const response = await fetch("/signup/insertUser", {
         method: "POST",
@@ -207,33 +224,6 @@ function getTime() {
 
 
 
-// 파일이 열렸을 때 실행
-document.addEventListener("DOMContentLoaded", function () {
-
-         str = "테스트 ..."
-        //str = showFeeds(feedList);
-        document.getElementById("list").insertAdjacentHTML("beforeend", str);
-
-});
-
-
-
-
-// input 글자수 제한
-function handleInputLength(el, min, max) {
-    if (el.value.length > max) {
-        el.value = el.value.substr(0, max);
-    }
-    if (el.value.length < min) {
-        el.setCustomValidity(`최소 ${min}자 이상 입력해야 합니다.`);
-    } else {
-        el.setCustomValidity('');
-    }
-}
-
-
-
-
 
 // 한글만 입력 - 이름
 $(function(){
@@ -248,30 +238,11 @@ $(function(){
      });
 });
 
-// 한글입력 막기 - 이메일 1
-// $(function () {
-//     $('#user_id, #user_email, #user_emailId').on("blur keyup", function () {
-//         var inputVal = $(this).val();
-//         var cleanedVal = inputVal.replace(/[^a-zA-Z0-9]/g, ''); // 영문, 숫자만 허용
-//         if (inputVal !== cleanedVal) {
-//             alert("영문과 숫자만 입력 가능합니다.");
-//         }
-//         $(this).val(cleanedVal);
-//     });
-// });
 
-// 한글입력 막기 - 이메일 alert안뜨게하기 2
+// 한글입력 막기 
 $(function () {
     $('#user_id, #user_email, #user_emailId').on("input", function () {
         var cleanedVal = $(this).val().replace(/[^a-zA-Z0-9]/g, ''); 
-        $(this).val(cleanedVal);
-    });
-});
-
-// 비밀번호
-$(function () {
-    $('#user_pw, #user_pw2').on("input", function () {
-        var cleanedVal = $(this).val().replace(/[^a-zA-Z0-9!@#$%^&*()_+={}\[\]:;"'<>,.?\\/|`~\-]/g, ''); // 한글과 공백을 제외한 모든 문자 허용
         $(this).val(cleanedVal);
     });
 });
@@ -288,6 +259,7 @@ $(function(){
          }
      });
 });
+
 
 // 유효성 검사-색상변경
 document.addEventListener("DOMContentLoaded", function () {
@@ -365,45 +337,40 @@ document.addEventListener("DOMContentLoaded", function () {
 
 // 이메일
 document.addEventListener("DOMContentLoaded", function () {
-    const dropdownButton = document.querySelector(".btn-select"); // 드롭다운 버튼 (화살표)
-    const dropdownMenu = document.querySelector(".dropdown-btn"); // 드롭다운 목록
-    const dropdownItems = document.querySelectorAll(".dropdown-item"); // 드롭다운 항목
-    const emailInput = document.getElementById("user_emailId"); // 이메일 아이디 입력 필드
-    const emailHidden = document.getElementById("user_email"); // 최종 이메일 저장 hidden input
-    const btnText = document.querySelector(".btn-text"); // 선택한 도메인 표시 버튼
-    const downBut = document.querySelector(".down-but"); // 버튼 그룹 
+    const dropdownButton = document.querySelector(".btn-select");
+    const dropdownMenu = document.querySelector(".dropdown-btn");
+    const dropdownItems = document.querySelectorAll(".dropdown-item");
+    const emailInput = document.getElementById("user_emailId");
+    const emailHidden = document.getElementById("user_email");
+    const btnText = document.querySelector(".btn-text");
 
     // 직접 입력 필드 생성
     const customEmailInput = document.createElement("input");
     customEmailInput.type = "text";
     customEmailInput.id = "custom_email";
     customEmailInput.name = "custom_email";
-    customEmailInput.placeholder = "도메인 입력";
     customEmailInput.classList.add("email-inp");
-    customEmailInput.style.display = "none"; // 기본적으로 숨김
+    customEmailInput.style.display = "none";
 
     // `.btn-text` 위치에 `customEmailInput` 추가
     btnText.parentNode.insertBefore(customEmailInput, btnText);
 
     // 드롭다운 버튼 클릭 시 메뉴 토글
-    dropdownButton.addEventListener("click", function () {
-        dropdownMenu.classList.toggle("active");
-    });
+    dropdownButton.addEventListener("click", () => dropdownMenu.classList.toggle("active"));
 
     // 드롭다운 항목 클릭 시 처리
     dropdownItems.forEach(item => {
         item.addEventListener("click", function () {
-            const selectedDomain = item.textContent.trim();
+            const selectedDomain = item.textContent;
             if (selectedDomain === "직접 입력") {
-                btnText.style.display = "none"; // 기존 도메인 텍스트 숨기기
-                customEmailInput.style.display = "inline-block"; // 입력 필드 표시
+                btnText.style.display = "none";
+                customEmailInput.style.display = "inline-block";
                 customEmailInput.value = "";
                 customEmailInput.focus();
             } else {
-                btnText.style.display = "inline-block"; // 기존 텍스트 다시 보이기
+                btnText.style.display = "inline-block";
                 btnText.textContent = selectedDomain;
-                customEmailInput.style.display = "none"; // 입력 필드 숨기기
-                customEmailInput.value = "";
+                customEmailInput.style.display = "none";
                 emailHidden.value = emailInput.value + "@" + selectedDomain;
             }
             dropdownMenu.classList.remove("active");
@@ -411,12 +378,12 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 
     // 직접 입력 필드 입력 시 hidden input 업데이트
-    customEmailInput.addEventListener("input", function () {
+    customEmailInput.addEventListener("input", () => {
         emailHidden.value = emailInput.value + "@" + customEmailInput.value;
     });
 
     // 이메일 아이디 입력 시 hidden input 업데이트
-    emailInput.addEventListener("input", function () {
+    emailInput.addEventListener("input", () => {
         let selectedDomain = btnText.textContent;
         if (selectedDomain !== "선택하기" && selectedDomain !== "직접 입력") {
             emailHidden.value = emailInput.value + "@" + selectedDomain;
@@ -426,12 +393,13 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 
     // 드롭다운 외부 클릭 시 닫기
-    document.addEventListener("click", function (event) {
+    document.addEventListener("click", event => {
         if (!dropdownButton.contains(event.target) && !dropdownMenu.contains(event.target)) {
             dropdownMenu.classList.remove("active");
         }
     });
 });
+
 
 // 성별
 function genderChkFn() {
@@ -449,7 +417,6 @@ function genderChkFn() {
 
     return true;
 }
-
 
 
 // 주소 카카오api 
@@ -477,5 +444,21 @@ function sample6_execDaumPostcode() {
     }).open();
 }
 
+// 이용약관
+document.addEventListener("DOMContentLoaded", function () {
+    const chkAll = document.getElementById("chk_all");
+    const chkEach = document.querySelectorAll(".chk_each");
+
+    chkAll.addEventListener("change", function () {
+        chkEach.forEach(chk => chk.checked = chkAll.checked);
+    });
+
+
+    chkEach.forEach(chk => {
+        chk.addEventListener("change", function () {
+            chkAll.checked = [...chkEach].every(chk => chk.checked);
+        });
+    });
+});
 
 

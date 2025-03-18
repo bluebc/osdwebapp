@@ -1,0 +1,65 @@
+@charset "UTF-8";
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+p {
+  margin-top: 10px;
+}
+
+/* 전체 배경을 어둡게 처리 */
+.popup-wrap {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 1000;
+  justify-content: center;
+  align-items: center;
+}
+
+/* 팝업 박스 스타일 */
+.popup {
+  background-color: white;
+  padding: 20px;
+  border-radius: 8px;
+  width: 90%;
+  max-width: 500px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* 제목 박스 */
+.body-titlebox h1 {
+  font-size: 20px;
+  margin: 0;
+  padding-bottom: 10px;
+}
+
+/* 팝업 내용 영역 */
+.body-contentbox {
+  max-height: 300px;
+  overflow-y: auto;
+}
+
+/* 버튼 스타일 */
+.popup-foot {
+  text-align: center;
+  margin-top: 20px;
+}
+
+.pop-btn {
+  padding: 10px 20px;
+  background-color: #007bff;
+  color: white;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.pop-btn:hover {
+  background-color: #0056b3;
+}/*# sourceMappingURL=privacyAgree.css.map */
