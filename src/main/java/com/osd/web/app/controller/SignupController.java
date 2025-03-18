@@ -2,31 +2,21 @@ package com.osd.web.app.controller;
 
 
 import java.util.HashMap;
-<<<<<<< HEAD
 import java.util.List;
-=======
->>>>>>> f635c65e4b52e8940b84821050559df8d879a781
 import java.util.Map;
 
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-<<<<<<< HEAD
-import org.springframework.web.bind.annotation.GetMapping;
-=======
 
->>>>>>> f635c65e4b52e8940b84821050559df8d879a781
+
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import org.springframework.web.bind.annotation.ResponseBody;
 
-<<<<<<< HEAD
 import com.osd.web.app.dto.Term_ListDto;
-=======
-
->>>>>>> f635c65e4b52e8940b84821050559df8d879a781
 import com.osd.web.app.dto.User_InfoDto;
 import com.osd.web.app.service.LoginService;
 import com.osd.web.app.service.SignupService;
@@ -49,11 +39,9 @@ public class SignupController {
         return "signup";
     }
 
-<<<<<<< HEAD
+
     // ==================== 회원정보 ====================
 
-=======
->>>>>>> f635c65e4b52e8940b84821050559df8d879a781
     @ResponseBody
     @PostMapping("/existsUser")
     public int idcheck(@RequestBody User_InfoDto user_info) {
@@ -65,11 +53,7 @@ public class SignupController {
     }
 
     @ResponseBody
-<<<<<<< HEAD
     @PostMapping("/signup/insertUser")
-=======
-    @PostMapping("/insertUser")
->>>>>>> f635c65e4b52e8940b84821050559df8d879a781
     public int signup(@RequestBody User_InfoDto user_info) {
         int result = 0;
 
@@ -100,7 +84,6 @@ public class SignupController {
         return response;
     }
 
-<<<<<<< HEAD
     // ==================== 약관정보 ====================
 
     @ResponseBody
@@ -123,6 +106,5 @@ public class SignupController {
 
 }
 
-=======
-}
->>>>>>> f635c65e4b52e8940b84821050559df8d879a781
+
+
