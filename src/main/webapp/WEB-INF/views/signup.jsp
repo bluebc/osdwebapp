@@ -300,10 +300,8 @@
                                 <div class="service-box">
                                     <div class="tc-service">
                                         <input type="checkbox" name='term1' id='term1' class="chk_each">
-                                        <label for='term1'><span class="tc-text">서비스 이용약관 동의<span>(필수)</span></span></label>
-                                        <div>
-                                            <p>내용</p>
-                                        </div>
+                                        <label for='term1'><span class="tc-text">서비스 이용약관 동의<span> (필수)</span></span></label>
+
                                     </div>
 
                                     <button type="button" id="modal-open" class="tc-arrow" >약관보기</button>
@@ -313,7 +311,7 @@
                                 <div class="service-box">
                                     <div class="tc-service">
                                         <input type="checkbox" name='term2' id='term2' class="chk_each">
-                                        <label for='term2'><span class="tc-text">이벤트 알림 동의<span>(선택)</span></span></label>
+                                        <label for='term2'><span class="tc-text">개인정보 수집 동의<span> (선택)</span></span></label>
                                     </div>
                                     <button class="tc-arrow">약관보기</button>
 
@@ -321,7 +319,19 @@
                                 <div class="service-box">
                                     <div class="tc-service">
                                         <input type="checkbox"  name='term3' id='term3' class="chk_each">
-                                        <label for='term3'><span class="tc-text">만 14세 이상입니다.<span>(필수)</span></span></label>
+                                        <label for='term3'><span class="tc-text">정보/이벤트 메일 수신에 동의<span> (선택)</span></span></label>
+                                    </div>
+                                </div>
+                                <div class="service-box">
+                                    <div class="tc-service">
+                                        <input type="checkbox"  name='term4' id='term4' class="chk_each">
+                                        <label for='term4'><span class="tc-text">정보/이벤트 SMS 수신에 동의<span> (선택)</span></span></label>
+                                    </div>
+                                </div>
+                                <div class="service-box">
+                                    <div class="tc-service">
+                                        <input type="checkbox"  name='term5' id='term5' class="chk_each">
+                                        <label for='term5'><span class="tc-text">만 14세 이상입니다.<span> (필수)</span></span></label>
                                     </div>
                                 </div>
 
