@@ -10,7 +10,6 @@
     <script src="${pageContext.request.contextPath}/js/footer.js"></script>
     <script src = "${pageContext.request.contextPath}/js/sessioncheck.js"></script>
     
-
 <footer class="footer">
 
     <div class="footer_info">

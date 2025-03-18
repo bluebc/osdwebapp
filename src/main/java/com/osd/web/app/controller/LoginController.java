@@ -163,9 +163,6 @@ public class LoginController {
 
     // ==================== 로그인 끝 ====================
 
-    
-    // ==================== refatoring... ====================
-
     @ResponseBody
     @PostMapping("/getsession")
     public Map<String, Object> getSession(HttpServletRequest request) {
@@ -258,55 +255,30 @@ public class LoginController {
         User_InfoDto user_InfoFromDb = loginService.getUser_IdByEmail(user_InfoDto);
         String user_email = user_InfoFromDb.getUser_email();
 
-        if (user_email == null || user_email.equals("")) {
-
-            // 이메일 없음
-            status = -1;
-            result.put("status", status);
-            return result;
-        }
-
         Auth_EmailDto auth_EmailDto = new Auth_EmailDto();
-        auth_EmailDto.setUser_email(user_email);
+        auth_EmailDto.setUser_email(user_InfoDto.getUser_email());
 
-        Auth_EmailDto auth_EmailFromDb = loginService.setAuth_Email(auth_EmailDto);
+        String user_id = user_InfoDto.getUser_id();
+        String auth_purpose = "";
 
-        if (auth_EmailFromDb == null) {
-            status = -2;
+
+        if (user_id != null && !user_id.equals("")) {
+            // 비번 찾기
+            session.setAttribute("find_user_id", user_id);
+            auth_purpose = "find_reset_pw";
+
+        } else {
+            // 아이디 찾기
+            auth_purpose = "find_find_id";
         }
-        if (auth_EmailFromDb != null) {
-            status = 1;
-        }
 
-        String subject = "osdwebapp mail auth";
-        String text = "";
-
-        String auth_code = auth_EmailFromDb.getAuth_code();
-
-        text = auth_code;
-
-        int sended = 0;
-
-        try {
-            sended = mailService.sendEmail(user_email, subject, text);
-            // 메일이 보내지지 않음
-            if (sended == 0) {
-                status = -3;
-                result.put("status", status);
-                return result;
-            }
-
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        auth_EmailDto.setAuth_purpose(auth_purpose);
+        session.setAttribute("auth_purpose", auth_purpose);
+        int sended = mailService.sendAuthEmail(auth_EmailDto);
+        status = sended;
 
         result.put("status", status);
 
-        String user_id = user_InfoDto.getUser_id();
-
-        if (user_id != null && !user_id.equals("")) {
-            session.setAttribute("find_user_id", user_id);
-        }
         session.setAttribute("find_user_email", user_email);
         // session.setMaxInactiveInterval(1*60); // 1분
         session.setMaxInactiveInterval(10 * 60); // 10분
@@ -351,54 +323,43 @@ public class LoginController {
             result.put("status", status);
             return result;
         }
-        auth_EmailDto.setUser_email(auth_email);
 
-        Auth_EmailDto auth_EmailFromDb = loginService.getAuth_Email(auth_EmailDto);
-        // 2. DB에 인증이메일이 없는 경우
-        if (auth_EmailFromDb == null) {
-            status = -2;
+        auth_EmailDto.setUser_email(auth_email);
+        auth_EmailDto.setAuth_purpose((String) session.getAttribute("auth_purpose"));
+
+        int checkAuthCode = mailService.checkAuthCode(auth_EmailDto);
+
+        // 에러코드
+        if (checkAuthCode != 1) {
+            status = checkAuthCode - 10;
             result.put("status", status);
             return result;
         }
-        // 3. 인증코드 유효기간 만료
-        if (auth_EmailFromDb.getAuth_expiry().isBefore(LocalDateTime.now())) {
-            status = -3;
-            result.put("status", status);
-            return result;
-        }
-        String user_email = auth_EmailFromDb.getUser_email();
+
+        String user_email = auth_EmailDto.getUser_email();
+
         User_InfoDto user_InfoDto = new User_InfoDto();
         user_InfoDto.setUser_email(user_email);
         User_InfoDto user_InfoDtoFromDb = loginService.getUser_IdByEmail(user_InfoDto);
 
-        // 4. 인증번호가 틀린 경우
-        if (!auth_EmailFromDb.getAuth_code().equals(auth_EmailDto.getAuth_code())) {
-            status = -4;
-            result.put("status", status);
-            return result;
-        }
-
-        // 5. 사용자 정보 없는 경우
-        if (user_InfoDtoFromDb == null) {
-            status = -5;
-            result.put("status", status);
-            return result;
-        }
-
         // ID 조회 완료
         String user_id = user_InfoDtoFromDb.getUser_id();
-        status = 1;
+        if (checkAuthCode == 1) {
 
-        String find_user_id = (String) session.getAttribute("find_user_id");
-        System.out.println("find_user_id: " + find_user_id);
-        if (find_user_id != null && !find_user_id.equals("")) {
-            if (find_user_id.equals(user_id)) {
-                status = 2;
+            status = 1;
+
+            String find_user_id = (String) session.getAttribute("find_user_id");
+            System.out.println("find_user_id: " + find_user_id);
+            if (find_user_id != null && !find_user_id.equals("")) {
+                if (find_user_id.equals(user_id)) {
+                    status = 2;
+                }
+
             }
-
+            session.setAttribute("found_user_id", user_id);
+            session.setAttribute("auth_purpose", null);
+            result.put("status", status);
         }
-        session.setAttribute("found_user_id", user_id);
-        result.put("status", status);
 
         return result;
     }
