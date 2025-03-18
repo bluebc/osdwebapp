@@ -22,9 +22,10 @@
     <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
     <script src="http://code.jquery.com/jquery-latest.min.js"></script>
 
-    <script src = "js/privacyAgree.js"></script>
+  <script src = "js/privacyAgree.js"></script>
     <script src = "${pageContext.request.contextPath}/js/signup.js"></script>
     
+
 
 </head>
 <body>
@@ -63,8 +64,9 @@
                             </div>
 
                             <div class="blank-space">
-                                <input type="button" id="confirmId" class="btn-point" value="중복확인" onclick="signup()">
+                                <input type="button" id="confirmId" class="btn-point" value="중복확인" onclick="idcheck()">
                             </div>
+                            <input type="hidden" id="IdCheck" name="IdCheck" value=0>
                         </div>
                         <!-- 비밀번호 -->
                         <div class="form-item">
@@ -306,6 +308,7 @@
 
                                     <button type="button" id="modal-open" class="tc-arrow" >약관보기</button>
                                     <jsp:include page="privacyAgree.jsp"></jsp:include>
+
 
                                 </div>
                                 <div class="service-box">

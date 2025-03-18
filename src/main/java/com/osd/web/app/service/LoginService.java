@@ -122,25 +122,6 @@ public class LoginService {
         return result;
     }
 
-    public int insertUser_Info(User_InfoDto user_InfoDto) {
-        int result = 0;
-
-        if (user_InfoDao.existsUser_InfoById(user_InfoDto.getUser_id()) == 0) {
-            result = user_InfoDao.insertUser_Info(user_InfoDto);
-        } else if (user_InfoDao.existsUser_InfoById(user_InfoDto.getUser_id()) > 0) {
-            result = -1;
-        }
-        return result;
-    }
-
-    public int deleteUser_Info(User_InfoDto user_InfoDto) {
-        int result = 0;
-
-        result = user_InfoDao.deleteUser_InfoByIdAndPw(user_InfoDto);
-
-        return result;
-    }
-
     public int updateUser_Pw(User_InfoDto user_InfoDto) {
         int result = 0;
 
@@ -150,7 +131,7 @@ public class LoginService {
 
         return result;
     }
-
+    
     public Auth_EmailDto setAuth_Email(Auth_EmailDto auth_EmailDto) {
 
         Random random = new Random();

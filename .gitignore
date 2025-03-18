@@ -1,9 +1,7 @@
-
-#주소 외
+# DB, FilePath, Email 등 설정 값
 src/main/resources/application.properties
 
-
-
+#
 HELP.md
 .gradle
 build/
