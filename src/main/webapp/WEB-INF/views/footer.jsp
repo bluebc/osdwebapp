@@ -6,8 +6,10 @@
     <!--js-->
     <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
     <script src="http://code.jquery.com/jquery-latest.min.js"></script>
-    <script  src="${pageContext.request.contextPath}/js/footer.js"></script>
 
+    <script src="${pageContext.request.contextPath}/js/footer.js"></script>
+    <script src="${pageContext.request.contextPath}/js/sessioncheck.js"></script>
+    
 <footer class="footer">
 
     <div class="footer_info">

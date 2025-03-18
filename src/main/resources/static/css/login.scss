@@ -94,7 +94,6 @@ header{
                     }
                 }
 
-                // 체크되었을 때 배경을 녹색으로 변경
                 input:checked + label::before {
                     background-color: rgb(83, 83, 83);
                 }

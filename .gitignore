@@ -1,5 +1,8 @@
+# DB, FilePath, Email 등 설정 값
 src/main/resources/application.properties
 
+#
+>>>>>>> origin
 HELP.md
 .gradle
 build/

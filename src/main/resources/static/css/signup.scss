@@ -11,6 +11,8 @@ header{
     font-size: 0.8rem;
 }
 
+
+
 .container{
     padding: 15rem 0 15rem;
     min-height: 800px;
@@ -31,7 +33,7 @@ header{
         #signupSection{
             .required{
                 padding-bottom: 10px;
-                border-bottom: 2px solid rgb(87, 87, 87);
+                border-bottom: 2px solid rgb(51, 51, 51);
                 font-size: 0.8rem;
                 color: rgb(102, 102, 102);
                 line-height: 17px;
@@ -47,9 +49,9 @@ header{
                     display: inline-flex;
                     width: 100%;
                     padding: 15px 20px;
-                    border-bottom: 1px solid #dfdfdf;
+                    //border-bottom: 1px solid #dfdfdf;
                     .form-tit{
-                        width: 139px;
+                        width: 10rem;
                         padding-top: 12px;
                         .title{
                             color: black;
@@ -99,6 +101,9 @@ header{
                                         display: flex;
                                         align-items: center;
                                         justify-content: space-between;
+                                        .email-inp{
+                                            padding: 0;
+                                        }
                                         .empty{
                                             text-align: left;
                                             font-weight: 400;
@@ -278,6 +283,9 @@ header{
 
 
                         }
+                        .m-duplication{
+                            display: none;
+                        }
                         .m_address{
                             .address_postcode{
                                 overflow: hidden;
@@ -338,7 +346,7 @@ header{
                         .btn-point{
                             padding: 0 1rem;
                             height: 44px;
-                            border-radius: 3px;
+                            border-radius: 4px;
                             border: 1px solid rgb(83, 83, 83);
                             &:hover{
                                 background-color: rgb(83, 83, 83);
@@ -349,8 +357,85 @@ header{
                 }
                 
             }
-            .lineDivide{}
-            .t-c{}
+
+
+            .lineDivide{
+                border-bottom: 2px solid rgb(51, 51, 51);
+            }
+
+            .t-c{
+                .tcFrom{
+                    display: inline-flex;
+                    width: 100%;
+                    padding: 1rem 0 1rem 1rem;
+                    .tc-title{
+                        width: 10rem;
+                        .tcLab{
+                            color: black;
+                            font-weight: bold;
+                            line-height: 20px;
+                        }
+                    }
+                    .tc-content{
+                        flex: 1;
+                        .service-box{
+                            display: flex;
+                            padding: 8px 0px;
+                            justify-content: space-between;
+                            .tc-service{
+                                input{display: none;}
+                                label{
+                                    display: inline-block;
+                                    position: relative;
+                                    cursor: pointer;
+                                    padding-left: 2rem;
+                                    padding-right: 1rem;
+                                    min-height: 2rem;
+    
+                                    &::before {
+                                        content: "";
+                                        position: absolute;
+                                        left: 0;
+                                        top: 0;
+                                        width: 1.3rem;
+                                        height: 1.3rem;
+                                        border-radius: 50%;
+                                        background: #fff url(../img/check.svg) no-repeat center/1.3rem auto;
+                                        transition: background-color 0.3s ease;
+                                    }
+    
+                                    .tc-text{
+                                        color: black;
+                                        font-weight: bold;
+                                        
+                                        span{
+                                            color: rgb(95, 95, 95);
+                                        }
+                                    }
+                                }
+                                
+                                input:checked + label::before {
+                                    background-color: rgb(83, 83, 83);
+                                }
+                            }
+                            .tc-arrow{
+                                padding-right: 3rem;
+                                color: rgb(77, 77, 77);
+                                letter-spacing: 0px;
+                                &::after{
+                                    content: "";
+                                    display: inline-block;
+                                    margin-left: 4px;
+                                    width: 6px;
+                                    height: 9px;
+                                    background: url(../img/arriw-right.svg) 50% 50% / 6px 9px no-repeat;
+                                }
+                            }
+                        }
+                        
+                    }
+                }
+            }
 
 
             .signUpButton{
