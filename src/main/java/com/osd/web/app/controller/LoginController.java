@@ -256,7 +256,6 @@ public class LoginController {
         String user_email = "";
         if (user_InfoFromDb != null) {
             user_email = user_InfoFromDb.getUser_email();
-
         }
 
         Auth_EmailDto auth_EmailDto = new Auth_EmailDto();
@@ -268,7 +267,6 @@ public class LoginController {
             // 비번 찾기
             session.setAttribute("find_user_id", user_id);
             auth_purpose = "find_reset_pw";
-
         } else {
             // 아이디 찾기
             auth_purpose = "find_find_id";
