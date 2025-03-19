@@ -193,6 +193,17 @@ async function idcheck() {
 async function existsUser(user_info) {
 
 
+    const response = await fetch("/existsUser", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(user_info),
+    });
+    const result = await response.json();
+    return result;
+
+}
+
+
 async function createUser(user_info) {
     const response = await fetch("/signup/insertUser", {
         method: "POST",
@@ -221,7 +232,6 @@ function getTime() {
     var sec = ("0" + date.getSeconds()).slice(-2);
     return year + "-" + month + "-" + day + "T" + hour + ":" + min + ":" + sec;
 }
-
 
 
 
