@@ -8,7 +8,7 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.servlet.HandlerInterceptor;
 
 @Component
-public class FindLoginInfoInterceptor implements HandlerInterceptor {
+public class AuthInterceptor implements HandlerInterceptor {
 
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler)
@@ -17,9 +17,9 @@ public class FindLoginInfoInterceptor implements HandlerInterceptor {
         // request.getRequestURI());
 
         HttpSession session = request.getSession();
-        
-        String auth_confirmed = (String) session.getAttribute("auth_confirmed");
-        if (auth_confirmed == null || !auth_confirmed.equals("auth_confirmed")) {
+        String auth_purpose = (String) session.getAttribute("auth_purpose");
+
+        if (auth_purpose == null || auth_purpose.equals("")) {
             response.sendRedirect("/wrongPath");
             return false;
         }

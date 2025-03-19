@@ -4,6 +4,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
+import com.osd.web.app.interceptor.AuthInterceptor;
 import com.osd.web.app.interceptor.FindLoginInfoInterceptor;
 import com.osd.web.app.interceptor.LoginInterceptor;
 
@@ -15,6 +16,7 @@ public class WebConfig implements WebMvcConfigurer {
 
     private final LoginInterceptor loginInterceptor;
     private final FindLoginInfoInterceptor findLoginInfoInterceptorl;
+    private final AuthInterceptor authInterceptor;
 
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
@@ -23,5 +25,8 @@ public class WebConfig implements WebMvcConfigurer {
 
         registry.addInterceptor(findLoginInfoInterceptorl)
                 .addPathPatterns("/find/result/**");
+
+        registry.addInterceptor(authInterceptor)
+                .addPathPatterns("/auth/email/**");
     }
 }
