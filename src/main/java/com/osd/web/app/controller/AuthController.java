@@ -54,8 +54,8 @@ public class AuthController {
     // 1. 이메일 인증 요청 페이지
     @RequestMapping("/email/request")
     public String authEmailRequestPage(HttpServletRequest request) {
-        HttpSession session = request.getSession();
-        String auth_purpose = (String) session.getAttribute("auth_purpose");
+        // HttpSession session = request.getSession();
+        // String auth_purpose = (String) session.getAttribute("auth_purpose");
 
         return "authEmailRequest";
     }
