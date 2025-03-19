@@ -51,7 +51,7 @@ async function goAuthEmail() {
     var user_id = document.getElementById("user_id");
     user_id = user_id ? user_id.value : "";
 
-    const response = await fetch("/setAuthSession", {
+    const response = await fetch("/auth/setSession", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({

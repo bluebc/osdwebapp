@@ -27,6 +27,6 @@ public class WebConfig implements WebMvcConfigurer {
                 .addPathPatterns("/find/result/**");
 
         registry.addInterceptor(authInterceptor)
-                .addPathPatterns("/auth/**");
+                .addPathPatterns("/auth/email/**");
     }
 }

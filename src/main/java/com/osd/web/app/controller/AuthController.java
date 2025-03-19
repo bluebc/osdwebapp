@@ -17,6 +17,7 @@ import com.osd.web.app.service.MailService;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
 
+@RequestMapping("/auth")
 @Controller
 public class AuthController {
 
@@ -25,7 +26,7 @@ public class AuthController {
 
     // 인증작업 전 세션 설정
     @ResponseBody
-    @PostMapping("/setAuthSession")
+    @PostMapping("/setSession")
     public Map<String, Object> setAuthSession(HttpServletRequest request, @RequestBody Map<String, Object> requestMap) {
         Map<String, Object> result = new HashMap<>();
         int code = 0;
@@ -51,7 +52,7 @@ public class AuthController {
     }
 
     // 1. 이메일 인증 요청 페이지
-    @RequestMapping("/auth/email/request")
+    @RequestMapping("/email/request")
     public String authEmailRequestPage(HttpServletRequest request) {
         HttpSession session = request.getSession();
         String auth_purpose = (String) session.getAttribute("auth_purpose");
@@ -61,7 +62,7 @@ public class AuthController {
 
     // 2. 인증 이메일 요청
     @ResponseBody
-    @PostMapping("/auth/email/postRequest")
+    @PostMapping("/email/postRequest")
     public Map<String, Object> authEmailRequest(HttpServletRequest request,
             @RequestBody User_InfoDto user_InfoDto) {
         Map<String, Object> result = new HashMap<>();
@@ -101,7 +102,7 @@ public class AuthController {
     }
 
     // 3. 인증코드 입력 페이지
-    @RequestMapping("/auth/email/verify")
+    @RequestMapping("/email/verify")
     public String authEmailVerifyPage(HttpServletRequest request) {
         HttpSession session = request.getSession();
         String auth_purpose = (String) session.getAttribute("auth_purpose");
@@ -113,7 +114,7 @@ public class AuthController {
 
     // 4. 인증 완료 처리
     @ResponseBody
-    @PostMapping("/auth/email/postVerify")
+    @PostMapping("/email/postVerify")
     public Map<String, Object> emailAuth(HttpServletRequest request, @RequestBody Auth_EmailDto auth_EmailDto) {
         Map<String, Object> result = new HashMap<>();
         int code = 0;
