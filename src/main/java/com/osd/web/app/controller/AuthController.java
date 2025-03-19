@@ -35,13 +35,13 @@ public class AuthController {
         session.setAttribute("find_user_id", null);
 
         String auth_purpose = (String) requestMap.get("auth_purpose");
-        if (auth_purpose != null || auth_purpose.equals("")) {
+        if (auth_purpose != null && !auth_purpose.equals("")) {
             session.setAttribute("auth_purpose", auth_purpose);
         }
         String user_id = (String) requestMap.get("user_id");
 
         if (auth_purpose.equals("find_reset_pw")) {
-            if (user_id != null || user_id.equals("")) {
+            if (user_id != null && !user_id.equals("")) {
                 session.setAttribute("find_user_id", user_id);
             }
         }
