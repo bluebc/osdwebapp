@@ -106,7 +106,7 @@ public class AuthController {
         HttpSession session = request.getSession();
         String auth_purpose = (String) session.getAttribute("auth_purpose");
 
-System.out.println(auth_purpose);
+        System.out.println(auth_purpose);
 
         return "authEmailVerify";
     }
@@ -144,9 +144,9 @@ System.out.println(auth_purpose);
         }
 
         // 인증 완료 후
-        session.setAttribute("auth_email", null);
+        // session.setAttribute("auth_email", null);
         // session.setAttribute("auth_purpose", null);
-        session.setAttribute("auth_confirmed", true);
+        session.setAttribute("auth_confirmed", "auth_confirmed");
         result.put("code", code);
         result.put("auth_purpose", auth_purpose);
 

@@ -13,17 +13,17 @@ public class AuthInterceptor implements HandlerInterceptor {
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler)
             throws Exception {
-        // System.out.println("FindLoginInfoInterceptor: 요청이 들어옴 - " + request.getRequestURI());
+        // System.out.println("FindLoginInfoInterceptor: 요청이 들어옴 - " +
+        // request.getRequestURI());
 
         HttpSession session = request.getSession();
         String auth_purpose = (String) session.getAttribute("auth_purpose");
 
         if (auth_purpose == null || auth_purpose.equals("")) {
-            // System.out.println("AuthInterceptor:false");
             response.sendRedirect("/wrongPath");
             return false;
         }
-        
+
         return true;
     }
 }

@@ -13,17 +13,17 @@ public class FindLoginInfoInterceptor implements HandlerInterceptor {
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler)
             throws Exception {
-        // System.out.println("FindLoginInfoInterceptor: 요청이 들어옴 - " + request.getRequestURI());
+        // System.out.println("FindLoginInfoInterceptor: 요청이 들어옴 - " +
+        // request.getRequestURI());
 
         HttpSession session = request.getSession();
-        String find_user_email = (String) session.getAttribute("find_user_email");
-
-        if (find_user_email == null || find_user_email.equals("")) {
-            // response.sendRedirect("/wrongPath");
-            // return false;
-            System.out.println("FindLoginInfoInterceptor");
-        }
         
+        String auth_confirmed = (String) session.getAttribute("auth_confirmed");
+        if (auth_confirmed == null || !auth_confirmed.equals("auth_confirmed")) {
+            response.sendRedirect("/wrongPath");
+            return false;
+        }
+
         return true;
     }
 }

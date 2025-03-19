@@ -23,8 +23,8 @@ public class WebConfig implements WebMvcConfigurer {
         registry.addInterceptor(loginInterceptor)
                 .addPathPatterns("/**"); // 모든 경로에 적용
 
-        // registry.addInterceptor(findLoginInfoInterceptorl)
-        //         .addPathPatterns("/find/result/**");
+        registry.addInterceptor(findLoginInfoInterceptorl)
+                .addPathPatterns("/find/result/**");
 
         registry.addInterceptor(authInterceptor)
                 .addPathPatterns("/auth/**");
