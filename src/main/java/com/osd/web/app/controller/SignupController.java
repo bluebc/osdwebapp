@@ -8,12 +8,11 @@ import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-
-
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.osd.web.app.dto.Term_ListDto;
@@ -102,6 +101,32 @@ public class SignupController {
         Term_ListDto list = signupService.getTerm_ListOne();
 
         return list;
+    }
+
+    @RequestMapping("/termview")
+    public String termViewPage(@RequestParam(value = "term_id", required = true) String term_id, Model model) {
+        System.out.println(term_id);
+        System.out.println("확인");
+        Term_ListDto term = signupService.getTerm_ListByid(term_id);
+     
+        model.addAttribute("term",term);
+
+
+        return "privacyAgree";
+    }
+
+    @RequestMapping("/termspage")
+    public String gtermspage() {
+
+        
+        return "termspage";
+    }
+
+    @RequestMapping("/termsmain")
+    public String termsmain() {
+
+        
+        return "termsmain";
     }
 
 }

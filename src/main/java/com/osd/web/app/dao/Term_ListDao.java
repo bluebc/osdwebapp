@@ -24,4 +24,9 @@ public class Term_ListDao {
 
     }
 
+    public Term_ListDto getTerm_ListByid(String term_id) {
+        
+        return session.selectOne("Term_List.getTerm_ListByid",term_id);
+
+    }
 }

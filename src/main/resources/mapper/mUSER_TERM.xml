@@ -32,6 +32,5 @@
 					,AGREED_UPDATED_AT
 				FROM USER_TERM
    		 </select>
-
         
 </mapper>

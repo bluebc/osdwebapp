@@ -63,19 +63,27 @@ public class SignupService {
     //약관 정보 리스트
     public List<Term_ListDto> getTerm_ListAll() {
 
-        System.out.println(term_ListDao.getTerm_ListByAll());
+     //   System.out.println(term_ListDao.getTerm_ListByAll());
         
         return term_ListDao.getTerm_ListByAll();
 
     }
 
-
-    //약관 정보 리스트
-    public Term_ListDto getTerm_ListOne() {
+   //약관 정보 리스트 하나
+   public Term_ListDto getTerm_ListOne() {
         
-        System.out.println(term_ListDao.getTerm_ListByOne());
+   // System.out.println(term_ListDao.getTerm_ListByOne());
 
-        return term_ListDao.getTerm_ListByOne();
+    return term_ListDao.getTerm_ListByOne();
+
+}
+
+    //해당 약관 내용 
+    public Term_ListDto getTerm_ListByid(String term_id) {
+        
+        System.out.println(term_ListDao.getTerm_ListByid(term_id));
+
+        return term_ListDao.getTerm_ListByid(term_id);
 
     }
 

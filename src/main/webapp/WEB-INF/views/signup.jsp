@@ -1,4 +1,4 @@
-<!-- <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 
 <!DOCTYPE html>
 <html lang="ko" dir="ltr">
@@ -36,6 +36,7 @@
 <div class="container">
     <div class="content">
             <div class="fromSignup">회원가입</div>
+
             <div id="signupSection" class="memberWrap">
                     <!-- 필수입력사항 -->
                     <div class="required">
@@ -279,8 +280,10 @@
                     </div>
 
                     <div class="lineDivide"></div>
-                    <div id="list"></div>
-                    
+
+                    <!-- 이용약관 DB -->
+                   <div id="list"></div>
+
                     <!-- 이용약관 -->
                     <!--<div class="t-c">
                         <div class="tcFrom">
@@ -304,6 +307,7 @@
                                         <input type="checkbox" name='term1' id='term1' class="chk_each">
                                         <label for='term1'><span class="tc-text">서비스 이용약관 동의<span> (필수)</span></span></label>
 
+                                    </div>
 
                                     <button type="button" id="modal-open" class="tc-arrow" >약관보기</button>
                                     <jsp:include page="privacyAgree.jsp"></jsp:include>
@@ -340,8 +344,8 @@
                             </div>
                             
                         </div>
-                    </div> -->
-
+                    </div>
+                -->
                     <!-- 가입버튼 -->
                     <div class="signUpButton">
                         <button class="join" type="submit" onclick="signup()">
@@ -359,4 +363,4 @@
 
 </body>
     <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
-</html> -->
+</html>
