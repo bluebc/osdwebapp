@@ -15,7 +15,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.osd.web.app.dto.AutoLogin_InfoDto;
+import com.osd.web.app.dto.Board_InfoDto;
 import com.osd.web.app.dto.User_InfoDto;
+import com.osd.web.app.service.BoardService;
 import com.osd.web.app.service.LoginService;
 import com.osd.web.app.service.MailService;
 import com.osd.web.app.service.User_InfoService;
@@ -31,12 +33,12 @@ public class TestController {
 
     @Autowired
     private User_InfoService user_InfoService;
-
     @Autowired
     private LoginService loginService;
-
     @Autowired
     private MailService mailService;
+    @Autowired
+    private BoardService boardService;
 
     @RequestMapping("/test")
     public String testPage(HttpServletRequest request, HttpServletResponse response, Model model) {
@@ -118,6 +120,29 @@ public class TestController {
     @RequestMapping("/tcheckbox")
     public String testCheckBoxPage() {
         return "test/checkbox";
+    }
+
+    @RequestMapping("/tboardwrite")
+    public String testBoardWritePage(HttpServletRequest request, Model model) {
+
+        HttpSession session = request.getSession();
+        String user_id = (String) session.getAttribute("login_user_id");
+
+        model.addAttribute("user_id", user_id);
+
+        return "test/boardWrite";
+    }
+
+    @ResponseBody
+    @PostMapping("/tPostBoard")
+    public Map<String, Object> testPostBoard(@RequestBody Board_InfoDto board_InfoDto) {
+        Map<String, Object> result = new HashMap<>();
+
+        int code = boardService.insertBoard(board_InfoDto);
+
+        result.put("code", code);
+
+        return result;
     }
 
 }

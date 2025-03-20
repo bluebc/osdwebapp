@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="Board_Info">
+
+<resultMap id="Board_InfoResultMap" type="com.osd.web.app.dto.Board_InfoDto">
+    <result column="BOARD_NO" property="board_no"/>
+	<result column="USER_ID" property="user_id"/>
+    <result column="BOARD_CATEGORY" property="board_category"/>
+    <result column="BOARD_CONTENT" property="board_content"/>
+    <result column="BOARD_CREATED_AT" property="board_created_at"/>
+    <result column="BOARD_UPDATED_AT" property="board_updated_at"/>
+</resultMap>
+
+<insert id="insert">
+insert into board_info (user_id, board_category, board_content, board_created_at, board_updated_at) 
+values (#{user_id},#{board_category},#{board_content},#{board_created_at},#{board_updated_at})
+
+</insert>
+
+</mapper>
