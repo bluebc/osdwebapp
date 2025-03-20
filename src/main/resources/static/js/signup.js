@@ -193,6 +193,17 @@ async function idcheck() {
 async function existsUser(user_info) {
 
 
+    const response = await fetch("/existsUser", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(user_info),
+    });
+    const result = await response.json();
+    return result;
+
+}
+
+
 async function createUser(user_info) {
     const response = await fetch("/signup/insertUser", {
         method: "POST",
@@ -450,6 +461,7 @@ document.addEventListener("DOMContentLoaded", function () {
     const chkEach = document.querySelectorAll(".chk_each");
 
     chkAll.addEventListener("change", function () {
+        alert("전체클릭");
         chkEach.forEach(chk => chk.checked = chkAll.checked);
     });
 
@@ -461,4 +473,120 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 });
 
+// 파일이 열렸을 때 실행
+document.addEventListener("DOMContentLoaded", function () {
+    //$("#termspage").load("/termview?term_id=0002");
+    callTerms();
+});
+
+// 1. 버튼 클릭
+async function callTerms() {
+   
+   const  terms = await getTermListAll();
+   var    str = await showTerms(terms);
+       document.getElementById("list").insertAdjacentHTML("beforeend", str);
+   }
+
+
+async function showTerms(terms) {
+   var str = "";
+   for (var i = 0; i < terms.length; i++) {
+       str += await getTermCode(terms[i],i+1,terms.length);
+   }
+
+   return str;
+}
+
+//약관 리스트 가져오기
+async function getTermListAll() {
+
+   const response = await fetch("/getTermAll", {
+       method: "POST",
+       headers: { "Content-Type": "application/json" },
+       body: JSON.stringify({}),
+   });
+   const result = await response.json();
+   console.log(result);
+   return result;
+}
+
+//html 태그 생성
+
+async function getTermCode(term,num,max){
+   
+   var termname = term.term_name;
+   var content = term.term_content;
+   var type = (term.term_type == "M") ? "필수" : "선택" ; 
+   var id = "\""+term.term_id+ "\"";
+
+   var str = ""
+   
+   //윗부분은 처음 한번
+   if(num==1){
+   str += "<!-- 이용약관 -->";
+   str += "<div class='t-c'>";
+   str += "  <div class='tcFrom'>";
+   str += "    <div class='tc-title'>";
+   str += "        <label class='tcLab'>";
+   str += "          이용약관동의<span class='symbol'>*</span>";
+   str += "        </label>";
+   str += "    </div>";
+   str += "    <div class='tc-content'>";
+   str += "         <div class='service-box'>";
+   str += "         <div class='tc-service'>";
+   str += "         <input type='checkbox' id='chk_all'>";
+   str += "         <label for='chk_all'><span class='tc-text'>전체 동의합니다.</span></label>";
+   str += "         </div>";
+   str += "        </div>";
+   str += "        <div id = 'termspage'></div>";
+   }
+   
+   //약관 본문 내용은 반복 만큼
+   str += "         <div class='service-box'>";
+   str += "             <div class='tc-service'>";
+   str += "                 <input type='checkbox' name='term"+num+"' id='term"+num+"' class='chk_each'>";
+   str += "                 <label for='term"+num+"'><span class='tc-text'>"+termname+"<span> "+"("+type+")"+"</span></span></label>";
+   str += "             </div>";
+   if(content!=""&&content!=null){  //내용이 없으면 출력 안함
+    str += "            <button type='button' id='modal-open' class='tc-arrow' onclick='showTermId("+ id + ")' >약관보기</button>  " ;                  
+    }  
+   str += "              </div>";
+
+   /*
+   if(content!=""&&content!=null){  //내용이 없으면 출력 안함
+   str += "    <div>" ;
+   str += "    <textarea>"+content+"</textarea>" ;  
+   str += "    </div>" ;                    
+   }  
+   */
+   //아랫부분은 마지막 한번
+   if(num == max){
+      str += "      </div>"
+      str += "  </div>"
+      str += "</div>"
+   }
+
+   return str;
+
+
+   }
+
+// 약관 팝업
+
+async function showTermId(fterm) {
+
+    $("#termspage").load("/termview?term_id=" + fterm, function() {
+
+        $("#popup").css("display", "flex").show().fadeIn();
+
+    });
+
+}
+
+
+
+async function privacyClick(){
+
+    $("#popup").hide().fadeOut();
+}
 

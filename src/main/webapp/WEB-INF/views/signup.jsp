@@ -281,8 +281,11 @@
 
                     <div class="lineDivide"></div>
 
+                    <!-- 이용약관 DB -->
+                   <div id="list"></div>
+
                     <!-- 이용약관 -->
-                    <div class="t-c">
+                    <!--<div class="t-c">
                         <div class="tcFrom">
 
 
@@ -342,7 +345,7 @@
                             
                         </div>
                     </div>
-
+                -->
                     <!-- 가입버튼 -->
                     <div class="signUpButton">
                         <button class="join" type="submit" onclick="signup()">
