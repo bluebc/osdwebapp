@@ -16,7 +16,7 @@ async function signup() {
         alert("아이디 중복체크를 해주세요.");
         idCheck.focus();
         return;
-    } 
+    }
 
     var user_pw = document.getElementById("user_pw");
     var pwValue = user_pw.value;
@@ -47,14 +47,14 @@ async function signup() {
         return;
     }
 
-    
+
     var user_name = document.getElementById("user_name");
     if (user_name.value == "") {
         alert("이름을 입력해주세요.");
         user_name.focus();
         return;
     }
-    
+
 
     var user_hpno = document.getElementById("user_hpno");
     if (user_hpno.value == "") {
@@ -114,7 +114,7 @@ async function signup() {
     if (!genderChkFn()) {
         return;
     }
-    
+
     var user_gender = document.querySelector('input[name="gender"]:checked');
 
     var createTime = getTime();
@@ -157,14 +157,14 @@ async function signup() {
 }
 
 async function idcheck() {
-   
+
     var user_id = document.getElementById("user_id");
     if (user_id.value == "") {
         alert("아이디를 입력해주세요.");
         user_id.focus();
         return;
     }
-    
+
     var idCheck = document.getElementById("IdCheck");
     var user_info = {
         user_id: user_id.value
@@ -191,8 +191,6 @@ async function idcheck() {
 }
 
 async function existsUser(user_info) {
-
-
     const response = await fetch("/existsUser", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -235,39 +233,40 @@ function getTime() {
 
 
 
+
 // 한글만 입력 - 이름
-$(function(){
+$(function () {
     $("#user_name").keyup(function (event) {
-         regexp = /[a-z0-9]|[ \[\]{}()<>?|`~!@#$%^&*-_+=,.;:\"'\\]/g;
-         v = $(this).val();
-         var spaceRegexp = /\s/g;  // 공백 문자
-         if (regexp.test(v)) {
-             alert("한글만 입력가능 합니다.");
-             $(this).val(v.replace(regexp, '').replace(spaceRegexp, ''));
-         }
-     });
+        regexp = /[a-z0-9]|[ \[\]{}()<>?|`~!@#$%^&*-_+=,.;:\"'\\]/g;
+        v = $(this).val();
+        var spaceRegexp = /\s/g;  // 공백 문자
+        if (regexp.test(v)) {
+            alert("한글만 입력가능 합니다.");
+            $(this).val(v.replace(regexp, '').replace(spaceRegexp, ''));
+        }
+    });
 });
 
 
 // 한글입력 막기 
 $(function () {
     $('#user_id, #user_email, #user_emailId').on("input", function () {
-        var cleanedVal = $(this).val().replace(/[^a-zA-Z0-9]/g, ''); 
+        var cleanedVal = $(this).val().replace(/[^a-zA-Z0-9]/g, '');
         $(this).val(cleanedVal);
     });
 });
 
 
 // 숫자만 입력 - 핸드폰
-$(function(){
+$(function () {
     $("#user_hpno").keyup(function (event) {
-         regexp = /[^0-9]/gi;
-         v = $(this).val();
-         if (regexp.test(v)) {
-             alert("숫자만 입력가능 합니다.");
-             $(this).val(v.replace(regexp, ''));
-         }
-     });
+        regexp = /[^0-9]/gi;
+        v = $(this).val();
+        if (regexp.test(v)) {
+            alert("숫자만 입력가능 합니다.");
+            $(this).val(v.replace(regexp, ''));
+        }
+    });
 });
 
 
@@ -284,7 +283,7 @@ document.addEventListener("DOMContentLoaded", function () {
         const userId = document.getElementById("user_id").value;
         const validator = document.getElementById("user_id").closest(".cont-box").querySelector(".validator");
 
-        const isValid = /^[a-zA-Z0-9]{6,15}$/.test(userId); 
+        const isValid = /^[a-zA-Z0-9]{6,15}$/.test(userId);
         updateValidator(validator, isValid, "최소 6자 이상 15자 이하의 영문 혹은 영문과 숫자를 조합");
     }
 
@@ -299,9 +298,9 @@ document.addEventListener("DOMContentLoaded", function () {
         const hasLowerCase = /[a-z]/.test(password);
         const hasNumber = /[0-9]/.test(password);
         const hasSpecialChar = /[!@#$%^&*(),.?":{}|<>]/.test(password);
-        const noSpaces = !/\s/.test(password); 
+        const noSpaces = !/\s/.test(password);
         const isValidLength = lengthCheck;
-        const isValidContent = hasUpperCase || hasLowerCase && hasNumber && hasSpecialChar && noSpaces; 
+        const isValidContent = hasUpperCase || hasLowerCase && hasNumber && hasSpecialChar && noSpaces;
 
         // 각각의 validator 메시지
         const lengthValidator = validatorBox.querySelectorAll(".validator")[0]; // 첫 번째 조건 (길이 체크)
@@ -432,7 +431,7 @@ function genderChkFn() {
 // 주소 카카오api 
 function sample6_execDaumPostcode() {
     new daum.Postcode({
-        oncomplete: function(data) {
+        oncomplete: function (data) {
             // 팝업에서 검색결과 항목을 클릭했을때 실행할 코드를 작성하는 부분.
 
             // 각 주소의 노출 규칙에 따라 주소를 조합한다.
@@ -455,7 +454,25 @@ function sample6_execDaumPostcode() {
 }
 
 // 이용약관
-document.addEventListener("DOMContentLoaded", function () {
+// document.addEventListener("DOMContentLoaded", function () {
+//     const chkAll = document.getElementById("chk_all");
+//     const chkEach = document.querySelectorAll(".chk_each");
+
+//     chkAll.addEventListener("change", function () {
+//         alert("전체클릭");
+//         chkEach.forEach(chk => chk.checked = chkAll.checked);
+//     });
+
+
+//     chkEach.forEach(chk => {
+//         chk.addEventListener("change", function () {
+//             chkAll.checked = [...chkEach].every(chk => chk.checked);
+//         });
+//     });
+// });
+
+// 이용약관 시점차이 문제 해결 (1/2)
+function checkAll() {
     const chkAll = document.getElementById("chk_all");
     const chkEach = document.querySelectorAll(".chk_each");
 
@@ -469,6 +486,123 @@ document.addEventListener("DOMContentLoaded", function () {
             chkAll.checked = [...chkEach].every(chk => chk.checked);
         });
     });
+}
+
+// 파일이 열렸을 때 실행
+document.addEventListener("DOMContentLoaded", function () {
+    //$("#termspage").load("/termview?term_id=0002");
+    callTerms();
 });
+
+// 1. 버튼 클릭
+async function callTerms() {
+
+    const terms = await getTermListAll();
+    var str = await showTerms(terms);
+    document.getElementById("list").insertAdjacentHTML("beforeend", str);
+}
+
+
+async function showTerms(terms) {
+    var str = "";
+    for (var i = 0; i < terms.length; i++) {
+        str += await getTermCode(terms[i], i + 1, terms.length);
+    }
+
+    return str;
+}
+
+//약관 리스트 가져오기
+async function getTermListAll() {
+
+    const response = await fetch("/getTermAll", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({}),
+    });
+    const result = await response.json();
+    console.log(result);
+    return result;
+}
+
+//html 태그 생성
+
+async function getTermCode(term, num, max) {
+
+    var termname = term.term_name;
+    var content = term.term_content;
+    var type = (term.term_type == "M") ? "필수" : "선택";
+    var id = "\"" + term.term_id + "\"";
+
+    var str = ""
+
+    //윗부분은 처음 한번
+    if (num == 1) {
+        str += "<!-- 이용약관 -->";
+        str += "<div class='t-c'>";
+        str += "  <div class='tcFrom'>";
+        str += "    <div class='tc-title'>";
+        str += "        <label class='tcLab'>";
+        str += "          이용약관동의<span class='symbol'>*</span>";
+        str += "        </label>";
+        str += "    </div>";
+        str += "    <div class='tc-content'>";
+        str += "         <div class='service-box'>";
+        str += "         <div class='tc-service'>";
+        // 이용약관 시점차이 문제 해결 (2/2)
+        str += "         <input type='checkbox' id='chk_all' onclick = 'checkAll()'>";
+        str += "         <label for='chk_all'><span class='tc-text'>전체 동의합니다.</span></label>";
+        str += "         </div>";
+        str += "        </div>";
+        str += "        <div id = 'termspage'></div>";
+    }
+
+    //약관 본문 내용은 반복 만큼
+    str += "         <div class='service-box'>";
+    str += "             <div class='tc-service'>";
+    str += "                 <input type='checkbox' name='term" + num + "' id='term" + num + "' class='chk_each'>";
+    str += "                 <label for='term" + num + "'><span class='tc-text'>" + termname + "<span> " + "(" + type + ")" + "</span></span></label>";
+    str += "             </div>";
+    if (content != "" && content != null) {  //내용이 없으면 출력 안함
+        str += "            <button type='button' id='modal-open' class='tc-arrow' onclick='showTermId(" + id + ")' >약관보기</button>  ";
+    }
+    str += "              </div>";
+
+    /*
+    if(content!=""&&content!=null){  //내용이 없으면 출력 안함
+    str += "    <div>" ;
+    str += "    <textarea>"+content+"</textarea>" ;  
+    str += "    </div>" ;                    
+    }  
+    */
+    //아랫부분은 마지막 한번
+    if (num == max) {
+        str += "      </div>"
+        str += "  </div>"
+        str += "</div>"
+    }
+
+    return str;
+
+
+}
+
+// 약관 팝업
+async function showTermId(fterm) {
+
+    $("#termspage").load("/termview?term_id=" + fterm, function () {
+        $("#popup").css("display", "flex").show().fadeIn();
+        $('body').css("overflow", "hidden");
+    });
+
+}
+
+async function privacyClick() {
+    $("#popup").hide().fadeOut();
+    $('body').css("overflow", "scroll");
+}
+
+
+
 
 

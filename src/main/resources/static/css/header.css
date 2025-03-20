@@ -108,6 +108,35 @@ header .hd_all .hd_m {
   display: none;
 }
 
+@media screen and (max-width: 1440px) {
+  header .hd_all {
+    padding: 1.3rem;
+  }
+  header .hd_all article {
+    padding: 0 1rem;
+  }
+  header .hd_all article .gnb {
+    width: 100%;
+  }
+  header .hd_all article .gnb .pc_menu .menu_style li {
+    padding: 0 0.8rem;
+  }
+  header .hd_all article .he_link {
+    padding-top: 30px;
+    width: 100%;
+  }
+}
+@media screen and (max-width: 1024px) {
+  header .hd_all article .gnb div a h1 img {
+    width: 50px;
+  }
+  header .hd_all article .gnb .pc_menu .menu_style li a {
+    font-size: 1em;
+  }
+  header .hd_all article .he_link {
+    padding-top: 16px;
+  }
+}
 @media screen and (max-width: 768px) {
   header .top-banner img {
     -o-object-position: 0 0;

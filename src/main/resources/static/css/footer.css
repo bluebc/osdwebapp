@@ -107,6 +107,31 @@ footer .footer_nav {
   display: none;
 }
 
+@media screen and (max-width: 1440px) {
+  footer .footer_info {
+    padding: 1rem 7rem;
+  }
+}
+@media screen and (max-width: 1024px) {
+  footer .footer_info .ft-fot {
+    padding: 0 6rem;
+    align-items: flex-start;
+    flex-direction: column;
+  }
+  footer .footer_info .ft-fot .ft_logo {
+    flex-direction: row;
+    gap: 1rem;
+  }
+  footer .footer_info .ft-fot .ft_info {
+    width: 100%;
+  }
+  footer .footer_info .ft-fot .ft_link {
+    width: 100%;
+  }
+  footer .footer_info .ft-fot .ft_link li {
+    align-items: flex-start;
+  }
+}
 @media screen and (max-width: 768px) {
   footer .footer_info {
     padding: 0 3rem 3rem;
@@ -115,6 +140,7 @@ footer .footer_nav {
     flex-direction: column-reverse;
     align-items: flex-start;
     margin-bottom: 3rem;
+    padding: 0;
   }
   footer .footer_info .ft-fot .ft_logo {
     width: 100%;
@@ -309,32 +335,6 @@ footer .footer_nav {
   }
 }
 @media screen and (max-width: 425px) {
-  header .top-banner img {
-    height: 100%;
-  }
-  header .hd_all .hd_m {
-    height: 8.5rem;
-  }
-  header .hd_all .hd_m .hd_info .hd_logo {
-    left: 1rem;
-    top: 1rem;
-  }
-  header .hd_all .hd_m .hd_info .gnbbar {
-    top: 6rem;
-  }
-  header .hd_all .hd_m .hd_info .gnbbar .group_option .on {
-    margin-top: 1rem;
-  }
-  header .hd_all .hd_m .hd_info .hd_log_m {
-    top: 1rem;
-    right: 1rem;
-  }
-  header .hd_all .hd_m .hd_info .hd_log_m .hd_util a {
-    margin-left: 0.4rem;
-  }
-  header .hd_all .hd_m .hd_info .hd_log_m .hd_util a img {
-    width: 22px;
-  }
   footer .footer_info {
     padding: 0 2rem;
   }
@@ -373,6 +373,9 @@ footer .footer_nav {
   footer .footer_info .ft-fot {
     margin-bottom: 5rem;
   }
+  footer .footer_info .ft-fot .ft_info {
+    font-size: 1rem;
+  }
   footer .footer_info .ft-fot .ft_info .ft_cs span {
     line-height: 1.2;
   }
@@ -409,5 +412,18 @@ footer .footer_nav {
   }
   footer .footer_info .ft-sns ul li .sns8 {
     background-position: -14rem 0;
+  }
+  footer .footer_info .ft_info {
+    margin-bottom: 0;
+    font-size: 0.9rem;
+  }
+  footer .footer_info .ft-fot .ft_logo {
+    gap: 0;
+  }
+  footer .footer_info .ft-fot .ft_logo a img {
+    width: 60px;
+  }
+  footer .footer_info .ft_link {
+    font-size: 0.9rem;
   }
 }/*# sourceMappingURL=footer.css.map */

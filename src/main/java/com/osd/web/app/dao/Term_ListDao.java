@@ -14,10 +14,19 @@ public class Term_ListDao {
     @Autowired
     private SqlSession session;
 
-    
+    public Term_ListDto getTerm_ListByOne() {
+        return session.selectOne("Term_List.getTerm_ListByAll");
+
+    }
+
     public List<Term_ListDto> getTerm_ListByAll() {
         return session.selectList("Term_List.getTerm_ListByAll");
 
     }
 
+    public Term_ListDto getTerm_ListByid(String term_id) {
+        
+        return session.selectOne("Term_List.getTerm_ListByid",term_id);
+
+    }
 }

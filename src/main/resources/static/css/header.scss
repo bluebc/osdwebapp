@@ -140,6 +140,63 @@ header{
     }
 }
 
+@include desktop{
+  header{
+    .hd_all{
+      padding: 1.3rem;
+      article{
+        padding: 0 1rem;
+        .gnb{
+          width: 100%;
+          .pc_menu{
+            .menu_style{
+              li{
+                padding: 0 0.8rem;
+              }
+            } 
+          }
+        }
+        .he_link{
+          padding-top: 30px;
+          width: 100%;
+        }
+      }
+    }
+  }
+}
+@include tablet{
+  header{
+    .hd_all{
+      
+      article{
+        
+        .gnb{
+          div {
+            a {
+              h1 {
+                img{
+                  width: 50px;
+                }
+              }
+            }
+          }
+          .pc_menu{
+            .menu_style{
+              li{
+                a{
+                  font-size: 1em;
+                }
+              }
+            } 
+          }
+        }
+        .he_link{
+          padding-top: 16px;
+        }
+      }
+    }
+  }
+}
 
 // 웹모바일 768px
 @include itablet{

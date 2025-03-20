@@ -22,7 +22,7 @@
     <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
     <script src="http://code.jquery.com/jquery-latest.min.js"></script>
 
-  <script src = "js/privacyAgree.js"></script>
+    <script src = "js/privacyAgree.js"></script>
     <script src = "${pageContext.request.contextPath}/js/signup.js"></script>
     
 
@@ -35,7 +35,24 @@
 
 <div class="container">
     <div class="content">
-            <div class="fromSignup">회원가입</div>
+
+
+            <div class="pc-type">회원가입</div>
+
+            <%-- mobile --%>
+            <div class="mobil-type">
+                <div class="tit-wrap">
+                    <a href="/login" class="btn-back">
+                        <i class="hidden">닫기</i>
+                    </a> 
+                    <h1 class="header-sub-tit">회원가입</h1>
+                </div>
+                <div class="header-util">
+                    <a href="/" class="btn-home">
+                        <img src="img/홈.svg" alt="home">
+                    </a> 
+                </div>
+            </div>
 
             <div id="signupSection" class="memberWrap">
                     <!-- 필수입력사항 -->
@@ -55,12 +72,13 @@
                                     <div class="save-inp">
                                         <input type="text" id="user_id" name="user_id" placeholder="아이디를 입력해주세요"
                                             data-testid="input-box" minlength="6" maxlength='15' >
+                                        <div class="m-duplication">
+                                            <input type="button" id="confirmId" class="btn-point2" value="중복확인" onclick="idcheck()">
+                                        </div>    
                                     </div>
                                     <p class="validator">최소 6자 이상 15자 이하의 영문 혹은 영문과 숫자를 조합</p>
                                 </div>
-                                <div class="m-duplication">
-                                    <input type="button" id="confirmId" class="btn-point" value="중복확인" onclick="signup()">
-                                </div>
+                                
                             </div>
 
                             <div class="blank-space">
@@ -255,7 +273,7 @@
                                     <div class="box-gender">
                                         <label class="gender-element" for="gender-man">
                                             <input type="radio" id="gender-man" name="gender" class="gman"
-                                                data-testid="radio-MALE" value="MALE">
+                                                data-testid="radio-MALE" value="M">
                                             <span class="r-blank">
                                                 <div class="r-check"></div>
                                             </span>
@@ -264,7 +282,7 @@
 
                                         <label class="gender-element" for="gender-woman">
                                             <input type="radio" id="gender-woman" name="gender" class="gwoman"
-                                                data-testid="radio-FEMALE" value="FEMALE">
+                                                data-testid="radio-FEMALE" value="F">
                                             <span class="r-blank">
                                                 <div class="r-check"></div>
                                             </span>
@@ -281,8 +299,13 @@
 
                     <div class="lineDivide"></div>
 
+
+
+                    <!-- 이용약관 DB -->
+                    <div id="list"></div>
+
                     <!-- 이용약관 -->
-                    <div class="t-c">
+                    <%-- <div class="t-c">
                         <div class="tcFrom">
 
 
@@ -303,20 +326,16 @@
                                     <div class="tc-service">
                                         <input type="checkbox" name='term1' id='term1' class="chk_each">
                                         <label for='term1'><span class="tc-text">서비스 이용약관 동의<span> (필수)</span></span></label>
-
                                     </div>
-
-                                    <button type="button" id="modal-open" class="tc-arrow" >약관보기</button>
-                                    <jsp:include page="privacyAgree.jsp"></jsp:include>
-
-
+                                    <button type="button" id="modal-open" class="tc-arrow" onclick="showTermId('0001')" >약관보기</button>
+                                    
                                 </div>
                                 <div class="service-box">
                                     <div class="tc-service">
                                         <input type="checkbox" name='term2' id='term2' class="chk_each">
                                         <label for='term2'><span class="tc-text">개인정보 수집 동의<span> (선택)</span></span></label>
                                     </div>
-                                    <button class="tc-arrow">약관보기</button>
+                                    <button class="tc-arrow" onclick="showTermId('0002')">약관보기</button>
 
                                 </div>
                                 <div class="service-box">
@@ -341,7 +360,7 @@
                             </div>
                             
                         </div>
-                    </div>
+                    </div> --%>
 
                     <!-- 가입버튼 -->
                     <div class="signUpButton">
@@ -349,13 +368,12 @@
                             <span>가입하기</span>
                         </button>
                     </div>
-
             </div>
     </div>
 </div>
 
 <!-- footer -->
-<%-- <jsp:include page="footer.jsp"></jsp:include> --%>
+<jsp:include page="footer.jsp"></jsp:include>
 
 
 </body>

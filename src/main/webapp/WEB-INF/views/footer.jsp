@@ -1,12 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 
-
-
+    <!-- css -->
     <link rel="stylesheet" href="css/footer.css">
+
     <!--js-->
     <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
     <script src="http://code.jquery.com/jquery-latest.min.js"></script>
-
     <script src="${pageContext.request.contextPath}/js/footer.js"></script>
     <script src="${pageContext.request.contextPath}/js/sessioncheck.js"></script>
     
