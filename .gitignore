@@ -2,6 +2,7 @@
 src/main/resources/application.properties
 
 #
+>>>>>>> origin
 HELP.md
 .gradle
 build/
