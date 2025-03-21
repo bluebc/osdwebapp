@@ -1,4 +1,6 @@
 async function signup() {
+   
+    //회원 정보 입력 검증
     var user_id = document.getElementById("user_id");
     if (user_id.value.trim() === "") {
         alert("아이디를 입력해주세요.");
@@ -75,6 +77,8 @@ async function signup() {
         return;
     }
 
+    var user_postcode = document.getElementById("user_postcode");
+
     var user_addr = document.getElementById("user_addr");
     if (user_addr.value == "") {
         alert("주소를 입력해주세요.");
@@ -115,6 +119,28 @@ async function signup() {
         return;
     }
 
+
+    //약관 필수 항목 선택 체크
+    var term_check = document.querySelectorAll(".chk_each");
+
+    var all_check_m = 0; 
+   
+    for(var i=0; i<term_check.length; i++){
+           
+          //value 5,6자리는 필수,선택 구분
+        if( term_check[i].value.substring(5,6) == 'M' && term_check[i].checked == 0 ){
+            all_check_m = all_check_m + 1;
+        }
+           
+    }
+       
+    if(all_check_m > 0){
+        alert("필수 약관에 동의 해 주세요");
+        return;
+    }
+
+    //회원 테이블 입력
+
     var user_gender = document.querySelector('input[name="gender"]:checked');
 
     var createTime = getTime();
@@ -125,20 +151,15 @@ async function signup() {
         user_name: user_name.value,
         user_hpno: user_hpno.value,
         user_email: user_email.value,
-        user_addr: user_addr.value,
-        user_detail: user_detail.value,
-        user_birthy: user_birthy.value,
-        user_birthm: user_birthm.value,
-        user_birthd: user_birthd.value,
+        user_addr: user_postcode.value + " " + user_addr.value + " " + user_detail.value,
+        user_birth: user_birthy.value+user_birthm.value+user_birthd.value,
         user_gender: user_gender.value,
         user_created_at: createTime,
         user_updated_at: createTime
     };
 
     var result = await createUser(user_info);
-
-    // result = 1;  // 강제로 한거, 서버 오류 
-
+ 
     switch (result) {
         case -1:
             alert("중복된 아이디 입니다.");
@@ -147,12 +168,64 @@ async function signup() {
             alert("DB Error");
             break;
         case 1:
-            alert("회원가입 완료!");
-            window.location.href = "/login";
+
+            term_save(); //회원 가입 완료 후 약관 등록
             break;
+
         default:
             alert("Error1");
     }
+
+}
+
+//약관 등록
+async function term_save(){
+
+    var user_id = document.getElementById("user_id");
+    var term_check = document.querySelectorAll(".chk_each");
+    var createTime = getTime();
+
+    var vuser_id = user_id.value ;
+    var user_termResult = []
+
+    //약관 동의 체크
+    for(var i=0; i<term_check.length; i++){
+    
+        var vterm_id = term_check[i].value.substring(0,4);  //value 앞 4자리는 약관번호
+        var vterm_yn = term_check[i].checked == 1 ? "Y" : "N";
+        
+        var user_term = {
+
+                user_id: vuser_id,
+                term_id: vterm_id,
+                term_agreed: vterm_yn,
+                agreed_created_at: createTime,
+                agreed_updated_at: createTime
+    }
+    
+    user_termResult.push(user_term)
+
+    }
+
+    var result = await createUserTerm(user_termResult);
+
+    if(result == -1) {
+            alert("중복된 아이디 입니다.");
+         
+        }
+    else if(result == 0) {
+        alert("DB Error");
+       
+    }
+    else if(result > 0) {
+            
+            alert("회원가입 완료!!");
+            window.location.href = "/login";
+         
+    }
+    else{
+        alert("Error1");
+    };
 
 }
 
@@ -220,6 +293,27 @@ async function createUser(user_info) {
 
     const result = await response.json();
     return result;
+}
+
+async function createUserTerm(user_term) {
+
+  
+    const response = await fetch("/signup/insertMultiUserTerm", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(user_term),
+    });
+
+    // 응답 상태 코드 확인
+    if (!response.ok) {
+        console.error("서버 오류:", response.status, response.statusText);
+        return null;  // 서버에서 오류가 발생한 경우 null 반환
+    }
+
+
+    const result = await response.json();
+    return result;
+   
 }
 
 function getTime() {
@@ -421,7 +515,7 @@ function genderChkFn() {
         return false;
     }
 
-    if (selectedGender.value !== "MALE" && selectedGender.value !== "FEMALE") {
+    if (selectedGender.value !== "M" && selectedGender.value !== "F") {
         alert("성별을 선택해 주세요.");
         return false;
     }
@@ -461,7 +555,9 @@ function sample6_execDaumPostcode() {
 //     const chkEach = document.querySelectorAll(".chk_each");
 
 //     chkAll.addEventListener("change", function () {
+
 //         alert("전체클릭");
+
 //         chkEach.forEach(chk => chk.checked = chkAll.checked);
 //     });
 
@@ -471,7 +567,13 @@ function sample6_execDaumPostcode() {
 //             chkAll.checked = [...chkEach].every(chk => chk.checked);
 //         });
 //     });
-// });
+// },true);
+
+// 파일이 열렸을 때 실행
+document.addEventListener("DOMContentLoaded", function () {
+    callTerms();
+});
+
 
 // 이용약관 시점차이 문제 해결 (1/2)
 function checkAll() {
@@ -490,13 +592,7 @@ function checkAll() {
     });
 }
 
-// 파일이 열렸을 때 실행
-document.addEventListener("DOMContentLoaded", function () {
-    //$("#termspage").load("/termview?term_id=0002");
-    callTerms();
-});
-
-// 1. 버튼 클릭
+// 1. 약관 리스트 생성
 async function callTerms() {
 
     const terms = await getTermListAll();
@@ -504,7 +600,7 @@ async function callTerms() {
     document.getElementById("list").insertAdjacentHTML("beforeend", str);
 }
 
-
+// 2. 약관 리스트 코드 연결
 async function showTerms(terms) {
     var str = "";
     for (var i = 0; i < terms.length; i++) {
@@ -514,7 +610,7 @@ async function showTerms(terms) {
     return str;
 }
 
-//약관 리스트 가져오기
+//약관 DATA 가져오기
 async function getTermListAll() {
 
     const response = await fetch("/getTermAll", {
@@ -527,7 +623,7 @@ async function getTermListAll() {
     return result;
 }
 
-//html 태그 생성
+//약관 html 태그 생성
 
 async function getTermCode(term, num, max) {
 
@@ -570,6 +666,7 @@ async function getTermCode(term, num, max) {
     }
     str += "              </div>";
 
+
     /*
     if(content!=""&&content!=null){  //내용이 없으면 출력 안함
     str += "    <div>" ;
@@ -589,7 +686,7 @@ async function getTermCode(term, num, max) {
 
 }
 
-// 약관 팝업
+// 약관 팝업 보이기
 
 async function showTermId(fterm) {
 
@@ -603,8 +700,8 @@ async function showTermId(fterm) {
 
 
 
-async function privacyClick() {
-
+// 약관 팝업 숨기기
+async function privacyClick(){
+  
     $("#popup").hide().fadeOut();
 }
-

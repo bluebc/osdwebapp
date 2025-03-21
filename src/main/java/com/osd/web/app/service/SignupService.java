@@ -7,8 +7,10 @@ import org.springframework.stereotype.Service;
 
 import com.osd.web.app.dao.Term_ListDao;
 import com.osd.web.app.dao.User_InfoDao;
+import com.osd.web.app.dao.User_TermDao;
 import com.osd.web.app.dto.Term_ListDto;
 import com.osd.web.app.dto.User_InfoDto;
+import com.osd.web.app.dto.User_TermDto;
 
 
 @Service
@@ -21,6 +23,10 @@ public class SignupService {
 
     @Autowired
     private Term_ListDao term_ListDao;
+
+    @Autowired
+    private User_TermDao user_TermDao;
+
 
     //아이디 중복 여부 체크
     public int existsUser_InfoById(User_InfoDto user_InfoDto) {
@@ -87,5 +93,24 @@ public class SignupService {
 
     }
 
+    //사용자 약관 동의 여부 등록
+    public int insertUser_Term(User_TermDto user_termDto) {
+        int result = 0;
+
+        result = user_TermDao.insertUser_Term(user_termDto);
+
+        return result;
+    }
+
+  
+    //사용자 약관 동의 여부 등록 멀티
+    public int insertMuitiUser_Term(List<User_TermDto> user_termDto) {
+        int result = 0;
+
+        result = user_TermDao.insertMuitiUser_Term(user_termDto);
+
+        return result;
+    }
+        
 }
     
