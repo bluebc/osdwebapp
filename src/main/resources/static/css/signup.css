@@ -486,9 +486,9 @@ header .top-banner {
   .container .content #signupSection .list-form-area .form-item .form-cont .cont-box .save-inp .m-duplication {
     display: block;
     padding: 0 1rem;
-    height: 44px;
+    height: 46px;
     border-radius: 4px;
-    border: 1px solid rgb(83, 83, 83);
+    border: 1px solid rgb(221, 221, 221);
   }
   .container .content #signupSection .list-form-area .form-item .form-cont .cont-box .save-inp .m-duplication .btn-point2 {
     border: none;

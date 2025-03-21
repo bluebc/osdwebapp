@@ -33,7 +33,7 @@ header .hd_all {
 header .hd_all article {
   width: 100%;
   margin: 0 auto;
-  padding: 0 5rem;
+  padding: 0 4rem;
   box-sizing: border-box;
   display: flex;
 }
@@ -109,6 +109,10 @@ header .hd_all .hd_m {
 }
 
 @media screen and (max-width: 1440px) {
+  header .top-banner img {
+    -o-object-position: 0 -3rem;
+       object-position: 0 -3rem;
+  }
   header .hd_all {
     padding: 1.3rem;
   }
@@ -124,6 +128,12 @@ header .hd_all .hd_m {
   header .hd_all article .he_link {
     padding-top: 30px;
     width: 100%;
+  }
+}
+@media screen and (max-width: 1280px) {
+  header .top-banner img {
+    -o-object-position: 0;
+       object-position: 0;
   }
 }
 @media screen and (max-width: 1024px) {

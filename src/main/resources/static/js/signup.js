@@ -419,7 +419,7 @@ function genderChkFn() {
         return false;
     }
 
-    if (selectedGender.value !== "MALE" && selectedGender.value !== "FEMALE") {
+    if (selectedGender.value !== "M" && selectedGender.value !== "F") {
         alert("성별을 선택해 주세요.");
         return false;
     }
@@ -592,14 +592,12 @@ async function showTermId(fterm) {
 
     $("#termspage").load("/termview?term_id=" + fterm, function () {
         $("#popup").css("display", "flex").show().fadeIn();
-        $('body').css("overflow", "hidden");
     });
 
 }
 
 async function privacyClick() {
     $("#popup").hide().fadeOut();
-    $('body').css("overflow", "scroll");
 }
 
 

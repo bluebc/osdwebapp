@@ -33,7 +33,7 @@ header{
       article{
           width: 100%;
           margin: 0 auto;
-          padding: 0 5rem;
+          padding: 0 4rem;
           box-sizing: border-box;      
           display: flex;
           .gnb{
@@ -142,6 +142,12 @@ header{
 
 @include desktop{
   header{
+      .top-banner{
+      
+        img{
+          object-position:0 -3rem;
+        }
+    }
     .hd_all{
       padding: 1.3rem;
       article{
@@ -164,6 +170,18 @@ header{
     }
   }
 }
+
+@include laptop{
+header{
+  .top-banner{
+      
+    img{
+      object-position:0;
+    }
+  }
+}
+}
+
 @include tablet{
   header{
     .hd_all{
