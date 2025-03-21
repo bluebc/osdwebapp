@@ -32,5 +32,21 @@
 					,AGREED_UPDATED_AT
 				FROM USER_TERM
    		 </select>
-        
+
+	  <insert id="insert" parameterType="User_TermDto">
+		 	insert into user_term
+				(user_id, term_id, term_agreed, agreed_created_at, agreed_updated_at )
+			values
+				(#{user_id}, #{term_id}, #{term_agreed}, #{agreed_created_at}, #{agreed_updated_at} )
+		</insert>  
+
+ 		<insert id="Multiinsert" parameterType="java.util.List">
+		 	insert into user_term
+				(user_id, term_id, term_agreed, agreed_created_at, agreed_updated_at )
+			values
+				<foreach item="item" collection="list" separator=",">
+				(#{item.user_id}, #{item.term_id}, #{item.term_agreed}, #{item.agreed_created_at}, #{item.agreed_updated_at} )
+				</foreach>
+		</insert>  
+
 </mapper>

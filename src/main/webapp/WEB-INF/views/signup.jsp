@@ -22,7 +22,6 @@
     <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
     <script src="http://code.jquery.com/jquery-latest.min.js"></script>
 
-  <script src = "js/privacyAgree.js"></script>
     <script src = "${pageContext.request.contextPath}/js/signup.js"></script>
     
 
@@ -255,7 +254,7 @@
                                     <div class="box-gender">
                                         <label class="gender-element" for="gender-man">
                                             <input type="radio" id="gender-man" name="gender" class="gman"
-                                                data-testid="radio-MALE" value="MALE">
+                                                data-testid="radio-MALE" value="M">
                                             <span class="r-blank">
                                                 <div class="r-check"></div>
                                             </span>
@@ -264,7 +263,7 @@
 
                                         <label class="gender-element" for="gender-woman">
                                             <input type="radio" id="gender-woman" name="gender" class="gwoman"
-                                                data-testid="radio-FEMALE" value="FEMALE">
+                                                data-testid="radio-FEMALE" value="F">
                                             <span class="r-blank">
                                                 <div class="r-check"></div>
                                             </span>
@@ -283,9 +282,8 @@
 
                     <!-- 이용약관 DB -->
                    <div id="list"></div>
-
-                    <!-- 이용약관 -->
-                    <!--<div class="t-c">
+                     <!-- 이용약관 -->
+                  <!--  <div class="t-c">
                         <div class="tcFrom">
 
 
@@ -344,15 +342,14 @@
                             </div>
                             
                         </div>
-                    </div>
-                -->
+                    </div>-->
                     <!-- 가입버튼 -->
                     <div class="signUpButton">
                         <button class="join" type="submit" onclick="signup()">
                             <span>가입하기</span>
                         </button>
                     </div>
-
+                    
             </div>
     </div>
 </div>
