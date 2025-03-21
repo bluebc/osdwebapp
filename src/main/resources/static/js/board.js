@@ -182,8 +182,9 @@ async function deleteBoard() {
 
     if (confirm("삭제하시겠습니까?")) {
 
+        const result2 = await getListPage();
+        var page = result2.page;
         const result1 = await requestDeleteBoard();
-
 
         console.log(result1.code);
 
@@ -207,9 +208,6 @@ async function deleteBoard() {
                 alert("스크립트 오류");
         }
 
-        const result2 = await getListPage();
-
-        var page = result2.page;
         window.location.href = "/boardlist?page=" + page;
 
     }

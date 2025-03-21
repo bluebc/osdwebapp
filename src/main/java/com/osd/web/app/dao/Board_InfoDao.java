@@ -40,18 +40,29 @@ public class Board_InfoDao {
         Map<String, Object> parameterMap = new HashMap<>();
         parameterMap.put("limit", limit);
         parameterMap.put("page", page);
-        return session.selectList("Board_Info.selectAllList", parameterMap);
+        // return session.selectList("Board_Info.selectAllList", parameterMap);
+        return session.selectList("Board_Info.selectNotDeletedList", parameterMap);
     }
 
     public int selectCountAll() {
         return session.selectOne("Board_Info.selectCountAll");
     }
-    public int deleteBoard(Board_InfoDto board_InfoDto){
+
+    public int deleteBoard(Board_InfoDto board_InfoDto) {
         return session.delete("Board_Info.delete", board_InfoDto);
     }
-    public int deleteBoard(int board_no){
+
+    public int deleteBoard(int board_no) {
         Board_InfoDto board_InfoDto = new Board_InfoDto();
         board_InfoDto.setBoard_no(board_no);
         return deleteBoard(board_InfoDto);
+    }
+
+    public int updateDeleted(Board_InfoDto board_InfoDto) {
+        return session.update("Board_Info.updateDeleted", board_InfoDto);
+    }
+
+    public int selectRownumByNo(Board_InfoDto board_InfoDto) {
+        return session.selectOne("Board_Info.selectRownumByNo", board_InfoDto);
     }
 }

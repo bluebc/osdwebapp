@@ -22,6 +22,7 @@ public class BoardService {
         LocalDateTime board_created_at = LocalDateTime.now().truncatedTo(ChronoUnit.SECONDS);
         board_InfoDto.setBoard_created_at(board_created_at);
         board_InfoDto.setBoard_updated_at(board_created_at);
+        board_InfoDto.setBoard_deleted(0);
 
         result = board_InfoDao.insert(board_InfoDto);
 
@@ -57,8 +58,22 @@ public class BoardService {
     public int getBoardCount() {
         return board_InfoDao.selectCountAll();
     }
-    public int deleteBoard(Board_InfoDto board_InfoDto){
+
+    public int deleteBoard(Board_InfoDto board_InfoDto) {
         return board_InfoDao.deleteBoard(board_InfoDto);
+    }
+
+    public int updateBoardDeleted(Board_InfoDto board_InfoDto) {
+
+        LocalDateTime board_deleted_at = LocalDateTime.now().truncatedTo(ChronoUnit.SECONDS);
+        board_InfoDto.setBoard_deleted_at(board_deleted_at);
+        board_InfoDto.setBoard_deleted(1);
+
+        return board_InfoDao.updateDeleted(board_InfoDto);
+    }
+
+    public int selectRownumByNo(Board_InfoDto board_InfoDto) {
+        return board_InfoDao.selectRownumByNo(board_InfoDto);
     }
 
 }

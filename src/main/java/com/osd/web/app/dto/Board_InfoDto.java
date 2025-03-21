@@ -14,5 +14,7 @@ public class Board_InfoDto {
     private String board_content;
     private LocalDateTime board_created_at;
     private LocalDateTime board_updated_at;
+    private int board_deleted;
+    private LocalDateTime board_deleted_at;
 
 }

@@ -67,11 +67,7 @@ public class BoardController {
         return "boardRead";
     }
 
-    // 삭제
-
-    // 수정
     // 수정 페이지
-
     @RequestMapping("/boardmodify")
     public String boardModifyPage(
             HttpServletRequest request,
@@ -80,11 +76,14 @@ public class BoardController {
         HttpSession session = request.getSession();
 
         Board_InfoDto board_InfoFromDb = boardService.getBoardByNo(board_no);
+
+        // 글 정보 없음
         if (board_InfoFromDb == null) {
-            // return "redirect:/wrongPath";
+            return "redirect:/wrongPath";
         }
+        // 세션 정보 불일치
         if (!board_InfoFromDb.getUser_id().equals((String) session.getAttribute("login_user_id"))) {
-            // return "redirect:/wrongPath";
+            return "redirect:/wrongPath";
         }
 
         model.addAttribute("board_info", board_InfoFromDb);
@@ -145,9 +144,13 @@ public class BoardController {
         Map<String, Object> result = new HashMap<>();
         int board_no = (int) requestMap.get("board_no");
 
+        Board_InfoDto board_InfoDto = new Board_InfoDto();
+        board_InfoDto.setBoard_no(board_no);
+        int rownum = boardService.selectRownumByNo(board_InfoDto);
+
         int limit = 10;
-        int page = board_no / limit;
-        if (board_no % limit > 0) {
+        int page = rownum / limit;
+        if (rownum % limit > 0) {
             page += 1;
         }
 
@@ -164,7 +167,7 @@ public class BoardController {
         Map<String, Object> result = new HashMap<>();
         int code = 0;
 
-        // 오류 1. 게시글 정보 없음
+        // 오류 1. 게시물 정보 없음
         if (board_InfoDto == null) {
             code = -1;
             result.put("code", code);
@@ -180,7 +183,7 @@ public class BoardController {
             return result;
         }
 
-        // 오류 3. 게시글 작성자와 로그인 정보 불일치
+        // 오류 3. 게시물 작성자와 로그인 정보 불일치
         String board__user_id = board_InfoDto.getUser_id();
         if (!login_user_id.equals(board__user_id)) {
             code = -3;
@@ -189,7 +192,8 @@ public class BoardController {
         }
 
         // 오류 4. DB 삭제 실패
-        int deleted = boardService.deleteBoard(board_InfoDto);
+        // int deleted = boardService.deleteBoard(board_InfoDto);
+        int deleted = boardService.updateBoardDeleted(board_InfoDto);
         if (deleted != 1) {
             code = -4;
             result.put("code", code);

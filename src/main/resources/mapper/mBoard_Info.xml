@@ -10,11 +10,13 @@
     <result column="BOARD_CONTENT" property="board_content"/>
     <result column="BOARD_CREATED_AT" property="board_created_at"/>
     <result column="BOARD_UPDATED_AT" property="board_updated_at"/>
+    <result column="BOARD_DELETED" property="board_deleted"/>
+    <result column="BOARD_DELETED_AT" property="board_deleted_at"/>
 </resultMap>
 
 <insert id="insert" parameterType="Board_InfoDto">
-insert into board_info (user_id, board_category, board_title, board_content, board_created_at, board_updated_at) 
-values (#{user_id},#{board_category}, #{board_title}, #{board_content},#{board_created_at},#{board_updated_at})
+insert into board_info (user_id, board_category, board_title, board_content, board_created_at, board_updated_at, board_deleted) 
+values (#{user_id}, #{board_category}, #{board_title}, #{board_content}, #{board_created_at}, #{board_updated_at}, #{board_deleted})
 </insert>
 
 <select id="selectByNo" parameterType="int" resultMap="Board_InfoResultMap">
@@ -55,12 +57,44 @@ update board_info
         </where>
 </select>
 
+<select id="selectNotDeletedList" parameterType="java.util.HashMap" resultMap="Board_InfoResultMap">
+    select BOARD_NO, USER_ID, BOARD_CATEGORY, BOARD_TITLE, BOARD_CONTENT, BOARD_CREATED_AT, BOARD_UPDATED_AT from
+        (select ROW_NUMBER() over(order by BOARD_NO) as ROWNUM, BOARD_INFO.* from BOARD_INFO where BOARD_DELETED = 0) as a 
+    <where>
+       ROWNUM &gt;= 1 + #{limit} * (#{page} - 1) 
+       and 
+       ROWNUM &lt; 1 + #{limit} * #{page}
+    </where>
+</select>
+
 <select id="selectCountAll" resultType="int">
     select count(board_no) from board_info
+        <where>
+        board_deleted = 0
+        </where>
 </select>
 
 <delete id="delete" parameterType="Board_InfoDto">
     delete board_info where board_no = #{board_no}
 </delete>
+
+<update id="updateDeleted" parameterType="Board_InfoDto">
+    update board_info 
+    <set>
+        board_deleted = 1, 
+        board_deleted_at = #{board_deleted_at} 
+    </set>
+    <where>
+        board_no = #{board_no}
+    </where>
+</update>
+
+<select id="selectRownumByNo" parameterType="Board_InfoDto" resultType="int">
+    select ROWNUM from
+        (select ROW_NUMBER() over(order by BOARD_NO) as ROWNUM, BOARD_NO from BOARD_INFO where BOARD_DELETED = 0) as a
+    <where>
+        board_no = #{board_no}
+    </where>
+</select>
 
 </mapper>
