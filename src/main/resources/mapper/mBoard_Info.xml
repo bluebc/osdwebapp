@@ -6,15 +6,57 @@
     <result column="BOARD_NO" property="board_no"/>
 	<result column="USER_ID" property="user_id"/>
     <result column="BOARD_CATEGORY" property="board_category"/>
+    <result column="BOARD_TITLE" property="board_title"/>
     <result column="BOARD_CONTENT" property="board_content"/>
     <result column="BOARD_CREATED_AT" property="board_created_at"/>
     <result column="BOARD_UPDATED_AT" property="board_updated_at"/>
 </resultMap>
 
-<insert id="insert">
-insert into board_info (user_id, board_category, board_content, board_created_at, board_updated_at) 
-values (#{user_id},#{board_category},#{board_content},#{board_created_at},#{board_updated_at})
-
+<insert id="insert" parameterType="Board_InfoDto">
+insert into board_info (user_id, board_category, board_title, board_content, board_created_at, board_updated_at) 
+values (#{user_id},#{board_category}, #{board_title}, #{board_content},#{board_created_at},#{board_updated_at})
 </insert>
+
+<select id="selectByNo" parameterType="int" resultMap="Board_InfoResultMap">
+select * from board_info
+    <where>board_no = #{board_no}</where>
+</select>
+
+<select id="selectByIdAndTitleAndCreated" parameterType="Board_InfoDto" resultMap="Board_InfoResultMap">
+select * from board_info
+    <where>
+        user_id = #{user_id} 
+        and 
+        board_title = #{board_title} 
+        and 
+        board_created_at = #{board_created_at}
+    </where>
+</select>
+
+<update id="update">
+update board_info
+    <set>
+        board_category = #{board_category}, 
+        board_title = #{board_title}, 
+        board_content = #{board_content}, 
+        board_updated_at = #{board_updated_at} 
+    </set>
+    <where>
+        board_no = #{board_no}
+    </where>
+</update>
+
+<select id="selectAllList" parameterType="java.util.HashMap" resultMap="Board_InfoResultMap">
+    select * from board_info
+        <where>
+            board_no &gt;= 1 + #{limit} * (#{page} - 1) 
+            and 
+            board_no &lt; 1 + #{limit} * #{page}
+        </where>
+</select>
+
+<select id="selectCountAll" resultType="int">
+    select count(board_no) from board_info
+</select>
 
 </mapper>

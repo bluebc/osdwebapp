@@ -5,7 +5,7 @@
     <title>오생단</title>
 
 
-<script src = "${pageContext.request.contextPath}/js/test/board.js"></script>
+<script src = "${pageContext.request.contextPath}/js/board.js"></script>
 </head>
 <body>
 

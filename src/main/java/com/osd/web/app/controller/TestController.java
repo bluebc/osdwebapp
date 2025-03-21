@@ -122,27 +122,4 @@ public class TestController {
         return "test/checkbox";
     }
 
-    @RequestMapping("/tboardwrite")
-    public String testBoardWritePage(HttpServletRequest request, Model model) {
-
-        HttpSession session = request.getSession();
-        String user_id = (String) session.getAttribute("login_user_id");
-
-        model.addAttribute("user_id", user_id);
-
-        return "test/boardWrite";
-    }
-
-    @ResponseBody
-    @PostMapping("/tPostBoard")
-    public Map<String, Object> testPostBoard(@RequestBody Board_InfoDto board_InfoDto) {
-        Map<String, Object> result = new HashMap<>();
-
-        int code = boardService.insertBoard(board_InfoDto);
-
-        result.put("code", code);
-
-        return result;
-    }
-
 }
