@@ -46,4 +46,12 @@ public class Board_InfoDao {
     public int selectCountAll() {
         return session.selectOne("Board_Info.selectCountAll");
     }
+    public int deleteBoard(Board_InfoDto board_InfoDto){
+        return session.delete("Board_Info.delete", board_InfoDto);
+    }
+    public int deleteBoard(int board_no){
+        Board_InfoDto board_InfoDto = new Board_InfoDto();
+        board_InfoDto.setBoard_no(board_no);
+        return deleteBoard(board_InfoDto);
+    }
 }

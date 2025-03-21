@@ -57,5 +57,8 @@ public class BoardService {
     public int getBoardCount() {
         return board_InfoDao.selectCountAll();
     }
+    public int deleteBoard(Board_InfoDto board_InfoDto){
+        return board_InfoDao.deleteBoard(board_InfoDto);
+    }
 
 }

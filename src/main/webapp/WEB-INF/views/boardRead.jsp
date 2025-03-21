@@ -12,6 +12,7 @@
 <h3>글 작성 테스트</h3>
 
 <input type = "hidden" id = "board_no" value = "${board_info.board_no}">
+<input type = "hidden" id = "user_id" value = "${board_info.user_id}">
 
 <div>
 분류 ${board_info.board_category}

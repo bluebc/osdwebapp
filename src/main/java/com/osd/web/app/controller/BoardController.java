@@ -144,7 +144,7 @@ public class BoardController {
     public Map<String, Object> getListPage(@RequestBody Map<String, Object> requestMap) {
         Map<String, Object> result = new HashMap<>();
         int board_no = (int) requestMap.get("board_no");
-        
+
         int limit = 10;
         int page = board_no / limit;
         if (board_no % limit > 0) {
@@ -154,6 +154,50 @@ public class BoardController {
         result.put("page", page);
         result.put("board_no", board_no);
 
+        return result;
+    }
+
+    // 삭제
+    @ResponseBody
+    @PostMapping("/deleteBoard")
+    public Map<String, Object> deleteBoard(HttpServletRequest request, @RequestBody Board_InfoDto board_InfoDto) {
+        Map<String, Object> result = new HashMap<>();
+        int code = 0;
+
+        // 오류 1. 게시글 정보 없음
+        if (board_InfoDto == null) {
+            code = -1;
+            result.put("code", code);
+            return result;
+        }
+
+        // 오류 2. 세션 정보 없음
+        HttpSession session = request.getSession();
+        String login_user_id = (String) session.getAttribute("login_user_id");
+        if (login_user_id == null) {
+            code = -2;
+            result.put("code", code);
+            return result;
+        }
+
+        // 오류 3. 게시글 작성자와 로그인 정보 불일치
+        String board__user_id = board_InfoDto.getUser_id();
+        if (!login_user_id.equals(board__user_id)) {
+            code = -3;
+            result.put("code", code);
+            return result;
+        }
+
+        // 오류 4. DB 삭제 실패
+        int deleted = boardService.deleteBoard(board_InfoDto);
+        if (deleted != 1) {
+            code = -4;
+            result.put("code", code);
+            return result;
+        }
+
+        code = deleted;
+        result.put("code", code);
         return result;
     }
 

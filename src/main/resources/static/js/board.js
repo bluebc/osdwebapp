@@ -51,9 +51,6 @@ function modifyBoard(board_no) {
     }
 }
 
-function deleteBoard(board_no) {
-    alert("delete");
-}
 
 function requestModify() {
 
@@ -178,4 +175,61 @@ async function getListPage() {
     const result = await response.json();
 
     return result;
+}
+
+
+async function deleteBoard() {
+
+    if (confirm("삭제하시겠습니까?")) {
+
+        const result1 = await requestDeleteBoard();
+
+
+        console.log(result1.code);
+
+        switch (result1.code) {
+            case -1:
+                alert("게시물 오류");
+                return;
+            case -2:
+                alert("로그인 세션 없음");
+                return;
+            case -3:
+                alert("작성자 정보 불일치");
+                return;
+            case -4:
+                alert("DB 오류");
+                return;
+            case 1:
+                alert("삭제 완료");
+                break;
+            default:
+                alert("스크립트 오류");
+        }
+
+        const result2 = await getListPage();
+
+        var page = result2.page;
+        window.location.href = "/boardlist?page=" + page;
+
+    }
+}
+
+
+async function requestDeleteBoard() {
+
+    var board_no = parseInt(document.getElementById("board_no").value);
+    var user_id = document.getElementById("user_id").value;
+
+    const response = await fetch("/deleteBoard", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ board_no: board_no, user_id: user_id })
+    }
+    );
+
+    const result = await response.json();
+
+    return result;
+
 }
