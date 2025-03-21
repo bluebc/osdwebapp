@@ -20,9 +20,6 @@
 <input type = "button" value = "다음" id = "next1" onclick = "nextList()">
 </div>
 
-<input type = "button" id = "boardWrite" value = "글작성" onclick = "boardWrite()">
-<br>
-
 no / title
 <div id = "listSection">
 

@@ -21,7 +21,7 @@
 <br>
 제목 ${board_info.board_title}
 <br>
-<div id = "modOrDel">
+<div id = "modOrDel" style="display:none">
 <input type = "button" onclick = "modifyBoard(${board_info.board_no})" value = "수정"> <input type = "button" onclick = "deleteBoard(${board_info.board_no})" value = "삭제">
 </div>
 <br>

@@ -55,6 +55,7 @@ public class LoginService {
             isLoggedIn = true;
         }
         sessionInfo.put("id", loginId);
+        sessionInfo.put(loginSessionName, loginId);
         sessionInfo.put("isLoggedIn", isLoggedIn);
         return sessionInfo;
     }

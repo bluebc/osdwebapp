@@ -24,4 +24,5 @@
 <br>
 <br>
 <input type = "button" value = "작성 완료" onclick = "posting()">
+<input type = "button" value = "취소" onclick = "cancelPosting()">
 
