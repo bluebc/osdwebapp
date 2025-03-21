@@ -116,8 +116,7 @@ public class SignupController {
         return "privacyAgree";
     }
 
-<<<<<<< HEAD
-=======
+
     @ResponseBody
     @PostMapping("/signup/insertUserTerm")
     public int signupterm(@RequestBody User_TermDto user_term) {
@@ -137,9 +136,7 @@ public class SignupController {
 
         return result;
     }
-    
 
->>>>>>> 4cb642954185ff1c57cec9440ded5d96ba255305
     @RequestMapping("/termspage")
     public String gtermspage() {
 
@@ -156,8 +153,3 @@ public class SignupController {
 
 }
 
-
-<<<<<<< HEAD
-=======
-
->>>>>>> 4cb642954185ff1c57cec9440ded5d96ba255305
