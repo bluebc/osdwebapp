@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.osd.web.app.dto.Term_ListDto;
 import com.osd.web.app.dto.User_InfoDto;
+import com.osd.web.app.dto.User_TermDto;
 import com.osd.web.app.service.LoginService;
 import com.osd.web.app.service.SignupService;
 
@@ -115,6 +116,30 @@ public class SignupController {
         return "privacyAgree";
     }
 
+<<<<<<< HEAD
+=======
+    @ResponseBody
+    @PostMapping("/signup/insertUserTerm")
+    public int signupterm(@RequestBody User_TermDto user_term) {
+        int result = 0;
+       System.out.println(result);
+        result = signupService.insertUser_Term(user_term);
+
+        return result;
+    }
+    
+    @ResponseBody
+    @PostMapping("/signup/insertMultiUserTerm")
+    public int signupterm(@RequestBody List<User_TermDto> user_term) {
+        int result = 0;
+       System.out.println(result);
+        result = signupService.insertMuitiUser_Term(user_term);
+
+        return result;
+    }
+    
+
+>>>>>>> 4cb642954185ff1c57cec9440ded5d96ba255305
     @RequestMapping("/termspage")
     public String gtermspage() {
 
@@ -132,3 +157,7 @@ public class SignupController {
 }
 
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> 4cb642954185ff1c57cec9440ded5d96ba255305

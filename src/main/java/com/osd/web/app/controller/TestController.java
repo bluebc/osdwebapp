@@ -111,8 +111,13 @@ public class TestController {
     }
 
     @RequestMapping("/wrongPath")
-    public String wrongPathPage(){
+    public String wrongPathPage() {
         return "wrongPath";
+    }
+
+    @RequestMapping("/tcheckbox")
+    public String testCheckBoxPage() {
+        return "test/checkbox";
     }
 
 }

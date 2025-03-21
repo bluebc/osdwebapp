@@ -24,4 +24,14 @@ public class User_TermDao {
 
     }
 
+    public int insertUser_Term(User_TermDto user_TermDto) {
+        return session.insert("User_Term.insert", user_TermDto);
+    }
+
+     
+    public int insertMuitiUser_Term(List<User_TermDto> user_TermDto) {
+        
+        return session.insert("User_Term.Multiinsert", user_TermDto);
+    }
+        
 }

@@ -37,7 +37,7 @@ public class LoginInterceptor implements HandlerInterceptor {
                 for (Cookie cookie : cookies) {
                     if ("autoLoginId".equals(cookie.getName())) {
                         user_id = cookie.getValue();
- 
+
                     }
                     if ("autoLoginToken".equals(cookie.getName())) {
                         autologin_token = cookie.getValue();
@@ -51,15 +51,18 @@ public class LoginInterceptor implements HandlerInterceptor {
                     autologin_InfoDto.setUser_id(user_id);
                     // 2) 쿠키 값 DB 확인
                     AutoLogin_InfoDto autoLogin_InfoFromDb = loginService.getAutoLogin_Info(autologin_InfoDto);
-                    if (autoLogin_InfoFromDb.getAutoLogin_token() != null) {
-                        // 3) 토큰 만료 확인
-                        if (autoLogin_InfoFromDb.getAutoLogin_expiry().isAfter(LocalDateTime.now())) {
-                            // 4) 세션
-                            session.setAttribute("login_user_id", autoLogin_InfoFromDb.getUser_id());
-                        } else {
-                            loginService.deleteAuto_login_TokenByTokenAndId(autologin_InfoDto);
-                        }
+                    if (autoLogin_InfoFromDb != null) {
 
+                        if (autoLogin_InfoFromDb.getAutoLogin_token() != null) {
+                            // 3) 토큰 만료 확인
+                            if (autoLogin_InfoFromDb.getAutoLogin_expiry().isAfter(LocalDateTime.now())) {
+                                // 4) 세션
+                                session.setAttribute("login_user_id", autoLogin_InfoFromDb.getUser_id());
+                            } else {
+                                loginService.deleteAuto_login_TokenByTokenAndId(autologin_InfoDto);
+                            }
+
+                        }
                     }
                 }
             }

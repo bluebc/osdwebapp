@@ -22,7 +22,10 @@
     <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
     <script src="http://code.jquery.com/jquery-latest.min.js"></script>
 
+<<<<<<< HEAD
     <script src = "js/privacyAgree.js"></script>
+=======
+>>>>>>> 4cb642954185ff1c57cec9440ded5d96ba255305
     <script src = "${pageContext.request.contextPath}/js/signup.js"></script>
     
 
@@ -299,6 +302,7 @@
 
                     <div class="lineDivide"></div>
 
+<<<<<<< HEAD
 
 
                     <!-- 이용약관 DB -->
@@ -306,6 +310,12 @@
 
                     <!-- 이용약관 -->
                     <%-- <div class="t-c">
+=======
+                    <!-- 이용약관 DB -->
+                   <div id="list"></div>
+                     <!-- 이용약관 -->
+                  <!--  <div class="t-c">
+>>>>>>> 4cb642954185ff1c57cec9440ded5d96ba255305
                         <div class="tcFrom">
 
 
@@ -360,14 +370,22 @@
                             </div>
                             
                         </div>
+<<<<<<< HEAD
                     </div> --%>
 
+=======
+                    </div>-->
+>>>>>>> 4cb642954185ff1c57cec9440ded5d96ba255305
                     <!-- 가입버튼 -->
                     <div class="signUpButton">
                         <button class="join" type="submit" onclick="signup()">
                             <span>가입하기</span>
                         </button>
                     </div>
+<<<<<<< HEAD
+=======
+                    
+>>>>>>> 4cb642954185ff1c57cec9440ded5d96ba255305
             </div>
     </div>
 </div>
