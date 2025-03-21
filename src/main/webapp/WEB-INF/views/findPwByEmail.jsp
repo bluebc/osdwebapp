@@ -13,9 +13,9 @@
 <div id = "section">
         <input type = "text", id = "user_id" placeholder = "user_id">
         <br>
-        <input type = "text", id = "user_email" placeholder = "email">
+        <%-- <input type = "text", id = "user_email" placeholder = "email"> --%>
         <br>
-        <input type = "button" value = "인증 이메일 요청" onclick = "requestAuthMail()">
+        <input type = "button" value = "인증 이메일 요청" onclick = "goAuthEmail()">
 </div>
 
 

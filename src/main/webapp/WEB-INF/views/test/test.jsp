@@ -89,7 +89,6 @@ login id : ${loginId}
 <br>
 
 <hr>
-<a href = "sms:01068662143?body=osdmessagetest">auth message test</a>
 
 <br>
 <br>

@@ -4,18 +4,17 @@
 <head>
     <title>오생단</title>
 
-<script src = "${pageContext.request.contextPath}/js/findLoginInfo.js"></script>
+<script src = "${pageContext.request.contextPath}/js/authEmail.js"></script>
 </head>
 <body>
 
-<h3>find id by email</h3>
+<h3>authEmailRequest</h3>
 
 <div id = "section">
 <input type = "hidden", id = "user_id" value = "">
         <input type = "text", id = "user_email" placeholder = "email">
         <br>
-        <%-- <input type = "button" value = "인증 이메일 요청" onclick = "requestAuthMail()"> --%>
-        <input type = "button" value = "다음" onclick = "goAuthEmail()">
+        <input type = "button" value = "인증 이메일 요청" onclick = "requestEmail()">
 </div>
 
 
