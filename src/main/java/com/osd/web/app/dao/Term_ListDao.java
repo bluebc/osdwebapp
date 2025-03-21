@@ -29,8 +29,4 @@ public class Term_ListDao {
         return session.selectOne("Term_List.getTerm_ListByid",term_id);
 
     }
-<<<<<<< HEAD
 }
-=======
-}
->>>>>>> 4cb642954185ff1c57cec9440ded5d96ba255305
