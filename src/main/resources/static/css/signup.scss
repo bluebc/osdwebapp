@@ -11,6 +11,8 @@ header{
     font-size: 0.8rem;
 }
 
+
+
 .container{
     padding: 15rem 0 15rem;
     min-height: 800px;
@@ -19,7 +21,7 @@ header{
         width: 750px;
         margin: 0px auto;
         background-color: rgb(255, 255, 255);
-        .pc-type{
+        .fromSignup{
             margin-bottom: 50px;
             font-size: 2rem;
             line-height: 35px;
@@ -28,54 +30,6 @@ header{
             letter-spacing: -1px;
             color: rgb(80, 80, 80);
         }
-        .mobil-type{
-            display: none;
-            position: relative;
-                z-index: 2;
-                justify-content: space-between;
-                align-items: center;
-                width: 100%;
-                height: 5rem;
-                background: #fff;
-                color: #1d1d1d;
-                z-index: 1;
-                .tit-wrap{
-                    display: flex;
-                    align-items: center;
-                    .btn-back{
-                        width: 4.8rem;
-                        height: 5.3rem;
-                        display: flex;
-                        align-items: center;
-                        justify-content: center;
-                        margin-left: -2rem;
-                        background: url(../img/닫기.svg) no-repeat 50% 50% / .8rem 1.4rem;
-                        .hidden{
-                            overflow: hidden;
-                            clip: rect(0, 0, 0, 0);
-                            width: 1px;
-                            height: 1px;
-                            margin: -1px;
-                            padding: 0;
-                            border: 0;
-                        }
-                    }
-                    .header-sub-tit{
-                        overflow: hidden;
-                        text-align: left;
-                        font-size: 2rem;
-                    }
-                }
-                .header-util{
-                    .btn-home{
-                        img{
-                            width: 50px;
-                            height: 50px;
-                        }
-                    }
-                }
-        }
-
         #signupSection{
             .required{
                 padding-bottom: 10px;
@@ -125,10 +79,7 @@ header{
                                     outline: none;
                                     box-sizing: border-box;
                                 }
-                                .m-duplication{
-                                    display: none;
-                                    
-                                }
+
                                 // 이메일
                                 .mail-box{
                                     position: relative;
@@ -332,7 +283,9 @@ header{
 
 
                         }
-                        
+                        .m-duplication{
+                            display: none;
+                        }
                         .m_address{
                             .address_postcode{
                                 overflow: hidden;
@@ -511,256 +464,3 @@ header{
         }
     }
 }
-
-
-/* 768px*/
-@include itablet{
-    .header{display: none;}
-
-    .container{
-        padding: 0;
-        .content{
-            width: 100%;
-            padding: 0 2rem;
-            margin: 40px auto 0;
-            .pc-type{display: none;}
-            .mobil-type{
-                display: flex;
-                
-            }
-            #signupSection{
-                .list-form-area {
-                    .form-item{
-                        flex-direction: column;
-                        .form-tit{
-                            padding: 0 0 12px
-                        }
-                        .blank-space{
-                            display: none;
-                        }
-                        .form-cont{
-                            .cont-box{
-                                .save-inp{
-                                    display: flex;
-                                    .m-duplication{
-                                        display: block;
-                                        padding: 0 1rem;
-                                        height: 46px;
-                                        border-radius: 4px;
-                                        border: 1px solid rgb(221, 221, 221);
-                                        .btn-point2{
-                                            border: none;
-                                            padding: 0;
-                                        }
-                                    }
-                                    .mail-box{
-                                        width: 100%;
-                                    }
-                                    
-                                } 
-                            } 
-                            .m_address{
-                                .address_postcode{
-                                    input{
-                                        width: 100%;
-                                    }
-                                }
-                            } 
-                        }
-                    }
-                    
-                }
-                .t-c{
-                    .tcFrom{
-                        flex-direction: column;
-                        .tc-title{
-                            padding-bottom: 2rem;
-                        }
-                    }
-                } 
-            }
-        }
-    }
-
-    .footer{display: none;}
-}
-
-@include itablet-landscape{
-    .header { display: none; }
-    .container{
-        padding: 0;
-        min-height: auto;
-        .content{
-            margin: 60px auto 4rem;
-            .pc-type{display: none;}
-            .mobil-type{
-                display: flex;
-            }
-        }
-    }
-    .footer{display: none;}
-}
-
-
-
-/* 425px */
-@include galaxy{
-    .container{
-        .content{
-            
-            .mobil-type{
-                .tit-wrap{
-                    .btn-back{
-                        margin-left: 0rem;
-                        width: 2rem;
-                        height: 3rem;
-                        background: url(../img/닫기.svg) no-repeat 50% 50% / 1rem 1rem;
-                        .hidden{}
-                    }
-                    .header-sub-tit{
-                        font-size: 1.2rem;
-                    }
-                }
-                .header-util{
-                    .btn-home{
-                        img{
-                            width: 30px;
-                            height: 30px;
-                        }
-                    }
-                }
-            }
-            #loginForm{
-                .check{
-                    .inp{
-                        label{
-                            .ftext{
-                                font-size: 0.8rem;
-                                font-weight: 300;
-                            }
-                            &::before{
-                                content: "";
-                                position: absolute;
-                                left: 0;
-                                top: 0;
-                                width: 1rem;
-                                height: 1rem;
-                                border-radius: 50%;
-                                background: #fff url(../img/check.svg) no-repeat 0 0 / 1rem auto;
-                                
-                            }
-                        }
-                    }
-                }
-                .boxBtnGroup{
-                    .btnInp{
-                        input{
-                            font-size: 1rem;
-                        }
-                    }
-                }
-            }
-            #signupSection{
-                .list-form-area {
-                    .form-item{
-                        padding: 10px 0;
-                        .form-cont{
-                            .cont-box{
-                                .save-inp{
-                                    
-                                    .m-duplication{
-                                        padding: 0 0.5rem;
-                                        
-                                    }
-                                }
-                                .validator{
-                                    padding: 0 1.2rem;
-                                    &::before{
-                                        width: 1rem;
-                                        height: 1rem;
-                                        background-size: 1rem auto;
-                                    }
-                                    
-                                }
-                                .box-gender {
-                                    .gender-element {
-                                        .r-blank{
-                                            min-width: 1rem;
-                                            min-height: 1rem;
-                                        }
-                                    }
-                                }
-                            }
-                        }
-                    }
-                }
-
-                .t-c{
-                    .tcFrom{
-                        padding: 1rem 0;
-                        .tc-content {
-                            .service-box {
-                                .tc-arrow{
-                                    font-size: 0;
-                                    padding-right: 0;
-                                    &::after{
-                                        position: relative;
-                                        top: -8px;
-                                    }
-                                }
-                                .tc-service {
-                                    label{    
-                                        padding-left: 1.3rem;
-                                        &::before{
-                                            width: 1rem;
-                                            height: 1rem;
-                                            background: #fff url(../img/check.svg) no-repeat center / 1rem auto;
-                                            }
-                                    }
-                                    .tc-text{
-                                        font-size: 0.9rem;
-                                        span{font-size: 0.7rem;}
-                                        
-                                    }
-                                    
-                                }
-                            }
-                        }
-                    }
-                }
-            } 
-        }
-    }
-}
-
-
-
-/* 344px */
-@include iphone{
-    .container {
-        .content {
-            #signupSection {
-                .list-form-area {
-                    .form-item {
-                        .form-cont {
-                            .cont-box {
-                                .save-inp {
-                                    .m-duplication {
-                                        .btn-point2{
-                                            font-size: 0.8rem;
-                                        }
-                                    }
-                                }
-                                .validator{
-                                    font-size: 0.75rem;
-                                    padding: 0 .5rem 0 1.5rem;
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-        }
-    }
-}
-

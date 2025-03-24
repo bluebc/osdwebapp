@@ -28,13 +28,6 @@
   }
 }
 
-// 아이패드(가로 모드)
-@mixin itablet-landscape {
-  @media screen and (min-width: #{$breakpoint-itablet}) and (max-width: #{$breakpoint-tablet}) and (orientation: landscape) {
-    @content;
-  }
-}
-
 // 모바일
 @mixin mobile {
   @media screen and (max-width: #{$breakpoint-mobile}) {
@@ -42,15 +35,21 @@
   }
 }
 
+// 모바일2
+@mixin mobile2 {
+  @media screen and (max-width: #{$breakpoint-mobile2}) {
+    @content;
+  }
+}
 
-// 모바일2 갤럭시
+// 모바일3 갤럭시
 @mixin galaxy {
   @media screen and (max-width: #{$breakpoint-galaxy}) {
     @content;
   }
 }
 
-// 모바일3 아이폰
+// 모바일4 아이폰
 @mixin iphone {
   @media screen and (max-width: #{$breakpoint-iphone}) {
     @content;

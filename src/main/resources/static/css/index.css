@@ -355,99 +355,6 @@ main #top-btn {
   color: #333333;
 }
 
-@media screen and (max-width: 1440px) {
-  main #health .content .he-img .he-box {
-    right: 5rem;
-  }
-  main #health .content .he-img .he-box .he-tit {
-    bottom: 0;
-  }
-  main #shoppingmall .content .shop-img {
-    margin-right: 1rem;
-  }
-  main #shoppingmall .content .shop-img img {
-    height: auto;
-  }
-  main #shoppingmall .content .shop-tet .shop-now a {
-    font-size: 1.3rem;
-  }
-  main #resetprogram .content {
-    justify-content: center;
-  }
-  main #resetprogram .content .rst-tet {
-    width: 100%;
-    margin-left: 0;
-    text-align: right;
-  }
-  main #resetprogram .content .ret-img {
-    width: 100%;
-    margin-left: 1rem;
-    text-align: left;
-  }
-  main #resetprogram .content .ret-img img {
-    width: 600px;
-    height: 400px;
-  }
-  main #cs .content .cs-tet article h2 {
-    font-size: 2rem;
-  }
-  main #cs .content .cs-tet .cs-abs1 {
-    top: 13rem;
-    right: 5rem;
-  }
-  main #cs .content .cs-tet .cs-abs2 {
-    top: 30rem;
-    left: 6rem;
-  }
-}
-@media screen and (max-width: 1280px) {
-  main #story .content article .st-tet {
-    padding: 0 1rem;
-  }
-  main #story .content article .st-tet h3 {
-    font-size: 2rem;
-  }
-  main #shoppingmall .content .shop-tet h4 {
-    font-size: 1rem;
-  }
-  main #shoppingmall .content .shop-tet .shop-now a {
-    padding: 2rem;
-  }
-  main #resetprogram .content .rst-tet h2 {
-    font-size: 2.7rem;
-  }
-  main #resetprogram .content .ret-img img {
-    width: 500px;
-    height: 350px;
-  }
-}
-@media screen and (max-width: 1024px) {
-  main #story .content article .st-tet h2 {
-    font-size: 3rem;
-  }
-  main #story .content article .st-tet h3 {
-    font-size: 1.8rem;
-  }
-  main #shoppingmall .content .shop-tet {
-    padding: 0 6rem 0 0;
-  }
-  main #shoppingmall .content .shop-tet h3 {
-    font-size: 2rem;
-  }
-  main #shoppingmall .content .shop-tet h2 {
-    font-size: 3rem;
-  }
-  main #resetprogram .content .rst-tet h2 {
-    font-size: 2rem;
-  }
-  main #resetprogram .content .rst-tet h4 {
-    font-size: 1rem;
-  }
-  main #resetprogram .content .ret-img img {
-    width: 400px;
-    height: 301px;
-  }
-}
 /* 768px*/
 @media screen and (max-width: 768px) {
   main #health {
@@ -625,8 +532,6 @@ main #top-btn {
   main #resetprogram .content .ret-img img {
     border-radius: 50%;
     max-width: 100%;
-    width: 500px;
-    height: 500px;
   }
   main #cs .content {
     height: 50vh;
