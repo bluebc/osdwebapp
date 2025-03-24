@@ -69,8 +69,8 @@ public class LoginService {
         // cookie.setMaxAge(10*60); // 10분
 
         // 보안을 강화하는 설정
-        cookie.setSecure(true); // HTTPS에서만 쿠키 전송 (서버가 HTTPS 연결일 때만)
-        cookie.setHttpOnly(true); // JavaScript에서 쿠키를 접근할 수 없도록 설정
+        // cookie.setSecure(true); // HTTPS에서만 쿠키 전송 (서버가 HTTPS 연결일 때만)
+        // cookie.setHttpOnly(true); // JavaScript에서 쿠키를 접근할 수 없도록 설정
         // cookie.setSameSite("Strict"); // SameSite 설정 (크로스사이트 요청에서 쿠키를 전송하지 않음)
 
         return cookie;
