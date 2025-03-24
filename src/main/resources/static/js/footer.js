@@ -7,6 +7,7 @@ $(function () {
 // 아코디언 기능 
 document.querySelectorAll('.accordion-button').forEach(button => {
     button.addEventListener('click', () => {
+        console.log('-');
         const content = button.nextElementSibling;
         const isOpen = content.style.maxHeight && content.style.maxHeight !== '0px';
 

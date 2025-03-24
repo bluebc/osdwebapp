@@ -21,7 +21,22 @@ $(document).ready(function(){
       //init: slideClone, 
     },
     breakpoints: {
-    769: { slidesPerView: 3 },
+    1440:{
+      spaceBetween: 300,
+      slidesPerView: 3,
+      slidesOffsetBefore: 0,
+    },  
+    1024: {
+      spaceBetween: 200,
+      slidesPerView: 2,
+      slidesOffsetBefore: 200,
+    },
+    769:{
+      spaceBetween: 0,
+      slidesPerView: 1,
+      slidesOffsetBefore: 100,
+      slidesOffsetAfter: 0,
+    }
     }
   });  
 
@@ -37,8 +52,13 @@ $(document).ready(function(){
       centeredSlides: true,
       breakpoints: {
         // 화면의 넓이가 768px 
-        769: {
-          slidesPerView: 5
+        1440:{
+          slidesPerView: 3,
+          spaceBetween: 200,
+        },
+        1024: {
+          slidesPerView: 3,
+          spaceBetween: 200,
         },
         340: {
           slidesPerView: 1
