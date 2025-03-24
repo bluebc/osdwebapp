@@ -1,7 +1,6 @@
 addEventListener("DOMContentLoaded", function () {
 
     const path = window.location.pathname;
-    // console.log(path);
 
     switch (path) {
         case "/boardread":
@@ -253,26 +252,6 @@ function boardWrite() {
 function cancelPosting() {
     window.history.back();
 }
-
-// async function showModOrDel() {
-
-//     const result = await getSession();
-
-//     if (result.login_user_id != null || result.login_user_id != "") {
-//         document.getElementById("modOrDel").style.display = "true";
-//     }
-// }
-
-// async function getSession() {
-//     const response = await fetch("/getsession", {
-//         method: "POST",
-//         headers: { "Content-Type": "application/json" },
-//         body: {}
-//     }
-//     );
-
-//     const result = await response.json();
-// }
 
 function showModOrDel() {
 

@@ -15,7 +15,7 @@ import lombok.RequiredArgsConstructor;
 public class WebConfig implements WebMvcConfigurer {
 
     private final LoginInterceptor loginInterceptor;
-    private final FindLoginInfoInterceptor findLoginInfoInterceptorl;
+    private final FindLoginInfoInterceptor findLoginInfoInterceptor;
     private final AuthInterceptor authInterceptor;
 
     @Override
@@ -23,7 +23,7 @@ public class WebConfig implements WebMvcConfigurer {
         registry.addInterceptor(loginInterceptor)
                 .addPathPatterns("/**"); // 모든 경로에 적용
 
-        registry.addInterceptor(findLoginInfoInterceptorl)
+        registry.addInterceptor(findLoginInfoInterceptor)
                 .addPathPatterns("/find/result/**");
 
         registry.addInterceptor(authInterceptor)
