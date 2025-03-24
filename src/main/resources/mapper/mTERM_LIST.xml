@@ -34,4 +34,5 @@
 		    term_id = #{user_id}
 		   </where> 
    		 </select> 	
+		
 </mapper>

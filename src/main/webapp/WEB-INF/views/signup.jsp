@@ -21,11 +21,6 @@
     <!--js-->
     <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
     <script src="http://code.jquery.com/jquery-latest.min.js"></script>
-
-<<<<<<< HEAD
-    <script src = "js/privacyAgree.js"></script>
-=======
->>>>>>> 4cb642954185ff1c57cec9440ded5d96ba255305
     <script src = "${pageContext.request.contextPath}/js/signup.js"></script>
     
 
@@ -302,90 +297,16 @@
 
                     <div class="lineDivide"></div>
 
-<<<<<<< HEAD
-
 
                     <!-- 이용약관 DB -->
                     <div id="list"></div>
-
-                    <!-- 이용약관 -->
-                    <%-- <div class="t-c">
-=======
-                    <!-- 이용약관 DB -->
-                   <div id="list"></div>
-                     <!-- 이용약관 -->
-                  <!--  <div class="t-c">
->>>>>>> 4cb642954185ff1c57cec9440ded5d96ba255305
-                        <div class="tcFrom">
-
-
-                            <div class="tc-title">
-                                <label class="tcLab">
-                                    이용약관동의<span class="symbol">*</span>
-                                </label>
-                            </div>
-
-                            <div class="tc-content">
-                                <div class="service-box">
-                                    <div class="tc-service">
-                                    <input type="checkbox" id="chk_all">
-                                    <label for="chk_all"><span class="tc-text">전체 동의합니다.</span></label>
-                                    </div>
-                                </div>
-                                <div class="service-box">
-                                    <div class="tc-service">
-                                        <input type="checkbox" name='term1' id='term1' class="chk_each">
-                                        <label for='term1'><span class="tc-text">서비스 이용약관 동의<span> (필수)</span></span></label>
-                                    </div>
-                                    <button type="button" id="modal-open" class="tc-arrow" onclick="showTermId('0001')" >약관보기</button>
-                                    
-                                </div>
-                                <div class="service-box">
-                                    <div class="tc-service">
-                                        <input type="checkbox" name='term2' id='term2' class="chk_each">
-                                        <label for='term2'><span class="tc-text">개인정보 수집 동의<span> (선택)</span></span></label>
-                                    </div>
-                                    <button class="tc-arrow" onclick="showTermId('0002')">약관보기</button>
-
-                                </div>
-                                <div class="service-box">
-                                    <div class="tc-service">
-                                        <input type="checkbox"  name='term3' id='term3' class="chk_each">
-                                        <label for='term3'><span class="tc-text">정보/이벤트 메일 수신에 동의<span> (선택)</span></span></label>
-                                    </div>
-                                </div>
-                                <div class="service-box">
-                                    <div class="tc-service">
-                                        <input type="checkbox"  name='term4' id='term4' class="chk_each">
-                                        <label for='term4'><span class="tc-text">정보/이벤트 SMS 수신에 동의<span> (선택)</span></span></label>
-                                    </div>
-                                </div>
-                                <div class="service-box">
-                                    <div class="tc-service">
-                                        <input type="checkbox"  name='term5' id='term5' class="chk_each">
-                                        <label for='term5'><span class="tc-text">만 14세 이상입니다.<span> (필수)</span></span></label>
-                                    </div>
-                                </div>
-
-                            </div>
-                            
-                        </div>
-<<<<<<< HEAD
-                    </div> --%>
-
-=======
-                    </div>-->
->>>>>>> 4cb642954185ff1c57cec9440ded5d96ba255305
                     <!-- 가입버튼 -->
                     <div class="signUpButton">
                         <button class="join" type="submit" onclick="signup()">
                             <span>가입하기</span>
                         </button>
                     </div>
-<<<<<<< HEAD
-=======
-                    
->>>>>>> 4cb642954185ff1c57cec9440ded5d96ba255305
+
             </div>
     </div>
 </div>

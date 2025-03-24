@@ -28,7 +28,6 @@ public class SignupService {
     private User_TermDao user_TermDao;
 
 
-
     //아이디 중복 여부 체크
     public int existsUser_InfoById(User_InfoDto user_InfoDto) {
         int result = 0;
@@ -66,7 +65,7 @@ public class SignupService {
         return result;
     }
 
-
+    
     //약관 정보 리스트
     public List<Term_ListDto> getTerm_ListAll() {
 
@@ -114,3 +113,4 @@ public class SignupService {
     }
         
 }
+    
