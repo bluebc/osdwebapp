@@ -398,6 +398,173 @@ main{
   }
 
 }
+// 1440px
+@include desktop{
+  main {
+    #health{
+      .content {
+        .he-img {
+          .he-box{
+            right: 5rem;
+            .he-tit{
+              bottom: 0;
+            }
+          }
+        }
+      }
+    }
+    #shoppingmall {
+      .content {
+        .shop-img {
+          margin-right: 1rem;
+          img{
+            height: auto;
+          }
+        }
+        .shop-tet {
+          .shop-now {
+            a{
+              font-size: 1.3rem;
+            }
+          }
+        }
+      }
+    }
+    #resetprogram {
+      .content{
+        justify-content: center;
+        .rst-tet{
+          width: 100%;
+          margin-left: 0;
+          text-align: right;
+        }
+        .ret-img{
+          width: 100%;
+          margin-left: 1rem;
+          text-align: left;
+          img {
+            width: 600px;
+            height: 400px;
+          }
+        } 
+      }
+      
+    }
+    #cs {
+      .content {
+        .cs-tet {
+          article {
+            h2{
+              font-size: 2rem;
+            }
+          }
+          .cs-abs1{
+            top: 13rem;
+            right: 5rem;
+          }
+          .cs-abs2{
+            top: 30rem;
+            left: 6rem;
+          }
+        }
+      }
+    }
+  }
+}
+@include laptop{
+  main {
+    #story {
+      .content {
+        article {
+          .st-tet{
+            padding: 0 1rem;
+            h3{
+              font-size: 2rem;
+            }
+          }
+        }
+      }
+    }
+    #shoppingmall {
+      .content {
+        .shop-tet {
+          h4{
+            font-size: 1rem;
+          }
+          .shop-now {
+            a{
+              padding: 2rem;
+            }
+          }
+        }
+      }
+    }
+    #resetprogram{
+      .content {
+        .rst-tet {
+          h2{
+            font-size: 2.7rem;
+          }
+        }
+        .ret-img{
+          img{
+            width: 500px;
+            height: 350px;
+          }
+        }
+      }
+    }
+  }
+}
+@include tablet{
+  main{
+    #story {
+      .content {
+        article {
+          .st-tet{
+            h2{
+              font-size: 3rem;
+            }
+            h3{
+              font-size: 1.8rem;
+            }
+          } 
+        }
+      }
+    }
+    #shoppingmall {
+      .content {
+        .shop-tet{
+          padding: 0 6rem 0 0;
+          h3{
+            font-size: 2rem;
+          }
+          h2{
+            font-size: 3rem;
+          }
+        }
+      }
+    }
+    #resetprogram {
+      .content {
+        .rst-tet {
+          h2{
+            font-size: 2rem;
+          }
+          h4{
+            font-size: 1rem;
+          }
+        }
+        .ret-img{
+          img{
+            width: 400px;
+            height: 301px;
+          }
+        }
+      }
+    }
+  }
+}
 
 /* 768px*/
 @include itablet{  
@@ -609,6 +776,8 @@ main{
                   img{
                       border-radius: 50%;
                       max-width: 100%;
+                      width: 500px;
+                      height: 500px;
                   }
               }
           }
@@ -669,7 +838,7 @@ main{
 }
 
 /* 576px */
-@include mobile2{
+@include mobile{
   main{
       #health{
           .content{

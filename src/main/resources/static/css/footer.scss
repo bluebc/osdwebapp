@@ -99,6 +99,38 @@ footer{
       
 }
 
+@include desktop{
+  footer{
+    .footer_info{
+      padding: 1rem 7rem
+    }
+  } 
+}
+@include tablet{
+  footer{
+    .footer_info{
+      .ft-fot{
+        padding: 0 6rem;
+        align-items: flex-start;
+        flex-direction: column;
+        .ft_logo{
+          flex-direction: row;
+          gap: 1rem;
+        }
+        .ft_info{
+          width: 100%;
+        }
+        .ft_link{
+          width: 100%;
+          li{
+            align-items: flex-start;
+          }
+        }
+      }
+    }
+  } 
+}
+
 // 웹모바일 768px
 @include itablet{
   footer{
@@ -117,6 +149,7 @@ footer{
           flex-direction: column-reverse;
           align-items: flex-start;
           margin-bottom: 3rem;
+          padding: 0;
           .ft_logo{
               width: 100%;
               flex-direction: row;
@@ -352,48 +385,7 @@ footer{
 
 // 425px
 @include galaxy{
-    header{
-      .top-banner{
-        img{
-          height: 100%;
-        }
-      } 
-      .hd_all{
-          .hd_m {
-            height: 8.5rem;
-            .hd_info {
-              .hd_logo{
-                left: 1rem;
-                top: 1rem;
-                a{
-                  
-                }
-              }
-              .gnbbar{
-                top: 6rem;
-                .group_option{
-                  .on{
-                    margin-top: 1rem;
-                  }
-                } 
-              }
-              .hd_log_m{
-                top: 1rem;
-                right: 1rem;
-                .hd_util{
-                  a {
-                    margin-left: 0.4rem;
-                    img{
-                      width: 22px;
-                    }
-                  }
-                } 
-              }
-            }
-          }
-          
-      }
-    }
+
     footer{
       .footer_info{
         padding: 0 2rem;
@@ -420,6 +412,7 @@ footer{
         .ft-fot{
           margin-bottom: 5rem;
             .ft_info{
+              font-size: 1rem;
                 .ft_cs{
                     span{
                         line-height: 1.2;
@@ -461,6 +454,23 @@ footer{
                   .sns8{background-position: -14rem 0;}
               } 
           } 
+        }
+        .ft_info{
+          margin-bottom: 0;
+          font-size: 0.9rem;
+        }
+        .ft-fot{
+          .ft_logo{
+            gap: 0;
+            a{
+              img{
+                width: 60px;
+              }
+            }
+          }
+        } 
+        .ft_link{
+          font-size: 0.9rem;
         }
         
       }
