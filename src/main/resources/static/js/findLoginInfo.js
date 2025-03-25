@@ -63,7 +63,64 @@ async function goAuthEmail() {
     const result = await response.json();
     console.log(result.code);
     if (result.code == 1) {
-        window.location.href = "/auth/email/request";
+        // window.location.href = "/auth/email/request";
+        // authEamil.js
+        await requestEmail();
     }
+
+    // authEamil.js
+    // ========================================
+
+    // 인증 이메일 요청
+    async function requestEmail() {
+
+        var user_email = document.getElementById("user_email").value;
+        if (user_email == null || user_email == "") {
+            alert("이메일을 입력하세요");
+            return;
+        }
+
+        const result = await postRequest(user_email);
+        switch (result.code) {
+            case 0:
+                alert("서버 오류");
+                return;
+            case -1:
+                alert("이메일과 맞는 회원정보 없음");
+                return;
+            case -2:
+                alert("DB 오류");
+                return;
+            case -3:
+                alert("이메일 발송 실패");
+                return;
+            case 1:
+                alert("인증 이메일이 발송되었습니다.");
+                break;
+            default:
+                alert("script 오류");
+                return;
+        }
+        window.location.href = "/auth/email/verify";
+    }
+
+    // 이메일 요청 보내기
+    async function postRequest(user_email) {
+
+        const response = await fetch("/auth/email/postRequest", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({
+                user_email: user_email
+            })
+        });
+
+        const result = await response.json();
+
+        return result;
+    }
+
+    // authEamil.js
+    // ========================================
 
 }
