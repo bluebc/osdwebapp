@@ -14,8 +14,8 @@ public class Faq_CategoryDao {
     @Autowired
     private SqlSession session;
 
-public List<Faq_CategoryDto> selectAll(){
-    return session.selectList("Faq_Category.selectAll");
-}
+    public List<Faq_CategoryDto> selectAll() {
+        return session.selectList("Faq_Category.selectAll");
+    }
 
 }
