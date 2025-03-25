@@ -1,7 +1,7 @@
 var categoryList = [];
 var currentCate_id = 0;
 var faqList = [];
-var cuurentKeyword;
+var currentKeyword;
 
 // 최초 실행
 document.addEventListener("DOMContentLoaded", async function () {
@@ -10,13 +10,13 @@ document.addEventListener("DOMContentLoaded", async function () {
     // cate_sort 가장 빠른 id값
     // currentCate_id = categoryList[0].cate_id;
     setCategories(categoryList);
-    showFaqList(currentCate_id, cuurentKeyword);
+    showFaqList(currentCate_id, currentKeyword);
 });
 
 // 카테고리 선택
 function selectCategory(cate_id) {
     currentCate_id = cate_id;
-    showFaqList(currentCate_id, cuurentKeyword);
+    showFaqList(currentCate_id, currentKeyword);
 }
 
 // // 전체 카테고리 버튼 나열
@@ -138,7 +138,7 @@ function setFaqListTag(list) {
 function searchQuestion() {
 
     var keyword = document.getElementById("keyword").value;
-    cuurentKeyword = keyword;
+    currentKeyword = keyword;
 
     showFaqList(currentCate_id, keyword);
 }
