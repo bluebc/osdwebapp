@@ -2,41 +2,28 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="Faq_List">
 
-<resultMap id="AuthEmailResultMap" type="com.osd.web.app.dto.Auth_EmailDto">
-    <result column="USER_EMAIL" property="user_email"/>
-	<result column="AUTH_CODE" property="auth_code"/>
-    <result column="AUTH_EXPIRY" property="auth_expiry"/>
-    <result column="AUTH_PURPOSE" property="auth_purpose"/>
-    <result column="AUTH_CONFIRMED" property="auth_confirmed"/>
+<resultMap id="FaqListResultMap" type="com.osd.web.app.dto.Faq_ListDto">
+    <result column="FAQ_ID" property="faq_id"/>
+	<result column="FAQ_SUBJECT" property="faq_subject"/>
+    <result column="FAQ_CONTENT" property="faq_content"/>
+    <result column="CATE_ID" property="cate_id"/>
+    <result column="FAQ_SORT" property="faq_sort"/>
+    <result column="FAQ_CREATED_AT" property="faq_created_at"/>
+    <result column="FAQ_UPDATED_AT" property="faq_updated_at"/>
 </resultMap>
 
-
-<insert id="insert" parameterType="Auth_EmailDto">
-    INSERT INTO AUTH_EMAIL(USER_EMAIL, AUTH_CODE, AUTH_EXPIRY, AUTH_PURPOSE, AUTH_CONFIRMED) 
-        VALUES(#{user_email}, #{auth_code}, #{auth_expiry}, #{auth_purpose}, #{auth_confirmed})
-</insert>
-
-<select id="selectByEmailAndCode" parameterType="Auth_EmailDto" resultMap="AuthEmailResultMap">
-    SELECT USER_EMAIL, AUTH_CODE, AUTH_EXPIRY FROM AUTH_EMAIL 
-        WHERE AUTH_EXPIRY = (SELECT MAX(AUTH_EXPIRY) as AUTH_EXPIRY FROM AUTH_EMAIL WHERE USER_EMAIL = #{user_email})
+<select id="selectByCateIdAndKeyword" parameterType="java.util.Map" resultMap="FaqListResultMap">
+    select * from faq_list 
+        <where>
+        <!-- cate_id = 0 => 전체 카테고리 조회 -->
+            <if test="cate_id!=0">
+                cate_id = #{cate_id}
+                and
+            </if>
+            (faq_subject like concat('%', #{keyword}, '%')
+                or
+                faq_content like concat('%', #{keyword}, '%'))
+        </where>
 </select>
-
-<select id="selectByEmail" parameterType="Auth_EmailDto" resultMap="AuthEmailResultMap">
-    SELECT USER_EMAIL, AUTH_CODE, AUTH_EXPIRY, AUTH_PURPOSE, AUTH_CONFIRMED FROM AUTH_EMAIL 
-        WHERE AUTH_EXPIRY = (SELECT MAX(AUTH_EXPIRY) as AUTH_EXPIRY FROM AUTH_EMAIL WHERE USER_EMAIL = #{user_email})
-</select>
-
-<update id="updateConfirmed" parameterType="Auth_EmailDto">
-    update auth_email set auth_confirmed = 1
-    <where>
-        user_email = #{user_email} 
-        and
-        auth_code = #{auth_code} 
-        and 
-        auth_expiry = #{auth_expiry} 
-        and 
-        auth_purpose = #{auth_purpose} 
-    </where>
-</update>
 
 </mapper>
