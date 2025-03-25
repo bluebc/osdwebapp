@@ -15,8 +15,11 @@
 <select id="selectByCateIdAndKeyword" parameterType="java.util.Map" resultMap="FaqListResultMap">
     select * from faq_list 
         <where>
-            cate_id = #{cate_id}
-            and
+        <!-- cate_id = 0 => 전체 카테고리 조회 -->
+            <if test="cate_id!=0">
+                cate_id = #{cate_id}
+                and
+            </if>
             (faq_subject like concat('%', #{keyword}, '%')
                 or
                 faq_content like concat('%', #{keyword}, '%'))

@@ -1,5 +1,5 @@
 var categoryList = [];
-var currentCate_id;
+var currentCate_id = 0;
 var faqList = [];
 var cuurentKeyword;
 
@@ -8,7 +8,7 @@ document.addEventListener("DOMContentLoaded", async function () {
     categoryList = await getCategories();
 
     // cate_sort 가장 빠른 id값
-    currentCate_id = categoryList[0].cate_id;
+    // currentCate_id = categoryList[0].cate_id;
     setCategories(categoryList);
     showFaqList(currentCate_id, cuurentKeyword);
 });
@@ -22,8 +22,9 @@ function selectCategory(cate_id) {
 // 전체 카테고리 버튼 나열
 function setCategories(list) {
     var str = "";
+    str += "<div class = 'category-btn' onclick='selectCategory(0)'>" + "전체" + "</div>";
     for (var i = 0; i < list.length; i++) {
-        str += "<div class = 'category-btn' onclick='selectCategory(\"" + list[i].cate_id + "\")'>" + list[i].cate_name + "</div>";
+        str += "<div class = 'category-btn' onclick='selectCategory(" + list[i].cate_id + ")'>" + list[i].cate_name + "</div>";
     }
     document.getElementById("selectCategory").innerHTML = str;
 }
@@ -79,7 +80,7 @@ function searchQuestion() {
 
     var keyword = document.getElementById("keyword").value;
     cuurentKeyword = keyword;
-    
+
     showFaqList(currentCate_id, keyword);
 }
 

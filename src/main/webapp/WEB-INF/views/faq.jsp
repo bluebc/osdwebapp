@@ -47,8 +47,8 @@
 
 <%-- 현재 선택한 카테고리 시각효과 --%>
 <div id = "selectCategory">
-   <%-- <div class="category-btn">카테고리 1</div>
-    <div class="category-btn">카테고리 2</div> --%>
+   <%-- <div class="category-btn" onclick = "selectCategory(0)">전체</div> --%>
+   <%--  <div class="category-btn">카테고리 2</div> --%>
 </div>
 
 <br><br><br><br>
