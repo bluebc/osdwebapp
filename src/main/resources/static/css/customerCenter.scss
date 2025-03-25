@@ -16,12 +16,12 @@ header{
     .content{
         padding: 0 6rem;
         margin: 60px auto 4rem;
-        background-color: rgb(255, 255, 255);
+        border-color: #999;
         max-width: 1000px;
         .basic-type{
             .pc-type{
                 text-align: center;
-                border-bottom: 1px solid #999;
+                border-bottom: 2px solid rgb(51, 51, 51);
                 margin: 0 auto;
                 // .btn-home{
                 //     img{
@@ -131,21 +131,24 @@ header{
             }
 
             .faq-category{
-                .cate{
-                    border-top: 1px solid #999;
-                    padding-top: 2rem;
-                    margin-bottom: 20px;
-                }
+
                 .tab_but{
-                    padding-bottom: 2rem;
+                    padding-top: 2rem;
+                    padding-bottom: 2rem;                   
                     .tab-button{
                         cursor: pointer;
                         padding: 10px 20px;
                         border: 1px solid #ccc;
                         border-radius: 4px;
+                        cursor: pointer;
                         &:hover{
                             background-color: #494949;
-                            color: #fff;
+                            color: white;
+                        }
+                        
+                        &.active {
+                            background-color: #494949; /* 클릭된 버튼 색상 */
+                            color: white;
                         }
                     }
                 }
@@ -153,44 +156,63 @@ header{
                     border-top: 1px solid #999;
                     border-bottom: 1px solid #999;
                     .tab-content{
-                        //display: none;
-                        position: relative;
                         .faq-box{
                             
-                            
-                            div{
+                            .faq-question{
+                                position: relative;
                                 padding: 1.5rem 2rem;
-                                font-size: 1.3rem;
+                                display: flex;
+                                cursor: pointer;
+                                &::after{
+                                    content: "";
+                                    position: absolute;
+                                    display: inline-block;
+                                    top: 28px;
+                                    right: 2rem;
+                                    width: 16px;
+                                    height: 14px;
+                                    background: url(../img/iconCateArrow.png) 50% 50% no-repeat;
+                                    transition: transform ease;
+                                }
+                                &.open::after {
+                                    transform: rotate(180deg); 
+                                }
+                                
+
                                 .faq-tit{
-                                    margin-right: 2rem;
+                                    display: inline-block;
+                                    width: 50px;
                                 }
                                 .faq-subject{
                                     margin-right: 2rem;
                                 }
                                 .faq-tet{
+                                    color: black;
+                                font-weight: bold;
+                                }
+                            }
+                            .faq-answer {
+                                padding: 1.5rem 2rem;
+                                display: none; 
+                                background-color: #f8f8f8;
+                                .faq-tit{
                                     
                                 }
-                                
-                            }
-                            .question{
-                                margin-bottom: 1rem;
-                                
-                                &::after{
-                                    content: "";
-                                    position: absolute;
-                                    display: inline-block;
-                                    top: 25px;
-                                    right: 2rem;
-                                    width: 16px;
-                                    height: 10px;
-                                    background: url(../img/iconCateArrow.png) 50% 50% no-repeat;
+                                .faq-tet{
+                                    line-height: 1.62;
+                                    font-size: 16px;
                                 }
                             }
-                            .answer{
-                                background-color: #f8f8f8;
-                            }
+
                         }
 
+                    }
+                    .type-more{
+                        text-align: center;
+                        padding: 2rem 0;
+                        button{                         
+                            span{}
+                        }
                     }
                 }
             }
@@ -199,3 +221,146 @@ header{
     }
 }
 
+/* 768px*/
+@include itablet{
+    .header{display: none;}
+
+    .container{
+        padding: 0;
+        .content{
+            width: 100%;
+            padding: 0 2rem;
+            margin: 40px auto 0;
+            .basic-type{
+                .pc-type{display: none;}
+                .mobil-type{
+                    display: flex;
+                }
+            }
+            
+        }
+    }
+
+    .footer{display: none;}
+}
+
+@include itablet-landscape{
+    .header { display: none; }
+    .container{
+        padding: 0;
+        min-height: auto;
+        .content{
+            margin: 60px auto 4rem;
+            .basic-type{
+                .pc-type{display: none;}
+                .mobil-type{
+                    display: flex;
+                }
+            }
+            
+        }
+    }
+    .footer{display: none;}
+}
+
+// 576px
+@include mobile{
+    .container{
+        .content {
+            .form-area{
+                padding: 2rem 1rem;
+            }
+            .section-cont {
+                .form-area{
+                    padding: 1.5rem 1rem;
+                }
+                .faq-category {
+                    .tab_area {
+                        .tab-content {
+                            .faq-box {
+                                
+                                .faq-question {
+                                    padding: 1.5rem 0.5rem 1.5rem 2rem;
+                                    div{
+                                        display: flex;
+                                        flex-direction: column;
+                                        gap: 5px;
+                                        .faq-tet{
+                                            line-height: 1.2;
+                                        }
+                                    }
+                                    &::after{
+                                        display: none;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    
+                }
+            }
+        }
+    } 
+}
+
+// 425px
+@include galaxy{
+    .container{
+        .content {
+            .basic-type{
+                .mobil-type{
+                    .tit-wrap{
+                        .btn-back{
+                            margin-left: 0rem;
+                            width: 2rem;
+                            height: 3rem;
+                            background: url(../img/닫기.svg) no-repeat 50% 50% / 1rem 1rem;
+                            .hidden{}
+                        }
+                        .header-sub-tit{
+                            font-size: 1.2rem;
+                        }
+                    }
+                    .header-util{
+                        .btn-home{
+                            img{
+                                width: 30px;
+                                height: 30px;
+                            }
+                        }
+                    }
+                }
+            }
+            
+            .section-cont {
+                .form-area{
+                    margin: 0;
+                }
+                .faq-category {
+                    .tab_area {
+                        .tab-content {
+                            .faq-box {
+                                .faq-question{
+                                    padding: 1.5rem 0.5rem 1.5rem 1rem;
+                                }
+                                .faq-answer{
+                                    padding: 1.5rem 1rem;
+                                }
+                            }
+                        }
+                    }
+                    .tab_but{
+                        .tab-button{
+                            margin-bottom: 5px;
+                        }
+                    }
+                    
+                }
+            }
+        }
+    }
+}
+
+@include iphone{
+    
+}

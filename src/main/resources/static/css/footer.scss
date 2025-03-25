@@ -259,7 +259,7 @@ footer{
             max-width: 100%;
             padding: 0 1rem;
             .accordion-item {
-              overflow: hidden; // display: none;을 하면 높이 애니메이션을 못줌
+              overflow: hidden; 
               background-color: #ffffff;
               padding: 5px;
               width: 100%;
@@ -301,7 +301,8 @@ footer{
                 background: #fff;
                 max-height: 0;
                 overflow: hidden;
-                  transition: max-height 0.3s ease-in-out;
+                transition: max-height 0.3s ease-in-out;
+                padding: 0 10px;
                 li{
                   
                   display: flex;
@@ -332,7 +333,7 @@ footer{
                   margin: 4rem
             }
           }
-
+          
         }
       }
       .accordion_op{
