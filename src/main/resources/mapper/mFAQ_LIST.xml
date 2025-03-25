@@ -12,4 +12,15 @@
     <result column="FAQ_UPDATED_AT" property="faq_updated_at"/>
 </resultMap>
 
+<select id="selectByCateIdAndKeyword" parameterType="java.util.Map" resultMap="FaqListResultMap">
+    select * from faq_list 
+        <where>
+            cate_id = #{cate_id}
+            and
+            (faq_subject like concat('%', #{keyword}, '%')
+                or
+                faq_content like concat('%', #{keyword}, '%'))
+        </where>
+</select>
+
 </mapper>

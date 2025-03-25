@@ -12,8 +12,8 @@
 
 <h3>자주하는 질문</h3>
 
-<input type = "text" id = "question" placeholder = "질문을 입력하세요">
-<input type = "button" id = "searchButton" value = "검색">
+<input type = "text" id = "keyword" placeholder = "질문을 입력하세요">
+<input type = "button" id = "searchButton" value = "검색" onclick = "searchQuestion()">
 
 <br><br><br><br>
 
@@ -45,9 +45,46 @@
 </style>
 
 
+<%-- 현재 선택한 카테고리 시각효과 --%>
 <div id = "selectCategory">
-   <div class="category-btn">카테고리 1</div>
-    <div class="category-btn">카테고리 2</div>
+   <%-- <div class="category-btn">카테고리 1</div>
+    <div class="category-btn">카테고리 2</div> --%>
+</div>
+
+<br><br><br><br>
+
+<style>
+.faq {
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 10px;
+    max-width: 400px;
+}
+
+.faq_subject {
+    font-size: 18px;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 5px;
+}
+
+.faq_content {
+    font-size: 14px;
+    color: #666;
+}
+</style>
+
+<div id = "faqList">
+
+    <%-- <div class = "faq">
+        <div class = "faq_subject">11</div>
+        <div class = "faq_content">내용</div>
+    </div>
+    <div class = "faq">
+        <div class = "faq_subject">22</div>
+        <div class = "faq_content">내용</div>
+    </div> --%>
+
 </div>
 
 
