@@ -43,7 +43,7 @@
                     <a href="/login" class="loginBtn">로그인</a>
                     <a href="/signup" class="signupBtn">회원가입</a>
                     <a href="/" class="supportBtn">홈</a>
-                    <a href="#" class="supportBtn">고객센터</a>
+                    <a href="/customerCenter" class="supportBtn">고객센터</a>
                 </div>
 
                 

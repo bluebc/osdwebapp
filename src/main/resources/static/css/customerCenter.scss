@@ -1,0 +1,201 @@
+@import "./mixin";
+
+header{
+    .top-banner{
+        display: none;
+    }
+}
+
+.hidden {
+    position: absolute;
+}
+
+.container{
+    padding: 14rem 0 14rem;
+    min-height: 800px;
+    .content{
+        padding: 0 6rem;
+        margin: 60px auto 4rem;
+        background-color: rgb(255, 255, 255);
+        max-width: 1000px;
+        .basic-type{
+            .pc-type{
+                text-align: center;
+                border-bottom: 1px solid #999;
+                margin: 0 auto;
+                // .btn-home{
+                //     img{
+                //         transform: translate(13rem, -1rem);
+                //         width: 30px;
+                //         height: 30px;
+                //     }
+                // }
+                h1{
+                    padding-bottom: 20px;
+                    font-weight: bold;
+                }
+            }
+    
+            .mobil-type{
+                display: none;
+                    position: relative;
+                    z-index: 2;
+                    justify-content: space-between;
+                    align-items: center;
+                    width: 100%;
+                    height: 5rem;
+                    background: #fff;
+                    color: #1d1d1d;
+                    z-index: 1;
+                    .tit-wrap{
+                        display: flex;
+                        align-items: center;
+                        .btn-back{
+                            width: 4.8rem;
+                            height: 5.3rem;
+                            display: flex;
+                            align-items: center;
+                            justify-content: center;
+                            margin-left: -2rem;
+                            background: url(../img/닫기.svg) no-repeat 50% 50% / .8rem 1.4rem;
+                            .hidden{
+                                overflow: hidden;
+                                clip: rect(0, 0, 0, 0);
+                                width: 1px;
+                                height: 1px;
+                                margin: -1px;
+                                padding: 0;
+                                border: 0;
+                            }
+                        }
+                        .header-sub-tit{
+                            overflow: hidden;
+                            text-align: left;
+                            font-size: 2rem;
+                        }
+                    }
+                    .header-util{
+                        .btn-home{
+                            img{
+                                width: 50px;
+                                height: 50px;
+                            }
+                        }
+                    }
+            }
+        }
+
+        .section-cont{
+            position: relative;
+            .form-area{
+                display: flex;
+                flex-wrap: wrap;
+                padding: 3rem 5rem;
+                margin: 2rem 0;
+                background-color: #f8f8f8;
+                .search{
+                    position: relative;
+                    width: 100%;
+                    background-color: white;
+                    .tf{
+                        width: 100%;
+                        height: 4.4rem;
+                        padding: 0 1rem;
+                        font-size: 1rem;
+                        font-weight: 400;
+                        line-height: 4.4rem;
+                        color: #1d1d1d;
+                        border: 1px solid #e6e6e6;
+                        border-radius: 3px; 
+                    }
+                    .btn-search{
+                        cursor: pointer;
+                        position: absolute;
+                        right: 0;
+                        top: 0;
+                        height: 100%;
+                        width: 5rem;
+                        cursor: pointer;
+                        background: url(../img/검색.svg) no-repeat 50% 50% / 2rem auto;
+                        .hidden{
+                            overflow: hidden;
+                            clip: rect(0, 0, 0, 0);
+                            width: 1px;
+                            height: 1px;
+                            margin: -1px;
+                            padding: 0;
+                            border: 0;
+                        }
+                    }
+                }
+            }
+
+            .faq-category{
+                .cate{
+                    border-top: 1px solid #999;
+                    padding-top: 2rem;
+                    margin-bottom: 20px;
+                }
+                .tab_but{
+                    padding-bottom: 2rem;
+                    .tab-button{
+                        cursor: pointer;
+                        padding: 10px 20px;
+                        border: 1px solid #ccc;
+                        border-radius: 4px;
+                        &:hover{
+                            background-color: #494949;
+                            color: #fff;
+                        }
+                    }
+                }
+                .tab_area{
+                    border-top: 1px solid #999;
+                    border-bottom: 1px solid #999;
+                    .tab-content{
+                        //display: none;
+                        position: relative;
+                        .faq-box{
+                            
+                            
+                            div{
+                                padding: 1.5rem 2rem;
+                                font-size: 1.3rem;
+                                .faq-tit{
+                                    margin-right: 2rem;
+                                }
+                                .faq-subject{
+                                    margin-right: 2rem;
+                                }
+                                .faq-tet{
+                                    
+                                }
+                                
+                            }
+                            .question{
+                                margin-bottom: 1rem;
+                                
+                                &::after{
+                                    content: "";
+                                    position: absolute;
+                                    display: inline-block;
+                                    top: 25px;
+                                    right: 2rem;
+                                    width: 16px;
+                                    height: 10px;
+                                    background: url(../img/iconCateArrow.png) 50% 50% no-repeat;
+                                }
+                            }
+                            .answer{
+                                background-color: #f8f8f8;
+                            }
+                        }
+
+                    }
+                }
+            }
+        }
+
+    }
+}
+
