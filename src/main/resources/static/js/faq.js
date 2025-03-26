@@ -19,46 +19,6 @@ function selectCategory(cate_id) {
     showFaqList(currentCate_id, currentKeyword);
 }
 
-// // 전체 카테고리 버튼 나열
-// function setCategories(list) {
-//     var str = "";
-//     str += "<div class = 'category-btn' onclick='selectCategory(0)'>" + "전체" + "</div>";
-//     for (var i = 0; i < list.length; i++) {
-//         str += "<div class = 'category-btn' onclick='selectCategory(" + list[i].cate_id + ")'>" + list[i].cate_name + "</div>";
-//     }
-//     document.getElementById("selectCategory").innerHTML = str;
-// }
-
-// 전체 카테고리 버튼 나열(보안)
-function setCategories(list) {
-    const div = document.getElementById("selectCategory");
-
-    // 기존 내용 삭제
-    while (div.firstChild) {
-        div.removeChild(div.firstChild);
-    }
-
-    // "전체" 버튼 추가
-    const allBtn = document.createElement("div");
-    allBtn.className = "category-btn";
-    allBtn.textContent = "전체";
-    allBtn.onclick = function () {
-        selectCategory(0);
-    };
-    div.appendChild(allBtn);
-
-    // 리스트에 있는 카테고리 추가
-    list.forEach(category => {
-        const categoryBtn = document.createElement("div");
-        categoryBtn.className = "category-btn";
-        categoryBtn.textContent = category.cate_name;
-        categoryBtn.onclick = function () {
-            selectCategory(category.cate_id);
-        };
-        div.appendChild(categoryBtn);
-    });
-}
-
 // 서버에서 카테고리 리스트
 async function getCategories() {
     const response = await fetch("/getFaqCategory",
@@ -92,48 +52,6 @@ async function getFaqListByCateIdAndKeyword(cate_id, keyword) {
     return list;
 }
 
-// // list 태그 만들기
-// function setFaqListTag(list) {
-
-//     var str = "";
-//     for (var i = 0; i < list.length; i++) {
-//         str += "<div class = 'faq'>"
-//         str += "<div class = 'faq_subject'>" + list[i].faq_subject + "</div>";
-//         str += "<div class = 'faq_content'>" + list[i].faq_content + "</div>";
-//         str += "</div>";
-//     }
-//     document.getElementById("faqList").innerHTML = str;
-// }
-
-// list 태그 만들기 (보안)
-function setFaqListTag(list) {
-    const faqContainer = document.getElementById("faqList");
-
-    // 기존 내용 삭제
-    while (faqContainer.firstChild) {
-        faqContainer.removeChild(faqContainer.firstChild);
-    }
-
-    // 리스트 순회하면서 FAQ 항목 추가
-    list.forEach(faq => {
-        const faqDiv = document.createElement("div");
-        faqDiv.className = "faq";
-
-        const subjectDiv = document.createElement("div");
-        subjectDiv.className = "faq_subject";
-        subjectDiv.textContent = faq.faq_subject;
-
-        const contentDiv = document.createElement("div");
-        contentDiv.className = "faq_content";
-        contentDiv.textContent = faq.faq_content;
-
-        // FAQ 요소에 추가
-        faqDiv.appendChild(subjectDiv);
-        faqDiv.appendChild(contentDiv);
-        faqContainer.appendChild(faqDiv);
-    });
-}
-
 // 검색
 function searchQuestion() {
 
@@ -147,4 +65,131 @@ function searchQuestion() {
 async function showFaqList(cate_id, keyword) {
     faqList = await getFaqListByCateIdAndKeyword(cate_id, keyword);
     setFaqListTag(faqList);
+}
+
+// 카테고리 만들기
+function setCategories(list) {
+
+    const div = document.getElementById("selectCategory");
+
+
+    // 기존 내용 삭제
+    while (div.firstChild) {
+        div.removeChild(div.firstChild);
+    }
+
+    // "전체" 버튼 추가
+    const allBtn = document.createElement("button");
+    allBtn.className = "tab-button";
+    allBtn.textContent = "전체";
+    allBtn.role = "tab";
+    allBtn.onclick = function () {
+        selectCategory(0);
+    };
+    div.appendChild(allBtn);
+
+    // 리스트에 있는 카테고리 추가
+    list.forEach(category => {
+        const categoryBtn = document.createElement("button");
+        categoryBtn.className = "tab-button";
+        categoryBtn.textContent = category.cate_name;
+        categoryBtn.role = "tab";
+        categoryBtn.onclick = function () {
+            selectCategory(category.cate_id);
+        };
+        div.appendChild(categoryBtn);
+    });
+}
+
+function setFaqListTag(faqList) {
+
+    const categoryMap = new Map();
+
+    categoryList.forEach(category => {
+        var cate_id = category.cate_id;
+        var cate_name = category.cate_name;
+        categoryMap.set(cate_id, cate_name);
+    });
+
+    const faqListSection = document.getElementById("faq-list");
+    while (faqListSection.firstChild) {
+        faqListSection.removeChild(faqListSection.firstChild);
+    }
+
+    faqList.forEach(faq => {
+
+        const tapContent = document.createElement("div");
+        tapContent.className = "tab-content";
+
+        const faqBox = document.createElement("div");
+        faqBox.className = "faq-box";
+
+        const faqQuestion = document.createElement("div");
+        faqQuestion.className = "faq-question";
+
+        const questionTitle = document.createElement("strong");
+        questionTitle.className = "faq-tit";
+        questionTitle.textContent = "Q";
+
+        const questionContent = document.createElement("div");
+
+        const categorySpan = document.createElement("span");
+        categorySpan.className = "faq-subject";
+        categorySpan.textContent = "[" + categoryMap.get(faq.cate_id) + "]";
+
+        const questionSpan = document.createElement("span");
+        questionSpan.className = "faq-tet";
+        questionSpan.textContent = faq.faq_subject;
+
+        questionContent.appendChild(categorySpan);
+        questionContent.appendChild(questionSpan);
+
+        faqQuestion.appendChild(questionTitle);
+        faqQuestion.appendChild(questionContent);
+
+        faqBox.appendChild(faqQuestion);
+
+        tapContent.appendChild(faqBox);
+
+        const faqAnswer = document.createElement("div");
+        faqAnswer.className = "faq-answer";
+
+        const answerTbl = document.createElement("table");
+        const answerTbody = document.createElement("tbody");
+
+        const answerTr = document.createElement("tr");
+        // class 사용 필요
+        const answerTdA = document.createElement("td");
+
+        const answerTitle = document.createElement("strong");
+        answerTitle.className = "faq-tit";
+        answerTitle.textContent = "A";
+
+        answerTdA.appendChild(answerTitle);
+        answerTr.appendChild(answerTdA);
+
+        const answerTdB = document.createElement("td");
+        answerTdB.vAlign = "top";
+
+        const answerContent = document.createElement("div");
+        answerContent.className = "faq-tet";
+
+        const answerP = document.createElement("p");
+
+        const answerSpan = document.createElement("span");
+        answerSpan.textContent = faq.faq_content;
+
+        answerP.appendChild(answerSpan);
+        answerTdB.appendChild(answerP);
+        answerTr.appendChild(answerTdB);
+        answerTbody.appendChild(answerTr);
+        answerTbl.appendChild(answerTbody);
+
+
+        faqAnswer.appendChild(answerTbl);
+        faqBox.appendChild(faqAnswer);
+        tapContent.appendChild(faqBox);
+        faqListSection.appendChild(tapContent);
+
+    });
 }
