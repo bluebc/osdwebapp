@@ -264,6 +264,7 @@ footer .footer_nav {
     max-height: 0;
     overflow: hidden;
     transition: max-height 0.3s ease-in-out;
+    padding: 0 10px;
   }
   footer .footer_nav .category_wrap .category-content .accordion .accordion-item .accordion-content li {
     display: flex;

@@ -1,24 +1,8 @@
-
-    <!--js-->
-    <!-- <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
-    <script src="http://code.jquery.com/jquery-latest.min.js"></script>
-
-<script>
-    $(document).ready(function () {
-	fnLoadingShow();
-	// $('#termspage').load('/termspage');
-     alert("test");
-});
-
-</script>
-page1
-<div id = 'termspage' ></div> -->
-
+<%@ page language="java" contentType="text/html; charset=EUC-KR"
+    pageEncoding="EUC-KR"%>
 <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
 
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
 <!DOCTYPE html>
 <html>
 <head>
