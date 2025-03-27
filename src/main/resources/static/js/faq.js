@@ -9,8 +9,9 @@ document.addEventListener("DOMContentLoaded", async function () {
 
     // cate_sort 가장 빠른 id값
     // currentCate_id = categoryList[0].cate_id;
-    setCategories(categoryList);
-    showFaqList(currentCate_id, currentKeyword);
+    await setCategories(categoryList);
+    await showFaqList(currentCate_id, currentKeyword);
+    accordion();
 });
 
 // 카테고리 선택
@@ -64,7 +65,8 @@ function searchQuestion() {
 // 
 async function showFaqList(cate_id, keyword) {
     faqList = await getFaqListByCateIdAndKeyword(cate_id, keyword);
-    setFaqListTag(faqList);
+    await setFaqListTag(faqList);
+    accordion();
 }
 
 // 카테고리 만들기
@@ -127,9 +129,9 @@ function setFaqListTag(faqList) {
 
         const faqQuestion = document.createElement("div");
         faqQuestion.className = "faq-question";
-        faqQuestion.onclick = function(){
-            accordion();
-        }
+        // faqQuestion.onclick = function(){
+        //     accordion();
+        // }
 
         const questionTitle = document.createElement("strong");
         questionTitle.className = "faq-tit";
