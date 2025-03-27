@@ -79,41 +79,7 @@
             
                 
                 <div class="tab_area list" id = "faq-list">
-                    <%-- <div class="tab-content" id="tab-content-1" role="tabpanel" >
-                            <div class="faq-box">
-                                <div class="faq-question">
-                                    <strong class="faq-tit">Q</strong>
-                                    <div>
-                                        <span class="faq-subject">[교환/환불]</span>
-                                        <span class="faq-tet">상품을 교환/반품하고 싶어요.</span>
-                                    </div>
-                                </div> 
-                                
-
-                                <div class="faq-answer">
-                                    <table>
-                                        <tbody>
-                                            <tr>
-                                                <td width="50px" valign="top">
-                                                <strong class="faq-tit">A</strong>
-                                                </td>
-                                                <td valign="top">
-                                                <div class="faq-tet">
-                                                    <p>
-                                                        <span>교환 및 반품은 사용하지 않은 상품에 한하여 가능하며, 고객님께서 직접 쉽고 빠르게 교환/반품을 신청할 수 있습니다. 상품을 회수한 후 검수 단계에서 문제가 발견되면 고객님께
-                                                            연락을 드릴 수 있습니다. 교환은 기본적으로 구매 상품과 동일한 상품으로만 가능합니다. 색상 및 사이즈 변경을 원하시면 반품 후 재구매를 해 주시기 바랍니다.</span>
-                                                    </p>
-                                                </div>
-                                                </td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
-                                </div>
-                            </div>    
-
-                       
-
-                </div>--%>
+                   
                  
             </div><%-- faq-category end  --%>
 

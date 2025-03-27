@@ -1,10 +1,7 @@
 package com.osd.web.app.service;
 
 import java.time.LocalDateTime;
-<<<<<<< HEAD
-=======
 import java.time.temporal.ChronoUnit;
->>>>>>> dc0c6beb7d70d18cdfb4b3dc241c2f187f3d0297
 import java.util.Random;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -90,13 +87,9 @@ public class MailService {
 
         // 인증만료기한 생성
         // 10분
-<<<<<<< HEAD
-        LocalDateTime auth_expiry = LocalDateTime.now().plusMinutes(10);
-=======
         // LocalDateTime auth_expiry = LocalDateTime.now().plusMinutes(10);
         // DB 조회 문제로 초단위까지만 사용
         LocalDateTime auth_expiry = LocalDateTime.now().plusMinutes(10).truncatedTo(ChronoUnit.SECONDS);
->>>>>>> dc0c6beb7d70d18cdfb4b3dc241c2f187f3d0297
         auth_EmailDto.setAuth_expiry(auth_expiry);
 
         // DB Insert
@@ -174,8 +167,4 @@ public class MailService {
         return result;
     }
 
-<<<<<<< HEAD
 }
-=======
-}
->>>>>>> dc0c6beb7d70d18cdfb4b3dc241c2f187f3d0297

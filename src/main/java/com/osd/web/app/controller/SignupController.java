@@ -151,10 +151,4 @@ public class SignupController {
         return "termsmain";
     }
 
-<<<<<<< HEAD
 }
-
-
-=======
-}
->>>>>>> dc0c6beb7d70d18cdfb4b3dc241c2f187f3d0297

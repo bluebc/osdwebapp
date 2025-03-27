@@ -71,3 +71,4 @@ $(document).ready(function () {
         opTitle.innerText = event.target.innerText;
         opList.classList.remove('on');
     });
+});

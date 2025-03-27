@@ -18,8 +18,8 @@ document.addEventListener("DOMContentLoaded", async function () {
     const contents = document.querySelectorAll(".tab-content");
 
     // 모든 콘텐츠 보이기 
-    contents.forEach(content => content.style.display = "block");
-    document.querySelector(".all").classList.add("active");
+    //contents.forEach(content => content.style.display = "block");
+    //document.querySelector(".all").classList.add("active");
 
     buttons.forEach((button) => {
         button.addEventListener("click", function () {

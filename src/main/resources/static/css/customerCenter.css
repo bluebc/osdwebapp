@@ -120,6 +120,7 @@ header .top-banner {
 }
 .container .content .section-cont .faq-category .tab_but .tab-button {
   cursor: pointer;
+  margin: 2px;
   padding: 10px 20px;
   border: 1px solid #ccc;
   border-radius: 4px;
