@@ -18,8 +18,8 @@ document.addEventListener("DOMContentLoaded", async function () {
     const contents = document.querySelectorAll(".tab-content");
 
     // 모든 콘텐츠 보이기 
-    contents.forEach(content => content.style.display = "block");
-    document.querySelector(".all").classList.add("active");
+    //contents.forEach(content => content.style.display = "block");
+    //document.querySelector(".all").classList.add("active");
 
     buttons.forEach((button) => {
         button.addEventListener("click", function () {
@@ -29,12 +29,6 @@ document.addEventListener("DOMContentLoaded", async function () {
             buttons.forEach(btn => btn.classList.remove("active"));
 
             button.classList.add("active");
-
-            if (button.classList.contains("all")) {
-                contents.forEach(content => content.style.display = "block");
-            } else {
-                document.getElementById(button.getAttribute("aria-controls")).style.display = "block";
-            }
         });
     });
 
@@ -57,19 +51,19 @@ document.addEventListener("DOMContentLoaded", async function () {
 });
 
 
-$('.list > div').hide();
-$(".list > div").slice(0, 2).css("display", "block");
+// $('.list > div').hide();
+// $(".list > div").slice(0, 2).css("display", "block");
 
-$("#load").click(function (e) {
-    e.preventDefault();
-    $(".list >div:hidden").slice(0, 5).show().css('display', 'block');
-    if ($(".list >div:hidden").length == 0) {
-        $('#load').hide();
-    }
-});
+// $("#load").click(function (e) {
+//     e.preventDefault();
+//     $(".list >div:hidden").slice(0, 5).show().css('display', 'block');
+//     if ($(".list >div:hidden").length == 0) {
+//         $('#load').hide();
+//     }
+// });
 
 
-// +
+// 
 
 function accordion() {
     const questions = document.querySelectorAll(".faq-question");
@@ -151,9 +145,7 @@ async function showFaqList(cate_id, keyword) {
 
 // 카테고리 만들기
 function setCategories(list) {
-
     const div = document.getElementById("selectCategory");
-
 
     // 기존 내용 삭제
     while (div.firstChild) {
@@ -162,10 +154,12 @@ function setCategories(list) {
 
     // "전체" 버튼 추가
     const allBtn = document.createElement("button");
-    allBtn.className = "tab-button";
+    allBtn.className = "tab-button active"; 
     allBtn.textContent = "전체";
     allBtn.role = "tab";
     allBtn.onclick = function () {
+        document.querySelectorAll(".tab-button").forEach(btn => btn.classList.remove("active")); 
+        allBtn.classList.add("active"); 
         selectCategory(0);
     };
     div.appendChild(allBtn);
@@ -177,10 +171,15 @@ function setCategories(list) {
         categoryBtn.textContent = category.cate_name;
         categoryBtn.role = "tab";
         categoryBtn.onclick = function () {
+            document.querySelectorAll(".tab-button").forEach(btn => btn.classList.remove("active"));
+            categoryBtn.classList.add("active");
             selectCategory(category.cate_id);
         };
         div.appendChild(categoryBtn);
     });
+
+    // 기본적으로 "전체" 카테고리 선택
+    selectCategory(0);
 }
 
 function setFaqListTag(faqList) {

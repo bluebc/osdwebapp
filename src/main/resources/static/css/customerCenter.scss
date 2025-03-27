@@ -23,13 +23,7 @@ header{
                 text-align: center;
                 border-bottom: 2px solid rgb(51, 51, 51);
                 margin: 0 auto;
-                // .btn-home{
-                //     img{
-                //         transform: translate(13rem, -1rem);
-                //         width: 30px;
-                //         height: 30px;
-                //     }
-                // }
+
                 h1{
                     padding-bottom: 20px;
                     font-weight: bold;
@@ -137,6 +131,7 @@ header{
                     padding-bottom: 2rem;                   
                     .tab-button{
                         cursor: pointer;
+                        margin: 2px;
                         padding: 10px 20px;
                         border: 1px solid #ccc;
                         border-radius: 4px;
@@ -145,7 +140,6 @@ header{
                             background-color: #494949;
                             color: white;
                         }
-                        
                         &.active {
                             background-color: #494949; /* 클릭된 버튼 색상 */
                             color: white;
@@ -207,12 +201,13 @@ header{
                         }
 
                     }
-                    .type-more{
-                        text-align: center;
-                        padding: 2rem 0;
-                        button{                         
-                            span{}
-                        }
+                    
+                }
+                .type-more{
+                    text-align: center;
+                    padding: 2rem 0;
+                    button{                         
+                        span{}
                     }
                 }
             }
@@ -351,7 +346,6 @@ header{
                     }
                     .tab_but{
                         .tab-button{
-                            margin-bottom: 5px;
                         }
                     }
                     
@@ -359,8 +353,4 @@ header{
             }
         }
     }
-}
-
-@include iphone{
-    
 }

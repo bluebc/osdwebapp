@@ -241,7 +241,6 @@ public class LoginController {
 
     // 회원정보 찾기 결과 페이지
     // 인증 성공 세션 확인 후 제거
-
     // 1. 아이디 찾기 완료
     @RequestMapping("/find/result/id")
     public String idFoundPage(HttpServletRequest request, Model model) {

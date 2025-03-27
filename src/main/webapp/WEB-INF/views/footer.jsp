@@ -1,7 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 
     <!-- css -->
-    <link rel="stylesheet" href="css/footer.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/footer.css">
+
 
     <!--js-->
     <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
@@ -43,8 +44,10 @@
 
         <div class="ft-fot">
             <div class="ft_logo">
-            <a href="#health"><img src="img/uni-well-logo.png" alt="f_logo"></a>
-            <a href="#health"><img src="img/uni-well-logo-sd.png" alt="f_logo"></a>
+
+            <a href="#health"><img src="${pageContext.request.contextPath}/img/uni-well-logo.png" alt="f_logo"></a>
+            <a href="#health"><img src="${pageContext.request.contextPath}/img/uni-well-logo-sd.png" alt="f_logo"></a>
+
             </div>
 
             <div class="ft_info">

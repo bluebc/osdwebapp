@@ -1,3 +1,4 @@
+
 package com.osd.web.app.dto;
 
 import java.time.LocalDateTime;
@@ -12,3 +13,4 @@ public class User_TermDto {
     private LocalDateTime agreed_created_at;
     private LocalDateTime agreed_updated_at;
 }
+

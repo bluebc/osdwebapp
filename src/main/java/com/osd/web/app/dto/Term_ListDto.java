@@ -1,3 +1,4 @@
+
 package com.osd.web.app.dto;
 
 import java.time.LocalDateTime;
@@ -15,4 +16,5 @@ public class Term_ListDto {
     private String term_use_yn;
     private LocalDateTime term_created_at;
     private LocalDateTime term_updated_at;
+
 }

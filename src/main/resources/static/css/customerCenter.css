@@ -120,6 +120,7 @@ header .top-banner {
 }
 .container .content .section-cont .faq-category .tab_but .tab-button {
   cursor: pointer;
+  margin: 2px;
   padding: 10px 20px;
   border: 1px solid #ccc;
   border-radius: 4px;
@@ -177,7 +178,7 @@ header .top-banner {
   line-height: 1.62;
   font-size: 16px;
 }
-.container .content .section-cont .faq-category .tab_area .type-more {
+.container .content .section-cont .faq-category .type-more {
   text-align: center;
   padding: 2rem 0;
 }
@@ -269,8 +270,5 @@ header .top-banner {
   }
   .container .content .section-cont .faq-category .tab_area .tab-content .faq-box .faq-answer {
     padding: 1.5rem 1rem;
-  }
-  .container .content .section-cont .faq-category .tab_but .tab-button {
-    margin-bottom: 5px;
   }
 }/*# sourceMappingURL=customerCenter.css.map */

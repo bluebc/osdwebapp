@@ -1,3 +1,4 @@
+
 package com.osd.web.app.dto;
 
 import java.time.LocalDateTime;
@@ -13,3 +14,4 @@ public class Term_VerDto {
     private LocalDateTime ver_created_at;
     private LocalDateTime ver_updated_at;
 }
+

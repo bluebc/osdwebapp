@@ -1,3 +1,4 @@
+
 package com.osd.web.app.dto;
 
 import java.time.LocalDateTime;
@@ -17,3 +18,4 @@ public class User_InfoDto {
     private LocalDateTime user_created_at;
     private LocalDateTime user_updated_at;
 }
+

@@ -1,3 +1,4 @@
+
 $(document).ready(function () {
 
     const $loginButtons = $(".loginBtn"); // 로그인 버튼
