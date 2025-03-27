@@ -129,4 +129,28 @@ header .top-banner {
   color: #fff;
   background-color: #535353;
   border: 0 none;
+}
+
+/* 768px*/
+@media screen and (max-width: 768px) {
+  .header {
+    display: none;
+  }
+  .container {
+    padding: 0;
+  }
+  .container .content {
+    width: 100%;
+    padding: 0 2rem;
+    margin: 40px auto 0;
+  }
+  .container .content .pc-type {
+    display: none;
+  }
+  .container .content .mobil-type {
+    display: flex;
+  }
+  .footer {
+    display: none;
+  }
 }/*# sourceMappingURL=authEmailRequest.css.map */

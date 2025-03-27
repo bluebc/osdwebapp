@@ -148,3 +148,27 @@ header{
     }
 }
 
+/* 768px*/
+@include itablet{
+    .header{display: none;}
+
+    .container{
+        padding: 0;
+        .content{
+            width: 100%;
+            padding: 0 2rem;
+            margin: 40px auto 0;
+            .pc-type{display: none;}
+            .mobil-type{
+                display: flex;
+            }
+            
+        }
+    }
+
+    .footer{display: none;}
+}
+
+@include itablet-landscape{
+
+}

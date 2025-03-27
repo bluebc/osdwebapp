@@ -22,9 +22,7 @@
                     <div>
                         <a href="/">
                             <h1 >
-
                                 <img src="${pageContext.request.contextPath}/img/uni-well-logo.png" alt="logo">
-
                             </h1>
                         </a>
                 
@@ -63,7 +61,7 @@
                 <div class="hd_info" >
                     <div class="hd_logo">
                         <a href="/">
-                            <img src="../img/uni-well-logo-sd.png">
+                            <img src="${pageContext.request.contextPath}/img/uni-well-logo-sd.png">
                         </a>
                     </div>
 

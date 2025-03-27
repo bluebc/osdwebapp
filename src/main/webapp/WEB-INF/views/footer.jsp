@@ -44,13 +44,10 @@
 
         <div class="ft-fot">
             <div class="ft_logo">
-<<<<<<< HEAD
+
             <a href="#health"><img src="${pageContext.request.contextPath}/img/uni-well-logo.png" alt="f_logo"></a>
             <a href="#health"><img src="${pageContext.request.contextPath}/img/uni-well-logo-sd.png" alt="f_logo"></a>
-=======
-            <a href="#health"><img src="img/uni-well-logo.png" alt="f_logo"></a>
-            <a href="#health"><img src="img/uni-well-logo-sd.png" alt="f_logo"></a>
->>>>>>> dc0c6beb7d70d18cdfb4b3dc241c2f187f3d0297
+
             </div>
 
             <div class="ft_info">
