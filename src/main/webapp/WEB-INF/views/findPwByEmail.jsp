@@ -50,8 +50,7 @@
 
         <div class="inner-cont">
             <div class="nav-tab">
-                <button type="button" class="btn-tab" disabled="disabled">휴대폰 인증</button> 
-                <button type="button" class="btn-tab">이메일 인증</button>
+                <button type="button" class="btn-tab" disabled="disabled">이메일 인증</button>
             </div>
 
             <form id="section" class="section-cont">
