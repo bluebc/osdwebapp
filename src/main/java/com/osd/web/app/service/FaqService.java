@@ -31,4 +31,8 @@ public class FaqService {
         String keyword = "";
         return getFaqListByCateIdAndKeyword(cate_id, keyword);
     }
+
+    public int insertFaqList(Faq_ListDto faq_ListDto){
+        return faq_ListDao.insert(faq_ListDto);
+    }
 }

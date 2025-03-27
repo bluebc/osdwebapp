@@ -1,5 +1,6 @@
 package com.osd.web.app.controller;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -14,15 +15,27 @@ import com.osd.web.app.dto.Faq_CategoryDto;
 import com.osd.web.app.dto.Faq_ListDto;
 import com.osd.web.app.service.FaqService;
 
+@RequestMapping("/support")
 @Controller
-public class FaqController {
+public class SupportController {
 
     @Autowired
     private FaqService faqService;
 
+    @RequestMapping("")
+    public String supportPage(){
+        return "support";
+    }
+
+
     @RequestMapping("/faq")
     public String faqPage() {
-        return "faq";
+        return "supportFaq";
+    }
+
+    @RequestMapping("/qna")
+    public String qnaPage() {
+        return "supportQna";
     }
 
     @ResponseBody
@@ -40,5 +53,22 @@ public class FaqController {
         List<Faq_ListDto> list = faqService.getFaqListByCateIdAndKeyword(cate_id, keyword);
         return list;
     }
+
+    @RequestMapping("/faq/write")
+    public String faqWritePage() {
+        return "faqWrite";
+    }
+
+    @ResponseBody
+    @PostMapping("/faq/insertFaqList")
+    public Map<String, Object> insertFaqList(@RequestBody Faq_ListDto faq_ListDto) {
+        Map<String, Object> resultMap = new HashMap<>();
+        int inserted = faqService.insertFaqList(faq_ListDto);
+        resultMap.put("result", inserted);
+        return resultMap;
+    }
+
+
+    
 
 }
