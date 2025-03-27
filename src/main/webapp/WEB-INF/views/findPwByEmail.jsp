@@ -6,7 +6,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ID 인증 요청</title>
+    <title>비밀번호 찾기</title>
 
     <!-- css -->
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/reset.css">
@@ -61,8 +61,10 @@
                         <label for="email" class="tit">아이디</label>
                         <div class="form-cont">
                             <input type = "text", id = "user_id" placeholder = "아이디를 입력해 주세요">
-                            <%-- <input type = "text", id = "user_email" placeholder = "email"> --%>
-
+                        </div>
+                        <label for="email" class="tit">이메일</label>
+                        <div class="form-cont">
+                            <input type = "text", id = "user_email" placeholder = "이메일을 입력해 주세요">
                         </div>
                     </div>
                 </div>
