@@ -227,6 +227,7 @@ public class LoginController {
         return "findId";
     }
 
+<<<<<<< HEAD
     // PW
     @RequestMapping("/find/pw")
     public String findPwPage() {
@@ -239,6 +240,10 @@ public class LoginController {
     }
 
 
+=======
+    // 아이디 찾기 - 이메일
+    // 세션 작업 후 리다이렉션
+>>>>>>> dc0c6beb7d70d18cdfb4b3dc241c2f187f3d0297
     @RequestMapping("/find/id/email")
     public String findIdByEmailPage(HttpServletRequest request) {
         HttpSession session = request.getSession();
@@ -251,7 +256,11 @@ public class LoginController {
 
     // 회원정보 찾기 결과 페이지
     // 인증 성공 세션 확인 후 제거
+<<<<<<< HEAD
     
+=======
+
+>>>>>>> dc0c6beb7d70d18cdfb4b3dc241c2f187f3d0297
     // 1. 아이디 찾기 완료
     @RequestMapping("/find/result/id")
     public String idFoundPage(HttpServletRequest request, Model model) {
@@ -282,6 +291,20 @@ public class LoginController {
         return "findIdFound";
     }
 
+<<<<<<< HEAD
+=======
+    // PW
+    @RequestMapping("/find/pw")
+    public String findPwPage() {
+        return "findPw";
+    }
+
+    @RequestMapping("/find/pw/email")
+    public String findPwByEmailPage() {
+        return "findPwByEmail";
+    }
+
+>>>>>>> dc0c6beb7d70d18cdfb4b3dc241c2f187f3d0297
     // 2. 비밀번호 변경 페이지
     @RequestMapping("/find/result/pw")
     public String pwResetPage(HttpServletRequest request) {

@@ -3,6 +3,7 @@
     <!-- css -->
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/footer.css">
 
+
     <!--js-->
     <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
     <script src="http://code.jquery.com/jquery-latest.min.js"></script>
@@ -43,8 +44,13 @@
 
         <div class="ft-fot">
             <div class="ft_logo">
+<<<<<<< HEAD
             <a href="#health"><img src="${pageContext.request.contextPath}/img/uni-well-logo.png" alt="f_logo"></a>
             <a href="#health"><img src="${pageContext.request.contextPath}/img/uni-well-logo-sd.png" alt="f_logo"></a>
+=======
+            <a href="#health"><img src="img/uni-well-logo.png" alt="f_logo"></a>
+            <a href="#health"><img src="img/uni-well-logo-sd.png" alt="f_logo"></a>
+>>>>>>> dc0c6beb7d70d18cdfb4b3dc241c2f187f3d0297
             </div>
 
             <div class="ft_info">

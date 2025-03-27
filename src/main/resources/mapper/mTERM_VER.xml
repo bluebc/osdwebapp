@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="Term_Ver">
@@ -37,4 +38,45 @@
    		 </select>
 
         
+=======
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="Term_Ver">
+
+<!-- resultType 으로 값을 반환하지 못해 resultMap 사용하여 DTO로 반환 -->
+<resultMap id="TermVerResultMap" type="com.osd.web.app.dto.Term_VerDto">
+    <result column="VER_ID" property="ver_id"/>
+	<result column="TERM_ID" property="term_id"/>
+    <result column="VER_NO" property="ver_no"/>
+	<result column="VER_CONTENT" property="ver_content"/>
+    <result column="VER_CREATED_AT" property="ver_created_at"/>
+    <result column="VER_UPDATED_AT" property="ver_updated_at"/>
+</resultMap>
+
+
+   		
+   		 <select id = "getTerm_VerSelect"  parameterType = "String"   resultType="com.osd.web.app.dto.Term_VerDto">
+   		 	SELECT   VER_ID
+					,TERM_ID
+					,VER_NO
+					,VER_CONTENT
+					,VER_CREATED_AT
+					,VER_UPDATED_AT
+				FROM TERM_VER
+				WHERE VER_ID = #{VER_ID}
+   		 </select>
+   		 
+   		 
+   		 <select id="etTerm_VerSelectAll" resultType="com.osd.web.app.dto.Term_VerDto">
+  		 	SELECT   VER_ID
+					,TERM_ID
+					,VER_NO
+					,VER_CONTENT
+					,VER_CREATED_AT
+					,VER_UPDATED_AT
+				FROM TERM_VER
+   		 </select>
+
+        
+>>>>>>> dc0c6beb7d70d18cdfb4b3dc241c2f187f3d0297
 </mapper>

@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="User_Info">
@@ -103,4 +104,111 @@
 			</where>
 		</select>
 
+=======
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="User_Info">
+
+<!-- resultType 으로 값을 반환하지 못해 resultMap 사용하여 DTO로 반환 -->
+<resultMap id="UserInfoResultMap" type="com.osd.web.app.dto.User_InfoDto">
+    <result column="USER_ID" property="user_id"/>
+    <result column="USER_PW" property="user_pw"/>
+    <result column="USER_NAME" property="user_name"/>
+    <result column="USER_HPNO" property="user_hpno"/>
+    <result column="USER_EMAIL" property="user_email"/>
+    <result column="USER_ADDR" property="user_addr"/>
+    <result column="USER_BIRTH" property="user_birth"/>
+    <result column="USER_GENDER" property="user_gender"/>
+    <result column="USER_CREATED_AT" property="user_created_at"/>
+    <result column="USER_UPDATED_AT" property="user_updated_at"/>
+</resultMap>
+
+		<select id="existsById" parameterType="String" resultType="int">
+		 	select count(user_id) from user_info
+			<where>
+			user_id = #{user_id}
+			</where>
+		</select>
+
+		<insert id="insert" parameterType="User_InfoDto">
+		 	insert into user_info
+				(user_id, user_pw, user_name, user_hpno, user_email, 
+				user_addr, user_birth, user_gender, user_created_at, user_updated_at)
+			values
+				(#{user_id}, #{user_pw}, #{user_name}, #{user_hpno}, #{user_email}, 
+				#{user_addr}, #{user_birth}, #{user_gender}, #{user_created_at}, #{user_updated_at})
+		</insert>
+
+	 	<select id="getUser_InfoById" parameterType="User_InfoDto" resultMap="UserInfoResultMap">
+		 	select user_id, user_name, user_hpno, user_email, user_addr, user_birth, user_gender from user_info 
+			<where>
+			user_id = #{user_id}
+			</where> 
+		</select>
+
+		<select id="getUser_InfoForAuth" parameterType="User_InfoDto" resultMap="UserInfoResultMap">
+			select user_id, user_pw from user_info
+			<where>
+			user_id = #{user_id}
+			</where>
+		</select>
+
+
+		<delete id="deleteUser_InfoByIdAndPw" parameterType = "User_InfoDto">
+			delete user_info
+			<where>
+			user_id = #{user_id} and user_pw = #{user_pw}
+			</where>
+		</delete>
+
+		<update id="update">
+			update user_info
+			<set>
+				<if test="#{user_pw}!=null">
+					user_pw = #{user_pw} ,
+				</if>
+				<if test="#{user_name}!=null">
+					user_name = #{user_name} ,
+				</if>
+				<if test="#{user_hpno}!=null">
+					user_hpno = #{user_hpno} ,
+				</if>
+				<if test="#{user_email}!=null">
+					user_email = #{user_email} ,
+				</if>
+				<if test="#{user_addr}!=null">
+					user_addr = #{user_addr} ,
+				</if>
+				<if test="#{user_birth}!=null">
+					user_birth = #{user_birth} ,
+				</if>
+				<if test="#{user_gender}!=null">
+					user_gender = #{user_gender} ,
+				</if>
+				user_updated_at = #{user_updated_at}
+			</set>
+			<where>
+				user_id = #{user_id}
+			</where>
+		</update>
+
+		<update id="updateUser_Pw" parameterType="User_InfoDto">
+			update user_info 
+			<set>
+				user_pw = #{user_pw}, 
+				user_updated_at = #{user_updated_at}
+			</set>
+			<where>
+				user_id = #{user_id}
+			</where>
+		</update>
+        
+		<select id="getUser_IdByEmail" parameterType="User_InfoDto" resultMap="UserInfoResultMap">
+			select user_id, user_email from user_info
+			<where>
+				user_email = #{user_email}
+			</where>
+		</select>
+
+>>>>>>> dc0c6beb7d70d18cdfb4b3dc241c2f187f3d0297
 </mapper>

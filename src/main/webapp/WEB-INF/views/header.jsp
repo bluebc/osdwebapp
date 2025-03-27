@@ -1,7 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 
     <!-- css -->
+
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/header.css">
+
 
     <!--js-->
     <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
@@ -20,7 +22,9 @@
                     <div>
                         <a href="/">
                             <h1 >
+
                                 <img src="${pageContext.request.contextPath}/img/uni-well-logo.png" alt="logo">
+
                             </h1>
                         </a>
                 

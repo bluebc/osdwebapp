@@ -15,7 +15,13 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.osd.web.app.dto.AutoLogin_InfoDto;
+<<<<<<< HEAD
 import com.osd.web.app.dto.User_InfoDto;
+=======
+import com.osd.web.app.dto.Board_InfoDto;
+import com.osd.web.app.dto.User_InfoDto;
+import com.osd.web.app.service.BoardService;
+>>>>>>> dc0c6beb7d70d18cdfb4b3dc241c2f187f3d0297
 import com.osd.web.app.service.LoginService;
 import com.osd.web.app.service.MailService;
 import com.osd.web.app.service.User_InfoService;
@@ -31,12 +37,21 @@ public class TestController {
 
     @Autowired
     private User_InfoService user_InfoService;
+<<<<<<< HEAD
 
     @Autowired
     private LoginService loginService;
 
     @Autowired
     private MailService mailService;
+=======
+    @Autowired
+    private LoginService loginService;
+    @Autowired
+    private MailService mailService;
+    @Autowired
+    private BoardService boardService;
+>>>>>>> dc0c6beb7d70d18cdfb4b3dc241c2f187f3d0297
 
     @RequestMapping("/test")
     public String testPage(HttpServletRequest request, HttpServletResponse response, Model model) {

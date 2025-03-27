@@ -1,3 +1,4 @@
+
 $(document).ready(function () {
 
     const $loginButtons = $(".loginBtn"); // 로그인 버튼
@@ -70,4 +71,3 @@ $(document).ready(function () {
         opTitle.innerText = event.target.innerText;
         opList.classList.remove('on');
     });
-});

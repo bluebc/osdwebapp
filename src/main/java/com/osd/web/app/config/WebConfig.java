@@ -2,9 +2,9 @@ package com.osd.web.app.config;
 
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
-import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
+import com.osd.web.app.interceptor.AuthInterceptor;
 import com.osd.web.app.interceptor.FindLoginInfoInterceptor;
 import com.osd.web.app.interceptor.LoginInterceptor;
 
@@ -15,20 +15,18 @@ import lombok.RequiredArgsConstructor;
 public class WebConfig implements WebMvcConfigurer {
 
     private final LoginInterceptor loginInterceptor;
-    private final FindLoginInfoInterceptor findLoginInfoInterceptorl;
+    private final FindLoginInfoInterceptor findLoginInfoInterceptor;
+    private final AuthInterceptor authInterceptor;
 
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
         registry.addInterceptor(loginInterceptor)
                 .addPathPatterns("/**"); // 모든 경로에 적용
 
-        registry.addInterceptor(findLoginInfoInterceptorl)
+        registry.addInterceptor(findLoginInfoInterceptor)
                 .addPathPatterns("/find/result/**");
-    }
 
-     @Override
-    public void addResourceHandlers(ResourceHandlerRegistry registry) {
-        registry.addResourceHandler("/auth/**")
-                .addResourceLocations("classpath:/static/");
+        registry.addInterceptor(authInterceptor)
+                .addPathPatterns("/auth/email/**");
     }
 }
