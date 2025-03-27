@@ -10,7 +10,7 @@ document.addEventListener("DOMContentLoaded", async function () {
 
     await setCategories(categoryList);
     await showFaqList(currentCate_id, currentKeyword);
-    accordion();
+    // accordion();
 
 
     const buttons = document.querySelectorAll(".tab-button");
@@ -246,6 +246,8 @@ function setFaqListTag(faqList) {
         const answerTr = document.createElement("tr");
         // class 사용 필요
         const answerTdA = document.createElement("td");
+        answerTdA.width = "50px";
+        answerTdA.vAlign = "top";
 
         const answerTitle = document.createElement("strong");
         answerTitle.className = "faq-tit";
