@@ -31,7 +31,7 @@
 		 <select id = "getTerm_ListByid" parameterType="String"  resultMap="TermListResultMap">
 		 select term_id, term_name, term_content, term_type, term_gb, term_sort, term_use_yn  from term_list
 		  <where>
-		    term_id = #{user_id}
+		    term_id = #{term_id}
 		   </where> 
    		 </select> 	
 		
