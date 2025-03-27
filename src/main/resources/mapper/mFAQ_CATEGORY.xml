@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="Faq_Category">
+
+<resultMap id="FaqCategoryResultMap" type="com.osd.web.app.dto.Faq_CategoryDto">
+    <result column="CATE_ID" property="cate_id"/>
+    <result column="CATE_NAME" property="cate_name"/>
+    <result column="CATE_SORT" property="cate_sort"/>
+    <result column="CATE_CREATED_AT" property="cate_created_at"/>
+    <result column="CATE_UPDATED_AT" property="cate_updated_at"/>
+</resultMap>
+
+<select id="selectAll" resultMap="FaqCategoryResultMap">
+    select * from faq_category order by cate_sort
+</select>
+
+
+</mapper>

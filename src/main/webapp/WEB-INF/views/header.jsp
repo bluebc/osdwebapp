@@ -7,7 +7,6 @@
     <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
     <script src="http://code.jquery.com/jquery-latest.min.js"></script>
     <script src="${pageContext.request.contextPath}/js/header.js"></script>
-
     <script src = "${pageContext.request.contextPath}/js/sessioncheck.js"></script>
 
     
@@ -44,7 +43,7 @@
                     <a href="/login" class="loginBtn">로그인</a>
                     <a href="/signup" class="signupBtn">회원가입</a>
                     <a href="/" class="supportBtn">홈</a>
-                    <a href="#" class="supportBtn">고객센터</a>
+                    <a href="/customerCenter" class="supportBtn">고객센터</a>
                 </div>
 
                 
