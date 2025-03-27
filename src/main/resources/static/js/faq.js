@@ -120,12 +120,16 @@ function setFaqListTag(faqList) {
 
         const tapContent = document.createElement("div");
         tapContent.className = "tab-content";
+        tapContent.role = "tabpanel";
 
         const faqBox = document.createElement("div");
         faqBox.className = "faq-box";
 
         const faqQuestion = document.createElement("div");
         faqQuestion.className = "faq-question";
+        faqQuestion.onclick = function(){
+            accordion();
+        }
 
         const questionTitle = document.createElement("strong");
         questionTitle.className = "faq-tit";
