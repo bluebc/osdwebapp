@@ -1,0 +1,356 @@
+@import "./mixin";
+
+header{
+    .top-banner{
+        display: none;
+    }
+}
+
+.hidden {
+    position: absolute;
+}
+
+.container{
+    padding: 14rem 0 14rem;
+    min-height: 800px;
+    .content{
+        padding: 0 6rem;
+        margin: 60px auto 4rem;
+        border-color: #999;
+        max-width: 1000px;
+        .basic-type{
+            .pc-type{
+                text-align: center;
+                border-bottom: 2px solid rgb(51, 51, 51);
+                margin: 0 auto;
+                h1{
+                    padding-bottom: 20px;
+                    font-weight: bold;
+                }
+            }
+    
+            .mobil-type{
+                display: none;
+                    position: relative;
+                    z-index: 2;
+                    justify-content: space-between;
+                    align-items: center;
+                    width: 100%;
+                    height: 5rem;
+                    background: #fff;
+                    color: #1d1d1d;
+                    z-index: 1;
+                    .tit-wrap{
+                        display: flex;
+                        align-items: center;
+                        .btn-back{
+                            width: 4.8rem;
+                            height: 5.3rem;
+                            display: flex;
+                            align-items: center;
+                            justify-content: center;
+                            margin-left: -2rem;
+                            background: url(../img/닫기.svg) no-repeat 50% 50% / .8rem 1.4rem;
+                            .hidden{
+                                overflow: hidden;
+                                clip: rect(0, 0, 0, 0);
+                                width: 1px;
+                                height: 1px;
+                                margin: -1px;
+                                padding: 0;
+                                border: 0;
+                            }
+                        }
+                        .header-sub-tit{
+                            overflow: hidden;
+                            text-align: left;
+                            font-size: 2rem;
+                        }
+                    }
+                    .header-util{
+                        .btn-home{
+                            img{
+                                width: 50px;
+                                height: 50px;
+                            }
+                        }
+                    }
+            }
+        }
+
+        .section-cont{
+            position: relative;
+            .form-area{
+                display: flex;
+                flex-wrap: wrap;
+                padding: 3rem 5rem;
+                margin: 2rem 0;
+                background-color: #f8f8f8;
+                .search{
+                    position: relative;
+                    width: 100%;
+                    background-color: white;
+                    .tf{
+                        width: 100%;
+                        height: 4.4rem;
+                        padding: 0 1rem;
+                        font-size: 1rem;
+                        font-weight: 400;
+                        line-height: 4.4rem;
+                        color: #1d1d1d;
+                        border: 1px solid #e6e6e6;
+                        border-radius: 3px; 
+                    }
+                    .btn-search{
+                        cursor: pointer;
+                        position: absolute;
+                        right: 0;
+                        top: 0;
+                        height: 100%;
+                        width: 5rem;
+                        cursor: pointer;
+                        background: url(../img/검색.svg) no-repeat 50% 50% / 2rem auto;
+                        .hidden{
+                            overflow: hidden;
+                            clip: rect(0, 0, 0, 0);
+                            width: 1px;
+                            height: 1px;
+                            margin: -1px;
+                            padding: 0;
+                            border: 0;
+                        }
+                    }
+                }
+            }
+
+            .faq-category{
+
+                .tab_but{
+                    padding-top: 2rem;
+                    padding-bottom: 2rem;                   
+                    .tab-button{
+                        cursor: pointer;
+                        padding: 10px 20px;
+                        border: 1px solid #ccc;
+                        border-radius: 4px;
+                        cursor: pointer;
+                        &:hover{
+                            background-color: #494949;
+                            color: white;
+                        }
+                        
+                        &.active {
+                            background-color: #494949; /* 클릭된 버튼 색상 */
+                            color: white;
+                        }
+                    }
+                }
+                .tab_area{
+                    border-top: 1px solid #999;
+                    border-bottom: 1px solid #999;
+                    .tab-content{
+                        .faq-box{
+                            
+                            .faq-question{
+                                position: relative;
+                                padding: 1.5rem 2rem;
+                                display: flex;
+                                cursor: pointer;
+                                &::after{
+                                    content: "";
+                                    position: absolute;
+                                    display: inline-block;
+                                    top: 28px;
+                                    right: 2rem;
+                                    width: 16px;
+                                    height: 14px;
+                                    background: url(../img/iconCateArrow.png) 50% 50% no-repeat;
+                                    transition: transform ease;
+                                }
+                                &.open::after {
+                                    transform: rotate(180deg); 
+                                }
+                                
+
+                                .faq-tit{
+                                    display: inline-block;
+                                    width: 50px;
+                                }
+                                .faq-subject{
+                                    margin-right: 2rem;
+                                }
+                                .faq-tet{
+                                    color: black;
+                                font-weight: bold;
+                                }
+                            }
+                            .faq-answer {
+                                padding: 1.5rem 2rem;
+                                display: none; 
+                                background-color: #f8f8f8;
+                                .faq-tit{
+                                    
+                                }
+                                .faq-tet{
+                                    line-height: 1.62;
+                                    font-size: 16px;
+                                }
+                            }
+
+                        }
+
+                    }
+                    .type-more{
+                        text-align: center;
+                        padding: 2rem 0;
+                        button{                         
+                            span{}
+                        }
+                    }
+                }
+            }
+        }
+
+    }
+}
+
+/* 768px*/
+@include itablet{
+    .header{display: none;}
+
+    .container{
+        padding: 0;
+        .content{
+            width: 100%;
+            padding: 0 2rem;
+            margin: 40px auto 0;
+            .basic-type{
+                .pc-type{display: none;}
+                .mobil-type{
+                    display: flex;
+                }
+            }
+            
+        }
+    }
+
+    .footer{display: none;}
+}
+
+@include itablet-landscape{
+    .header { display: none; }
+    .container{
+        padding: 0;
+        min-height: auto;
+        .content{
+            margin: 60px auto 4rem;
+            .basic-type{
+                .pc-type{display: none;}
+                .mobil-type{
+                    display: flex;
+                }
+            }
+            
+        }
+    }
+    .footer{display: none;}
+}
+
+// 576px
+@include mobile{
+    .container{
+        .content {
+            .form-area{
+                padding: 2rem 1rem;
+            }
+            .section-cont {
+                .form-area{
+                    padding: 1.5rem 1rem;
+                }
+                .faq-category {
+                    .tab_area {
+                        .tab-content {
+                            .faq-box {
+                                
+                                .faq-question {
+                                    padding: 1.5rem 0.5rem 1.5rem 2rem;
+                                    div{
+                                        display: flex;
+                                        flex-direction: column;
+                                        gap: 5px;
+                                        .faq-tet{
+                                            line-height: 1.2;
+                                        }
+                                    }
+                                    &::after{
+                                        display: none;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    
+                }
+            }
+        }
+    } 
+}
+
+// 425px
+@include galaxy{
+    .container{
+        .content {
+            .basic-type{
+                .mobil-type{
+                    .tit-wrap{
+                        .btn-back{
+                            margin-left: 0rem;
+                            width: 2rem;
+                            height: 3rem;
+                            background: url(../img/닫기.svg) no-repeat 50% 50% / 1rem 1rem;
+                            .hidden{}
+                        }
+                        .header-sub-tit{
+                            font-size: 1.2rem;
+                        }
+                    }
+                    .header-util{
+                        .btn-home{
+                            img{
+                                width: 30px;
+                                height: 30px;
+                            }
+                        }
+                    }
+                }
+            }
+            
+            .section-cont {
+                .form-area{
+                    margin: 0;
+                }
+                .faq-category {
+                    .tab_area {
+                        .tab-content {
+                            .faq-box {
+                                .faq-question{
+                                    padding: 1.5rem 0.5rem 1.5rem 1rem;
+                                }
+                                .faq-answer{
+                                    padding: 1.5rem 1rem;
+                                }
+                            }
+                        }
+                    }
+                    .tab_but{
+                        .tab-button{
+                            margin-bottom: 5px;
+                        }
+                    }
+                    
+                }
+            }
+        }
+    }
+}
+

@@ -1,0 +1,619 @@
+@charset "UTF-8";
+header .top-banner {
+  display: none;
+}
+
+.symbol {
+  color: rgb(238, 106, 123);
+  vertical-align: text-top;
+  font-size: 0.8rem;
+}
+
+.container {
+  padding: 15rem 0 15rem;
+  min-height: 800px;
+}
+.container .content {
+  width: 750px;
+  margin: 0px auto;
+  background-color: rgb(255, 255, 255);
+}
+.container .content .pc-type {
+  margin-bottom: 50px;
+  font-size: 2rem;
+  line-height: 35px;
+  font-weight: bold;
+  text-align: center;
+  letter-spacing: -1px;
+  color: rgb(80, 80, 80);
+}
+.container .content .mobil-type {
+  display: none;
+  position: relative;
+  z-index: 2;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  height: 5rem;
+  background: #fff;
+  color: #1d1d1d;
+  z-index: 1;
+}
+.container .content .mobil-type .tit-wrap {
+  display: flex;
+  align-items: center;
+}
+.container .content .mobil-type .tit-wrap .btn-back {
+  width: 4.8rem;
+  height: 5.3rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-left: -2rem;
+  background: url(../img/닫기.svg) no-repeat 50% 50%/0.8rem 1.4rem;
+}
+.container .content .mobil-type .tit-wrap .btn-back .hidden {
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  border: 0;
+}
+.container .content .mobil-type .tit-wrap .header-sub-tit {
+  overflow: hidden;
+  text-align: left;
+  font-size: 2rem;
+}
+.container .content .mobil-type .header-util .btn-home img {
+  width: 50px;
+  height: 50px;
+}
+.container .content #signupSection .required {
+  padding-bottom: 10px;
+  border-bottom: 2px solid rgb(51, 51, 51);
+  font-size: 0.8rem;
+  color: rgb(102, 102, 102);
+  line-height: 17px;
+  text-align: right;
+}
+.container .content #signupSection .list-form-area {
+  padding: 0px;
+}
+.container .content #signupSection .list-form-area .form-item {
+  display: inline-flex;
+  width: 100%;
+  padding: 15px 20px;
+}
+.container .content #signupSection .list-form-area .form-item .form-tit {
+  width: 10rem;
+  padding-top: 12px;
+}
+.container .content #signupSection .list-form-area .form-item .form-tit .title {
+  color: black;
+  font-weight: bold;
+  line-height: 20px;
+}
+.container .content #signupSection .list-form-area .form-item .form-cont {
+  flex: 1 1 0%;
+}
+.container .content #signupSection .list-form-area .form-item .form-cont .cont-box {
+  padding-bottom: 0px;
+}
+.container .content #signupSection .list-form-area .form-item .form-cont .cont-box .save-inp {
+  position: relative;
+  height: 48px;
+}
+.container .content #signupSection .list-form-area .form-item .form-cont .cont-box .save-inp input {
+  width: 100%;
+  height: 46px;
+  padding: 0px 11px 1px 15px;
+  border-radius: 4px;
+  border: 1px solid rgb(221, 221, 221);
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 1.5;
+  color: rgb(51, 51, 51);
+  outline: none;
+  box-sizing: border-box;
+}
+.container .content #signupSection .list-form-area .form-item .form-cont .cont-box .save-inp .m-duplication {
+  display: none;
+}
+.container .content #signupSection .list-form-area .form-item .form-cont .cont-box .save-inp .mail-box {
+  position: relative;
+  height: 48px;
+  border-radius: 4px;
+  border: 1px solid rgb(221, 221, 221);
+  display: flex;
+  align-items: center;
+}
+.container .content #signupSection .list-form-area .form-item .form-cont .cont-box .save-inp .mail-box input {
+  border: none;
+}
+.container .content #signupSection .list-form-area .form-item .form-cont .cont-box .save-inp .mail-box .at-sign {
+  padding: 0px 4px;
+}
+.container .content #signupSection .list-form-area .form-item .form-cont .cont-box .save-inp .mail-box .down-but {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.container .content #signupSection .list-form-area .form-item .form-cont .cont-box .save-inp .mail-box .down-but .email-inp {
+  padding: 0;
+}
+.container .content #signupSection .list-form-area .form-item .form-cont .cont-box .save-inp .mail-box .down-but .empty {
+  text-align: left;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 1.5;
+  color: rgb(51, 51, 51);
+  flex: 1 1 auto;
+}
+.container .content #signupSection .list-form-area .form-item .form-cont .cont-box .save-inp .mail-box .down-but .btn-select {
+  width: 48px;
+}
+.container .content #signupSection .list-form-area .form-item .form-cont .cont-box .save-inp .mail-box .dropdown-btn {
+  height: 0;
+  opacity: 0;
+  overflow: hidden;
+  transition: height 0.2s ease, opacity 0.2s ease;
+  position: absolute;
+  right: 0px;
+  width: 165px;
+  top: 47px;
+  z-index: 100;
+  border: 1px solid rgb(221, 221, 221);
+  background-color: #ffffff;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.container .content #signupSection .list-form-area .form-item .form-cont .cont-box .save-inp .mail-box .dropdown-btn.active {
+  height: auto;
+  opacity: 1;
+}
+.container .content #signupSection .list-form-area .form-item .form-cont .cont-box .validator {
+  position: relative;
+  margin-top: 0.8rem;
+  padding: 0 1.5rem;
+  line-height: 1.3;
+  letter-spacing: -0.06rem;
+  font-size: 0.8rem;
+  color: red; /* 기본 색상 */
+  transition: color 0.3s ease;
+}
+.container .content #signupSection .list-form-area .form-item .form-cont .cont-box .validator::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 1.2rem;
+  height: 1.2rem;
+  background-position: 0 0;
+  background-repeat: no-repeat;
+  background-size: 1.2rem auto;
+  background-image: url(../img/validator.svg);
+}
+.container .content #signupSection .list-form-area .form-item .form-cont .cont-box .validator.valid {
+  color: green;
+}
+.container .content #signupSection .list-form-area .form-item .form-cont .cont-box .validator.valid::before {
+  filter: opacity(0.5) drop-shadow(0 0 0 #008000);
+}
+.container .content #signupSection .list-form-area .form-item .form-cont .cont-box .date-bundle {
+  height: 46px;
+  display: flex;
+  align-items: center;
+  width: 100%;
+  border: 1px solid rgb(204, 204, 204);
+  border-radius: 3px;
+  padding: 0px 15px;
+}
+.container .content #signupSection .list-form-area .form-item .form-cont .cont-box .date-bundle .box-date {
+  padding-bottom: 0px;
+}
+.container .content #signupSection .list-form-area .form-item .form-cont .cont-box .date-bundle .box-date div {
+  position: relative;
+  height: 40px;
+}
+.container .content #signupSection .list-form-area .form-item .form-cont .cont-box .date-bundle .box-date div input {
+  text-align: center;
+  font-size: 14px;
+  border: none;
+  width: 100%;
+  height: 40px;
+  padding: 0px 11px 1px 15px;
+  border-radius: 4px;
+  font-weight: 400;
+  line-height: 38px;
+  color: rgb(51, 51, 51);
+  outline: none;
+  box-sizing: border-box;
+}
+.container .content #signupSection .list-form-area .form-item .form-cont .cont-box .date-bundle .slash {
+  height: 100%;
+}
+.container .content #signupSection .list-form-area .form-item .form-cont .cont-box .date-bundle .slash::after {
+  content: "/";
+  font-size: 14px;
+  color: rgb(204, 204, 204);
+  text-align: center;
+  line-height: 40px;
+}
+.container .content #signupSection .list-form-area .form-item .form-cont .cont-box .box-gender {
+  display: flex;
+  gap: 3rem;
+}
+.container .content #signupSection .list-form-area .form-item .form-cont .cont-box .box-gender .gender-element {
+  position: relative;
+  display: flex;
+  align-items: center;
+  padding: 12px 0px 9px;
+  cursor: pointer;
+}
+.container .content #signupSection .list-form-area .form-item .form-cont .cont-box .box-gender .gender-element input {
+  box-sizing: border-box;
+  padding: 0;
+  overflow: hidden;
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  clip: rect(0px, 0px, 0px, 0px);
+}
+.container .content #signupSection .list-form-area .form-item .form-cont .cont-box .box-gender .gender-element .r-blank {
+  min-width: 24px;
+  min-height: 24px;
+  display: inline-block;
+  position: relative;
+  border-radius: 50%;
+  background-color: white;
+  border: 1px solid rgb(221, 221, 221);
+}
+.container .content #signupSection .list-form-area .form-item .form-cont .cont-box .box-gender .gender-element .r-blank .r-check {
+  width: 10px;
+  height: 10px;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  background-color: transparent;
+  transition: background-color 0.3s, border-color 0.3s;
+}
+.container .content #signupSection .list-form-area .form-item .form-cont .cont-box .box-gender .gender-element input[type=radio]:checked ~ .r-blank .r-check {
+  background-color: rgb(83, 83, 83);
+  border-color: rgb(83, 83, 83);
+}
+.container .content #signupSection .list-form-area .form-item .form-cont .cont-box .box-gender .gender-element .gender-all {
+  position: relative;
+  font-size: 14px;
+  margin-left: 12px;
+}
+.container .content #signupSection .list-form-area .form-item .form-cont .m_address .address_postcode {
+  overflow: hidden;
+  margin-bottom: 5px;
+  display: flex;
+  align-items: center;
+}
+.container .content #signupSection .list-form-area .form-item .form-cont .m_address .address_postcode input {
+  float: left;
+  width: 190px;
+  height: 46px;
+  padding: 0px 11px 1px 15px;
+  border-radius: 4px;
+  border: 1px solid rgb(221, 221, 221);
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 1.5;
+  color: rgb(51, 51, 51);
+  outline: none;
+  box-sizing: border-box;
+}
+.container .content #signupSection .list-form-area .form-item .form-cont .m_address .address_postcode button {
+  float: left;
+  margin: 0 0 0 5px;
+  padding: 10px 10px;
+  border: 1px solid #989898;
+}
+.container .content #signupSection .list-form-area .form-item .form-cont .m_address .address_input {
+  margin-bottom: 5px;
+  float: left;
+  width: 100%;
+}
+.container .content #signupSection .list-form-area .form-item .form-cont .m_address .address_input .member_warning {
+  width: 100%;
+  display: inline-block;
+  position: relative;
+  margin-bottom: 5px;
+}
+.container .content #signupSection .list-form-area .form-item .form-cont .m_address .address_input .member_warning input {
+  width: 100%;
+  height: 46px;
+  padding: 0px 11px 1px 15px;
+  border-radius: 4px;
+  border: 1px solid rgb(221, 221, 221);
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 1.5;
+  color: rgb(51, 51, 51);
+  outline: none;
+  box-sizing: border-box;
+}
+.container .content #signupSection .list-form-area .form-item .blank-space {
+  width: 120px;
+  margin-left: 8px;
+}
+.container .content #signupSection .list-form-area .form-item .blank-space .btn-point {
+  padding: 0 1rem;
+  height: 44px;
+  border-radius: 4px;
+  border: 1px solid rgb(83, 83, 83);
+}
+.container .content #signupSection .list-form-area .form-item .blank-space .btn-point:hover {
+  background-color: rgb(83, 83, 83);
+  color: #ffffff;
+}
+.container .content #signupSection .lineDivide {
+  border-bottom: 2px solid rgb(51, 51, 51);
+}
+.container .content #signupSection .t-c .tcFrom {
+  display: inline-flex;
+  width: 100%;
+  padding: 1rem 0 1rem 1rem;
+}
+.container .content #signupSection .t-c .tcFrom .tc-title {
+  width: 10rem;
+}
+.container .content #signupSection .t-c .tcFrom .tc-title .tcLab {
+  color: black;
+  font-weight: bold;
+  line-height: 20px;
+}
+.container .content #signupSection .t-c .tcFrom .tc-content {
+  flex: 1;
+}
+.container .content #signupSection .t-c .tcFrom .tc-content .service-box {
+  display: flex;
+  padding: 8px 0px;
+  justify-content: space-between;
+}
+.container .content #signupSection .t-c .tcFrom .tc-content .service-box .tc-service input {
+  display: none;
+}
+.container .content #signupSection .t-c .tcFrom .tc-content .service-box .tc-service label {
+  display: inline-block;
+  position: relative;
+  cursor: pointer;
+  padding-left: 2rem;
+  padding-right: 1rem;
+  min-height: 2rem;
+}
+.container .content #signupSection .t-c .tcFrom .tc-content .service-box .tc-service label::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 1.3rem;
+  height: 1.3rem;
+  border-radius: 50%;
+  background: #fff url(../img/check.svg) no-repeat center/1.3rem auto;
+  transition: background-color 0.3s ease;
+}
+.container .content #signupSection .t-c .tcFrom .tc-content .service-box .tc-service label .tc-text {
+  color: black;
+  font-weight: bold;
+}
+.container .content #signupSection .t-c .tcFrom .tc-content .service-box .tc-service label .tc-text span {
+  color: rgb(95, 95, 95);
+}
+.container .content #signupSection .t-c .tcFrom .tc-content .service-box .tc-service input:checked + label::before {
+  background-color: rgb(83, 83, 83);
+}
+.container .content #signupSection .t-c .tcFrom .tc-content .service-box .tc-arrow {
+  padding-right: 3rem;
+  color: rgb(77, 77, 77);
+  letter-spacing: 0px;
+}
+.container .content #signupSection .t-c .tcFrom .tc-content .service-box .tc-arrow::after {
+  content: "";
+  display: inline-block;
+  margin-left: 4px;
+  width: 6px;
+  height: 9px;
+  background: url(../img/arriw-right.svg) 50% 50%/6px 9px no-repeat;
+}
+.container .content #signupSection .signUpButton {
+  display: flex;
+  justify-content: center;
+  border-top: 1px solid rgb(247, 247, 247);
+  padding: 40px 0px;
+}
+.container .content #signupSection .signUpButton button {
+  display: block;
+  padding: 0px 10px;
+  text-align: center;
+  overflow: hidden;
+  width: 240px;
+  height: 56px;
+  border-radius: 4px;
+  color: rgb(255, 255, 255);
+  background-color: rgb(83, 83, 83);
+  border: 0px none;
+}
+.container .content #signupSection .signUpButton button span {
+  display: inline-block;
+  font-size: 16px;
+  font-weight: 500;
+}
+
+/* 768px*/
+@media screen and (max-width: 768px) {
+  .header {
+    display: none;
+  }
+  .container {
+    padding: 0;
+  }
+  .container .content {
+    width: 100%;
+    padding: 0 2rem;
+    margin: 40px auto 0;
+  }
+  .container .content .pc-type {
+    display: none;
+  }
+  .container .content .mobil-type {
+    display: flex;
+  }
+  .container .content #signupSection .list-form-area .form-item {
+    flex-direction: column;
+  }
+  .container .content #signupSection .list-form-area .form-item .form-tit {
+    padding: 0 0 12px;
+  }
+  .container .content #signupSection .list-form-area .form-item .blank-space {
+    display: none;
+  }
+  .container .content #signupSection .list-form-area .form-item .form-cont .cont-box .save-inp {
+    display: flex;
+  }
+  .container .content #signupSection .list-form-area .form-item .form-cont .cont-box .save-inp .m-duplication {
+    display: block;
+    padding: 0 1rem;
+    height: 46px;
+    border-radius: 4px;
+    border: 1px solid rgb(221, 221, 221);
+  }
+  .container .content #signupSection .list-form-area .form-item .form-cont .cont-box .save-inp .m-duplication .btn-point2 {
+    border: none;
+    padding: 0;
+  }
+  .container .content #signupSection .list-form-area .form-item .form-cont .cont-box .save-inp .mail-box {
+    width: 100%;
+  }
+  .container .content #signupSection .list-form-area .form-item .form-cont .m_address .address_postcode input {
+    width: 100%;
+  }
+  .container .content #signupSection .t-c .tcFrom {
+    flex-direction: column;
+  }
+  .container .content #signupSection .t-c .tcFrom .tc-title {
+    padding-bottom: 2rem;
+  }
+  .footer {
+    display: none;
+  }
+}
+@media screen and (min-width: 768px) and (max-width: 1024px) and (orientation: landscape) {
+  .header {
+    display: none;
+  }
+  .container {
+    padding: 0;
+    min-height: auto;
+  }
+  .container .content {
+    margin: 60px auto 4rem;
+  }
+  .container .content .pc-type {
+    display: none;
+  }
+  .container .content .mobil-type {
+    display: flex;
+  }
+  .footer {
+    display: none;
+  }
+}
+/* 425px */
+@media screen and (max-width: 425px) {
+  .container .content .mobil-type .tit-wrap .btn-back {
+    margin-left: 0rem;
+    width: 2rem;
+    height: 3rem;
+    background: url(../img/닫기.svg) no-repeat 50% 50%/1rem 1rem;
+  }
+  .container .content .mobil-type .tit-wrap .header-sub-tit {
+    font-size: 1.2rem;
+  }
+  .container .content .mobil-type .header-util .btn-home img {
+    width: 30px;
+    height: 30px;
+  }
+  .container .content #loginForm .check .inp label .ftext {
+    font-size: 0.8rem;
+    font-weight: 300;
+  }
+  .container .content #loginForm .check .inp label::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 1rem;
+    height: 1rem;
+    border-radius: 50%;
+    background: #fff url(../img/check.svg) no-repeat 0 0/1rem auto;
+  }
+  .container .content #loginForm .boxBtnGroup .btnInp input {
+    font-size: 1rem;
+  }
+  .container .content #signupSection .list-form-area .form-item {
+    padding: 10px 0;
+  }
+  .container .content #signupSection .list-form-area .form-item .form-cont .cont-box .save-inp .m-duplication {
+    padding: 0 0.5rem;
+  }
+  .container .content #signupSection .list-form-area .form-item .form-cont .cont-box .validator {
+    padding: 0 1.2rem;
+  }
+  .container .content #signupSection .list-form-area .form-item .form-cont .cont-box .validator::before {
+    width: 1rem;
+    height: 1rem;
+    background-size: 1rem auto;
+  }
+  .container .content #signupSection .list-form-area .form-item .form-cont .cont-box .box-gender .gender-element .r-blank {
+    min-width: 1rem;
+    min-height: 1rem;
+  }
+  .container .content #signupSection .t-c .tcFrom {
+    padding: 1rem 0;
+  }
+  .container .content #signupSection .t-c .tcFrom .tc-content .service-box .tc-arrow {
+    font-size: 0;
+    padding-right: 0;
+  }
+  .container .content #signupSection .t-c .tcFrom .tc-content .service-box .tc-arrow::after {
+    position: relative;
+    top: -8px;
+  }
+  .container .content #signupSection .t-c .tcFrom .tc-content .service-box .tc-service label {
+    padding-left: 1.3rem;
+  }
+  .container .content #signupSection .t-c .tcFrom .tc-content .service-box .tc-service label::before {
+    width: 1rem;
+    height: 1rem;
+    background: #fff url(../img/check.svg) no-repeat center/1rem auto;
+  }
+  .container .content #signupSection .t-c .tcFrom .tc-content .service-box .tc-service .tc-text {
+    font-size: 0.9rem;
+  }
+  .container .content #signupSection .t-c .tcFrom .tc-content .service-box .tc-service .tc-text span {
+    font-size: 0.7rem;
+  }
+}
+/* 344px */
+@media screen and (max-width: 344px) {
+  .container .content #signupSection .list-form-area .form-item .form-cont .cont-box .save-inp .m-duplication .btn-point2 {
+    font-size: 0.8rem;
+  }
+  .container .content #signupSection .list-form-area .form-item .form-cont .cont-box .validator {
+    font-size: 0.75rem;
+    padding: 0 0.5rem 0 1.5rem;
+  }
+}/*# sourceMappingURL=signup.css.map */
