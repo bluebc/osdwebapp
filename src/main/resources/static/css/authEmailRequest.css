@@ -85,11 +85,6 @@ header .top-banner {
   height: 48px;
   font-weight: bold;
   line-height: 18px;
-}
-.container .content .inner-cont .nav-tab .btn-tab:nth-child(1) {
-  text-decoration: line-through;
-}
-.container .content .inner-cont .nav-tab .btn-tab:nth-child(2) {
   box-shadow: inset 0px -2px 0px 0px #3b3b3b;
 }
 .container .content .inner-cont .section-cont .form-item {

@@ -50,8 +50,7 @@
 
         <div class="inner-cont">
             <div class="nav-tab">
-                <button type="button" class="btn-tab" disabled="disabled">휴대폰 인증</button> 
-                <button type="button" class="btn-tab">이메일 인증</button>
+                <button type="button" class="btn-tab" disabled="disabled">이메일 인증</button>
             </div>
 
             <form id="section" class="section-cont">
@@ -61,8 +60,10 @@
                         <label for="email" class="tit">아이디</label>
                         <div class="form-cont">
                             <input type = "text", id = "user_id" placeholder = "아이디를 입력해 주세요">
-                            <%-- <input type = "text", id = "user_email" placeholder = "email"> --%>
-
+                        </div>
+                        <label for="email" class="tit">이메일</label>
+                        <div class="form-cont">
+                            <input type = "text", id = "user_email" placeholder = "이메일을 입력해 주세요">
                         </div>
                     </div>
                 </div>

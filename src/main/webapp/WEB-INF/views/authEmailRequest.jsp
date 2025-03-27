@@ -6,7 +6,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>이메일 인증 요청</title>
+    <title>아이디 찾기</title>
 
     <!-- css -->
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/reset.css">
@@ -32,7 +32,7 @@
     <div class="content">
 
         <%-- pc --%>
-        <div class="pc-type">아이디 | 비밀번호 찾기</div>
+        <div class="pc-type">아이디 찾기</div>
 
         <%-- mobile --%>
         <div class="mobil-type">
@@ -40,7 +40,7 @@
                     <a href="/login" class="btn-back">
                         <i class="hidden">닫기</i>
                     </a> 
-                    <h1 class="header-sub-tit">아이디 | 비밀번호 찾기</h1>
+                    <h1 class="header-sub-tit">아이디 찾기</h1>
                 </div>
                 <div class="header-util">
                     <a href="/" class="btn-home">
@@ -51,8 +51,7 @@
 
         <div class="inner-cont">
             <div class="nav-tab">
-                <button type="button" class="btn-tab" disabled="disabled">휴대폰 인증</button> 
-                <button type="button" class="btn-tab">이메일 인증</button>
+                <button type="button" class="btn-tab" disabled="disabled">이메일 인증</button>
             </div>
 
             <form id="section" class="section-cont">
