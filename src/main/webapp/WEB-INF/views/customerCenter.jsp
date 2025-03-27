@@ -38,6 +38,7 @@
     
 <div class="container">
     <div class="content">
+
         <div class="basic-type">
             <%-- pc --%>
             <div class="pc-type">
@@ -76,25 +77,15 @@
                     <button  class="tab-button" role="tab" aria-controls="tab-content-3"  tabindex="0">배송</button>
                     <button  class="tab-button" role="tab" aria-controls="tab-content-4"  tabindex="0">제품</button> --%>
                 </div>  
-            
-                
-                <div class="tab_area list" id = "faq-list">
-                   
-                 
-            </div><%-- faq-category end  --%>
 
-                </div>
-
-                    <div class="paging type-more">
+                <div class="tab_area list" id = "faq-list"></div>
+                <div class="paging type-more">
                         <button type="button" id="load">
                             <span>더보기<img src="../img/arrowdown.svg"></span>
                         </button>
-                    </div>
-
+                </div>
             </div>
-
-        </div>
-
+        </div>      
         
     </div>
 </div>
