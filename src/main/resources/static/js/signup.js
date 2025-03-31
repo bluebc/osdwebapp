@@ -689,14 +689,19 @@ async function showTermId(fterm) {
     $("#termspage").load("/termview?term_id=" + fterm, function() {
 
         $("#popup").css("display", "flex").show().fadeIn();
-
+        // 외부 스크롤 숨기기
+        document.documentElement.style.overflow = "hidden";  // html에 overflow hidden 적용
     });
 
 }
-
 
 // 약관 팝업 숨기기
 async function privacyClick(){
 
     $("#popup").hide().fadeOut();
+    // 외부 스크롤 다시 보이게 하기
+    document.documentElement.style.overflow = "auto";  // html의 overflow 복원
 }
+
+
+
