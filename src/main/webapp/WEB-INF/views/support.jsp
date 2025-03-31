@@ -6,5 +6,22 @@
 </head>
 <body>
 <h3>SUPPORT</h3>
+
+
+<br>
+<input type = "text" id = "keyword" placeholder = "검색어 입력">
+<input type = "button" onclick= "search()" value = "검색버튼">
+
+
+<br>
+<br>
+
+<div id = "listSpace">
+<%@ include file="supportQna.jsp" %>
+</div>
+
+
+
+
 </body>
 </html>

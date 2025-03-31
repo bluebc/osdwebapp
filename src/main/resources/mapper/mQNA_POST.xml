@@ -35,5 +35,75 @@
 		    post_id = #{post_id}
 		   </where> 
    		 </select> 	
+
+		<insert id="insert">
+			insert into qna_post(post_subject, post_content, post_images, post_viewcnt, post_childcnt, post_likecnt, user_id, post_sort, post_created_at, post_updated_at)
+				values(#{post_subject}, #{post_content}, #{post_images}, #{post_viewcnt}, #{post_childcnt}, #{post_likecnt}, #{user_id}, #{post_sort}, #{post_created_at}, #{post_updated_at}) 
+		</insert>
+
+		<select id="selectBySubjectAndContentAndUserIdAndCreated" parameterType="Qna_PostDto" resultMap="QnaPostResultMap">
+			select * from qna_post
+				<where>
+					post_subject = #{post_subject} 
+					and 
+					post_content = #{post_content} 
+					and 
+					user_id = #{user_id} 
+					and 
+					post_created_at = #{post_created_at} 
+				</where>
+		</select>
+
+		<select id="selectById" parameterType="Qna_PostDto" resultMap="QnaPostResultMap">
+			select * from qna_post
+				<where>
+					post_id = #{post_id}
+				</where>
+		</select>
+
+	<!-- 작업중 -->
+			
+	<select id="selectCountAll" resultType="int">
+		select count(post_id) from qna_post
+	</select>
+
+	<delete id="delete" parameterType="Qna_PostDto">
+		delete qna_post where post_id = #{post_id}
+	</delete>
+
+
+	<select id="selectRownumByNo" parameterType="Qna_PostDto" resultType="int">
+		select ROWNUM from
+			(select ROW_NUMBER() over(order by post_id) as ROWNUM, post_id from qna_post) as a
+		<where>
+			post_id = #{post_id}
+		</where>
+	</select>
+
+
+	<select id="selectByKeyword" parameterType="java.util.Map" resultMap="QnaPostResultMap">
+    select * from qna_post 
+        <where>
+            (post_subject like concat('%', #{keyword}, '%')
+                or
+                post_content like concat('%', #{keyword}, '%'))
+        </where>
+	</select>
+
+
+	<select id="selectByKeywordAndPage" parameterType="java.util.Map" resultMap="QnaPostResultMap">
+    select * from a
+	(select * from qna_post 
+        where post_subject like concat('%', #{keyword}, '%')
+                or
+                post_content like concat('%', #{keyword}, '%')
+	) as a
+		<where>
+			ROWNUM &gt;= 1 + #{limit} * (#{page} - 1) 
+       		and 
+       		ROWNUM &lt; 1 + #{limit} * #{page}
+		</where>
+	</select>
+
 		
 </mapper>

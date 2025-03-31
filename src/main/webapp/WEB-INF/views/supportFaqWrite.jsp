@@ -4,7 +4,7 @@
 
 <head>
     <title>오생단</title>
-<script src = "${pageContext.request.contextPath}/js/faq.js"></script>
+<script src = "${pageContext.request.contextPath}/js/supportFaqWrite.js"></script>
 </head>
 <body>
 
