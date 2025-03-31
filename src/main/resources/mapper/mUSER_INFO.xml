@@ -14,6 +14,7 @@
     <result column="USER_GENDER" property="user_gender"/>
     <result column="USER_CREATED_AT" property="user_created_at"/>
     <result column="USER_UPDATED_AT" property="user_updated_at"/>
+	<result column="USER_ROLE" property="user_role"/>
 </resultMap>
 
 		<select id="existsById" parameterType="String" resultType="int">
@@ -26,21 +27,21 @@
 		<insert id="insert" parameterType="User_InfoDto">
 		 	insert into user_info
 				(user_id, user_pw, user_name, user_hpno, user_email, 
-				user_addr, user_birth, user_gender, user_created_at, user_updated_at)
+				user_addr, user_birth, user_gender, user_created_at, user_updated_at, user_role)
 			values
 				(#{user_id}, #{user_pw}, #{user_name}, #{user_hpno}, #{user_email}, 
-				#{user_addr}, #{user_birth}, #{user_gender}, #{user_created_at}, #{user_updated_at})
+				#{user_addr}, #{user_birth}, #{user_gender}, #{user_created_at}, #{user_updated_at}, #{user_role})
 		</insert>
 
 	 	<select id="getUser_InfoById" parameterType="User_InfoDto" resultMap="UserInfoResultMap">
-		 	select user_id, user_name, user_hpno, user_email, user_addr, user_birth, user_gender from user_info 
+		 	select user_id, user_name, user_hpno, user_email, user_addr, user_birth, user_gender, user_role from user_info 
 			<where>
 			user_id = #{user_id}
 			</where> 
 		</select>
 
 		<select id="getUser_InfoForAuth" parameterType="User_InfoDto" resultMap="UserInfoResultMap">
-			select user_id, user_pw from user_info
+			select user_id, user_pw from user_info, user_role
 			<where>
 			user_id = #{user_id}
 			</where>

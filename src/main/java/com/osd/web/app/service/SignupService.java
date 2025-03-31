@@ -46,6 +46,8 @@ public class SignupService {
     public int insertUser_Info(User_InfoDto user_InfoDto) {
         int result = 0;
 
+        user_InfoDto.setUser_role("GENERAL");
+
         if (user_InfoDao.existsUser_InfoById(user_InfoDto.getUser_id()) == 0) {
             result = user_InfoDao.insertUser_Info(user_InfoDto);
         } else if (user_InfoDao.existsUser_InfoById(user_InfoDto.getUser_id()) > 0) {
