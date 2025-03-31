@@ -17,8 +17,10 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.osd.web.app.dto.Faq_CategoryDto;
 import com.osd.web.app.dto.Faq_ListDto;
 import com.osd.web.app.dto.Qna_PostDto;
+import com.osd.web.app.dto.User_InfoDto;
 import com.osd.web.app.service.FaqService;
 import com.osd.web.app.service.QnaService;
+import com.osd.web.app.service.User_InfoService;
 
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
@@ -31,6 +33,8 @@ public class SupportController {
     private FaqService faqService;
     @Autowired
     private QnaService qnaService;
+    @Autowired
+    private User_InfoService user_InfoService;
 
     @RequestMapping("")
     public String supportPage() {
@@ -66,17 +70,53 @@ public class SupportController {
     }
 
     @RequestMapping("/faq/write")
-    public String faqWritePage() {
+    public String faqWritePage(HttpServletRequest request) {
+
+        // 관리자 권한 확인
+        try {
+            HttpSession session = request.getSession();
+            String user_id = (String) session.getAttribute("login_user_id");
+
+            User_InfoDto user_InfoDto = new User_InfoDto();
+            user_InfoDto.setUser_id(user_id);
+            User_InfoDto user_InfoFromDb = user_InfoService.getUser_InfoById(user_InfoDto);
+            String user_role = user_InfoFromDb.getUser_role();
+            if (!user_role.equals("ADMIN")) {
+                return "redirect:/wrongPath";
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            return "redirect:/wrongPath";
+        }
+
         // 관리자 권한 확인 로직 필요
+
         return "supportFaqWrite";
     }
 
     @ResponseBody
     @PostMapping("/faq/insertFaqList")
-    public Map<String, Object> insertFaqList(@RequestBody Faq_ListDto faq_ListDto) {
+    public Map<String, Object> insertFaqList(HttpServletRequest request, @RequestBody Faq_ListDto faq_ListDto) {
+
         Map<String, Object> resultMap = new HashMap<>();
 
         // 관리자 권한 확인
+        try {
+            HttpSession session = request.getSession();
+            String user_id = (String) session.getAttribute("login_user_id");
+
+            User_InfoDto user_InfoDto = new User_InfoDto();
+            user_InfoDto.setUser_id(user_id);
+            User_InfoDto user_InfoFromDb = user_InfoService.getUser_InfoById(user_InfoDto);
+            String user_role = user_InfoFromDb.getUser_role();
+            if (!user_role.equals("ADMIN")) {
+                return resultMap;
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            return resultMap;
+        }
+
         int inserted = faqService.insertFaqList(faq_ListDto);
         resultMap.put("inserted", inserted);
         return resultMap;
@@ -90,14 +130,21 @@ public class SupportController {
         return "supportQna";
     }
 
-    // getFaqListByCateIdAndKeyword
-    public List<Qna_PostDto> getQnaPostByKeywordAndPage() {
-        String keyword = "";
-        int page = 0;
+    @ResponseBody
+    @PostMapping("/qna/getQnaPostByKeywordAndPage")
+    public Map<String, Object> getQnaPostByKeywordAndPage(@RequestBody Map<String, Object> parameterMap) {
+Map<String, Object> resultMap = new HashMap<>();
+
+
+        String keyword = (String) parameterMap.get("keyword");
+        int page = (int) parameterMap.get("page");
+
+        // 페이지당 글 개수
         int limit = 10;
 
         // 전체 글 개수
-        int postCount = 0;
+        int postCount = qnaService.getQnaPostCountByKeyword(keyword);
+
         int maxPage = postCount / limit;
         if (postCount % limit > 0) {
             maxPage += 1;
@@ -111,8 +158,15 @@ public class SupportController {
             page = maxPage;
         }
 
-        qnaService.getQnaPostByKeywordAndPage(keyword, page, limit);
-        return new ArrayList<>();
+        List<Qna_PostDto> list = qnaService.getQnaPostByKeywordAndPage(keyword, page, limit);
+        int count = postCount;
+        resultMap.put("list", list);
+        resultMap.put("count", count);
+        resultMap.put("limit", limit);
+        resultMap.put("maxPage", maxPage);
+
+
+        return resultMap;
     }
 
     @RequestMapping("/qna/write")
@@ -157,6 +211,7 @@ public class SupportController {
         return "supportQnaRead";
     }
 
+    @RequestMapping("/qna/list")
     public String qnaListPage() {
         return "supportQnaList";
     }

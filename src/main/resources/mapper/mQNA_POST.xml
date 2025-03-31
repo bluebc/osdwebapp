@@ -92,17 +92,28 @@
 
 
 	<select id="selectByKeywordAndPage" parameterType="java.util.Map" resultMap="QnaPostResultMap">
-    select * from a
-	(select * from qna_post 
-        where post_subject like concat('%', #{keyword}, '%')
-                or
-                post_content like concat('%', #{keyword}, '%')
-	) as a
-		<where>
+    select post_id, post_subject, post_content, post_images, post_viewcnt, post_childcnt, post_likecnt, user_id, post_sort, post_created_at, post_updated_at from 
+		(select * from
+		(select ROW_NUMBER() over(order by post_id) as ROWNUM, post_id, post_subject, post_content, post_images, post_viewcnt, post_childcnt, post_likecnt, user_id, post_sort, post_created_at, post_updated_at from qna_post 
+			where post_subject like concat('%', #{keyword}, '%')
+					or
+					post_content like concat('%', #{keyword}, '%')
+		) as a
+		where
 			ROWNUM &gt;= 1 + #{limit} * (#{page} - 1) 
        		and 
        		ROWNUM &lt; 1 + #{limit} * #{page}
-		</where>
+		) as b
+	</select>
+
+	<select id="selectCountByKeyword" parameterType="String" resultType="int">
+	select count(post_id) from 
+		(select * from qna_post 
+			where post_subject like concat('%', #{keyword}, '%')
+					or
+					post_content like concat('%', #{keyword}, '%')
+		) as a
+	
 	</select>
 
 		

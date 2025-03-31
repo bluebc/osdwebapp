@@ -34,16 +34,22 @@ public class Qna_PostDao {
         return selectById(qna_PostDto);
     }
 
-    public List<Qna_PostDto> selectByKeyword(String keyword){
+    public List<Qna_PostDto> selectByKeyword(String keyword) {
         Map<String, Object> parameterMap = new HashMap<>();
         parameterMap.put("keyword", keyword);
         return session.selectList("Qna_Post.selectByKeyword", parameterMap);
     }
-    public List<Qna_PostDto> selectByKeywordAndPage(String keyword, int page, int limit){
+
+    public List<Qna_PostDto> selectByKeywordAndPage(String keyword, int page, int limit) {
         Map<String, Object> parameterMap = new HashMap<>();
         parameterMap.put("keyword", keyword);
         parameterMap.put("page", page);
         parameterMap.put("limit", limit);
         return session.selectList("Qna_Post.selectByKeywordAndPage", parameterMap);
     }
+
+    public int selectCountByKeyword(String keyword) {
+        return session.selectOne("Qna_Post.selectCountByKeyword", keyword);
+    }
+
 }

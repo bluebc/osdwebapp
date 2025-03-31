@@ -44,4 +44,9 @@ public class QnaService {
         return qna_PostDao.selectByKeywordAndPage(keyword, page, limit);
     }
 
+    public int getQnaPostCountByKeyword(String keyword){
+        return qna_PostDao.selectCountByKeyword(keyword);
+    }
+
+
 }

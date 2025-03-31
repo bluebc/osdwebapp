@@ -41,7 +41,7 @@
 		</select>
 
 		<select id="getUser_InfoForAuth" parameterType="User_InfoDto" resultMap="UserInfoResultMap">
-			select user_id, user_pw from user_info, user_role
+			select user_id, user_pw, user_role from user_info
 			<where>
 			user_id = #{user_id}
 			</where>
