@@ -23,4 +23,8 @@ public class Faq_ListDao {
         return session.selectList("Faq_List.selectByCateIdAndKeyword", parameterMap);
     }
 
+    public int insert(Faq_ListDto faq_ListDto){
+        return session.insert("Faq_List.insert", faq_ListDto);
+    }
+
 }

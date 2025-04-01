@@ -17,5 +17,6 @@ public class User_InfoDto {
     private String user_gender;
     private LocalDateTime user_created_at;
     private LocalDateTime user_updated_at;
+    private String user_role;
 }
 

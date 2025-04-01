@@ -26,4 +26,10 @@
         </where>
 </select>
 
+<insert id = "insert" parameterType="Faq_ListDto">
+    insert into faq_list(faq_subject, faq_content, cate_id, faq_sort, faq_created_at, faq_updated_at)
+    values(#{faq_subject}, #{faq_content}, #{cate_id}, #{faq_sort}, #{faq_created_at}, #{faq_updated_at})
+</insert>
+
+
 </mapper>

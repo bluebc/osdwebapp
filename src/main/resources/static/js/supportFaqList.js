@@ -1,60 +1,21 @@
-var categoryList = [];
-var currentCate_id = 0;
-var faqList = [];
-var currentKeyword;
+// var currentPage = 1;
+// var currentKeyword = "";
+// var categoryList = [];
+// var currentCate_id = 0;
+// var faqList = [];
 
-// 최초 실행
-document.addEventListener("DOMContentLoaded", async function () {
-    categoryList = await getCategories();
 
-    // cate_sort 가장 빠른 id값
-    // currentCate_id = categoryList[0].cate_id;
-    await setCategories(categoryList);
-    await showFaqList(currentCate_id, currentKeyword);
-    accordion();
-});
+// document.addEventListener("DOMContentLoaded", async function(){
 
-// 카테고리 선택
-function selectCategory(cate_id) {
-    currentCate_id = cate_id;
-    showFaqList(currentCate_id, currentKeyword);
-}
+// categoryList = await getCategories();
+// setCategories(categoryList);
 
-// 서버에서 카테고리 리스트
-async function getCategories() {
-    const response = await fetch("/getFaqCategory",
-        {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: {}
-        }
-    )
-    const list = response.json();
-    return list;
-}
+// showFaqList(currentCate_id, currentKeyword);
 
-// 서버에서 FAQ리스트 수집
-async function getFaqListByCateIdAndKeyword(cate_id, keyword) {
-
-    cate_id = parseInt(cate_id);
-
-    if (keyword == null || keyword == undefined || keyword == "") {
-        keyword = "";
-    }
-
-    const response = await fetch("/getFaqListByCateIdAndKeyword",
-        {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ cate_id: cate_id, keyword: keyword })
-        }
-    )
-    const list = response.json();
-    return list;
-}
+// });
 
 // 검색
-function searchQuestion() {
+function searchFaq() {
 
     var keyword = document.getElementById("keyword").value;
     currentKeyword = keyword;
@@ -66,14 +27,34 @@ function searchQuestion() {
 async function showFaqList(cate_id, keyword) {
     faqList = await getFaqListByCateIdAndKeyword(cate_id, keyword);
     await setFaqListTag(faqList);
-    accordion();
+    // accordion();
 }
+
+// 카테고리 선택
+function selectCategory(cate_id) {
+    currentCate_id = cate_id;
+    showFaqList(currentCate_id, currentKeyword);
+}
+
+
+
+// 서버에서 카테고리 리스트
+async function getCategories() {
+    const response = await fetch("/support/faq/getFaqCategory",
+        {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: {}
+        }
+    )
+    const list = response.json();
+    return list;
+}
+
 
 // 카테고리 만들기
 function setCategories(list) {
-
-    const div = document.getElementById("selectCategory");
-
+    const div = document.getElementById("faqCategory");
 
     // 기존 내용 삭제
     while (div.firstChild) {
@@ -82,10 +63,12 @@ function setCategories(list) {
 
     // "전체" 버튼 추가
     const allBtn = document.createElement("button");
-    allBtn.className = "tab-button";
+    allBtn.className = "tab-button active"; 
     allBtn.textContent = "전체";
     allBtn.role = "tab";
     allBtn.onclick = function () {
+        document.querySelectorAll(".tab-button").forEach(btn => btn.classList.remove("active")); 
+        allBtn.classList.add("active"); 
         selectCategory(0);
     };
     div.appendChild(allBtn);
@@ -97,11 +80,38 @@ function setCategories(list) {
         categoryBtn.textContent = category.cate_name;
         categoryBtn.role = "tab";
         categoryBtn.onclick = function () {
+            document.querySelectorAll(".tab-button").forEach(btn => btn.classList.remove("active"));
+            categoryBtn.classList.add("active");
             selectCategory(category.cate_id);
         };
         div.appendChild(categoryBtn);
     });
+
+    // 기본적으로 "전체" 카테고리 선택
+    selectCategory(0);
 }
+
+
+// 서버에서 FAQ리스트 수집
+async function getFaqListByCateIdAndKeyword(cate_id, keyword) {
+
+    cate_id = parseInt(cate_id);
+
+    if (keyword == null || keyword == undefined || keyword == "") {
+        keyword = "";
+    }
+
+    const response = await fetch("/support/faq/getFaqListByCateIdAndKeyword",
+        {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ cate_id: cate_id, keyword: keyword })
+        }
+    )
+    const list = response.json();
+    return list;
+}
+
 
 function setFaqListTag(faqList) {
 
@@ -113,10 +123,11 @@ function setFaqListTag(faqList) {
         categoryMap.set(cate_id, cate_name);
     });
 
-    const faqListSection = document.getElementById("faq-list");
+    const faqListSection = document.getElementById("faqList");
     while (faqListSection.firstChild) {
         faqListSection.removeChild(faqListSection.firstChild);
     }
+
 
     faqList.forEach(faq => {
 
@@ -166,6 +177,8 @@ function setFaqListTag(faqList) {
         const answerTr = document.createElement("tr");
         // class 사용 필요
         const answerTdA = document.createElement("td");
+        answerTdA.width = "50px";
+        answerTdA.vAlign = "top";
 
         const answerTitle = document.createElement("strong");
         answerTitle.className = "faq-tit";
@@ -198,4 +211,6 @@ function setFaqListTag(faqList) {
         faqListSection.appendChild(tapContent);
 
     });
+
+
 }

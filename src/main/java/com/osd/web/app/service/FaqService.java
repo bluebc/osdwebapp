@@ -1,5 +1,7 @@
 package com.osd.web.app.service;
 
+import java.time.LocalDateTime;
+import java.time.temporal.ChronoUnit;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,5 +32,14 @@ public class FaqService {
     public List<Faq_ListDto> getFaqListByCateIdAndKeyword(int cate_id) {
         String keyword = "";
         return getFaqListByCateIdAndKeyword(cate_id, keyword);
+    }
+
+    public int insertFaqList(Faq_ListDto faq_ListDto) {
+
+        LocalDateTime faq_created_at = LocalDateTime.now().truncatedTo(ChronoUnit.MILLIS);
+        faq_ListDto.setFaq_created_at(faq_created_at);
+        faq_ListDto.setFaq_updated_at(faq_created_at);
+
+        return faq_ListDao.insert(faq_ListDto);
     }
 }
