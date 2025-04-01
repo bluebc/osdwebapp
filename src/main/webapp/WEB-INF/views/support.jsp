@@ -9,6 +9,8 @@
 <script src = "${pageContext.request.contextPath}/js/supportFaqList.js"></script>
 </head>
 <body>
+
+
 <h3>SUPPORT</h3>
 
 <div id = "supportTypeBtnSection">
