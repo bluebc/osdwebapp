@@ -1,7 +1,6 @@
 var currentPage = 1;
 var currentKeyword = "";
 
-
 async function getQnaPostByKeywordAndPage() {
 
     var page = parseInt(currentPage);
@@ -24,12 +23,10 @@ async function getQnaPostByKeywordAndPage() {
 
 }
 
-
-
-
 // list 테이블로 생성
 function setQnaListTable(list) {
     var qnaListTable = document.getElementById("qnaListTable");
+
     while (qnaListTable.firstChild) {
         qnaListTable.removeChild(qnaListTable.firstChild);
     }
@@ -41,6 +38,7 @@ function setQnaListTable(list) {
         const subjectTd = document.createElement("td");
         subjectTd.textContent = qna.post_subject + " [" + qna.post_childcnt + "]";
         subjectTd.onclick = function () {
+            // 글 읽기 기능 구현
             console.log(qna.post_subject);
         }
 
@@ -59,35 +57,23 @@ function setQnaListTable(list) {
         qnaListTable.appendChild(qnaTr);
 
     });
-
-    // console.log(qnaTable);
 }
 
 document.addEventListener("DOMContentLoaded", async function () {
-    // setQnaListTable();
     const qnaMap = await getQnaPostByKeywordAndPage();
 
-
     setQnaListTable(qnaMap.list);
-
-
-    console.log(currentPage);
-    console.log(qnaMap.count);
-    console.log(qnaMap.limit);
-    console.log(qnaMap.maxPage);
-    setQnaListPaging(currentPage, qnaMap.count, qnaMap.limit, qnaMap.maxPage);
+    setQnaListPaging(currentPage, qnaMap.maxPage, qnaMap.count, qnaMap.limit);
 
 })
 
-function setQnaListPaging(currentPage, count, limit, maxPage) {
-
+// 페이지 이동 버튼
+function setQnaListPaging(currentPage, maxPage, count, limit) {
 
     var qnaListPaging = document.getElementById("qnaListPaging");
     while (qnaListPaging.firstChild) {
         qnaListPaging.removeChild(qnaListPaging.firstChild);
     }
-
-
 
     // 10페이지씩
     var viewPage = 10;
@@ -117,9 +103,9 @@ function setQnaListPaging(currentPage, count, limit, maxPage) {
         var pageDiv = document.createElement("div");
         pageDiv.className = "qnaPage";
         pageDiv.textContent = page;
-        console.log("input: " + page);
+        // console.log("input: " + page);
         pageDiv.onclick = function () {
-            console.log("clicked: " + page);
+            // console.log("clicked: " + page);
             qnaPaging(page);
         }
         qnaListPaging.appendChild(pageDiv);
@@ -129,6 +115,9 @@ function setQnaListPaging(currentPage, count, limit, maxPage) {
         var rightPageBtn = document.createElement("div");
         rightPageBtn.className = "qnaPage";
         // 아이콘 대체?
+        // let btnImg = document.createElement("img");
+        // btnImg.src = "/img/사람.png";
+        // rightPageBtn.appendChild(btnImg);
         rightPageBtn.textContent = ">>"
         rightPageBtn.onclick = function () {
             qnaPaging(endPage + 1);
@@ -136,15 +125,13 @@ function setQnaListPaging(currentPage, count, limit, maxPage) {
         qnaListPaging.appendChild(rightPageBtn);
     }
 
-
-
 }
 
-
+// 페이지 이동(검색어 반영)
 async function qnaPaging(page) {
     currentPage = page;
-    
+
     const result = await getQnaPostByKeywordAndPage();
-    setQnaListPaging(currentPage, result.count, result.limit, result.maxPage);
+    setQnaListPaging(currentPage, result.maxPage, result.count, result.limit);
     setQnaListTable(result.list);
 }

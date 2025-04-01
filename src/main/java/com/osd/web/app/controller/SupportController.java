@@ -122,6 +122,17 @@ public class SupportController {
         return resultMap;
     }
 
+    // ========================================
+
+    @RequestMapping("/faq/list")
+    public String faqListPage(){
+        return "supportFaqList";
+    }
+
+
+
+
+
     // QNA
 
     @RequestMapping("/qna")
