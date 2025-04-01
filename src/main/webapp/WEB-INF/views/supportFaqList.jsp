@@ -28,6 +28,8 @@
 
 <h3>FAQ</h3>
 
+<div id = "faqCategory">
+</div>
 
 <div id = "faqList">
 

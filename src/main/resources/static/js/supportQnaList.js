@@ -1,5 +1,5 @@
-var currentPage = 1;
-var currentKeyword = "";
+// var currentPage = 1;
+// var currentKeyword = "";
 
 async function getQnaPostByKeywordAndPage() {
 
@@ -30,6 +30,24 @@ function setQnaListTable(list) {
     while (qnaListTable.firstChild) {
         qnaListTable.removeChild(qnaListTable.firstChild);
     }
+
+    // th
+    const columnTr = document.createElement("tr");
+    const idTh = document.createElement("th");
+    idTh.textContent = "번호";
+    const subjectTh = document.createElement("th");
+    subjectTh.textContent = "제목";
+    const userTh = document.createElement("th");
+    userTh.textContent = "작성자";
+    const createdTh = document.createElement("th");
+    createdTh.textContent = "작성 시간";
+    columnTr.appendChild(idTh);
+    columnTr.appendChild(subjectTh);
+    columnTr.appendChild(userTh);
+    columnTr.appendChild(createdTh);
+    qnaListTable.appendChild(columnTr);
+
+
     list.forEach(qna => {
         const qnaTr = document.createElement("tr");
         const idTd = document.createElement("td");
@@ -59,13 +77,13 @@ function setQnaListTable(list) {
     });
 }
 
-document.addEventListener("DOMContentLoaded", async function () {
-    const qnaMap = await getQnaPostByKeywordAndPage();
+// document.addEventListener("DOMContentLoaded", async function () {
+//     const qnaMap = await getQnaPostByKeywordAndPage();
 
-    setQnaListTable(qnaMap.list);
-    setQnaListPaging(currentPage, qnaMap.maxPage, qnaMap.count, qnaMap.limit);
+//     setQnaListTable(qnaMap.list);
+//     setQnaListPaging(currentPage, qnaMap.maxPage, qnaMap.count, qnaMap.limit);
 
-})
+// })
 
 // 페이지 이동 버튼
 function setQnaListPaging(currentPage, maxPage, count, limit) {
