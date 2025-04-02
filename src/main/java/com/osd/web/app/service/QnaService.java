@@ -18,7 +18,8 @@ public class QnaService {
 
     public Qna_PostDto insertQnaPost(Qna_PostDto qna_PostDto) {
 
-        LocalDateTime post_created_at = LocalDateTime.now().truncatedTo(ChronoUnit.MILLIS);
+        // LocalDateTime post_created_at = LocalDateTime.now().truncatedTo(ChronoUnit.MILLIS);
+        LocalDateTime post_created_at = LocalDateTime.now().truncatedTo(ChronoUnit.SECONDS);
         Qna_PostDto qna_PostFromDb = new Qna_PostDto();
 
         qna_PostDto.setPost_created_at(post_created_at);

@@ -9,6 +9,8 @@
 <%-- index.html --%>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/index.css">
 
+<script src ="${pageContext.request.contextPath}/js/cunsultList.js"></script>
+
 </head>
 <body>
 <div class="notice-board">
@@ -21,7 +23,7 @@
             <span> ▷ 총 n개의 게시물이 있습니다. </span>
         </form>
 
-        <table>
+        <table id = "cunsultListTable">
             <tr>
                 <!-- <th>번호</th> -->
                 <th>&nbsp;</th>
@@ -71,7 +73,7 @@
             <input type="button" value="글쓰기"  class="writing-btn" onclick="">
         </div>
 
-        <div class="pagination" >
+        <div class="pagination" id = "cunsultPaging" >
             <a href  = "#">◀</a> 
             <a href  = "#">1</a>  
             <a href  = "#">▶</a>
@@ -87,8 +89,8 @@
                     <option value="writer" name="writer">작성자</option>
                     <option value="memo" name="memo">내용</option>
                 </select>
-                <input type="text" class="search-box" placeholder="검색어를 입력해주세요">
-                <input type="button" name="검색" class="search-btn" value="검색" onclick="">
+                <input type="text" class="search-box" placeholder="검색어를 입력해주세요" id = "keyword">
+                <input type="button" name="검색" class="search-btn" value="검색" onclick="search()">
             </div>
         </form>
     </div>

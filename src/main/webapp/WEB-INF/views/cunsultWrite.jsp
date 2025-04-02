@@ -13,10 +13,12 @@
     <!--js-->
     <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
     <script src="http://code.jquery.com/jquery-latest.min.js"></script>
+    <script src ="${pageContext.request.contextPath}/js/cunsultWrite.js"></script>
 </head>
 
 <body>
     <form action="#" method="post" enctype="multipart/form-data">
+    <input type = "hidden" id = "user_id" value = "${user_id}">
         <table>
             <tr>
                 <td>
@@ -38,7 +40,7 @@
                             <option value="카테고리3";name="카테고리3";>카테고리3</option>
                             <option value="카테고리4";name="카테고리4";>카테고리4</option>
                         </select>
-                        <input type="text" placeholder="제목을 입력해주세요" name="title">
+                        <input type="text" placeholder="제목을 입력해주세요" name="title" id = "post_subject">
                     </fieldset>
                 </td>
             </tr>
@@ -47,7 +49,7 @@
                 <td class="comment">
                     <!-- <h3>Comment</h3> -->
                     <div class="text-box">
-                        <textarea placeholder="내용을 입력해주세요" name="detail"></textarea>
+                        <textarea placeholder="내용을 입력해주세요" name="detail" id = "post_content"></textarea>
                     </div>
                 </td>
             </tr>
@@ -65,8 +67,9 @@
             
             <tr>
                 <td class="register-btn">
-                    <input type="submit" value="등록" onclick="">
-                    <input type="submit" value="취소" onclick="">
+                <%-- before : submit --%>
+                    <input type="button" value="등록" onclick="posting()">
+                    <input type="button" value="취소" onclick="cancelPosting()">
                 </td>
             </tr>
         </table>
