@@ -57,6 +57,7 @@ function setQnaListTable(list) {
         subjectTd.textContent = qna.post_subject + " [" + qna.post_childcnt + "]";
         subjectTd.onclick = function () {
             // 글 읽기 기능 구현
+            goQnaRead(qna.post_id);
             console.log(qna.post_subject);
         }
 
@@ -152,4 +153,9 @@ async function qnaPaging(page) {
     const result = await getQnaPostByKeywordAndPage();
     setQnaListPaging(currentPage, result.maxPage, result.count, result.limit);
     setQnaListTable(result.list);
+}
+
+// 글 읽기 이동
+function goQnaRead(post_id){
+    window.location.href = "/support/qna/read?post_id=" + post_id;
 }

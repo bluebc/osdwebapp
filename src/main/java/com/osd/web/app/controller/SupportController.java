@@ -125,13 +125,9 @@ public class SupportController {
     // ========================================
 
     @RequestMapping("/faq/list")
-    public String faqListPage(){
+    public String faqListPage() {
         return "supportFaqList";
     }
-
-
-
-
 
     // QNA
 
@@ -144,8 +140,7 @@ public class SupportController {
     @ResponseBody
     @PostMapping("/qna/getQnaPostByKeywordAndPage")
     public Map<String, Object> getQnaPostByKeywordAndPage(@RequestBody Map<String, Object> parameterMap) {
-Map<String, Object> resultMap = new HashMap<>();
-
+        Map<String, Object> resultMap = new HashMap<>();
 
         String keyword = (String) parameterMap.get("keyword");
         int page = (int) parameterMap.get("page");
@@ -175,7 +170,6 @@ Map<String, Object> resultMap = new HashMap<>();
         resultMap.put("count", count);
         resultMap.put("limit", limit);
         resultMap.put("maxPage", maxPage);
-
 
         return resultMap;
     }
@@ -225,6 +219,11 @@ Map<String, Object> resultMap = new HashMap<>();
     @RequestMapping("/qna/list")
     public String qnaListPage() {
         return "supportQnaList";
+    }
+
+    @RequestMapping("/qna/modify")
+    public String qnaModifyPage() {
+        return "supportQnaModify";
     }
 
 }
