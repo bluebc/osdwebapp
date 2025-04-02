@@ -241,6 +241,7 @@ main .container .content .lnbContainer .section-cont .all-category .contents-box
 }
 main .container .content .lnbContainer .section-cont .all-category .contents-box #qnaList table tr td:nth-child(4) {
   cursor: default;
+  cursor: default;
 }
 main .container .content .lnbContainer .section-cont .all-category .contents-box #qnaListPaging {
   display: flex;
