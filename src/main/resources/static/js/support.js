@@ -45,6 +45,8 @@ function setSupportType(type) {
         supportContentDiv.appendChild(qnaListPagingDiv);
     }
 
+
+
     search();
 
 
@@ -73,7 +75,10 @@ function search() {
     if (supportType == "qna") {
         qnaPaging(1);
     }
+    
+
 }
+
 
 
 
