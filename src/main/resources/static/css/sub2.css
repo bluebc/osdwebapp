@@ -1,0 +1,110 @@
+form {
+  max-width: 1000px;
+  margin: 50px auto;
+  background-color: white;
+  padding: 20px;
+}
+form table {
+  width: 100%;
+}
+form table tr td hr {
+  border: 0;
+  height: 2px;
+  background: #d3d3d3;
+}
+form table tr .title fieldset {
+  padding: 20px 28px;
+  box-sizing: border-box;
+  border-radius: 12px;
+  border: 1px solid #b9b9b9;
+  background-color: #fff;
+}
+form table tr .title fieldset select {
+  display: block;
+  padding: 13px 80px 11px 10px;
+  border: 1px solid #ebecef;
+  background: #fff;
+  text-align: left;
+  box-sizing: border-box;
+  color: #000;
+  cursor: pointer;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  margin-bottom: 1rem;
+}
+form table tr .title fieldset input {
+  min-height: 48px;
+  padding: 13px 16px 11px;
+  border: 1px solid transparent;
+  box-sizing: border-box;
+  border-radius: 10px;
+  background-color: #f7f7f7;
+  font-size: 16px;
+  line-height: 22px;
+  width: 100%;
+}
+form table tr .comment .text-box {
+  margin: 2rem 0 1rem;
+  padding: 20px 50px 20px 20px;
+  box-sizing: border-box;
+  border-radius: 12px;
+  border: 1px solid #b9b9b9;
+  background-color: #fff;
+}
+form table tr .comment .text-box textarea {
+  vertical-align: top;
+  width: 100%;
+  padding: 20px 10px 0 10px;
+  min-height: 300px;
+  resize: none;
+  color: black;
+  outline: none;
+  border: none;
+}
+form table tr .imageUpload {
+  width: 100%;
+  margin-top: 1rem;
+  text-align: right;
+  display: inline-block;
+}
+form table tr .imageUpload .upload-name {
+  width: 50%;
+  height: 30px;
+  padding: 0 15px;
+  vertical-align: middle;
+  border: 1px solid #dddddd;
+}
+form table tr .imageUpload label {
+  padding: 5px 20px;
+  color: #fff;
+  vertical-align: middle;
+  background-color: #616161;
+  cursor: pointer;
+  margin-left: 10px;
+}
+form table tr .imageUpload input[type=file] {
+  position: absolute;
+  width: 0;
+  height: 0;
+  padding: 0;
+  overflow: hidden;
+  border: 0;
+}
+form table tr .imageUpload hr {
+  margin-top: 2rem;
+}
+form table tr .register-btn {
+  text-align: center;
+}
+form table tr .register-btn input {
+  margin-top: 3rem;
+  border-radius: 4px;
+  border: none;
+  padding: 10px 40px;
+  font-size: 1rem;
+  color: #fff;
+  vertical-align: middle;
+  background-color: #616161;
+  cursor: pointer;
+}/*# sourceMappingURL=sub2.css.map */
