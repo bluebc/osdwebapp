@@ -175,6 +175,7 @@ function setFaqListTag(faqList) {
         const answerTbody = document.createElement("tbody");
 
         const answerTr = document.createElement("tr");
+        
         // class 사용 필요
         const answerTdA = document.createElement("td");
         answerTdA.width = "50px";
@@ -212,5 +213,25 @@ function setFaqListTag(faqList) {
 
     });
 
+    
+    // 아코디언 기능 
+    const questions = document.querySelectorAll(".faq-question");
+        questions.forEach(question => {
+            question.addEventListener("click", function () {
+                const answer = this.nextElementSibling;
+                const isOpen = this.classList.contains("open");
+    
+                // 모든 질문 닫기
+                document.querySelectorAll(".faq-question").forEach(q => q.classList.remove("open"));
+                document.querySelectorAll(".faq-answer").forEach(ans => ans.style.display = "none");
+    
+                if (!isOpen) {
+                    this.classList.add("open");
+                    answer.style.display = "block";
+                }
+            });
+        });
+    
 
 }
+

@@ -22,7 +22,7 @@ main .container .content .snbContainer .snbMenu {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  border: 1px solid;
+  border: 2px solid #e9e9e9;
   margin: 2rem 1.5rem 0 0;
 }
 main .container .content .snbContainer .snbMenu .snb-btn {
@@ -41,6 +41,11 @@ main .container .content .snbContainer .snbMenu .snb-btn input {
   width: 100%;
   text-align: left;
   padding: 0px 14px 0px 20px;
+  cursor: pointer;
+}
+main .container .content .snbContainer .snbMenu .snb-btn input.active {
+  background-color: #bebebe;
+  color: white;
 }
 main .container .content .snbContainer .snbMenu .snb-btn::after {
   content: "";
@@ -220,7 +225,7 @@ main .container .content .lnbContainer .section-cont .all-category .contents-box
   font-size: 16px;
 }
 main .container .content .lnbContainer .section-cont .all-category .contents-box #qnaList table {
-  margin: 2rem 0;
+  margin: 3rem 0;
   width: 100%;
   border-top: 1px solid #d3d3d3;
   border-collapse: collapse;
@@ -229,18 +234,18 @@ main .container .content .lnbContainer .section-cont .all-category .contents-box
   border-top: 2px solid #727272;
 }
 main .container .content .lnbContainer .section-cont .all-category .contents-box #qnaList table th, main .container .content .lnbContainer .section-cont .all-category .contents-box #qnaList table td {
+  padding: 12px 10px;
   border-bottom: 1px solid #d3d3d3;
-  padding: 10px;
 }
 main .container .content .lnbContainer .section-cont .all-category .contents-box #qnaList table tr td {
   text-align: center;
-  cursor: pointer;
 }
 main .container .content .lnbContainer .section-cont .all-category .contents-box #qnaList table tr td:nth-child(2) {
   text-align: left;
+  cursor: pointer;
 }
-main .container .content .lnbContainer .section-cont .all-category .contents-box #qnaList table tr td:nth-child(4) {
-  cursor: default;
+main .container .content .lnbContainer .section-cont .all-category .contents-box #qnaList table tr td:nth-child(3) {
+  cursor: pointer;
 }
 main .container .content .lnbContainer .section-cont .all-category .contents-box #qnaListPaging {
   display: flex;
@@ -249,7 +254,6 @@ main .container .content .lnbContainer .section-cont .all-category .contents-box
 }
 main .container .content .lnbContainer .section-cont .all-category .contents-box #qnaListPaging .qnaPage {
   cursor: pointer;
-  border: 1px solid;
-  padding: 5px 7px;
+  padding: 5px 10px;
   border-radius: 5px;
 }/*# sourceMappingURL=support.css.map */
