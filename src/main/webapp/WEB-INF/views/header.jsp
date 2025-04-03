@@ -34,7 +34,7 @@
                             <li><a href="#story" class="scroll" >건강 나눔</a></li>
                             <li><a href="#program52" class="scroll" >회원방</a></li>
                             <li><a href="#shoppingmall" class="scroll" >건강 이벤트</a></li>
-                            <li><a href="#resetprogram" class="scroll" >상담 & 게시판</a></li>
+                            <li><a href="/cunsultList" class="scroll" >상담 & 게시판</a></li>
                             <li><a href="#event" class="scroll">마이 오피스</a></li>
                         </ul>
                     </nav>
@@ -73,7 +73,7 @@
                                 <li class="op_item"><button type="button">건강 나눔</button></li>
                                 <li class="op_item"><button type="button">회원방</button></li>
                                 <li class="op_item"><button type="button">건강 이벤트&Mall</button></li>
-                                <li class="op_item"><button type="button">상담 & 게시판</button></li>
+                                <li class="op_item"><a href="/cunsultList">상담 & 게시판</a></li>
                                 <li class="op_item"><button type="button">마이 오피스</button></li>
                             </ul>
                         </nav>

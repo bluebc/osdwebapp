@@ -44,7 +44,7 @@ public class TestController {
     public String testPage(HttpServletRequest request, HttpServletResponse response, Model model) {
 
         HttpSession session = request.getSession();
-        String loginId = (String) session.getAttribute("loginUser");
+        String loginId = (String) session.getAttribute("login_user_id");
 
         model.addAttribute("loginId", loginId);
 

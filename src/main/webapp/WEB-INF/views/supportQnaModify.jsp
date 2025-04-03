@@ -3,7 +3,7 @@
 <!DOCTYPE html>
 <head>
 <title>오생단</title>
-<script src = "${pageContext.request.contextPath}/js/supportQnaRead.js"></script>
+<script src = "${pageContext.request.contextPath}/js/supportQnaModify.js"></script>
 </head>
 <body>
 <h3>QNA Write</h3>
@@ -15,24 +15,23 @@
 <input type = "hidden" id = "user_id" value = "${qna_post.user_id}">
 
 <div>
-제목 ${qna_post.post_subject}
+제목 <input type = "text" id = "user_id" value = "${qna_post.post_subject}">
 <br>
-작성자 ${qna_post.user_id}
+작성자 <input type = "text" id = "user_id" disabled = "true" value = "${user_id}">
 <br>
 
 <br>
-<div id = "modOrDel" style="display:none">
-<input type = "button" onclick = "modifyQna(${qna_post.post_id})" value = "수정"> <input type = "button" onclick = "deleteQna(${qna_post.post_id})" value = "삭제">
-</div>
+
 <br>
 내용 
 <br>
-${qna_post.post_content}
+<textarea id = "post_content">${qna_post.post_content}</textarea>
 <br>
 <br>
 </div>
 
-<input type = "button" value = "목록" onclick = "goQnaList()">
+<input type = "button" value = "수정 취소" onclick = "cancelModify()">
+<input type = "button" value = "수정 완료" onclick = "modify()">
 
 </body>
 </html>

@@ -36,7 +36,8 @@ public class FaqService {
 
     public int insertFaqList(Faq_ListDto faq_ListDto) {
 
-        LocalDateTime faq_created_at = LocalDateTime.now().truncatedTo(ChronoUnit.MILLIS);
+        // LocalDateTime faq_created_at = LocalDateTime.now().truncatedTo(ChronoUnit.MILLIS);
+        LocalDateTime faq_created_at = LocalDateTime.now().truncatedTo(ChronoUnit.SECONDS);
         faq_ListDto.setFaq_created_at(faq_created_at);
         faq_ListDto.setFaq_updated_at(faq_created_at);
 
