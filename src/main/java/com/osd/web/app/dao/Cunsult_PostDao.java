@@ -52,4 +52,8 @@ public class Cunsult_PostDao {
         return session.selectOne("Cunsult_Post.selectCountByKeyword", keyword);
     }
 
+    public int update(Cunsult_PostDto cunsult_PostDto) {
+        return session.update("Cunsult_Post.update", cunsult_PostDto);
+    }
+
 }

@@ -1,8 +1,8 @@
 var currentPage = 1;
 var currentKeyword = "";
 
-function findPageByPostId(){
-    
+function findPage(){
+
 }
 
 

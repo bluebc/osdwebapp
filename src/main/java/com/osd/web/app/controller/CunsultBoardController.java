@@ -38,7 +38,8 @@ public class CunsultBoardController {
     }
 
     @RequestMapping("/list")
-    public String cunsultListPage() {
+    public String cunsultListPage(@RequestParam(required = false, name = "post_id") int post_id) {
+
         return "cunsultList";
     }
 
@@ -54,7 +55,6 @@ public class CunsultBoardController {
         return resultMap;
     }
 
-    
     @ResponseBody
     @PostMapping("/getCunsultPostByKeywordAndPage")
     public Map<String, Object> getCunsultPostByKeywordAndPage(@RequestBody Map<String, Object> parameterMap) {
@@ -92,9 +92,8 @@ public class CunsultBoardController {
         return resultMap;
     }
 
-
     @RequestMapping("/read")
-    public String qnaReadPage(@RequestParam(required = true, defaultValue = "0", name = "post_id") int post_id,
+    public String cunsultReadPage(@RequestParam(required = true, defaultValue = "0", name = "post_id") int post_id,
             Model model) {
 
         Cunsult_PostDto cunsult_PostDtoFromDb = cunsultService.getCunsultPostById(post_id);
@@ -105,6 +104,46 @@ public class CunsultBoardController {
         model.addAttribute("cunsult_post", cunsult_PostDtoFromDb);
 
         return "cunsultRead";
+    }
+
+    @RequestMapping("/modify")
+    public String cunsultModifyPage(HttpServletRequest request,
+            @RequestParam(required = true, defaultValue = "0", name = "post_id") int post_id, Model model) {
+
+        // 글 번호 오류
+        Cunsult_PostDto cunsult_PostDto = cunsultService.getCunsultPostById(post_id);
+        if (cunsult_PostDto == null) {
+            return "redirect:/wrongPath";
+        }
+
+        HttpSession session = request.getSession();
+        String login_user_id = (String) session.getAttribute("login_user_id");
+
+        // 세션 X
+        if (login_user_id == null || login_user_id == "") {
+            return "redirect:/wrongPath";
+        }
+
+        // 세션과 작성자 불일치
+        if (!cunsult_PostDto.getUser_id().equals(login_user_id)) {
+            return "redirect:/wrongPath";
+        }
+
+        model.addAttribute("cunsult_post", cunsult_PostDto);
+
+        return "cunsultModify";
+    }
+
+    @ResponseBody
+    @PostMapping("/modifyCunsultPost")
+    public Map<String, Object> modifyCunsultPost(@RequestBody Cunsult_PostDto cunsult_PostDto) {
+        Map<String, Object> resultMap = new HashMap<>();
+
+        int updated = cunsultService.updateCunsultPost(cunsult_PostDto);
+
+        resultMap.put("updated", updated);
+
+        return resultMap;
     }
 
 }

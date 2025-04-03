@@ -21,7 +21,10 @@ function showModOrDel() {
 
 }
 
-function modifyPost(post_id) { }
+function modifyPost() {
+    var post_id = document.getElementById("post_id").value;
+    window.location.href = "/cunsult/modify?post_id=" + post_id;
+}
 
 
 function deletePost(post_id) { }
@@ -31,6 +34,7 @@ function deletePost(post_id) { }
 // 목록
 function goPostList() {
     // 목록이 아님
-    post_id;
+    var post_id = document.getElementById("post_id").value;
     window.history.back();
+    // window.location.href = "/cunsult/list?post_id=" + post_id;
 }
