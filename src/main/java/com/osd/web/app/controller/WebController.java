@@ -33,6 +33,11 @@ public class WebController {
     return "customerCenter";
     }
 
+    @RequestMapping("/boardList")
+    public String boardList() {
+    return "boardList";
+    }
+
     // 다른페이지 가지고 올때 사용할 예시
     // @RequestMapping("/main")
     // public String mainPage() {
