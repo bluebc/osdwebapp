@@ -41,18 +41,19 @@ main{
                         line-height: 20px;
                         border-bottom: 1px solid #f2f2f2;
                         position: relative;
+                        &.active {
+                            background-color: #f9f9f9 !important; // 강제 적용
+                        }                  
                         input{
                             height: 100%;
                             width: 100%;
                             text-align: left;
                             padding: 0px 14px 0px 20px;
                             cursor: pointer;
-                            &.active {
-                                background-color: #bebebe;
-                                color: white;
-                            }
+                            background: none; // 부모 배경색 유지
+                            border: none;
                         }
-                        &::after{
+                        &::after {
                             content: "";
                             position: absolute;
                             display: block;
@@ -62,11 +63,9 @@ main{
                             height: 12px;
                             background: url(../img/arriw-right.svg) 50% 50% no-repeat;
                         }
-
-                        
                         
                     }
-                    
+
                 }
 
             }
@@ -302,8 +301,17 @@ main{
                                 margin-top: 3rem;
                                 .qnaPage{
                                     cursor: pointer;
-                                    padding: 5px 10px;
-                                    border-radius: 5px;
+                                    margin: 0 7px;
+                                    padding: 2px;
+                                    text-align: center;
+                                    user-select: none;
+                                    &:hover{
+                                        border-bottom: 1px solid;
+                                    }
+                                    &.active {
+                                        border: 2px solid rgb(255, 34, 255);
+                                        font-weight: bold;
+                                    }
                                 }
                             }
                         }

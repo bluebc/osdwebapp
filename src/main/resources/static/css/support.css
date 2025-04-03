@@ -36,16 +36,17 @@ main .container .content .snbContainer .snbMenu .snb-btn {
   border-bottom: 1px solid #f2f2f2;
   position: relative;
 }
+main .container .content .snbContainer .snbMenu .snb-btn.active {
+  background-color: #f9f9f9 !important;
+}
 main .container .content .snbContainer .snbMenu .snb-btn input {
   height: 100%;
   width: 100%;
   text-align: left;
   padding: 0px 14px 0px 20px;
   cursor: pointer;
-}
-main .container .content .snbContainer .snbMenu .snb-btn input.active {
-  background-color: #bebebe;
-  color: white;
+  background: none;
+  border: none;
 }
 main .container .content .snbContainer .snbMenu .snb-btn::after {
   content: "";
@@ -254,6 +255,17 @@ main .container .content .lnbContainer .section-cont .all-category .contents-box
 }
 main .container .content .lnbContainer .section-cont .all-category .contents-box #qnaListPaging .qnaPage {
   cursor: pointer;
-  padding: 5px 10px;
-  border-radius: 5px;
+  margin: 0 7px;
+  padding: 2px;
+  text-align: center;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+          user-select: none;
+}
+main .container .content .lnbContainer .section-cont .all-category .contents-box #qnaListPaging .qnaPage:hover {
+  border-bottom: 1px solid;
+}
+main .container .content .lnbContainer .section-cont .all-category .contents-box #qnaListPaging .qnaPage.active {
+  border: 2px solid rgb(255, 34, 255);
+  font-weight: bold;
 }/*# sourceMappingURL=support.css.map */

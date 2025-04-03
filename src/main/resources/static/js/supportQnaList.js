@@ -153,3 +153,17 @@ async function qnaPaging(page) {
     setQnaListPaging(currentPage, result.maxPage, result.count, result.limit);
     setQnaListTable(result.list);
 }
+
+
+
+// document.addEventListener("DOMContentLoaded", function() {
+//     document.querySelectorAll('.qnaPage').forEach(item => {
+//         item.addEventListener('click', () => {
+//             console.log("클릭한 요소:", item.textContent); 
+
+//             document.querySelectorAll('.qnaPage').forEach(el => el.classList.remove('active'));
+
+//             item.classList.add('active');
+//         });
+//     });
+// });
