@@ -50,5 +50,9 @@ async function postCunsultPost(qna_post) {
 
 // 글 작성 취소
 function cancelPosting() {
+    if (confirm("글 작성을 취소하시겠습니까?")) {
+        window.history.back();
+    }
+
     // console.log("취소");
 }

@@ -70,7 +70,7 @@
         </table>
 
         <div class="writing";>
-            <input type="button" value="글쓰기"  class="writing-btn" onclick="">
+            <input type="button" value="글쓰기"  class="writing-btn" onclick="goCunsultWrite()">
         </div>
 
         <div class="pagination" id = "cunsultPaging" >

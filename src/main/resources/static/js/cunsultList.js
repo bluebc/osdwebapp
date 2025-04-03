@@ -87,7 +87,10 @@ function setCunsultListTable(list) {
         const userTd = document.createElement("td");
         userTd.textContent = cunsult.user_id;
         const createdTd = document.createElement("td");
-        createdTd.textContent = cunsult.post_created_at;
+        // createdTd.textContent = cunsult.post_created_at;
+        const cunsultCreatedAt = new Date(cunsult.post_created_at).toISOString().slice(0,10);
+        createdTd.textContent = cunsultCreatedAt;
+
         const viewCntTd = document.createElement("td");
         viewCntTd.textContent = cunsult.post_viewcnt;
 
@@ -174,4 +177,8 @@ async function cunsultPaging(page) {
 // 글 읽기 이동
 function goCunsultRead(post_id){
     window.location.href = "/cunsult/read?post_id=" + post_id;
+}
+
+function goCunsultWrite(){
+    window.location.href = "/cunsult/write";
 }
