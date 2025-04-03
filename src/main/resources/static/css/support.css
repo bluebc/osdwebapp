@@ -36,6 +36,9 @@ main .container .content .snbContainer .snbMenu .snb-btn {
   border-bottom: 1px solid #f2f2f2;
   position: relative;
 }
+main .container .content .snbContainer .snbMenu .snb-btn:hover {
+  background-color: #f9f9f9;
+}
 main .container .content .snbContainer .snbMenu .snb-btn.active {
   background-color: #f9f9f9 !important;
 }

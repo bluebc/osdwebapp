@@ -1,0 +1,760 @@
+/*main*/
+main {
+  width: 100%;
+  height: 100%;
+}
+main #health {
+  padding: 6rem 0 0;
+}
+main #health .content .he-img {
+  position: relative;
+}
+main #health .content .he-img .he-bg {
+  display: block;
+  height: 130vh;
+  position: relative;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+main #health .content .he-img .he-box {
+  position: absolute;
+  top: 16rem;
+  right: 16rem;
+}
+main #health .content .he-img .he-box .he-container .he-wrapper .he-sw {
+  margin-bottom: 2rem;
+  max-width: 100%;
+  height: auto;
+}
+main #health .content .he-img .he-box .he-container .he-wrapper .he-sw img {
+  border: 10px solid white;
+  border-radius: 5%;
+  width: 300px;
+  aspect-ratio: 6/4;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+main #health .content .he-img .he-box .he-tit {
+  position: absolute;
+  writing-mode: vertical-lr;
+  white-space: nowrap;
+  transform: translate(-50%, -50%);
+  right: 8rem;
+  bottom: -2rem;
+}
+main #health .content .he-img .he-box .he-tit p {
+  position: absolute;
+  color: rgb(99, 99, 99);
+}
+main #health .content .he-img .he-box .he-tit p span {
+  margin-bottom: 0.3rem;
+  border: 1px solid rgb(99, 99, 99);
+  padding: 0.1rem;
+  border-radius: 10%;
+}
+main #health .content .he-img .he-box .he-tit p:nth-child(1) {
+  right: 2rem;
+}
+main #health .content .he-img .he-box .he-tit p:nth-child(2) {
+  top: 2rem;
+}
+main #health .content .he-fix {
+  width: 100%;
+  height: 130px;
+  background-color: #82a90d;
+}
+main #health .content .he-fix h2 {
+  font-size: 2.5rem;
+  color: #ffffff;
+  text-align: center;
+  align-items: center;
+  margin: 0 0;
+  line-height: 130px;
+}
+main #story .content article {
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%;
+}
+main #story .content article .st-img {
+  width: 50%;
+}
+main #story .content article .st-img img {
+  width: 100%;
+  height: 600px;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+main #story .content article .st-tet {
+  width: 50%;
+  text-align: center;
+  align-items: center;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 4rem;
+}
+main #story .content article .st-tet h2 {
+  font-size: 4.5rem;
+}
+main #story .content article .st-tet h3 {
+  font-size: 2.5rem;
+  font-weight: 400;
+  line-height: 1.5;
+}
+main #story .content article .st-tet .st-more a {
+  color: #000;
+  display: block;
+  border: 2px solid rgb(0, 0, 0);
+  padding: 1.5rem 3rem;
+  font-size: 2rem;
+  font-weight: 300;
+}
+main #program52 {
+  height: 100%;
+  border-top: 1px solid #000;
+}
+main #program52 .content {
+  padding: 5rem 0;
+}
+main #program52 .content .flex-52 .tet-52 {
+  border-width: 6px;
+  border-style: double;
+  border-color: rgba(99, 99, 99, 0.61);
+  width: 40%;
+  margin: 0 auto;
+  padding: 2rem;
+  text-align: center;
+}
+main #program52 .content .flex-52 .tet-52 h2 {
+  text-align: center;
+  font-size: 4rem;
+  line-height: 1.3;
+}
+main #program52 .content .flex-52 .swiper-container3 {
+  margin: 5rem 7rem 0;
+}
+main #program52 .content .flex-52 .swiper-container3 .swiper-wrapper .swiper-slide img {
+  height: 300px;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+main #program52 .content .flex-52 .nosw .nowra {
+  display: none;
+}
+main #shoppingmall {
+  width: 100%;
+  height: 100%;
+  background-color: #adbb84;
+  padding: 3rem 0;
+}
+main #shoppingmall .content {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  text-align: center;
+  align-items: center;
+}
+main #shoppingmall .content .shop-img {
+  width: 50%;
+  text-align: right;
+}
+main #shoppingmall .content .shop-img img {
+  width: 80%;
+  height: 450px;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+main #shoppingmall .content .shop-tet {
+  width: 50%;
+  color: #ffffff;
+  text-align: right;
+  align-items: flex-end;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 0 180px 0 0;
+}
+main #shoppingmall .content .shop-tet h3 {
+  font-size: 2.7rem;
+  font-weight: 300;
+  margin-bottom: 15px;
+}
+main #shoppingmall .content .shop-tet h2 {
+  font-size: 4rem;
+  margin-bottom: 30px;
+}
+main #shoppingmall .content .shop-tet h4 {
+  line-height: 2;
+  font-weight: 300;
+  font-size: 1.3rem;
+  margin-bottom: 30px;
+}
+main #shoppingmall .content .shop-tet .shop-now a {
+  color: #ffffff;
+  display: block;
+  border-left: 2px solid #ffffff;
+  border-bottom: 2px solid #ffffff;
+  padding: 2rem 5rem;
+  font-size: 1.7rem;
+  font-weight: 100;
+}
+main #resetprogram {
+  width: 100%;
+  height: 100%;
+  background-color: #f2f6de;
+  padding: 3rem 0;
+}
+main #resetprogram .content {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  text-align: center;
+  align-items: center;
+}
+main #resetprogram .content .rst-tet {
+  margin-left: 13rem;
+  text-align: left;
+}
+main #resetprogram .content .rst-tet h2 {
+  font-size: 3rem;
+  margin-bottom: 30px;
+  line-height: 1.3;
+}
+main #resetprogram .content .rst-tet h4 {
+  line-height: 2;
+  font-weight: 300;
+  font-size: 1.3rem;
+  margin-bottom: 30px;
+}
+main #resetprogram .content .ret-img {
+  text-align: center;
+  margin-left: 12rem;
+}
+main #resetprogram .content .ret-img img {
+  width: 800px;
+  height: 500px;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+main #cs .content {
+  height: 100vh;
+  display: block;
+  position: relative;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background-size: cover;
+}
+main #cs .content .cs-img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  filter: brightness(50%);
+}
+main #cs .content .cs-tet article {
+  position: absolute;
+  color: #ffffff;
+}
+main #cs .content .cs-tet article h2 {
+  font-size: 4rem;
+  margin-bottom: 40px;
+}
+main #cs .content .cs-tet article h4 {
+  font-size: 1.5rem;
+  font-weight: 300;
+  line-height: 1.5;
+}
+main #cs .content .cs-tet .cs-abs1 {
+  top: 15rem;
+  right: 12rem;
+}
+main #cs .content .cs-tet .cs-abs2 {
+  top: 40rem;
+  left: 12rem;
+}
+main #event .content {
+  width: 100%;
+  height: 100%;
+  background-color: #e0dbad;
+}
+main #event .content .ev-tet {
+  padding-top: 3.5rem;
+  text-align: center;
+  align-items: center;
+}
+main #event .content .ev-tet h2 {
+  font-size: 3.4rem;
+  padding-bottom: 1rem;
+}
+main #event .content .ev-tet h4 {
+  font-size: 1.5rem;
+  font-weight: 300;
+}
+main #event .content .swiper-container2 {
+  padding: 5rem 0;
+}
+main #event .content .swiper-container2 .swiper-wrapper .swiper-slide {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  align-items: center;
+}
+main #event .content .swiper-container2 .swiper-wrapper .swiper-slide .ev-sw-img {
+  padding-bottom: 2rem;
+}
+main #event .content .swiper-container2 .swiper-wrapper .swiper-slide .ev-sw-img img {
+  -o-object-fit: cover;
+     object-fit: cover;
+  width: 400px;
+  height: 400px;
+  border: 50px solid #ffffff;
+  border-radius: 100%;
+  box-shadow: 0px 4px 7px rgba(0, 0, 0, 0.25);
+  -webkit-backdrop-filter: blur(3px);
+          backdrop-filter: blur(3px);
+}
+main #event .content .swiper-container2 .swiper-wrapper .swiper-slide .ev-sw-tet h3 {
+  white-space: nowrap;
+  font-size: 1.5rem;
+  padding-bottom: 1rem;
+}
+main #event .content .swiper-container2 .swiper-wrapper .swiper-slide .ev-sw-tet h4 {
+  font-size: 1.1rem;
+  font-weight: 500;
+}
+main #top-btn {
+  display: none;
+  position: fixed;
+  bottom: 40px;
+  right: 40px;
+  z-index: 10;
+  background-color: white;
+  border: 2px solid #dbdbdb;
+  outline: none;
+  cursor: pointer;
+  border-radius: 50%;
+  width: 60px;
+  height: 60px;
+  font-size: 20px;
+  font-weight: 500;
+  color: #333333;
+}
+
+@media screen and (max-width: 1440px) {
+  main #health .content .he-img .he-box {
+    right: 5rem;
+  }
+  main #health .content .he-img .he-box .he-tit {
+    bottom: 0;
+  }
+  main #shoppingmall .content .shop-img {
+    margin-right: 1rem;
+  }
+  main #shoppingmall .content .shop-img img {
+    height: auto;
+  }
+  main #shoppingmall .content .shop-tet .shop-now a {
+    font-size: 1.3rem;
+  }
+  main #resetprogram .content {
+    justify-content: center;
+  }
+  main #resetprogram .content .rst-tet {
+    width: 100%;
+    margin-left: 0;
+    text-align: right;
+  }
+  main #resetprogram .content .ret-img {
+    width: 100%;
+    margin-left: 1rem;
+    text-align: left;
+  }
+  main #resetprogram .content .ret-img img {
+    width: 600px;
+    height: 400px;
+  }
+  main #cs .content .cs-tet article h2 {
+    font-size: 2rem;
+  }
+  main #cs .content .cs-tet .cs-abs1 {
+    top: 13rem;
+    right: 5rem;
+  }
+  main #cs .content .cs-tet .cs-abs2 {
+    top: 30rem;
+    left: 6rem;
+  }
+}
+@media screen and (max-width: 1280px) {
+  main #story .content article .st-tet {
+    padding: 0 1rem;
+  }
+  main #story .content article .st-tet h3 {
+    font-size: 2rem;
+  }
+  main #shoppingmall .content .shop-tet h4 {
+    font-size: 1rem;
+  }
+  main #shoppingmall .content .shop-tet .shop-now a {
+    padding: 2rem;
+  }
+  main #resetprogram .content .rst-tet h2 {
+    font-size: 2.7rem;
+  }
+  main #resetprogram .content .ret-img img {
+    width: 500px;
+    height: 350px;
+  }
+}
+@media screen and (max-width: 1024px) {
+  main #story .content article .st-tet h2 {
+    font-size: 3rem;
+  }
+  main #story .content article .st-tet h3 {
+    font-size: 1.8rem;
+  }
+  main #shoppingmall .content .shop-tet {
+    padding: 0 6rem 0 0;
+  }
+  main #shoppingmall .content .shop-tet h3 {
+    font-size: 2rem;
+  }
+  main #shoppingmall .content .shop-tet h2 {
+    font-size: 3rem;
+  }
+  main #resetprogram .content .rst-tet h2 {
+    font-size: 2rem;
+  }
+  main #resetprogram .content .rst-tet h4 {
+    font-size: 1rem;
+  }
+  main #resetprogram .content .ret-img img {
+    width: 400px;
+    height: 301px;
+  }
+}
+/* 768px*/
+@media screen and (max-width: 768px) {
+  main #health {
+    padding: 9rem 0 0;
+    background-color: #f4f4f4;
+  }
+  main #health .content .he-img .he-bg {
+    height: 60vh;
+  }
+  main #health .content .he-img .he-box {
+    position: relative;
+    top: 16rem;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+  main #health .content .he-img .he-box .he-container .he-wrapper .he-sw {
+    margin: 0 auto;
+    text-align: center;
+  }
+  main #health .content .he-img .he-box .he-container .he-wrapper .he-sw:nth-child(1) {
+    transform: translate(-25%, 30%);
+  }
+  main #health .content .he-img .he-box .he-container .he-wrapper .he-sw:nth-child(2) {
+    transform: translate(-2%, -3%);
+  }
+  main #health .content .he-img .he-box .he-container .he-wrapper .he-sw:nth-child(3) {
+    transform: translate(-18%, -29%);
+  }
+  main #health .content .he-img .he-box .he-container .he-wrapper .he-sw img {
+    width: 250px;
+  }
+  main #health .content .he-img .he-box .he-tit {
+    right: 7rem;
+    bottom: 16rem;
+  }
+  main #health .content .he-fix h2 {
+    font-size: 5vw;
+  }
+  main #story .content article:nth-child(odd) {
+    flex-direction: column-reverse;
+  }
+  main #story .content article:nth-child(even) {
+    flex-direction: column;
+    color: #ffffff;
+    background-color: #adbb84;
+  }
+  main #story .content article .st-img {
+    width: 100%;
+  }
+  main #story .content article .st-img img {
+    max-width: 100%;
+  }
+  main #story .content article .st-tet {
+    width: 100%;
+    padding: 5rem 0 5rem 0;
+    position: relative;
+  }
+  main #story .content article .st-tet h2 {
+    font-size: 10vw;
+  }
+  main #story .content article .st-tet h3 {
+    font-size: 5vw;
+  }
+  main #story .content article .st-tet .st-more {
+    right: 0;
+    position: absolute;
+    bottom: -36rem;
+  }
+  main #story .content article .st-tet .st-more a {
+    border: none;
+    color: #ffffff;
+    padding: 1rem 3rem;
+    font-size: 1.2rem;
+    background-color: rgba(0, 0, 0, 0.3960784314);
+  }
+  main #program52 .content .flex-52 .tet-52 {
+    width: 80%;
+  }
+  main #program52 .content .flex-52 .tet-52 h2 {
+    font-size: 8vw;
+  }
+  main #program52 .content .flex-52 .swiper-container3 {
+    display: none;
+  }
+  main #program52 .content .flex-52 .nosw {
+    margin: 4rem 3rem 0;
+  }
+  main #program52 .content .flex-52 .nosw .nowra {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+    grid-gap: 1.5rem;
+  }
+  main #program52 .content .flex-52 .nosw .nowra .nogrid {
+    text-align: center;
+  }
+  main #program52 .content .flex-52 .nosw .nowra .nogrid:nth-child(5) {
+    grid-column: 3/1;
+    grid-row-start: 3;
+  }
+  main #program52 .content .flex-52 .nosw .nowra .nogrid img {
+    width: 100%;
+  }
+  main #shoppingmall {
+    height: 100%;
+    position: relative;
+  }
+  main #shoppingmall .content {
+    padding: 5rem 0;
+    flex-direction: column-reverse;
+  }
+  main #shoppingmall .content .shop-img {
+    width: 100%;
+    text-align: center;
+    margin-bottom: 8rem;
+  }
+  main #shoppingmall .content .shop-img img {
+    max-width: 100%;
+    height: auto;
+  }
+  main #shoppingmall .content .shop-tet {
+    width: 100%;
+    padding: 0;
+    align-items: center;
+  }
+  main #shoppingmall .content .shop-tet div {
+    display: flex;
+  }
+  main #shoppingmall .content .shop-tet div h3 {
+    font-size: 5vw;
+    font-weight: bold;
+    margin-right: 0.5rem;
+  }
+  main #shoppingmall .content .shop-tet div h2 {
+    font-size: 5vw;
+  }
+  main #shoppingmall .content .shop-tet h4 {
+    text-align: center;
+    font-size: 3.5vw;
+  }
+  main #shoppingmall .content .shop-tet .shop-now {
+    position: absolute;
+    bottom: 3rem;
+    right: 0;
+  }
+  main #shoppingmall .content .shop-tet .shop-now a {
+    padding: 1rem 3rem;
+    font-size: 1rem;
+  }
+  main #resetprogram {
+    height: 100%;
+  }
+  main #resetprogram .content {
+    padding: 5rem 0;
+    flex-direction: column;
+    justify-content: center;
+  }
+  main #resetprogram .content .rst-tet {
+    margin-left: 0;
+    text-align: center;
+    margin-bottom: 2rem;
+  }
+  main #resetprogram .content .rst-tet h2 {
+    font-size: 6vw;
+  }
+  main #resetprogram .content .rst-tet h4 {
+    font-size: 3.5vw;
+  }
+  main #resetprogram .content .ret-img {
+    margin-left: 0;
+    width: 500px;
+    height: 500px;
+    overflow: hidden;
+  }
+  main #resetprogram .content .ret-img img {
+    border-radius: 50%;
+    max-width: 100%;
+    width: 500px;
+    height: 500px;
+  }
+  main #cs .content {
+    height: 50vh;
+  }
+  main #cs .content .cs-tet article {
+    display: none;
+  }
+  main #event .content .ev-tet h2 {
+    font-size: 10vw;
+  }
+  main #event .content .ev-tet h4 {
+    font-weight: bold;
+  }
+  main #event .content .swiper-container2 {
+    padding-top: 3rem;
+  }
+  main #event .content .swiper-container2 .swiper-wrapper .swiper-slide .ev-sw-img {
+    padding-bottom: 0;
+  }
+  main #event .content .swiper-container2 .swiper-wrapper .swiper-slide .ev-sw-img img {
+    border: none;
+    border-radius: 0;
+  }
+  main #event .content .swiper-container2 .swiper-wrapper .swiper-slide .ev-sw-tet {
+    border: 2px solid rgba(0, 0, 0, 0.0078431373);
+    background-color: #ffffff;
+    padding: 1rem 8rem;
+  }
+  main #top-btn {
+    bottom: 110px;
+    right: 20px;
+  }
+}
+/* 576px */
+@media screen and (max-width: 576px) {
+  main #health .content .he-img .he-box {
+    top: 13rem;
+  }
+  main #health .content .he-img .he-box .he-container .he-wrapper .he-sw:nth-child(1) {
+    transform: translate(-22%, 30%);
+  }
+  main #health .content .he-img .he-box .he-container .he-wrapper .he-sw:nth-child(2) {
+    transform: translate(-3%, -3%);
+  }
+  main #health .content .he-img .he-box .he-container .he-wrapper .he-sw:nth-child(3) {
+    transform: translate(-18%, -29%);
+  }
+  main #health .content .he-img .he-box .he-container .he-wrapper .he-sw img {
+    width: 200px;
+  }
+  main #health .content .he-img .he-box .he-tit {
+    right: 5rem;
+    bottom: 15rem;
+  }
+  main #top-btn {
+    bottom: 100px;
+    width: 40px;
+    height: 40px;
+    font-size: 13px;
+    right: 15px;
+  }
+}
+/* 425px */
+@media screen and (max-width: 425px) {
+  main #health {
+    padding: 5rem 0 0;
+  }
+  main #health .content .he-img .he-box {
+    top: 12rem;
+  }
+  main #health .content .he-img .he-box .he-container .he-wrapper .he-sw img {
+    width: 180px;
+  }
+  main #health .content .he-img .he-box .he-container .he-wrapper .he-sw:nth-child(1) {
+    transform: translate(-21%, 25%);
+  }
+  main #health .content .he-img .he-box .he-container .he-wrapper .he-sw:nth-child(2) {
+    transform: translate(1%, -5%);
+  }
+  main #health .content .he-img .he-box .he-container .he-wrapper .he-sw:nth-child(3) {
+    transform: translate(-16%, -36%);
+  }
+  main #health .content .he-img .he-box .he-tit {
+    right: 3rem;
+  }
+  main #health .content .he-img .he-box .he-tit p span {
+    padding: 0;
+  }
+  main #health .content .he-img .he-box .he-tit p:nth-child(1) {
+    right: 1.2rem;
+  }
+  main #shoppingmall {
+    padding: 0;
+  }
+  main #resetprogram {
+    padding: 5rem 0;
+  }
+  main #resetprogram .content {
+    padding: 0;
+  }
+  main #resetprogram .content .ret-img {
+    height: auto;
+  }
+  main #resetprogram .content .ret-img img {
+    width: 300px;
+    height: 300px;
+  }
+  main #event .content .swiper-container2 .swiper-wrapper .swiper-slide .ev-sw-img img {
+    width: 300px;
+    height: 300px;
+  }
+  main #event .content .swiper-container2 .swiper-wrapper .swiper-slide .ev-sw-tet {
+    padding: 1rem 5rem;
+  }
+}
+/* 344px */
+@media screen and (max-width: 344px) {
+  main #health {
+    padding: 4rem 0 0;
+  }
+  main #health .content .he-img .he-box {
+    top: 10rem;
+  }
+  main #health .content .he-img .he-box .he-container .he-wrapper .he-sw img {
+    border: 5px solid white;
+    width: 150px;
+  }
+  main #health .content .he-img .he-box .he-tit {
+    right: 2.5rem;
+  }
+}/*# sourceMappingURL=index.css.map */

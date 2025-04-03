@@ -110,7 +110,7 @@ function setQnaListPaging(currentPage, maxPage, count, limit) {
         var leftPageBtn = document.createElement("div");
         leftPageBtn.className = "qnaPage";
         // 아이콘 대체?
-        leftPageBtn.textContent = "<<"
+        leftPageBtn.textContent = "◀"
         leftPageBtn.onclick = function () {
             qnaPaging(startPage - 1);
         }
@@ -137,7 +137,7 @@ function setQnaListPaging(currentPage, maxPage, count, limit) {
         // let btnImg = document.createElement("img");
         // btnImg.src = "/img/사람.png";
         // rightPageBtn.appendChild(btnImg);
-        rightPageBtn.textContent = ">>"
+        rightPageBtn.textContent = "▶"
         rightPageBtn.onclick = function () {
             qnaPaging(endPage + 1);
         }
