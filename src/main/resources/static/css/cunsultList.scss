@@ -1,0 +1,130 @@
+@import "./mixin";
+
+.notice-board{
+    padding: 20rem 0 14rem;
+    min-height: 800px;
+    .content{
+            max-width: 1000px;
+            margin: 50px auto;
+            background-color: white;
+            padding: 20px;
+        h2 { 
+            font-weight: border; 
+        }
+
+        hr { 
+            border: 0;
+            height: 2px;
+            background: #d3d3d3;
+        }
+
+        form{
+              margin: 1rem 0; 
+              span{}
+        }
+        
+        table {
+            margin: 2rem 0;
+            width: 100%;
+            border-top: 1px solid #d3d3d3;
+            border-collapse: collapse;
+
+            th { 
+                border-top: 2px solid #727272;
+            }
+            
+            th, td {
+                border-bottom: 1px solid #d3d3d3;
+                padding: 10px;
+            }
+            tr{
+                td{
+                    text-align: center;
+                    &:nth-child(2){
+                        text-align: left;
+                        cursor: pointer;
+                    }
+                    &:nth-child(3){
+                        cursor: pointer;
+                    }
+                }
+            }
+
+        }
+
+        .writing {
+            text-align: right;
+            .writing-btn{
+                width: 100px;
+                height: 40px;
+                font-weight: 900;
+                color: white;
+                text-align: center;
+                background: #535353;
+                border: solid 2px white;
+                border-radius: 5px;
+            }
+        }
+
+        #cunsultPaging{
+            display: flex;
+            justify-content: center;
+            margin: 3rem 0;
+                .pagination{
+                    cursor: pointer;
+                    margin: 0 7px;
+                    padding: 2px;
+                    text-align: center;
+                    display: inline-block;
+                    padding-bottom: 2px; 
+                    border-bottom: 2px solid transparent; 
+                    transition: border-color 0.3s ease-in-out;
+                    &:hover{
+                        border-bottom: 2px solid #000; 
+                    }
+                }
+        }
+
+        .search-paging {
+            .select-search{
+                padding: 1rem;
+                background-color: #f8f8f8;
+                text-align: center;
+                select{
+                    font-size: 12px;
+                    height: 29px;
+                    padding: 1px;
+                    border: 1px solid #ccc;
+                    background: #fff;
+                    option{}
+                }
+
+                input{
+                    box-sizing: border-box;
+                    border-radius: 0;
+                    background: none;
+                }
+
+                .search-box{
+                    height: 29px;
+                    padding: 0 5px 1px 5px;
+                    font-size: 12px;
+                    font-weight: normal;
+                    border: 1px solid #ddd;
+                    background-color: #fff;
+                }
+
+                .search-btn {
+                    background: #535353;
+                    border: 1px solid #535353;
+                    color: #fff ;
+                    padding: 3px 10px;
+                    line-height: 1.666;
+                    cursor: pointer;
+                    text-align: center;
+                }
+            }
+            
+        }  
+    }
+}

@@ -41,18 +41,19 @@ main{
                         line-height: 20px;
                         border-bottom: 1px solid #f2f2f2;
                         position: relative;
+                        &.active {
+                            background-color: #f9f9f9 !important; // 강제 적용
+                        }                  
                         input{
                             height: 100%;
                             width: 100%;
                             text-align: left;
                             padding: 0px 14px 0px 20px;
                             cursor: pointer;
-                            &.active {
-                                background-color: #bebebe;
-                                color: white;
-                            }
+                            background: none; // 부모 배경색 유지
+                            border: none;
                         }
-                        &::after{
+                        &::after {
                             content: "";
                             position: absolute;
                             display: block;
@@ -62,11 +63,9 @@ main{
                             height: 12px;
                             background: url(../img/arriw-right.svg) 50% 50% no-repeat;
                         }
-
-                        
                         
                     }
-                    
+
                 }
 
             }
@@ -302,8 +301,21 @@ main{
                                 margin-top: 3rem;
                                 .qnaPage{
                                     cursor: pointer;
-                                    padding: 5px 10px;
-                                    border-radius: 5px;
+                                    margin: 0 20px;
+                                    padding: 2px;
+                                    text-align: center;
+                                    display: inline-block;
+                                    padding-bottom: 2px; 
+                                    border-bottom: 2px solid transparent; 
+                                    transition: border-color 0.3s ease-in-out;
+                                    &:hover{
+                                        border-bottom: 2px solid #000; 
+                                    }
+                                    &.on {
+                                        border: solid 1px;
+                                        background-color: #fff;
+                                        color: #03c75a;
+                                    }
                                 }
                             }
                         }

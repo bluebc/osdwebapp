@@ -1,13 +1,7 @@
-body {
-  margin: 0 auto;
-  overflow-x: hidden;
+.notice-board {
+  padding: 20rem 0 14rem;
+  min-height: 800px;
 }
-
-a {
-  text-decoration-line: none;
-  color: black;
-}
-
 .notice-board .content {
   max-width: 1000px;
   margin: 50px auto;
@@ -38,11 +32,15 @@ a {
   border-bottom: 1px solid #d3d3d3;
   padding: 10px;
 }
-.notice-board .content table tr .left {
-  text-align: left;
-}
-.notice-board .content table tr .center {
+.notice-board .content table tr td {
   text-align: center;
+}
+.notice-board .content table tr td:nth-child(2) {
+  text-align: left;
+  cursor: pointer;
+}
+.notice-board .content table tr td:nth-child(3) {
+  cursor: pointer;
 }
 .notice-board .content .writing {
   text-align: right;
@@ -57,12 +55,23 @@ a {
   border: solid 2px white;
   border-radius: 5px;
 }
-.notice-board .content .pagination {
-  text-align: center;
+.notice-board .content #cunsultPaging {
+  display: flex;
+  justify-content: center;
+  margin: 3rem 0;
 }
-.notice-board .content .pagination a {
-  color: black;
-  text-decoration-line: none;
+.notice-board .content #cunsultPaging .pagination {
+  cursor: pointer;
+  margin: 0 7px;
+  padding: 2px;
+  text-align: center;
+  display: inline-block;
+  padding-bottom: 2px;
+  border-bottom: 2px solid transparent;
+  transition: border-color 0.3s ease-in-out;
+}
+.notice-board .content #cunsultPaging .pagination:hover {
+  border-bottom: 2px solid #000;
 }
 .notice-board .content .search-paging .select-search {
   padding: 1rem;
@@ -97,4 +106,4 @@ a {
   line-height: 1.666;
   cursor: pointer;
   text-align: center;
-}/*# sourceMappingURL=index.css.map */
+}/*# sourceMappingURL=cunsultList.css.map */

@@ -154,8 +154,3 @@ async function qnaPaging(page) {
     setQnaListPaging(currentPage, result.maxPage, result.count, result.limit);
     setQnaListTable(result.list);
 }
-
-// 글 읽기 이동
-function goQnaRead(post_id){
-    window.location.href = "/support/qna/read?post_id=" + post_id;
-}
