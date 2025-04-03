@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="Cunsult_Post">
+
+<!-- resultType 으로 값을 반환하지 못해 resultMap 사용하여 DTO로 반환 -->
+<resultMap id="CunsultPostResultMap" type="com.osd.web.app.dto.Cunsult_PostDto">
+    <result column="POST_ID" property="post_id"/>
+	<result column="POST_SUBJECT" property="post_subject"/>
+    <result column="POST_CONTENT" property="post_content"/>
+	<result column="POST_IMAGES" property="post_images"/>
+	<result column="POST_VIEWCNT" property="post_viewcnt"/>
+	<result column="POST_CHILDCNT" property="post_childcnt"/>
+	<result column="POST_LIKECNT" property="post_likecnt"/>
+	<result column="USER_ID" property="user_id"/>
+	<result column="POST_SORT" property="post_sort"/>
+    <result column="POST_CREATED_AT" property="post_created_at"/>
+    <result column="POST_CREATED_AT" property="post_updated_at"/>
+</resultMap>
+		 
+		
+		 <select id = "getQna_PostByid" parameterType="String"  resultMap="CunsultPostResultMap">
+		 select post_id, post_subject, post_content, post_images, post_viewcnt, post_childcnt, post_likecnt, user_id, post_sort
+		 from cunsult_post
+		  <where>
+		    post_id = #{post_id}
+		   </where> 
+   		 </select> 	
+
+		<insert id="insert">
+			insert into cunsult_post(post_subject, post_content, post_images, post_viewcnt, post_childcnt, post_likecnt, user_id, post_sort, post_created_at, post_updated_at)
+				values(#{post_subject}, #{post_content}, #{post_images}, #{post_viewcnt}, #{post_childcnt}, #{post_likecnt}, #{user_id}, #{post_sort}, #{post_created_at}, #{post_updated_at}) 
+		</insert>
+
+		<select id="selectBySubjectAndContentAndUserIdAndCreated" parameterType="Cunsult_PostDto" resultMap="CunsultPostResultMap">
+			select * from cunsult_post
+				<where>
+					post_subject = #{post_subject} 
+					and 
+					post_content = #{post_content} 
+					and 
+					user_id = #{user_id} 
+					and 
+					post_created_at = #{post_created_at} 
+				</where>
+		</select>
+
+		<select id="selectById" parameterType="Cunsult_PostDto" resultMap="CunsultPostResultMap">
+			select * from cunsult_post
+				<where>
+					post_id = #{post_id}
+				</where>
+		</select>
+
+	<!-- 작업중 -->
+			
+	<select id="selectCountAll" resultType="int">
+		select count(post_id) from cunsult_post
+	</select>
+
+	<delete id="delete" parameterType="Cunsult_PostDto">
+		delete cunsult_post where post_id = #{post_id}
+	</delete>
+
+
+	<select id="selectRownumByNo" parameterType="Cunsult_PostDto" resultType="int">
+		select ROWNUM from
+			(select ROW_NUMBER() over(order by post_id) as ROWNUM, post_id from cunsult_post) as a
+		<where>
+			post_id = #{post_id}
+		</where>
+	</select>
+
+
+	<select id="selectByKeyword" parameterType="java.util.Map" resultMap="CunsultPostResultMap">
+    select * from cunsult_post 
+        <where>
+            (post_subject like concat('%', #{keyword}, '%')
+                or
+                post_content like concat('%', #{keyword}, '%'))
+        </where>
+	</select>
+
+
+	<select id="selectByKeywordAndPage" parameterType="java.util.Map" resultMap="CunsultPostResultMap">
+    select post_id, post_subject, post_content, post_images, post_viewcnt, post_childcnt, post_likecnt, user_id, post_sort, post_created_at, post_updated_at from 
+		(select * from
+		(select ROW_NUMBER() over(order by post_id) as ROWNUM, post_id, post_subject, post_content, post_images, post_viewcnt, post_childcnt, post_likecnt, user_id, post_sort, post_created_at, post_updated_at from cunsult_post 
+			where post_subject like concat('%', #{keyword}, '%')
+					or
+					post_content like concat('%', #{keyword}, '%')
+		) as a
+		where
+			ROWNUM &gt;= 1 + #{limit} * (#{page} - 1) 
+       		and 
+       		ROWNUM &lt; 1 + #{limit} * #{page}
+		) as b
+	</select>
+
+	<select id="selectCountByKeyword" parameterType="String" resultType="int">
+	select count(post_id) from 
+		(select * from cunsult_post 
+			where post_subject like concat('%', #{keyword}, '%')
+					or
+					post_content like concat('%', #{keyword}, '%')
+		) as a
+	
+	</select>
+
+		
+</mapper>
