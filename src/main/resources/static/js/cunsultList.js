@@ -1,6 +1,11 @@
 var currentPage = 1;
 var currentKeyword = "";
 
+function findPageByPostId(){
+    
+}
+
+
 async function search(){
     var keyword = document.getElementById("keyword").value;
     currentKeyword = keyword;

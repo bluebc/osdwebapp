@@ -21,17 +21,16 @@ function showModOrDel() {
 
 }
 
-
-function modifyQna(post_id){
-
-}
-
-function deleteQna(post_id){
-
-}
+function modifyPost(post_id) { }
 
 
-function goQnaList(){
-    // alert("목록페이지 구현");
+function deletePost(post_id) { }
+
+
+
+// 목록
+function goPostList() {
+    // 목록이 아님
+    post_id;
     window.history.back();
 }

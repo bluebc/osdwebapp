@@ -6,6 +6,15 @@ async function posting() {
     var post_subject = document.getElementById("post_subject").value;
     var post_content = document.getElementById("post_content").value;
 
+    if (user_id == null || user_id == "") {
+
+        alert("로그인 세션이 만료되었습니다.");
+        window.location.href = "/";
+
+        return;
+    }
+
+
     if (post_subject == null || post_subject == "") {
         alert("제목을 입력하세요.");
         document.getElementById("post_subject").focus();

@@ -10,6 +10,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.osd.web.app.dto.Cunsult_PostDto;
@@ -91,5 +92,19 @@ public class CunsultBoardController {
         return resultMap;
     }
 
+
+    @RequestMapping("/read")
+    public String qnaReadPage(@RequestParam(required = true, defaultValue = "0", name = "post_id") int post_id,
+            Model model) {
+
+        Cunsult_PostDto cunsult_PostDtoFromDb = cunsultService.getCunsultPostById(post_id);
+        if (cunsult_PostDtoFromDb == null) {
+            return "redirect:/wrongPath";
+        }
+
+        model.addAttribute("cunsult_post", cunsult_PostDtoFromDb);
+
+        return "cunsultRead";
+    }
 
 }
