@@ -273,4 +273,116 @@ main .container .content .lnbContainer .section-cont .all-category .contents-box
   border: solid 1px;
   background-color: #fff;
   color: #03c75a;
+}
+main .container .content .lnbContainer .agent .inner-agent {
+  margin-top: 12rem;
+  display: flex;
+  height: 100%;
+  border: 2px solid #494949;
+  border-left: 0;
+  border-right: 0;
+  align-items: center;
+  justify-content: space-around;
+}
+main .container .content .lnbContainer .agent .inner-agent .fq-service {
+  width: 50%;
+  margin-left: 2rem;
+}
+main .container .content .lnbContainer .agent .inner-agent .fq-service .tit-fq {
+  display: block;
+  margin-bottom: 1rem;
+  font-weight: bold;
+  font-size: 1.6rem;
+  color: #1d1d1d;
+  letter-spacing: -0.08rem;
+}
+main .container .content .lnbContainer .agent .inner-agent .fq-service .list-service {
+  border-top: 1px solid #e3e3e3;
+  width: 60%;
+}
+main .container .content .lnbContainer .agent .inner-agent .fq-service .list-service li {
+  border-bottom: 1px solid #e3e3e3;
+}
+main .container .content .lnbContainer .agent .inner-agent .fq-service .list-service li a {
+  display: block;
+  position: relative;
+  padding: 1.5rem 1rem 1.5rem 0;
+  font-size: 1.1rem;
+  color: #1d1d1d;
+}
+main .container .content .lnbContainer .agent .inner-agent .fq-service .list-service li a::after {
+  content: "";
+  position: absolute;
+  right: 0;
+  top: 50%;
+  width: 0.6rem;
+  height: 0.6rem;
+  margin-top: -0.4rem;
+  margin-right: 0.2rem;
+  border-top: 1px solid #1d1d1d;
+  border-right: 1px solid #1d1d1d;
+  transform: rotate(45deg);
+}
+main .container .content .lnbContainer .agent .inner-agent .call-help {
+  width: 100%;
+  position: relative;
+  padding: 4rem;
+  text-align: center;
+  background-color: #f8f8f8;
+}
+main .container .content .lnbContainer .agent .inner-agent .call-help .call-img {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #494949;
+  border-radius: 50%;
+  width: 3rem;
+  height: 3rem;
+  margin: 0 auto 1.5rem;
+}
+main .container .content .lnbContainer .agent .inner-agent .call-help .call-img img {
+  width: 1.5rem;
+  height: 1.5rem;
+}
+main .container .content .lnbContainer .agent .inner-agent .call-help .tit-call {
+  display: block;
+  font-weight: bold;
+  font-size: 1.6rem;
+  letter-spacing: -0.08rem;
+  line-height: 1.3;
+}
+main .container .content .lnbContainer .agent .inner-agent .call-help .operate-time {
+  display: block;
+  margin: 1rem 0 2rem;
+  color: #1d1d1d;
+}
+main .container .content .lnbContainer .agent .inner-agent .call-help .btn-call {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.3rem;
+  border-radius: 3px;
+  height: 3.5rem;
+  padding: 0 1rem;
+  font-weight: 500;
+  border-width: 1px;
+  border-style: solid;
+  width: 20rem;
+}
+
+/* 768px*/
+@media screen and (max-width: 768px) {
+  main .container {
+    padding: 0;
+  }
+  main .container .content {
+    padding: 0 2rem;
+    margin: 40px auto 0;
+  }
+  main .container .content .lnbContainer .basic-type .pc-type {
+    display: none;
+  }
+  main .container .content .lnbContainer .basic-type .mobil-type {
+    display: flex;
+  }
 }/*# sourceMappingURL=support.css.map */

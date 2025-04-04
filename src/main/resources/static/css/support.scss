@@ -325,9 +325,148 @@ main{
                     }
 
                 .contents-box{}
+                }
+
+                .agent{
+                    .inner-agent{
+                        margin-top: 12rem;
+                        display: flex;
+                        height: 100%;
+                        border: 2px solid #494949;
+                        border-left: 0;
+                        border-right: 0;
+                        align-items: center;
+                        justify-content: space-around;
+                        .fq-service{
+                            width: 50%;
+                            margin-left: 2rem;
+                            .tit-fq{
+                                display: block;
+                                margin-bottom: 1rem;
+                                font-weight: bold;
+                                font-size: 1.6rem;
+                                color: #1d1d1d;
+                                letter-spacing: -.08rem;
+                            }
+                            .list-service{
+                                border-top: 1px solid #e3e3e3;
+                                width: 60%;
+                                li{
+                                    border-bottom: 1px solid #e3e3e3;
+                                    a{
+                                        display: block;
+                                        position: relative;
+                                        padding: 1.5rem 1rem 1.5rem 0;
+                                        font-size: 1.1rem;
+                                        color: #1d1d1d;
+                                        &::after{
+                                            content: "";
+                                            position: absolute;
+                                            right: 0;
+                                            top: 50%;
+                                            width: .6rem;
+                                            height: .6rem;
+                                            margin-top: -.4rem;
+                                            margin-right: .2rem;
+                                            border-top: 1px solid #1d1d1d;
+                                            border-right: 1px solid #1d1d1d;
+                                            transform: rotate(45deg);
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                        .call-help{
+                            width: 100%;
+                            position: relative;
+                            padding: 4rem;
+                            text-align: center;
+                            background-color: #f8f8f8;
+                            .call-img{
+                                display: flex;
+                                align-items: center;
+                                justify-content: center;
+                                background-color: #494949;
+                                border-radius: 50%;
+                                width: 3rem;
+                                height: 3rem;
+                                margin: 0 auto 1.5rem;
+                                img{
+                                    width: 1.5rem;
+                                    height: 1.5rem;
+                                }    
+                            }
+                            .tit-call{
+                                display: block;
+                                font-weight: bold;
+                                font-size: 1.6rem;
+                                letter-spacing: -.08rem;
+                                line-height: 1.3;
+                            }
+                            .operate-time{
+                                display: block;
+                                margin: 1rem 0 2rem;
+                                color: #1d1d1d;
+                            }
+                            .btn-call{
+                                display: inline-flex;
+                                align-items: center;
+                                justify-content: center;
+                                font-size: 1.3rem;
+                                border-radius: 3px;
+                                height: 3.5rem;
+                                padding: 0 1rem;
+                                font-weight: 500;
+                                border-width: 1px;
+                                border-style: solid;
+                                width: 20rem;
+                            }
+                        }
+                    }
+                }
             }
         }
     }
-
-    }
 }
+
+/* 768px*/
+@include itablet{
+    main{
+        .container{
+            padding: 0;
+            .content{
+                padding: 0 2rem;
+                margin: 40px auto 0;
+
+                .snbContainer{
+                    .title{
+                        h1{}
+                    }
+                    .snbMenu{
+                        .snb-btn{
+                            input{}
+                        }
+                    }
+                }
+                .lnbContainer{
+                    .basic-type{
+                        .pc-type{display: none;}
+                        .mobil-type{
+                            display: flex;
+                        }
+                    }
+                    .section-cont{
+
+                    }
+                    .agent{
+
+                    }
+                }
+                
+            }
+            
+        }
+    }
+
+}
+
