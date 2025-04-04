@@ -13,7 +13,7 @@ main{
             display: flex;
             // margin: 40px auto 0;
             max-width: 1410px;
-            min-width: 1180px;
+            // min-width: 1180px;
             padding: 0 50px;
             margin: 60px auto 0;
             .snbContainer{
@@ -337,6 +337,53 @@ main{
                         border-right: 0;
                         align-items: center;
                         justify-content: space-around;
+                        .call-help{
+                            width: 100%;
+                            position: relative;
+                            padding: 4rem;
+                            text-align: center;
+                            background-color: #f8f8f8;
+                            .call-img{
+                                display: flex;
+                                align-items: center;
+                                justify-content: center;
+                                background-color: #494949;
+                                border-radius: 50%;
+                                width: 3rem;
+                                height: 3rem;
+                                margin: 0 auto 1.5rem;
+                                img{
+                                    width: 1.5rem;
+                                    height: 1.5rem;
+                                }    
+                            }
+                            .tit-call{
+                                display: block;
+                                font-weight: bold;
+                                font-size: 1.6rem;
+                                letter-spacing: -.08rem;
+                                line-height: 1.3;
+                            }
+                            .operate-time{
+                                display: block;
+                                margin: 1rem 0 2rem;
+                                color: #1d1d1d;
+                                line-height: 1.5;
+                            }
+                            .btn-call{
+                                display: inline-flex;
+                                align-items: center;
+                                justify-content: center;
+                                font-size: 1.3rem;
+                                border-radius: 3px;
+                                height: 3.5rem;
+                                padding: 0 1rem;
+                                font-weight: 500;
+                                border-width: 1px;
+                                border-style: solid;
+                                width: 20rem;
+                            }
+                        }
                         .fq-service{
                             width: 50%;
                             margin-left: 2rem;
@@ -376,52 +423,7 @@ main{
                                 }
                             }
                         }
-                        .call-help{
-                            width: 100%;
-                            position: relative;
-                            padding: 4rem;
-                            text-align: center;
-                            background-color: #f8f8f8;
-                            .call-img{
-                                display: flex;
-                                align-items: center;
-                                justify-content: center;
-                                background-color: #494949;
-                                border-radius: 50%;
-                                width: 3rem;
-                                height: 3rem;
-                                margin: 0 auto 1.5rem;
-                                img{
-                                    width: 1.5rem;
-                                    height: 1.5rem;
-                                }    
-                            }
-                            .tit-call{
-                                display: block;
-                                font-weight: bold;
-                                font-size: 1.6rem;
-                                letter-spacing: -.08rem;
-                                line-height: 1.3;
-                            }
-                            .operate-time{
-                                display: block;
-                                margin: 1rem 0 2rem;
-                                color: #1d1d1d;
-                            }
-                            .btn-call{
-                                display: inline-flex;
-                                align-items: center;
-                                justify-content: center;
-                                font-size: 1.3rem;
-                                border-radius: 3px;
-                                height: 3.5rem;
-                                padding: 0 1rem;
-                                font-weight: 500;
-                                border-width: 1px;
-                                border-style: solid;
-                                width: 20rem;
-                            }
-                        }
+                        
                     }
                 }
             }
@@ -435,31 +437,60 @@ main{
         .container{
             padding: 0;
             .content{
+                width: 100%;
                 padding: 0 2rem;
-                margin: 40px auto 0;
-
+                margin: 17rem auto 0;
+                flex-direction: column;
                 .snbContainer{
                     .title{
                         h1{}
                     }
                     .snbMenu{
+                        flex-direction: row;
+                        border: none;
+                        gap: 10px;
                         .snb-btn{
+                            border: 1px solid #e9e9e9;
+                            border-radius: 7px;
                             input{}
                         }
                     }
                 }
                 .lnbContainer{
+                    margin-left: 0;
                     .basic-type{
                         .pc-type{display: none;}
                         .mobil-type{
                             display: flex;
+                            .tit-wrap {
+                                .header-sub-tit{
+                                    font-size: 1.5rem;
+                                }
+                            }
                         }
                     }
                     .section-cont{
-
+                        .form-area{
+                            margin: 0;
+                            padding: 1rem;
+                        }
                     }
                     .agent{
-
+                        .inner-agent{
+                            margin: 7rem 0;
+                            border: none;
+                            flex-direction: column;
+                            .call-help{
+                                padding: 2rem;
+                            }
+                            .fq-service{
+                                width: 100%;
+                                margin: 4rem 0 0 0;
+                                .list-service{
+                                    width: 100%;
+                                }
+                            }
+                        }
                     }
                 }
                 
@@ -470,3 +501,81 @@ main{
 
 }
 
+@include itablet-landscape{
+    main{
+        .container{
+            padding: 0;
+            .content{
+                width: 100%;
+                padding: 0 2rem;
+                margin: 17rem auto 0;
+                flex-direction: column;
+                .snbContainer{
+                    .title{
+                        h1{}
+                    }
+                    .snbMenu{
+                        flex-direction: row;
+                        border: none;
+                        gap: 10px;
+                        .snb-btn{
+                            border: 1px solid #e9e9e9;
+                            border-radius: 7px;
+                            input{}
+                        }
+                    }
+                }
+                .lnbContainer{
+                    .agent {
+                        .inner-agent{
+                            margin: 10rem 0;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+/* 425px*/
+@include galaxy{
+    main {
+        .container {
+            .content {
+                .lnbContainer {
+                    .section-cont {
+                        .all-category {
+                            .contents-box{
+                                #faqList {
+                                    .tab-content {
+                                        .faq-box{
+                                            .faq-question{
+                                                flex-direction: column;
+                                                line-height: 1.5;
+                                                &::after{
+                                                    display: none;
+                                                }
+                                                .faq-subject{
+                                                    margin-right: 1rem;
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    .agent {
+                        .inner-agent {
+                            .call-help {
+                                .btn-call{
+                                    width: 12rem;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
