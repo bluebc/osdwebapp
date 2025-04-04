@@ -19,7 +19,8 @@ public class CunsultService {
     public Cunsult_PostDto insertCunsultPost(Cunsult_PostDto cunsult_PostDto) {
 
         // DB DATETIME => DATETIME2(3) 으로 변경할 것 고려
-        // LocalDateTime post_created_at = LocalDateTime.now().truncatedTo(ChronoUnit.MILLIS);
+        // LocalDateTime post_created_at =
+        // LocalDateTime.now().truncatedTo(ChronoUnit.MILLIS);
         LocalDateTime post_created_at = LocalDateTime.now().truncatedTo(ChronoUnit.SECONDS);
 
         Cunsult_PostDto cunsult_PostFromDb = new Cunsult_PostDto();
@@ -49,6 +50,22 @@ public class CunsultService {
 
     public int getCunsultPostCountByKeyword(String keyword) {
         return cunsult_PostDao.selectCountByKeyword(keyword);
+    }
+
+    public int updateCunsultPost(Cunsult_PostDto cunsult_PostDto) {
+
+        LocalDateTime post_updated_at = LocalDateTime.now().truncatedTo(ChronoUnit.SECONDS);
+        cunsult_PostDto.setPost_updated_at(post_updated_at);
+
+        return cunsult_PostDao.update(cunsult_PostDto);
+    }
+
+    public int deleteCunsultPost(Cunsult_PostDto cunsult_PostDto) {
+        return cunsult_PostDao.delete(cunsult_PostDto);
+    }
+
+    public int getRownumById(Cunsult_PostDto cunsult_PostDto) {
+        return cunsult_PostDao.selectRownumById(cunsult_PostDto);
     }
 
 }

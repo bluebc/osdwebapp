@@ -1,18 +1,12 @@
 // 글 작성 완료
-async function posting() {
+async function modify() {
     // console.log("게시");
 
+    var post_id = document.getElementById("post_id").value;
     var user_id = document.getElementById("user_id").value;
     var post_subject = document.getElementById("post_subject").value;
     var post_content = document.getElementById("post_content").value;
-
-    if (user_id == null || user_id == "") {
-
-        alert("로그인 세션이 만료되었습니다.");
-        window.location.href = "/";
-
-        return;
-    }
+    
 
 
     if (post_subject == null || post_subject == "") {
@@ -27,26 +21,31 @@ async function posting() {
     }
 
     var qna_post = {
+        post_id: post_id,
         user_id: user_id,
         post_subject: post_subject,
         post_content: post_content
     };
 
     // 글 보내기
-    const result = await postCunsultPost(qna_post);
+    const result = await modifyCunsultPost(qna_post);
 
-    const cunsult_post = result.cunsult_post;
-    const post_id = cunsult_post.post_id;
+    const updated = result.updated;
 
 
     //
-    alert("글 작성이 완료되었습니다.");
+    switch(updated){
+        case 1:
+            alert("글 수정이 완료되었습니다.");
+            break;
+    }
+    
 }
 
 // 서버에 글 post
-async function postCunsultPost(qna_post) {
+async function modifyCunsultPost(qna_post) {
 
-    const response = await fetch("/cunsult/postCunsultPost", {
+    const response = await fetch("/cunsult/modifyCunsultPost", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(qna_post)
@@ -58,9 +57,12 @@ async function postCunsultPost(qna_post) {
 
 
 // 글 작성 취소
-function cancelPosting() {
-    if (confirm("글 작성을 취소하시겠습니까?")) {
-        window.history.back();
+function cancelModify() {
+    if (confirm("글 수정을 취소하시겠습니까?")) {
+        // window.history.back();
+        // 원문 글 읽는 곳으로
+        var post_id = document.getElementById("post_id").value;
+        window.location.href = "/cunsult/read?post_id=" + post_id;
     }
 
     // console.log("취소");

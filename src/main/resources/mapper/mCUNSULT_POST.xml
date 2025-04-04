@@ -18,7 +18,7 @@
 </resultMap>
 		 
 		
-		 <select id = "getQna_PostByid" parameterType="String"  resultMap="CunsultPostResultMap">
+		 <select id = "getCunsult_PostByid" parameterType="String"  resultMap="CunsultPostResultMap">
 		 select post_id, post_subject, post_content, post_images, post_viewcnt, post_childcnt, post_likecnt, user_id, post_sort
 		 from cunsult_post
 		  <where>
@@ -51,7 +51,6 @@
 				</where>
 		</select>
 
-	<!-- 작업중 -->
 			
 	<select id="selectCountAll" resultType="int">
 		select count(post_id) from cunsult_post
@@ -105,6 +104,28 @@
 		) as a
 	
 	</select>
+
+		<update id="update">
+			update 
+				cunsult_post
+				<set>
+				post_subject = #{post_subject}, 
+				post_content = #{post_content}, 
+				post_images = #{post_images}, 
+				post_updated_at = #{post_updated_at}, 
+				</set>
+			<where>
+			post_id = #{post_id}
+			</where>
+		</update>
+
+		<select id="selectRownumById" parameterType="Cunsult_PostDto" resultType="int">
+			select rownum from 
+			(select ROW_NUMBER() over(order by post_id) as ROWNUM, post_id from cunsult_post) as a
+			<where>
+				post_id = #{post_id}
+			</where>
+		</select>
 
 		
 </mapper>

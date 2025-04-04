@@ -19,6 +19,11 @@
 </head>
 <body>
 
+<div class="notice-board">
+    <div class="content">
+        <h2>상담 & 게시판 글쓰기</h2>
+
+
     <!-- header -->
     <jsp:include page="header.jsp"></jsp:include>
 
@@ -28,15 +33,17 @@
 
             <hr class ="hr1" noshade> 
 
+
             <form>
                 <span> ▷ 총 n개의 게시물이 있습니다. </span>
             </form>
 
-            <table id = "cunsultListTable"></table>
+        <div class="writing";>
+            <input type="button" value="글쓰기"  class="writing-btn" onclick="goCunsultWrite()">
+        </div>
 
-            <div class="writing">
-                <input type="button" value="글쓰기"  class="writing-btn" onclick="">
-            </div>
+
+            <table id = "cunsultListTable"></table>
 
             <div class="pagination" id = "cunsultPaging" ></div>
 

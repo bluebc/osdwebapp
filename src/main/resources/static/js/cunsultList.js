@@ -1,7 +1,45 @@
 var currentPage = 1;
 var currentKeyword = "";
+const viewPage = 10;
+const limit = 10;
 
-async function search(){
+async function findPage() {
+
+    // var post_id = document.getElementById("post_id").value;
+
+    // list 진입
+    // if (post_id == 0) {
+    //     page = 1;
+    //     return page;
+    // }
+
+    // read(목록)진입
+    var cunsult_post = { post_id: post_id };
+
+    const response = await fetch("/cunsult/getRownumSession", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(cunsult_post)
+    });
+
+    const result = await response.json();
+    var rownum = result.rownum;
+
+    var page = 1;
+
+    if (rownum == 0) {
+        return page;
+    }
+
+    page = parseInt(rownum / limit) + 1;
+    if ((rownum / limit) == 0) {
+        page -= 1;
+    }
+    return page;
+}
+
+
+async function search() {
     var keyword = document.getElementById("keyword").value;
     currentKeyword = keyword;
     currentPage = 1;
@@ -11,11 +49,11 @@ async function search(){
 }
 
 document.addEventListener("DOMContentLoaded", async function () {
+    currentPage = await findPage();
+    console.log(currentPage);
     const cunsultMap = await getCunsultPostByKeywordAndPage();
-
     setCunsultListTable(cunsultMap.list);
     setCunsultListPaging(currentPage, cunsultMap.maxPage, cunsultMap.count, cunsultMap.limit);
-
 })
 
 
@@ -87,7 +125,10 @@ function setCunsultListTable(list) {
         const userTd = document.createElement("td");
         userTd.textContent = cunsult.user_id;
         const createdTd = document.createElement("td");
-        createdTd.textContent = cunsult.post_created_at;
+        // createdTd.textContent = cunsult.post_created_at;
+        const cunsultCreatedAt = new Date(cunsult.post_created_at).toISOString().slice(0, 10);
+        createdTd.textContent = cunsultCreatedAt;
+
         const viewCntTd = document.createElement("td");
         viewCntTd.textContent = cunsult.post_viewcnt;
 
@@ -111,7 +152,7 @@ function setCunsultListPaging(currentPage, maxPage, count, limit) {
     }
 
     // 10페이지씩
-    var viewPage = 10;
+    // var viewPage = 10;
     var startPage = parseInt(currentPage / viewPage) * viewPage + 1;
     if (currentPage % viewPage == 0) {
         startPage = (parseInt(currentPage / viewPage) - 1) * viewPage + 1;
@@ -172,6 +213,10 @@ async function cunsultPaging(page) {
 }
 
 // 글 읽기 이동
-function goCunsultRead(post_id){
+function goCunsultRead(post_id) {
     window.location.href = "/cunsult/read?post_id=" + post_id;
+}
+
+function goCunsultWrite() {
+    window.location.href = "/cunsult/write";
 }

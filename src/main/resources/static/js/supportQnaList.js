@@ -41,10 +41,13 @@ function setQnaListTable(list) {
     userTh.textContent = "작성자";
     const createdTh = document.createElement("th");
     createdTh.textContent = "작성 시간";
+    const viewCntTh = document.createElement("th");
+    viewCntTh.textContent = "조회수";
     columnTr.appendChild(idTh);
     columnTr.appendChild(subjectTh);
     columnTr.appendChild(userTh);
     columnTr.appendChild(createdTh);
+    columnTr.appendChild(viewCntTh);
     qnaListTable.appendChild(columnTr);
 
 
@@ -61,17 +64,31 @@ function setQnaListTable(list) {
             console.log(qna.post_subject);
         }
 
+        const qnaBox = document.createElement("div");
+        qnaBox.className = "qnaBox";
+
+        
 
         const userTd = document.createElement("td");
         userTd.textContent = qna.user_id;
+       
         const createdTd = document.createElement("td");
-        createdTd.textContent = qna.post_created_at;
+        const qnaCreatedAt = new Date(qna.post_created_at).toISOString().slice(0, 10);
+        createdTd.textContent = qnaCreatedAt;
+        
+        const viewCntTd = document.createElement("td");
+        viewCntTd.textContent = qna.post_viewcnt;
+
+        qnaBox.appendChild(userTd);
+        qnaBox.appendChild(createdTd);
+        qnaBox.appendChild(viewCntTd);
 
 
         qnaTr.appendChild(idTd);
         qnaTr.appendChild(subjectTd);
-        qnaTr.appendChild(userTd);
-        qnaTr.appendChild(createdTd);
+        // qnaTr.appendChild(userTd);
+        // qnaTr.appendChild(createdTd);
+        qnaTr.appendChild(qnaBox);
 
         qnaListTable.appendChild(qnaTr);
 

@@ -11,9 +11,11 @@ function showModOrDel() {
     }).then(response => {
         return response.json();
     }).then(result => {
-        if (result.login_user_id != null && result.login_user_id != "" ) {
+        if (result.login_user_id != null && result.login_user_id != "") {
             // 아이디 일치 여부 확인
-            document.getElementById("modOrDel").style.display = "block";
+            if (document.getElementById("user_id").value == result.login_user_id) {
+                document.getElementById("modOrDel").style.display = "block";
+            }
         }
     });
 
