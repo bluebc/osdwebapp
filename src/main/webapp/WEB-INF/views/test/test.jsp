@@ -4,6 +4,8 @@
 <head>
     <title>오생단</title>
 
+
+<script src = "${pageContext.request.contextPath}/js/test/fileUpload.js"></script>
 </head>
 <body>
 <div id = hiddenSection>
@@ -13,17 +15,33 @@
 
 <h3>테스트 페이지</h3>
 
-<h6><a href = "/">인덱스 페이지</a></h6>
+<%-- <h6><a href = "/">인덱스 페이지</a></h6>
 <h6><a href = "/signup">회원가입 페이지</a></h6>
 <h6><a href = "/withdraw">회원탈퇴 페이지</a></h6>
 <h6><a href = "/login">로그인 페이지</a></h6>
-<h6><a href = "/changepw">비밀번호 수정 페이지</a></h6>
+<h6><a href = "/changepw">비밀번호 수정 페이지</a></h6> --%>
 
 
 <%-- <input type = "button" value = "test" onclick = "loginVisible('${loginId}')"> --%>
 
-<input type = "button" value = "test" onclick = "tokenmaker()">
+<%-- <input type = "button" value = "test" onclick = "tokenmaker()"> --%>
+
 <br>
+
+<h5>파일 업로드 테스트</h5>
+
+
+<form id="uploadForm" enctype="multipart/form-data">
+    <input type="file" id="fileInput" name="files" multiple>
+
+    <input type="button" onclick="uploadFiles()" value = "업로드">
+
+</form>
+<div id="uploadResult"></div>
+
+
+
+
 
 <br>
 login id : ${loginId}
@@ -102,3 +120,4 @@ login id : ${loginId}
 
 <script src = "${pageContext.request.contextPath}/js/test/test.js"></script>
 <script src = "${pageContext.request.contextPath}/js/sessioncheck.js"></script>
+<%-- <script src = "${pageContext.request.contextPath}/js/test/fileUpload.js"></script> --%>

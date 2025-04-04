@@ -47,6 +47,8 @@ dependencies {
 	implementation group: 'org.glassfish.web', name: 'jakarta.servlet.jsp.jstl', version: '2.0.0'
 	// email
 	implementation 'org.springframework.boot:spring-boot-starter-mail'
+	// fileUpload
+	implementation 'commons-fileupload:commons-fileupload:1.4'
 
 }
 
