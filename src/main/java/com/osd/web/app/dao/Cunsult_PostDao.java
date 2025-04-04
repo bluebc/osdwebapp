@@ -56,4 +56,18 @@ public class Cunsult_PostDao {
         return session.update("Cunsult_Post.update", cunsult_PostDto);
     }
 
+    public int delete(Cunsult_PostDto cunsult_PostDto) {
+        return session.delete("Cunsult_Post.delete", cunsult_PostDto);
+    }
+
+    public int selectRownumById(Cunsult_PostDto cunsult_PostDto) {
+        return session.selectOne("Cunsult_Post.selectRownumById", cunsult_PostDto);
+    }
+
+    public int selectRownumById(int post_id) {
+        Cunsult_PostDto cunsult_PostDto = new Cunsult_PostDto();
+        cunsult_PostDto.setPost_id(post_id);
+        return selectRownumById(cunsult_PostDto);
+    }
+
 }

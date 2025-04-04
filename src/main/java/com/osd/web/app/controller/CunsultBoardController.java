@@ -38,7 +38,15 @@ public class CunsultBoardController {
     }
 
     @RequestMapping("/list")
-    public String cunsultListPage(@RequestParam(required = false, name = "post_id") int post_id) {
+    // int => Integer (int null 허용 X)
+    // public String cunsultListPage(@RequestParam(required = false, name = "post_id") Integer post_id, Model model) {
+    public String cunsultListPage(){
+
+        // if (post_id == null) {
+        //     post_id = 0;
+        // }
+
+        // model.addAttribute("post_id", post_id);
 
         return "cunsultList";
     }
@@ -142,6 +150,74 @@ public class CunsultBoardController {
         int updated = cunsultService.updateCunsultPost(cunsult_PostDto);
 
         resultMap.put("updated", updated);
+
+        return resultMap;
+    }
+
+    @ResponseBody
+    @PostMapping("/deleteCunsultPost")
+    public Map<String, Object> deleteCunsultPost(HttpServletRequest request,
+            @RequestBody Cunsult_PostDto cunsult_PostDto) {
+        Map<String, Object> resultMap = new HashMap<>();
+        int deleted = 0;
+        resultMap.put("deleted", deleted);
+
+        HttpSession session = request.getSession();
+        String login_user_id = (String) session.getAttribute("login_user_id");
+
+        // 로그인 정보 불일치
+        if (!login_user_id.equals(cunsult_PostDto.getUser_id())) {
+            return resultMap;
+        }
+
+        deleted = cunsultService.deleteCunsultPost(cunsult_PostDto);
+
+        resultMap.put("deleted", deleted);
+
+        return resultMap;
+    }
+
+    // @ResponseBody
+    // @PostMapping("/getRownumById")
+    // public Map<String, Object> getRownumById(@RequestBody Cunsult_PostDto cunsult_PostDto) {
+    //     Map<String, Object> resultMap = new HashMap<>();
+
+    //     int rownum = cunsultService.getRownumById(cunsult_PostDto);
+    //     resultMap.put("rownum", rownum);
+
+    //     return resultMap;
+    // }
+
+    @ResponseBody
+    @PostMapping("/setRownumSession")
+    public Map<String, Object> setRownumSession(HttpServletRequest request,
+            @RequestBody Cunsult_PostDto cunsult_PostDto) {
+        Map<String, Object> resultMap = new HashMap<>();
+
+        int rownum = cunsultService.getRownumById(cunsult_PostDto);
+        resultMap.put("rownum", rownum);
+
+        HttpSession session = request.getSession();
+        session.setAttribute("post_rownum", rownum);
+
+        return resultMap;
+    }
+
+    @ResponseBody
+    @PostMapping("/getRownumSession")
+    public Map<String, Object> getRownumSession(HttpServletRequest request) {
+        Map<String, Object> resultMap = new HashMap<>();
+
+        HttpSession session = request.getSession();
+
+        int rownum = 0;
+        if (session.getAttribute("post_rownum") != null) {
+            rownum = (int) session.getAttribute("post_rownum");
+        }
+
+        resultMap.put("rownum", rownum);
+
+        session.setAttribute("post_rownum", null);
 
         return resultMap;
     }

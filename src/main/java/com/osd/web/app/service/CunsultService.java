@@ -60,4 +60,12 @@ public class CunsultService {
         return cunsult_PostDao.update(cunsult_PostDto);
     }
 
+    public int deleteCunsultPost(Cunsult_PostDto cunsult_PostDto) {
+        return cunsult_PostDao.delete(cunsult_PostDto);
+    }
+
+    public int getRownumById(Cunsult_PostDto cunsult_PostDto) {
+        return cunsult_PostDao.selectRownumById(cunsult_PostDto);
+    }
+
 }

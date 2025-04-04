@@ -59,8 +59,10 @@ async function modifyCunsultPost(qna_post) {
 // 글 작성 취소
 function cancelModify() {
     if (confirm("글 수정을 취소하시겠습니까?")) {
-        window.history.back();
+        // window.history.back();
         // 원문 글 읽는 곳으로
+        var post_id = document.getElementById("post_id").value;
+        window.location.href = "/cunsult/read?post_id=" + post_id;
     }
 
     // console.log("취소");

@@ -13,6 +13,7 @@
 
 </head>
 <body>
+<input type = "hidden" id = "post_id" value = "${post_id}">
 <div class="notice-board">
     <div class="content">
         <h2>상담 & 게시판 글쓰기</h2>

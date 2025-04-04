@@ -119,5 +119,13 @@
 			</where>
 		</update>
 
+		<select id="selectRownumById" parameterType="Cunsult_PostDto" resultType="int">
+			select rownum from 
+			(select ROW_NUMBER() over(order by post_id) as ROWNUM, post_id from cunsult_post) as a
+			<where>
+				post_id = #{post_id}
+			</where>
+		</select>
+
 		
 </mapper>
