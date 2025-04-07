@@ -450,6 +450,7 @@ main .container .content .lnbContainer .agent .inner-agent .fq-service .list-ser
   main .container .content .lnbContainer .section-cont .all-category .contents-box #faqList .tab-content .faq-box .faq-question {
     flex-direction: column;
     line-height: 1.5;
+    border-bottom: 1px solid;
   }
   main .container .content .lnbContainer .section-cont .all-category .contents-box #faqList .tab-content .faq-box .faq-question::after {
     display: none;
