@@ -14,6 +14,7 @@
     <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
     <script src="http://code.jquery.com/jquery-latest.min.js"></script>
     <script src ="${pageContext.request.contextPath}/js/cunsultWrite.js"></script>
+    <script src ="${pageContext.request.contextPath}/js/fileUpload.js"></script>
 </head>
 
 <body>
@@ -64,6 +65,22 @@
                     <input type="file" name="image" accept="image/*" id="btn-upload"> -->
                 </td>
             </tr>
+
+
+            <tr>
+  <td>
+                  
+                    <label for="file">파일 업로드</label>
+                    <form id="uploadForm" enctype="multipart/form-data">
+                      <input type="file" id="fileInput" name="files" multiple>
+                      </form>
+                    <hr noshade>
+                    <!-- <h3>이미지 업로드</h3>
+                    <input type="file" name="image" accept="image/*" id="btn-upload"> -->
+                </td>
+
+            </tr>
+
             
             <tr>
                 <td class="register-btn">

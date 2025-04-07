@@ -6,11 +6,12 @@ import lombok.Data;
 
 @Data
 public class Cunsult_PostDto {
-    
+
     private int post_id;
     private String post_subject;
     private String post_content;
     private String post_images;
+    private String post_files;
     private int post_viewcnt;
     private int post_childcnt;
     private int post_likecnt;
