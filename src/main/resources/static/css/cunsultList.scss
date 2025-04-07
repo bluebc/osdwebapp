@@ -10,6 +10,7 @@
             padding: 20px;
         h2 { 
             font-weight: border; 
+            margin-bottom: 2rem;
         }
 
         hr { 
@@ -22,8 +23,22 @@
               margin: 1rem 0; 
               span{}
         }
-        
-        table {
+
+        .writing {
+            text-align: right;
+            .writing-btn{
+                width: 100px;
+                height: 40px;
+                font-weight: 900;
+                color: white;
+                text-align: center;
+                background: #535353;
+                border: solid 2px white;
+                border-radius: 5px;
+            }
+        }
+
+        #cunsultListTable{
             margin: 2rem 0;
             width: 100%;
             border-top: 1px solid #d3d3d3;
@@ -40,29 +55,27 @@
             tr{
                 td{
                     text-align: center;
+                    cursor: default;
                     &:nth-child(2){
                         text-align: left;
                         cursor: pointer;
                     }
-                    &:nth-child(3){
-                        cursor: pointer;
+                }
+                .cunsultBoxTd{
+                    .cunsultBox{
+                        display: flex;
+                        gap: 16px;
+                        justify-content: flex-start;
+                        span{
+                            flex: 1;
+                            text-align: center;
+                            cursor: default;
+                            &:nth-child(1){
+                                cursor: pointer;
+                            }
+                        }
                     }
                 }
-            }
-
-        }
-
-        .writing {
-            text-align: right;
-            .writing-btn{
-                width: 100px;
-                height: 40px;
-                font-weight: 900;
-                color: white;
-                text-align: center;
-                background: #535353;
-                border: solid 2px white;
-                border-radius: 5px;
             }
         }
 
@@ -82,6 +95,11 @@
                     &:hover{
                         border-bottom: 2px solid #000; 
                     }
+                }
+                .selected {
+                    color: rgb(5, 155, 5);
+                    font-weight: bold;
+                    border-bottom: 2px solid rgb(5, 155, 5); 
                 }
         }
 
@@ -126,5 +144,65 @@
             }
             
         }  
+    }
+}
+
+/* 768px*/
+@include itablet{
+}
+
+// 576px
+@include mobile{
+    .notice-board {
+        padding: 15rem 0 6rem;
+        .content {
+            #cunsultListTable{
+                tr{
+                    display: flex;
+                    flex-direction: column;
+                    border-bottom: 1px solid #d3d3d3;
+                    &:nth-child(1){
+                        display: none; 
+                        // th 숨김
+                    }
+                    td{
+                        &:nth-child(1){
+                            display: none; 
+                            // td 번호 숨김
+                        }
+                        &:nth-child(2){
+                            font-size: 1.2rem;
+                            font-weight: bold;
+                        }
+                        border: none;
+                    }
+                    .cunsultBoxTd{
+                        .cunsultBox{
+                            white-space: nowrap;
+                            text-align: left;
+                            display: block;
+                            color: #838383;
+                            span{
+                                //display: inline-block;
+                                margin-right: 10px;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+// 344px;
+@include iphone{
+    .notice-board {
+        .content {
+            .search-paging {
+                .select-search{
+                    padding: 0.1rem;
+                }
+            }
+        }
     }
 }

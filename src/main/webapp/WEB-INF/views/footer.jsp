@@ -157,7 +157,7 @@
                         </ul>
                     </li>
 
-                    <a href="#" class="btnbot" >고객센터</a>
+                    <a href="/support" class="btnbot" >고객센터</a>
                 </ul>
                 
 

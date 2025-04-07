@@ -10,6 +10,7 @@
 }
 .notice-board .content h2 {
   font-weight: border;
+  margin-bottom: 2rem;
 }
 .notice-board .content hr {
   border: 0;
@@ -18,29 +19,6 @@
 }
 .notice-board .content form {
   margin: 1rem 0;
-}
-.notice-board .content table {
-  margin: 2rem 0;
-  width: 100%;
-  border-top: 1px solid #d3d3d3;
-  border-collapse: collapse;
-}
-.notice-board .content table th {
-  border-top: 2px solid #727272;
-}
-.notice-board .content table th, .notice-board .content table td {
-  border-bottom: 1px solid #d3d3d3;
-  padding: 10px;
-}
-.notice-board .content table tr td {
-  text-align: center;
-}
-.notice-board .content table tr td:nth-child(2) {
-  text-align: left;
-  cursor: pointer;
-}
-.notice-board .content table tr td:nth-child(3) {
-  cursor: pointer;
 }
 .notice-board .content .writing {
   text-align: right;
@@ -54,6 +32,40 @@
   background: #535353;
   border: solid 2px white;
   border-radius: 5px;
+}
+.notice-board .content #cunsultListTable {
+  margin: 2rem 0;
+  width: 100%;
+  border-top: 1px solid #d3d3d3;
+  border-collapse: collapse;
+}
+.notice-board .content #cunsultListTable th {
+  border-top: 2px solid #727272;
+}
+.notice-board .content #cunsultListTable th, .notice-board .content #cunsultListTable td {
+  border-bottom: 1px solid #d3d3d3;
+  padding: 10px;
+}
+.notice-board .content #cunsultListTable tr td {
+  text-align: center;
+  cursor: default;
+}
+.notice-board .content #cunsultListTable tr td:nth-child(2) {
+  text-align: left;
+  cursor: pointer;
+}
+.notice-board .content #cunsultListTable tr .cunsultBoxTd .cunsultBox {
+  display: flex;
+  gap: 16px;
+  justify-content: flex-start;
+}
+.notice-board .content #cunsultListTable tr .cunsultBoxTd .cunsultBox span {
+  flex: 1;
+  text-align: center;
+  cursor: default;
+}
+.notice-board .content #cunsultListTable tr .cunsultBoxTd .cunsultBox span:nth-child(1) {
+  cursor: pointer;
 }
 .notice-board .content #cunsultPaging {
   display: flex;
@@ -72,6 +84,11 @@
 }
 .notice-board .content #cunsultPaging .pagination:hover {
   border-bottom: 2px solid #000;
+}
+.notice-board .content #cunsultPaging .selected {
+  color: rgb(5, 155, 5);
+  font-weight: bold;
+  border-bottom: 2px solid rgb(5, 155, 5);
 }
 .notice-board .content .search-paging .select-search {
   padding: 1rem;
@@ -106,4 +123,43 @@
   line-height: 1.666;
   cursor: pointer;
   text-align: center;
+}
+
+/* 768px*/
+@media screen and (max-width: 576px) {
+  .notice-board {
+    padding: 15rem 0 6rem;
+  }
+  .notice-board .content #cunsultListTable tr {
+    display: flex;
+    flex-direction: column;
+    border-bottom: 1px solid #d3d3d3;
+  }
+  .notice-board .content #cunsultListTable tr:nth-child(1) {
+    display: none;
+  }
+  .notice-board .content #cunsultListTable tr td {
+    border: none;
+  }
+  .notice-board .content #cunsultListTable tr td:nth-child(1) {
+    display: none;
+  }
+  .notice-board .content #cunsultListTable tr td:nth-child(2) {
+    font-size: 1.2rem;
+    font-weight: bold;
+  }
+  .notice-board .content #cunsultListTable tr .cunsultBoxTd .cunsultBox {
+    white-space: nowrap;
+    text-align: left;
+    display: block;
+    color: #838383;
+  }
+  .notice-board .content #cunsultListTable tr .cunsultBoxTd .cunsultBox span {
+    margin-right: 10px;
+  }
+}
+@media screen and (max-width: 344px) {
+  .notice-board .content .search-paging .select-search {
+    padding: 0.1rem;
+  }
 }/*# sourceMappingURL=cunsultList.css.map */
