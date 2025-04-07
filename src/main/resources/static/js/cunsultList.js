@@ -121,22 +121,48 @@ function setCunsultListTable(list) {
             console.log(cunsult.post_subject);
         }
 
+        const cunsultBoxTd = document.createElement("td");
+        cunsultBoxTd.className = "cunsultBoxTd";
+        cunsultBoxTd.setAttribute("colspan", "3");
 
-        const userTd = document.createElement("td");
+
+        const cunsultBox = document.createElement("div");
+        cunsultBox.className = "cunsultBox";
+
+
+        // const userTd = document.createElement("td");
+        // userTd.textContent = cunsult.user_id;
+        // const createdTd = document.createElement("td");
+        // // createdTd.textContent = cunsult.post_created_at;
+        // const cunsultCreatedAt = new Date(cunsult.post_created_at).toISOString().slice(0, 10);
+        // createdTd.textContent = cunsultCreatedAt;
+
+        // const viewCntTd = document.createElement("td");
+        // viewCntTd.textContent = cunsult.post_viewcnt;
+
+        const userTd = document.createElement("span");
         userTd.textContent = cunsult.user_id;
-        const createdTd = document.createElement("td");
-        // createdTd.textContent = cunsult.post_created_at;
+
+        const createdTd = document.createElement("span");
         const cunsultCreatedAt = new Date(cunsult.post_created_at).toISOString().slice(0, 10);
         createdTd.textContent = cunsultCreatedAt;
 
-        const viewCntTd = document.createElement("td");
+        const viewCntTd = document.createElement("span");
         viewCntTd.textContent = cunsult.post_viewcnt;
+
+        cunsultBox.appendChild(userTd);
+        cunsultBox.appendChild(createdTd);
+        cunsultBox.appendChild(viewCntTd);
+
+        cunsultBoxTd.appendChild(cunsultBox);
+
 
         cunsultTr.appendChild(idTd);
         cunsultTr.appendChild(subjectTd);
-        cunsultTr.appendChild(userTd);
-        cunsultTr.appendChild(createdTd);
-        cunsultTr.appendChild(viewCntTd);
+        // cunsultTr.appendChild(userTd);
+        // cunsultTr.appendChild(createdTd);
+        // cunsultTr.appendChild(viewCntTd);
+        cunsultTr.appendChild(cunsultBoxTd);
 
         cunsultListTable.appendChild(cunsultTr);
 
@@ -180,6 +206,11 @@ function setCunsultListPaging(currentPage, maxPage, count, limit) {
         pageDiv.className = "pagination";
         pageDiv.textContent = page;
         // console.log("input: " + page);
+
+        if (page === currentPage) {
+            pageDiv.classList.add("selected");
+        }
+        
         pageDiv.onclick = function () {
             // console.log("clicked: " + page);
             cunsultPaging(page);

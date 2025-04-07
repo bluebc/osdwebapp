@@ -4,17 +4,21 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>상담 & 게시판 글쓰기</title>
 
-<%-- sub2.html --%>
-<%-- 글 쓰기 페이지 --%>
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/sub2.css">
+    <!-- css -->
+    <link rel="stylesheet" href="css/reset.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/cunsultWrite.css">
+    
+    <!--favicon--->
+    <link href="img/favicon.ico" rel="icon">
 
     <!--js-->
     <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
     <script src="http://code.jquery.com/jquery-latest.min.js"></script>
     <script src ="${pageContext.request.contextPath}/js/cunsultWrite.js"></script>
     <script src ="${pageContext.request.contextPath}/js/fileUpload.js"></script>
+    
 </head>
 
 <body>

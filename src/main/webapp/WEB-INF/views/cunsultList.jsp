@@ -28,21 +28,20 @@
 
             <hr class ="hr1" noshade> 
 
-
             <form>
                 <span> ▷ 총 n개의 게시물이 있습니다. </span>
             </form>
 
-        <div class="writing";>
-            <input type="button" value="글쓰기"  class="writing-btn" onclick="goCunsultWrite()">
-        </div>
+            <div class="writing">
+                <input type="button" value="글쓰기"  class="writing-btn" onclick="goCunsultWrite()">
+            </div>
 
 
-            <table id = "cunsultListTable"></table>
+            <table id="cunsultListTable"></table>
 
             <div class="pagination" id = "cunsultPaging" ></div>
 
-            <form class="search-paging";>
+            <form class="search-paging">
                 <div class="select-search">
                     <select>
                         <option value="subject" name="subject" >제목</option>
@@ -54,8 +53,6 @@
                 </div>
             </form>
         </div>
-        
-
     </div>
 
     <!-- footer -->

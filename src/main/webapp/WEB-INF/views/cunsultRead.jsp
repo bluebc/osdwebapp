@@ -58,7 +58,7 @@ ${cunsult_post.post_files}
 
 <input type = "button" value = "목록" onclick = "goPostList()">
     
-             
+
 
 
 
