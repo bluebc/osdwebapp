@@ -14,12 +14,12 @@ async function findPage() {
     // }
 
     // read(목록)진입
-    var cunsult_post = { post_id: post_id };
+    // var cunsult_post = { post_id: post_id };
 
     const response = await fetch("/cunsult/getRownumSession", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(cunsult_post)
+        body: {}
     });
 
     const result = await response.json();
