@@ -129,5 +129,15 @@
 			</where>
 		</select>
 
+		<update id="updateViewcnt" parameterType="int">
+		update cunsult_post 
+		<set>
+			post_viewcnt = post_viewcnt + 1
+		</set>
+		<where>
+			post_id = #{post_id}
+		</where>
+		</update>
+
 		
 </mapper>

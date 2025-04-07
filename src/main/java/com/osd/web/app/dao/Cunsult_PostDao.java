@@ -70,4 +70,8 @@ public class Cunsult_PostDao {
         return selectRownumById(cunsult_PostDto);
     }
 
+    public int updateViewcnt(int post_id){
+        return session.update("Cunsult_Post.updateViewcnt", post_id);
+    }
+
 }

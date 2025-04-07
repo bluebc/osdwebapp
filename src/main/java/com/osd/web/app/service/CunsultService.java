@@ -68,4 +68,8 @@ public class CunsultService {
         return cunsult_PostDao.selectRownumById(cunsult_PostDto);
     }
 
+    public int updateViewcnt(int post_id){
+        return cunsult_PostDao.updateViewcnt(post_id);
+    }
+
 }

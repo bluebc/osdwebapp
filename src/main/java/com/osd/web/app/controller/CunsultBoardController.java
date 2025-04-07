@@ -39,11 +39,12 @@ public class CunsultBoardController {
 
     @RequestMapping("/list")
     // int => Integer (int null 허용 X)
-    // public String cunsultListPage(@RequestParam(required = false, name = "post_id") Integer post_id, Model model) {
-    public String cunsultListPage(){
+    // public String cunsultListPage(@RequestParam(required = false, name =
+    // "post_id") Integer post_id, Model model) {
+    public String cunsultListPage() {
 
         // if (post_id == null) {
-        //     post_id = 0;
+        // post_id = 0;
         // }
 
         // model.addAttribute("post_id", post_id);
@@ -104,6 +105,7 @@ public class CunsultBoardController {
     public String cunsultReadPage(@RequestParam(required = true, defaultValue = "0", name = "post_id") int post_id,
             Model model) {
 
+        int viewcntUpdated = cunsultService.updateViewcnt(post_id);
         Cunsult_PostDto cunsult_PostDtoFromDb = cunsultService.getCunsultPostById(post_id);
         if (cunsult_PostDtoFromDb == null) {
             return "redirect:/wrongPath";
@@ -179,13 +181,14 @@ public class CunsultBoardController {
 
     // @ResponseBody
     // @PostMapping("/getRownumById")
-    // public Map<String, Object> getRownumById(@RequestBody Cunsult_PostDto cunsult_PostDto) {
-    //     Map<String, Object> resultMap = new HashMap<>();
+    // public Map<String, Object> getRownumById(@RequestBody Cunsult_PostDto
+    // cunsult_PostDto) {
+    // Map<String, Object> resultMap = new HashMap<>();
 
-    //     int rownum = cunsultService.getRownumById(cunsult_PostDto);
-    //     resultMap.put("rownum", rownum);
+    // int rownum = cunsultService.getRownumById(cunsult_PostDto);
+    // resultMap.put("rownum", rownum);
 
-    //     return resultMap;
+    // return resultMap;
     // }
 
     @ResponseBody
@@ -221,7 +224,5 @@ public class CunsultBoardController {
 
         return resultMap;
     }
-
-    
 
 }
