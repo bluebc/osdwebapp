@@ -250,6 +250,15 @@ main .container .content .lnbContainer .section-cont .all-category .contents-box
 main .container .content .lnbContainer .section-cont .all-category .contents-box #qnaList table tr td:nth-child(3) {
   cursor: pointer;
 }
+main .container .content .lnbContainer .section-cont .all-category .contents-box #qnaList table tr .qnaBoxTd .qnaBox {
+  display: flex;
+  gap: 16px;
+  justify-content: flex-start;
+}
+main .container .content .lnbContainer .section-cont .all-category .contents-box #qnaList table tr .qnaBoxTd .qnaBox span {
+  flex: 1;
+  text-align: center;
+}
 main .container .content .lnbContainer .section-cont .all-category .contents-box #qnaListPaging {
   display: flex;
   justify-content: center;
@@ -445,6 +454,38 @@ main .container .content .lnbContainer .agent .inner-agent .fq-service .list-ser
     margin: 10rem 0;
   }
 }
+@media screen and (max-width: 576px) {
+  main .container .content .lnbContainer .section-cont .all-category .contents-box #qnaList table tr {
+    display: flex;
+    flex-direction: column;
+    border-bottom: 1px solid #d3d3d3;
+  }
+  main .container .content .lnbContainer .section-cont .all-category .contents-box #qnaList table tr:nth-child(1) {
+    display: none;
+  }
+  main .container .content .lnbContainer .section-cont .all-category .contents-box #qnaList table tr td {
+    border: none;
+  }
+  main .container .content .lnbContainer .section-cont .all-category .contents-box #qnaList table tr td:nth-child(1) {
+    display: none;
+  }
+  main .container .content .lnbContainer .section-cont .all-category .contents-box #qnaList table tr td:nth-child(2) {
+    font-size: 1.2rem;
+    font-weight: bold;
+  }
+  main .container .content .lnbContainer .section-cont .all-category .contents-box #qnaList table tr .qnaBoxTd .qnaBox {
+    white-space: nowrap;
+    text-align: left;
+    display: block;
+    color: #838383;
+  }
+  main .container .content .lnbContainer .section-cont .all-category .contents-box #qnaList table tr .qnaBoxTd .qnaBox span {
+    margin-right: 10px;
+  }
+  main .container .content .lnbContainer .section-cont .all-category .contents-box #qnaListPaging .qnaPage {
+    margin: 0 7px;
+  }
+}
 /* 425px*/
 @media screen and (max-width: 425px) {
   main .container .content .lnbContainer .section-cont .all-category .contents-box #faqList .tab-content .faq-box .faq-question {
@@ -460,5 +501,10 @@ main .container .content .lnbContainer .agent .inner-agent .fq-service .list-ser
   }
   main .container .content .lnbContainer .agent .inner-agent .call-help .btn-call {
     width: 12rem;
+  }
+}
+@media screen and (max-width: 344px) {
+  main .container .content .lnbContainer .section-cont .all-category .contents-box #qnaListPaging .qnaPage {
+    margin: 0 4px;
   }
 }/*# sourceMappingURL=support.css.map */

@@ -295,6 +295,18 @@ main{
                                                 cursor: pointer;
                                             }
                                         }
+                                        .qnaBoxTd{
+                                            
+                                            .qnaBox{
+                                                display: flex;
+                                                gap: 16px;
+                                                justify-content: flex-start;
+                                                span{
+                                                    flex: 1;
+                                                    text-align: center;
+                                                }
+                                            }
+                                        }
                                     }
                                 }
                             }
@@ -537,6 +549,65 @@ main{
     }
 }
 
+// 576px
+@include mobile{
+    main {
+        .container {
+            .content {
+                .lnbContainer {
+                    .section-cont {
+                        .all-category {
+                            .contents-box {
+                                #qnaList {
+                                    table{
+                                        tr{
+                                            display: flex;
+                                            flex-direction: column;
+                                            border-bottom: 1px solid #d3d3d3;
+                                            &:nth-child(1){
+                                                display: none; 
+                                                // th 숨김
+                                            }
+                                            td{
+                                                &:nth-child(1){
+                                                    display: none; 
+                                                    // td 번호 숨김
+                                                }
+                                                &:nth-child(2){
+                                                    font-size: 1.2rem;
+                                                    font-weight: bold;
+                                                }
+                                                border: none;
+                                            }
+                                            .qnaBoxTd{
+                                                .qnaBox{
+                                                    white-space: nowrap;
+                                                    text-align: left;
+                                                    display: block;
+                                                    color: #838383;
+                                                    span{
+                                                        //display: inline-block;
+                                                        margin-right: 10px;
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                                #qnaListPaging{
+                                    .qnaPage{
+                                        margin: 0 7px;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
 /* 425px*/
 @include galaxy{
     main {
@@ -572,6 +643,29 @@ main{
                             .call-help {
                                 .btn-call{
                                     width: 12rem;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+// 344px;
+@include iphone{
+    main {
+        .container {
+            .content {
+                .lnbContainer {
+                    .section-cont {
+                        .all-category {
+                            .contents-box {
+                                #qnaListPaging {
+                                    .qnaPage{
+                                        margin: 0 4px;
+                                    }
                                 }
                             }
                         }

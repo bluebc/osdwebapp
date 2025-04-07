@@ -66,6 +66,8 @@ function setQnaListTable(list) {
 
         const qnaBoxTd = document.createElement("td");
         qnaBoxTd.className = "qnaBoxTd";
+        qnaBoxTd.setAttribute("colspan", "3");
+
 
         const qnaBox = document.createElement("div");
         qnaBox.className = "qnaBox";
@@ -189,12 +191,9 @@ async function qnaPaging(page) {
     const result = await getQnaPostByKeywordAndPage();
     setQnaListPaging(currentPage, result.maxPage, result.count, result.limit);
     setQnaListTable(result.list);
-<<<<<<< HEAD
-=======
 }
 
 // 글 읽기 이동
 function goQnaRead(post_id) {
     window.location.href = "/support/qna/read?post_id=" + post_id;
->>>>>>> Frontend
 }
