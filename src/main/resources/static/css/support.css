@@ -242,12 +242,10 @@ main .container .content .lnbContainer .section-cont .all-category .contents-box
 }
 main .container .content .lnbContainer .section-cont .all-category .contents-box #qnaList table tr td {
   text-align: center;
+  cursor: default;
 }
 main .container .content .lnbContainer .section-cont .all-category .contents-box #qnaList table tr td:nth-child(2) {
   text-align: left;
-  cursor: pointer;
-}
-main .container .content .lnbContainer .section-cont .all-category .contents-box #qnaList table tr td:nth-child(3) {
   cursor: pointer;
 }
 main .container .content .lnbContainer .section-cont .all-category .contents-box #qnaList table tr .qnaBoxTd .qnaBox {
@@ -258,6 +256,10 @@ main .container .content .lnbContainer .section-cont .all-category .contents-box
 main .container .content .lnbContainer .section-cont .all-category .contents-box #qnaList table tr .qnaBoxTd .qnaBox span {
   flex: 1;
   text-align: center;
+  cursor: default;
+}
+main .container .content .lnbContainer .section-cont .all-category .contents-box #qnaList table tr .qnaBoxTd .qnaBox span:nth-child(1) {
+  cursor: pointer;
 }
 main .container .content .lnbContainer .section-cont .all-category .contents-box #qnaListPaging {
   display: flex;
@@ -277,10 +279,10 @@ main .container .content .lnbContainer .section-cont .all-category .contents-box
 main .container .content .lnbContainer .section-cont .all-category .contents-box #qnaListPaging .qnaPage:hover {
   border-bottom: 2px solid #000;
 }
-main .container .content .lnbContainer .section-cont .all-category .contents-box #qnaListPaging .qnaPage.on {
-  border: solid 1px;
-  background-color: #fff;
-  color: #03c75a;
+main .container .content .lnbContainer .section-cont .all-category .contents-box #qnaListPaging .selected {
+  color: rgb(5, 155, 5);
+  font-weight: bold;
+  border-bottom: 2px solid rgb(5, 155, 5);
 }
 main .container .content .lnbContainer .agent .inner-agent {
   margin-top: 12rem;
