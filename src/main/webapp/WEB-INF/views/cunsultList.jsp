@@ -19,11 +19,6 @@
 </head>
 <body>
 
-<div class="notice-board">
-    <div class="content">
-        <h2>상담 & 게시판 글쓰기</h2>
-
-
     <!-- header -->
     <jsp:include page="header.jsp"></jsp:include>
 
