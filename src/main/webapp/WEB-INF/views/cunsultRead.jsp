@@ -38,7 +38,8 @@ ${cunsult_post.post_content}
 <br>
 <br>
 
-<input type = "hidden" id = "fileJSON" value = "${cunsult_post.post_files}">
+<%-- <input type = "hidden" id = "fileJSON" value = "${cunsult_post.post_files}"> --%>
+<input type="hidden" id="fileJSON" value='<c:out value="${cunsult_post.post_files}" escapeXml="false" />'>
 <div id = fileList>
 ${cunsult_post.post_files}
 

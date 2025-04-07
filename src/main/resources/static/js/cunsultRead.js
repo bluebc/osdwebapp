@@ -85,6 +85,14 @@ function goPostList() {
 
 function setFileList(){
     const fileJSON = document.getElementById("fileJSON").value;
+    const fileListDiv = document.getElementById("fileList");
     const fileList = JSON.parse(fileJSON);
-    console.log(fileList);
+    // console.log(fileList);
+    fileList.forEach(file => {
+        let fileLinkA = document.createElement("a");
+        fileLinkA.href = "/file/download?filename="+file;
+        fileLinkA.textContent = file.substring(file.indexOf("_") + 1);
+        fileListDiv.appendChild(fileLinkA);
+    });
+    
 }

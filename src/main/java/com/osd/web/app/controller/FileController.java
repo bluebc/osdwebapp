@@ -62,7 +62,7 @@ public class FileController {
     }
 
     @GetMapping("/download")
-    public ResponseEntity<Resource> downloadFile(@RequestParam String filename) throws IOException {
+    public ResponseEntity<Resource> downloadFile(@RequestParam("filename") String filename) throws IOException {
         // 저장된 경로에서 파일을 불러옴
         String filePath = uploadDir + filename;
         Path path = Paths.get(filePath);
