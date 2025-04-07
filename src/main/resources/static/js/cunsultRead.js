@@ -1,5 +1,6 @@
 addEventListener("DOMContentLoaded", function () {
     showModOrDel();
+    setFileList();
 });
 
 function showModOrDel() {
@@ -80,4 +81,10 @@ function goPostList() {
 
 
     window.location.href = "/cunsult/list";
+}
+
+function setFileList(){
+    const fileJSON = document.getElementById("fileJSON").value;
+    const fileList = JSON.parse(fileJSON);
+    console.log(fileList);
 }

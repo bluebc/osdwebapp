@@ -200,6 +200,25 @@ function sendMail() {
             })
         });
 
+}
+
+// ====================▼ 파일 업로드 테스트 ▼====================
+
+async function fileUpload() {
+
+var fileInputId = "fileInput";
+
+    const result = await uploadFiles(fileInputId);
+
+    var uploadResultDiv = document.getElementById("uploadResult");
+
+    fileList = result.fileOriginalNames;
+    fileList.forEach(originalName => {
+        let filenameP = document.createElement("p");
+        filenameP.textContent = originalName;
+        uploadResultDiv.appendChild(filenameP);
+
+    });
 
 
 }

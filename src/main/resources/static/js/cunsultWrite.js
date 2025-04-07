@@ -26,14 +26,28 @@ async function posting() {
         return;
     }
 
-    var qna_post = {
+    var fileInputId = "fileInput";
+    var files = [];
+
+    const uploaded = await uploadFiles(fileInputId);
+    if (uploaded != null) {
+        const fileList = uploaded.fileList;
+
+        fileList.forEach(file => {
+            files.push(file);
+        });
+        // console.log(files);
+        var post_files = JSON.stringify(files);
+    }
+    var post = {
         user_id: user_id,
         post_subject: post_subject,
-        post_content: post_content
+        post_content: post_content,
+        post_files: post_files
     };
 
     // 글 보내기
-    const result = await postCunsultPost(qna_post);
+    const result = await postCunsultPost(post);
 
     const cunsult_post = result.cunsult_post;
     const post_id = cunsult_post.post_id;
@@ -41,15 +55,17 @@ async function posting() {
 
     //
     alert("글 작성이 완료되었습니다.");
+
+    window.location.href = "/cunsult/read?post_id="+post_id;
 }
 
 // 서버에 글 post
-async function postCunsultPost(qna_post) {
+async function postCunsultPost(post) {
 
     const response = await fetch("/cunsult/postCunsultPost", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(qna_post)
+        body: JSON.stringify(post)
     });
 
     const result = await response.json();

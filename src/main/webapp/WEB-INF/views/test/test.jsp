@@ -5,7 +5,7 @@
     <title>오생단</title>
 
 
-<script src = "${pageContext.request.contextPath}/js/test/fileUpload.js"></script>
+<script src = "${pageContext.request.contextPath}/js/fileUpload.js"></script>
 </head>
 <body>
 <div id = hiddenSection>
@@ -34,7 +34,7 @@
 <form id="uploadForm" enctype="multipart/form-data">
     <input type="file" id="fileInput" name="files" multiple>
 
-    <input type="button" onclick="uploadFiles()" value = "업로드">
+    <input type="button" onclick="fileUpload()" value = "업로드">
 
 </form>
 <div id="uploadResult"></div>

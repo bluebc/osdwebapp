@@ -8,6 +8,7 @@
 	<result column="POST_SUBJECT" property="post_subject"/>
     <result column="POST_CONTENT" property="post_content"/>
 	<result column="POST_IMAGES" property="post_images"/>
+	<result column="POST_FILES" property="post_files"/>
 	<result column="POST_VIEWCNT" property="post_viewcnt"/>
 	<result column="POST_CHILDCNT" property="post_childcnt"/>
 	<result column="POST_LIKECNT" property="post_likecnt"/>
@@ -19,7 +20,7 @@
 		 
 		
 		 <select id = "getCunsult_PostByid" parameterType="String"  resultMap="CunsultPostResultMap">
-		 select post_id, post_subject, post_content, post_images, post_viewcnt, post_childcnt, post_likecnt, user_id, post_sort
+		 select post_id, post_subject, post_content, post_images, post_files, post_viewcnt, post_childcnt, post_likecnt, user_id, post_sort
 		 from cunsult_post
 		  <where>
 		    post_id = #{post_id}
@@ -27,8 +28,8 @@
    		 </select> 	
 
 		<insert id="insert">
-			insert into cunsult_post(post_subject, post_content, post_images, post_viewcnt, post_childcnt, post_likecnt, user_id, post_sort, post_created_at, post_updated_at)
-				values(#{post_subject}, #{post_content}, #{post_images}, #{post_viewcnt}, #{post_childcnt}, #{post_likecnt}, #{user_id}, #{post_sort}, #{post_created_at}, #{post_updated_at}) 
+			insert into cunsult_post(post_subject, post_content, post_images, post_files, post_viewcnt, post_childcnt, post_likecnt, user_id, post_sort, post_created_at, post_updated_at)
+				values(#{post_subject}, #{post_content}, #{post_images}, #{post_files}, #{post_viewcnt}, #{post_childcnt}, #{post_likecnt}, #{user_id}, #{post_sort}, #{post_created_at}, #{post_updated_at}) 
 		</insert>
 
 		<select id="selectBySubjectAndContentAndUserIdAndCreated" parameterType="Cunsult_PostDto" resultMap="CunsultPostResultMap">
@@ -63,7 +64,7 @@
 
 	<select id="selectRownumByNo" parameterType="Cunsult_PostDto" resultType="int">
 		select ROWNUM from
-			(select ROW_NUMBER() over(order by post_id) as ROWNUM, post_id from cunsult_post) as a
+			(select ROW_NUMBER() over(order by post_id desc) as ROWNUM, post_id from cunsult_post) as a
 		<where>
 			post_id = #{post_id}
 		</where>
@@ -81,13 +82,13 @@
 
 
 	<select id="selectByKeywordAndPage" parameterType="java.util.Map" resultMap="CunsultPostResultMap">
-    select post_id, post_subject, post_content, post_images, post_viewcnt, post_childcnt, post_likecnt, user_id, post_sort, post_created_at, post_updated_at from 
+    select post_id, post_subject, post_content, post_images, post_files, post_viewcnt, post_childcnt, post_likecnt, user_id, post_sort, post_created_at, post_updated_at from 
 		(select * from
-		(select ROW_NUMBER() over(order by post_id) as ROWNUM, post_id, post_subject, post_content, post_images, post_viewcnt, post_childcnt, post_likecnt, user_id, post_sort, post_created_at, post_updated_at from cunsult_post 
+		(select ROW_NUMBER() over(order by post_id desc) as ROWNUM, post_id, post_subject, post_content, post_images, post_files, post_viewcnt, post_childcnt, post_likecnt, user_id, post_sort, post_created_at, post_updated_at from cunsult_post 
 			where post_subject like concat('%', #{keyword}, '%')
 					or
 					post_content like concat('%', #{keyword}, '%')
-		) as a
+		)  as a
 		where
 			ROWNUM &gt;= 1 + #{limit} * (#{page} - 1) 
        		and 
@@ -112,6 +113,7 @@
 				post_subject = #{post_subject}, 
 				post_content = #{post_content}, 
 				post_images = #{post_images}, 
+				post_files = #{post_files}, 
 				post_updated_at = #{post_updated_at}, 
 				</set>
 			<where>
@@ -121,7 +123,7 @@
 
 		<select id="selectRownumById" parameterType="Cunsult_PostDto" resultType="int">
 			select rownum from 
-			(select ROW_NUMBER() over(order by post_id) as ROWNUM, post_id from cunsult_post) as a
+			(select ROW_NUMBER() over(order by post_id desc) as ROWNUM, post_id from cunsult_post) as a
 			<where>
 				post_id = #{post_id}
 			</where>

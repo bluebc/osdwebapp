@@ -34,6 +34,16 @@ ${cunsult_post.post_content}
 <br>
 </div>
 
+<br>
+<br>
+<br>
+
+<input type = "hidden" id = "fileJSON" value = "${cunsult_post.post_files}">
+<div id = fileList>
+${cunsult_post.post_files}
+
+</div>
+
 
 <div id = "modOrDel" style="display:none">
 <input type = "button" onclick = "modifyPost(${cunsult_post.post_id})" value = "수정"> <input type = "button" onclick = "deletePost(${cunsult_post.post_id})" value = "삭제">
