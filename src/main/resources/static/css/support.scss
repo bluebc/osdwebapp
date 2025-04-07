@@ -287,11 +287,9 @@ main{
                                     tr{
                                         td{
                                             text-align: center;
+                                            cursor: default;
                                             &:nth-child(2){
                                                 text-align: left;
-                                                cursor: pointer;
-                                            }
-                                            &:nth-child(3){
                                                 cursor: pointer;
                                             }
                                         }
@@ -304,6 +302,10 @@ main{
                                                 span{
                                                     flex: 1;
                                                     text-align: center;
+                                                    cursor: default;
+                                                    &:nth-child(1){
+                                                        cursor: pointer;
+                                                    }
                                                 }
                                             }
                                         }
@@ -326,11 +328,11 @@ main{
                                     &:hover{
                                         border-bottom: 2px solid #000; 
                                     }
-                                    &.on {
-                                        border: solid 1px;
-                                        background-color: #fff;
-                                        color: #03c75a;
-                                    }
+                                }
+                                .selected {
+                                    color: rgb(5, 155, 5);
+                                    font-weight: bold;
+                                    border-bottom: 2px solid rgb(5, 155, 5); 
                                 }
                             }
                         }

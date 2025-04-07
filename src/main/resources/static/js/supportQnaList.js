@@ -155,18 +155,34 @@ function setQnaListPaging(currentPage, maxPage, count, limit) {
         qnaListPaging.appendChild(leftPageBtn);
     }
 
-
     for (let page = startPage; page <= endPage; page++) {
         var pageDiv = document.createElement("div");
         pageDiv.className = "qnaPage";
         pageDiv.textContent = page;
-        // console.log("input: " + page);
+    
+        // 현재 페이지면 active 클래스 추가
+        if (page === currentPage) {
+            pageDiv.classList.add("selected");
+        }
+    
         pageDiv.onclick = function () {
-            // console.log("clicked: " + page);
             qnaPaging(page);
         }
+    
         qnaListPaging.appendChild(pageDiv);
     }
+    
+    // for (let page = startPage; page <= endPage; page++) {
+    //     var pageDiv = document.createElement("div");
+    //     pageDiv.className = "qnaPage";
+    //     pageDiv.textContent = page;
+    //     // console.log("input: " + page);
+    //     pageDiv.onclick = function () {
+    //         // console.log("clicked: " + page);
+    //         qnaPaging(page);
+    //     }
+    //     qnaListPaging.appendChild(pageDiv);
+    // }
 
     if (endPage != maxPage) {
         var rightPageBtn = document.createElement("div");
