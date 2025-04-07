@@ -136,6 +136,38 @@ footer .footer_nav {
   footer .footer_info {
     padding: 0 3rem 3rem;
   }
+  footer .footer_info .ft-sns ul {
+    gap: 0.5rem;
+  }
+  footer .footer_info .ft-sns ul li a {
+    width: 2.5rem;
+    height: 2.5rem;
+    background-size: auto 2.5rem;
+  }
+  footer .footer_info .ft-sns ul li .sns1 {
+    background-position: 0 0;
+  }
+  footer .footer_info .ft-sns ul li .sns2 {
+    background-position: -2.5rem 0;
+  }
+  footer .footer_info .ft-sns ul li .sns3 {
+    background-position: -5rem 0;
+  }
+  footer .footer_info .ft-sns ul li .sns4 {
+    background-position: -7.5rem 0;
+  }
+  footer .footer_info .ft-sns ul li .sns5 {
+    background-position: -10rem 0;
+  }
+  footer .footer_info .ft-sns ul li .sns6 {
+    background-position: -12.5rem 0;
+  }
+  footer .footer_info .ft-sns ul li .sns7 {
+    background-position: -15rem 0;
+  }
+  footer .footer_info .ft-sns ul li .sns8 {
+    background-position: -17.5rem 0;
+  }
   footer .footer_info .ft-fot {
     flex-direction: column-reverse;
     align-items: flex-start;
@@ -338,38 +370,6 @@ footer .footer_nav {
 @media screen and (max-width: 425px) {
   footer .footer_info {
     padding: 0 2rem;
-  }
-  footer .footer_info .ft-sns ul {
-    gap: 0.5rem;
-  }
-  footer .footer_info .ft-sns ul li a {
-    width: 2.5rem;
-    height: 2.5rem;
-    background-size: auto 2.5rem;
-  }
-  footer .footer_info .ft-sns ul li .sns1 {
-    background-position: 0 0;
-  }
-  footer .footer_info .ft-sns ul li .sns2 {
-    background-position: -2.5rem 0;
-  }
-  footer .footer_info .ft-sns ul li .sns3 {
-    background-position: -5rem 0;
-  }
-  footer .footer_info .ft-sns ul li .sns4 {
-    background-position: -7.5rem 0;
-  }
-  footer .footer_info .ft-sns ul li .sns5 {
-    background-position: -10rem 0;
-  }
-  footer .footer_info .ft-sns ul li .sns6 {
-    background-position: -12.5rem 0;
-  }
-  footer .footer_info .ft-sns ul li .sns7 {
-    background-position: -15rem 0;
-  }
-  footer .footer_info .ft-sns ul li .sns8 {
-    background-position: -17.5rem 0;
   }
   footer .footer_info .ft-fot {
     margin-bottom: 5rem;

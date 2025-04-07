@@ -140,11 +140,24 @@ footer{
       
       padding: 0 3rem 3rem;
       .ft-sns{
-          ul{
-              li{
-                  a{}
+        ul{
+          gap: 0.5rem;
+          li{
+              a{
+                  width: 2.5rem;
+                  height: 2.5rem;
+                  background-size: auto 2.5rem;
               }
-          }
+              .sns1{background-position: 0 0;}
+              .sns2{background-position: -2.5rem 0;}
+              .sns3{background-position: -5rem 0;}
+              .sns4{background-position: -7.5rem 0;}
+              .sns5{background-position: -10rem 0;}
+              .sns6{background-position: -12.5rem 0;}
+              .sns7{background-position: -15rem 0;}
+              .sns8{background-position: -17.5rem 0;}
+          } 
+      } 
       }
       .ft-fot{
           flex-direction: column-reverse;
@@ -392,24 +405,7 @@ footer{
       .footer_info{
         padding: 0 2rem;
         .ft-sns{
-            ul{
-                gap: 0.5rem;
-                li{
-                    a{
-                        width: 2.5rem;
-                        height: 2.5rem;
-                        background-size: auto 2.5rem;
-                    }
-                    .sns1{background-position: 0 0;}
-                    .sns2{background-position: -2.5rem 0;}
-                    .sns3{background-position: -5rem 0;}
-                    .sns4{background-position: -7.5rem 0;}
-                    .sns5{background-position: -10rem 0;}
-                    .sns6{background-position: -12.5rem 0;}
-                    .sns7{background-position: -15rem 0;}
-                    .sns8{background-position: -17.5rem 0;}
-                } 
-            } 
+            
         }
         .ft-fot{
           margin-bottom: 5rem;
