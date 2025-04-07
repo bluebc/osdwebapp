@@ -64,31 +64,50 @@ function setQnaListTable(list) {
             console.log(qna.post_subject);
         }
 
+        const qnaBoxTd = document.createElement("td");
+        qnaBoxTd.className = "qnaBoxTd";
+
         const qnaBox = document.createElement("div");
         qnaBox.className = "qnaBox";
 
-        
 
-        const userTd = document.createElement("td");
-        userTd.textContent = qna.user_id;
-       
-        const createdTd = document.createElement("td");
+
+        // const userTd = document.createElement("td");
+        // userTd.textContent = qna.user_id;
+
+        // const createdTd = document.createElement("td");
+        // const qnaCreatedAt = new Date(qna.post_created_at).toISOString().slice(0, 10);
+        // createdTd.textContent = qnaCreatedAt;
+
+        // const viewCntTd = document.createElement("td");
+        // viewCntTd.textContent = qna.post_viewcnt;
+
+        // qnaBox.appendChild(userTd);
+        // qnaBox.appendChild(createdTd);
+        // qnaBox.appendChild(viewCntTd);
+
+        const userSpan = document.createElement("span");
+        userSpan.textContent = qna.user_id;
+
+        const createdSpan = document.createElement("span");
         const qnaCreatedAt = new Date(qna.post_created_at).toISOString().slice(0, 10);
-        createdTd.textContent = qnaCreatedAt;
-        
-        const viewCntTd = document.createElement("td");
-        viewCntTd.textContent = qna.post_viewcnt;
+        createdSpan.textContent = qnaCreatedAt;
 
-        qnaBox.appendChild(userTd);
-        qnaBox.appendChild(createdTd);
-        qnaBox.appendChild(viewCntTd);
+        const viewCntSpan = document.createElement("span");
+        viewCntSpan.textContent = qna.post_viewcnt;
+
+        qnaBox.appendChild(userSpan);
+        qnaBox.appendChild(createdSpan);
+        qnaBox.appendChild(viewCntSpan);
+
+        qnaBoxTd.appendChild(qnaBox);
 
 
         qnaTr.appendChild(idTd);
         qnaTr.appendChild(subjectTd);
         // qnaTr.appendChild(userTd);
         // qnaTr.appendChild(createdTd);
-        qnaTr.appendChild(qnaBox);
+        qnaTr.appendChild(qnaBoxTd);
 
         qnaListTable.appendChild(qnaTr);
 
@@ -173,6 +192,6 @@ async function qnaPaging(page) {
 }
 
 // 글 읽기 이동
-function goQnaRead(post_id){
+function goQnaRead(post_id) {
     window.location.href = "/support/qna/read?post_id=" + post_id;
 }

@@ -222,4 +222,6 @@ public class CunsultBoardController {
         return resultMap;
     }
 
+    
+
 }
