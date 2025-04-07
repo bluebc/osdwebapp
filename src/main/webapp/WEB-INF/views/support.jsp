@@ -56,16 +56,16 @@
                         <%-- mobile --%>
                         <div class="mobil-type">
                             <div class="tit-wrap">
-                                <a href="/" class="btn-back">
+                                <%-- <a href="/" class="btn-back">
                                     <i class="hidden">닫기</i>
-                                </a> 
+                                </a>  --%>
                                 <h2 class="header-sub-tit">자주 찾는 질문</h2>
                             </div>
-                            <div class="header-util">
+                            <%-- <div class="header-util">
                                 <a href="/" class="btn-home">
                                     <img src="img/홈.svg" alt="home">
                                 </a> 
-                            </div>
+                            </div> --%>
                         </div>
                     </div>
 
@@ -78,23 +78,36 @@
                         </div>
 
                         <div class="all-category">
-                            <div id = "supportContent" class="contents-box">
+                            <div id = "supportContent" class="contents-box"></div>
+                        </div>  
+                    </div>
+
+                    <div class="agent">
+                        <div class="inner-agent" >
+                            <div class="call-help">
+                                <div class='call-img'><img src='../img/phone-solid.svg'></div>
+                                <strong class="tit-call">전화상담</strong>
+                                <span class="operate-time">
+                                    평일(월-금) : 9시 ~ 18시<br>
+                                    토요일,일요일,공휴일 휴무
+                                </span> 
+                                <button type="button" class="btn-call">1899-8475</button>
+                            </div> 
+
+                            <div class="fq-service">
+                                <strong class="tit-fq">자주찾는 서비스</strong>
+                                <ul class="list-service">
+                                    <li><a href="#">서비스 안내</a></li>
+                                </ul>
+                            </div>                           
                         </div>
-                    </div>  
-
-
-                </div>
-
-
-
+                    </div>
                 </div>
             </div>
         </div>
     </main>
-    <style>
-
-</style>
+    
     <!-- footer -->
-    <%-- <jsp:include page="footer.jsp"></jsp:include> --%>
+    <jsp:include page="footer.jsp"></jsp:include>
 </body>
 </html>

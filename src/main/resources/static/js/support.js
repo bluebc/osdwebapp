@@ -79,6 +79,21 @@ function search() {
 
 }
 
+document.addEventListener("DOMContentLoaded", function () {
 
+    const firstBtn = document.querySelector(".snb-btn");
+    if (firstBtn) {
+        firstBtn.classList.add("active");
+    }
+
+    document.querySelectorAll(".snb-btn input").forEach(button => {
+        button.addEventListener("click", function (event) {
+
+            document.querySelectorAll(".snb-btn").forEach(btn => btn.classList.remove("active"));
+
+            event.target.parentElement.classList.add("active");
+        });
+    });
+});
 
 

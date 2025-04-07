@@ -13,7 +13,7 @@ main{
             display: flex;
             // margin: 40px auto 0;
             max-width: 1410px;
-            min-width: 1180px;
+            // min-width: 1180px;
             padding: 0 50px;
             margin: 60px auto 0;
             .snbContainer{
@@ -41,18 +41,22 @@ main{
                         line-height: 20px;
                         border-bottom: 1px solid #f2f2f2;
                         position: relative;
+                        &:hover{
+                            background-color: #f9f9f9;
+                        }
+                        &.active {
+                            background-color: #f9f9f9 !important; // 강제 적용
+                        }                  
                         input{
                             height: 100%;
                             width: 100%;
                             text-align: left;
                             padding: 0px 14px 0px 20px;
                             cursor: pointer;
-                            &.active {
-                                background-color: #bebebe;
-                                color: white;
-                            }
+                            background: none; // 부모 배경색 유지
+                            border: none;
                         }
-                        &::after{
+                        &::after {
                             content: "";
                             position: absolute;
                             display: block;
@@ -62,11 +66,9 @@ main{
                             height: 12px;
                             background: url(../img/arriw-right.svg) 50% 50% no-repeat;
                         }
-
-                        
                         
                     }
-                    
+
                 }
 
             }
@@ -285,12 +287,26 @@ main{
                                     tr{
                                         td{
                                             text-align: center;
+                                            cursor: default;
                                             &:nth-child(2){
                                                 text-align: left;
                                                 cursor: pointer;
                                             }
-                                            &:nth-child(3){
-                                                cursor: pointer;
+                                        }
+                                        .qnaBoxTd{
+                                            
+                                            .qnaBox{
+                                                display: flex;
+                                                gap: 16px;
+                                                justify-content: flex-start;
+                                                span{
+                                                    flex: 1;
+                                                    text-align: center;
+                                                    cursor: default;
+                                                    &:nth-child(1){
+                                                        cursor: pointer;
+                                                    }
+                                                }
                                             }
                                         }
                                     }
@@ -302,17 +318,362 @@ main{
                                 margin-top: 3rem;
                                 .qnaPage{
                                     cursor: pointer;
-                                    padding: 5px 10px;
-                                    border-radius: 5px;
+                                    margin: 0 20px;
+                                    padding: 2px;
+                                    text-align: center;
+                                    display: inline-block;
+                                    padding-bottom: 2px; 
+                                    border-bottom: 2px solid transparent; 
+                                    transition: border-color 0.3s ease-in-out;
+                                    &:hover{
+                                        border-bottom: 2px solid #000; 
+                                    }
+                                }
+                                .selected {
+                                    color: rgb(5, 155, 5);
+                                    font-weight: bold;
+                                    border-bottom: 2px solid rgb(5, 155, 5); 
                                 }
                             }
                         }
                     }
 
                 .contents-box{}
+                }
+
+                .agent{
+                    .inner-agent{
+                        margin-top: 12rem;
+                        display: flex;
+                        height: 100%;
+                        border: 2px solid #494949;
+                        border-left: 0;
+                        border-right: 0;
+                        align-items: center;
+                        justify-content: space-around;
+                        .call-help{
+                            width: 100%;
+                            position: relative;
+                            padding: 4rem;
+                            text-align: center;
+                            background-color: #f8f8f8;
+                            .call-img{
+                                display: flex;
+                                align-items: center;
+                                justify-content: center;
+                                background-color: #494949;
+                                border-radius: 50%;
+                                width: 3rem;
+                                height: 3rem;
+                                margin: 0 auto 1.5rem;
+                                img{
+                                    width: 1.5rem;
+                                    height: 1.5rem;
+                                }    
+                            }
+                            .tit-call{
+                                display: block;
+                                font-weight: bold;
+                                font-size: 1.6rem;
+                                letter-spacing: -.08rem;
+                                line-height: 1.3;
+                            }
+                            .operate-time{
+                                display: block;
+                                margin: 1rem 0 2rem;
+                                color: #1d1d1d;
+                                line-height: 1.5;
+                            }
+                            .btn-call{
+                                display: inline-flex;
+                                align-items: center;
+                                justify-content: center;
+                                font-size: 1.3rem;
+                                border-radius: 3px;
+                                height: 3.5rem;
+                                padding: 0 1rem;
+                                font-weight: 500;
+                                border-width: 1px;
+                                border-style: solid;
+                                width: 20rem;
+                            }
+                        }
+                        .fq-service{
+                            width: 50%;
+                            margin-left: 2rem;
+                            .tit-fq{
+                                display: block;
+                                margin-bottom: 1rem;
+                                font-weight: bold;
+                                font-size: 1.6rem;
+                                color: #1d1d1d;
+                                letter-spacing: -.08rem;
+                            }
+                            .list-service{
+                                border-top: 1px solid #e3e3e3;
+                                width: 60%;
+                                li{
+                                    border-bottom: 1px solid #e3e3e3;
+                                    a{
+                                        display: block;
+                                        position: relative;
+                                        padding: 1.5rem 1rem 1.5rem 0;
+                                        font-size: 1.1rem;
+                                        color: #1d1d1d;
+                                        &::after{
+                                            content: "";
+                                            position: absolute;
+                                            right: 0;
+                                            top: 50%;
+                                            width: .6rem;
+                                            height: .6rem;
+                                            margin-top: -.4rem;
+                                            margin-right: .2rem;
+                                            border-top: 1px solid #1d1d1d;
+                                            border-right: 1px solid #1d1d1d;
+                                            transform: rotate(45deg);
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                        
+                    }
+                }
             }
         }
     }
+}
 
+/* 768px*/
+@include itablet{
+    main{
+        .container{
+            padding: 0;
+            .content{
+                width: 100%;
+                padding: 0 2rem;
+                margin: 17rem auto 0;
+                flex-direction: column;
+                .snbContainer{
+                    .title{
+                        h1{}
+                    }
+                    .snbMenu{
+                        flex-direction: row;
+                        border: none;
+                        gap: 10px;
+                        .snb-btn{
+                            border: 1px solid #e9e9e9;
+                            border-radius: 7px;
+                            input{}
+                        }
+                    }
+                }
+                .lnbContainer{
+                    margin-left: 0;
+                    .basic-type{
+                        .pc-type{display: none;}
+                        .mobil-type{
+                            display: flex;
+                            .tit-wrap {
+                                .header-sub-tit{
+                                    font-size: 1.5rem;
+                                }
+                            }
+                        }
+                    }
+                    .section-cont{
+                        .form-area{
+                            margin: 0;
+                            padding: 1rem;
+                        }
+                    }
+                    .agent{
+                        .inner-agent{
+                            margin: 7rem 0;
+                            border: none;
+                            flex-direction: column;
+                            .call-help{
+                                padding: 2rem;
+                            }
+                            .fq-service{
+                                width: 100%;
+                                margin: 4rem 0 0 0;
+                                .list-service{
+                                    width: 100%;
+                                }
+                            }
+                        }
+                    }
+                }
+                
+            }
+            
+        }
+    }
+
+}
+
+@include itablet-landscape{
+    main{
+        .container{
+            padding: 0;
+            .content{
+                width: 100%;
+                padding: 0 2rem;
+                margin: 17rem auto 0;
+                flex-direction: column;
+                .snbContainer{
+                    .title{
+                        h1{}
+                    }
+                    .snbMenu{
+                        flex-direction: row;
+                        border: none;
+                        gap: 10px;
+                        .snb-btn{
+                            border: 1px solid #e9e9e9;
+                            border-radius: 7px;
+                            input{}
+                        }
+                    }
+                }
+                .lnbContainer{
+                    .agent {
+                        .inner-agent{
+                            margin: 10rem 0;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+// 576px
+@include mobile{
+    main {
+        .container {
+            .content {
+                .lnbContainer {
+                    .section-cont {
+                        .all-category {
+                            .contents-box {
+                                #qnaList {
+                                    table{
+                                        tr{
+                                            display: flex;
+                                            flex-direction: column;
+                                            border-bottom: 1px solid #d3d3d3;
+                                            &:nth-child(1){
+                                                display: none; 
+                                                // th 숨김
+                                            }
+                                            td{
+                                                &:nth-child(1){
+                                                    display: none; 
+                                                    // td 번호 숨김
+                                                }
+                                                &:nth-child(2){
+                                                    font-size: 1.2rem;
+                                                    font-weight: bold;
+                                                }
+                                                border: none;
+                                            }
+                                            .qnaBoxTd{
+                                                .qnaBox{
+                                                    white-space: nowrap;
+                                                    text-align: left;
+                                                    display: block;
+                                                    color: #838383;
+                                                    span{
+                                                        //display: inline-block;
+                                                        margin-right: 10px;
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                                #qnaListPaging{
+                                    .qnaPage{
+                                        margin: 0 7px;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+/* 425px*/
+@include galaxy{
+    main {
+        .container {
+            .content {
+                .lnbContainer {
+                    .section-cont {
+                        .all-category {
+                            .contents-box{
+                                #faqList {
+                                    .tab-content {
+                                        .faq-box{
+                                            .faq-question{
+                                                flex-direction: column;
+                                                line-height: 1.5;
+                                                border-bottom: 1px solid;
+                                                &::after{
+                                                    display: none;
+                                                }
+                                                .faq-subject{
+                                                    margin-right: 1rem;
+                                                }
+                                            }
+                                            
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    .agent {
+                        .inner-agent {
+                            .call-help {
+                                .btn-call{
+                                    width: 12rem;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+// 344px;
+@include iphone{
+    main {
+        .container {
+            .content {
+                .lnbContainer {
+                    .section-cont {
+                        .all-category {
+                            .contents-box {
+                                #qnaListPaging {
+                                    .qnaPage{
+                                        margin: 0 4px;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
     }
 }

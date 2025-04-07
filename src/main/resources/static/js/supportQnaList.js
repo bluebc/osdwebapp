@@ -66,6 +66,8 @@ function setQnaListTable(list) {
 
         const qnaBoxTd = document.createElement("td");
         qnaBoxTd.className = "qnaBoxTd";
+        qnaBoxTd.setAttribute("colspan", "3");
+
 
         const qnaBox = document.createElement("div");
         qnaBox.className = "qnaBox";
@@ -146,25 +148,41 @@ function setQnaListPaging(currentPage, maxPage, count, limit) {
         var leftPageBtn = document.createElement("div");
         leftPageBtn.className = "qnaPage";
         // 아이콘 대체?
-        leftPageBtn.textContent = "<<"
+        leftPageBtn.textContent = "◀"
         leftPageBtn.onclick = function () {
             qnaPaging(startPage - 1);
         }
         qnaListPaging.appendChild(leftPageBtn);
     }
 
-
     for (let page = startPage; page <= endPage; page++) {
         var pageDiv = document.createElement("div");
         pageDiv.className = "qnaPage";
         pageDiv.textContent = page;
-        // console.log("input: " + page);
+    
+        // 현재 페이지면 active 클래스 추가
+        if (page === currentPage) {
+            pageDiv.classList.add("selected");
+        }
+    
         pageDiv.onclick = function () {
-            // console.log("clicked: " + page);
             qnaPaging(page);
         }
+    
         qnaListPaging.appendChild(pageDiv);
     }
+    
+    // for (let page = startPage; page <= endPage; page++) {
+    //     var pageDiv = document.createElement("div");
+    //     pageDiv.className = "qnaPage";
+    //     pageDiv.textContent = page;
+    //     // console.log("input: " + page);
+    //     pageDiv.onclick = function () {
+    //         // console.log("clicked: " + page);
+    //         qnaPaging(page);
+    //     }
+    //     qnaListPaging.appendChild(pageDiv);
+    // }
 
     if (endPage != maxPage) {
         var rightPageBtn = document.createElement("div");
@@ -173,7 +191,7 @@ function setQnaListPaging(currentPage, maxPage, count, limit) {
         // let btnImg = document.createElement("img");
         // btnImg.src = "/img/사람.png";
         // rightPageBtn.appendChild(btnImg);
-        rightPageBtn.textContent = ">>"
+        rightPageBtn.textContent = "▶"
         rightPageBtn.onclick = function () {
             qnaPaging(endPage + 1);
         }
