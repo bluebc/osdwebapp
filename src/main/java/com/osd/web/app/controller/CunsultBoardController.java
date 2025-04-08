@@ -13,9 +13,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.osd.web.app.dto.Cunsult_CommentDto;
 import com.osd.web.app.dto.Cunsult_PostDto;
-import com.osd.web.app.dto.Qna_PostDto;
+import com.osd.web.app.dto.Cunsult_Post_LikeDto;
 import com.osd.web.app.service.CunsultService;
+import com.osd.web.app.service.LoginService;
 
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
@@ -31,6 +33,7 @@ public class CunsultBoardController {
     public String cunsultWritePage(HttpServletRequest request, Model model) {
 
         HttpSession session = request.getSession();
+
         String user_id = (String) session.getAttribute("login_user_id");
         model.addAttribute("user_id", user_id);
 
@@ -38,15 +41,7 @@ public class CunsultBoardController {
     }
 
     @RequestMapping("/list")
-    // int => Integer (int null 허용 X)
-    // public String cunsultListPage(@RequestParam(required = false, name = "post_id") Integer post_id, Model model) {
-    public String cunsultListPage(){
-
-        // if (post_id == null) {
-        //     post_id = 0;
-        // }
-
-        // model.addAttribute("post_id", post_id);
+    public String cunsultListPage() {
 
         return "cunsultList";
     }
@@ -102,14 +97,32 @@ public class CunsultBoardController {
 
     @RequestMapping("/read")
     public String cunsultReadPage(@RequestParam(required = true, defaultValue = "0", name = "post_id") int post_id,
+            HttpServletRequest request,
             Model model) {
 
+        // 글 존재 여부 확인
         Cunsult_PostDto cunsult_PostDtoFromDb = cunsultService.getCunsultPostById(post_id);
         if (cunsult_PostDtoFromDb == null) {
             return "redirect:/wrongPath";
         }
 
+        // 조회 수 업데이트
+        int viewcntUpdated = cunsultService.updateViewcnt(post_id);
+
+        // 좋아요 여부 확인
+        int liked = 0;
+
+        HttpSession session = request.getSession();
+        String user_id = (String) session.getAttribute("login_user_id");
+        if (user_id != null && !user_id.equals("")) {
+            Cunsult_Post_LikeDto cunsult_Post_LikeDto = new Cunsult_Post_LikeDto();
+            cunsult_Post_LikeDto.setPost_id(post_id);
+            cunsult_Post_LikeDto.setUser_id(user_id);
+            liked = cunsultService.checkPostLiked(cunsult_Post_LikeDto);
+        }
+
         model.addAttribute("cunsult_post", cunsult_PostDtoFromDb);
+        model.addAttribute("liked", liked);
 
         return "cunsultRead";
     }
@@ -177,17 +190,7 @@ public class CunsultBoardController {
         return resultMap;
     }
 
-    // @ResponseBody
-    // @PostMapping("/getRownumById")
-    // public Map<String, Object> getRownumById(@RequestBody Cunsult_PostDto cunsult_PostDto) {
-    //     Map<String, Object> resultMap = new HashMap<>();
-
-    //     int rownum = cunsultService.getRownumById(cunsult_PostDto);
-    //     resultMap.put("rownum", rownum);
-
-    //     return resultMap;
-    // }
-
+    // 글 읽기 화면에서 페이지 목록 이동
     @ResponseBody
     @PostMapping("/setRownumSession")
     public Map<String, Object> setRownumSession(HttpServletRequest request,
@@ -203,6 +206,7 @@ public class CunsultBoardController {
         return resultMap;
     }
 
+    // 글 읽기 화면에서 페이지 목록 이동
     @ResponseBody
     @PostMapping("/getRownumSession")
     public Map<String, Object> getRownumSession(HttpServletRequest request) {
@@ -222,6 +226,74 @@ public class CunsultBoardController {
         return resultMap;
     }
 
-    
+    // 좋아요
+    @ResponseBody
+    @PostMapping("/postLike")
+    public int likePost(@RequestBody Map<String, Object> requestMap, HttpServletRequest request) {
+        int result = 0;
+
+        int post_id = (int) requestMap.get("post_id");
+        int like = (int) requestMap.get("like");
+
+        HttpSession session = request.getSession();
+
+        if (session.getAttribute("login_user_id") == null
+                || ((String) session.getAttribute("login_user_id")).equals("")) {
+            result = -1;
+            return result;
+        }
+
+        String user_id = (String) session.getAttribute("login_user_id");
+        Cunsult_Post_LikeDto cunsult_Post_LikeDto = new Cunsult_Post_LikeDto();
+        cunsult_Post_LikeDto.setPost_id(post_id);
+        cunsult_Post_LikeDto.setUser_id(user_id);
+
+        if (like == 1) {
+            result = cunsultService.insertLike(cunsult_Post_LikeDto);
+        } else if (like == -1) {
+            result = cunsultService.deleteLike(cunsult_Post_LikeDto);
+        }
+
+        return result;
+    }
+
+    @Autowired
+    private LoginService loginService;
+
+    // 댓글
+    @ResponseBody
+    @PostMapping("/postComment")
+    public Map<String, Object> postComment(HttpServletRequest request, @RequestBody Cunsult_CommentDto cunsult_CommentDto) {
+        Map<String, Object> resultMap = new HashMap<>();
+        // 코드 미실행
+        int status = 0;
+        // 객체 정보 오류
+        // -100 절차 순 ++ 
+        // DB 오류
+        // -200
+        
+        Map<String, Object> loginSessionInfo = loginService.getLoginSessionInfo(request);
+        String login_user_id = (String) loginSessionInfo.get("login_user_id");
+        // 로그인 세션 확인
+        if(login_user_id==null || login_user_id.equals("")){
+            status = -101;
+        }
+        String user_id = cunsult_CommentDto.getUser_id();
+        if(!user_id.equals(login_user_id)){
+            status = -102;
+        }
+
+        int inserted = cunsultService.insertComment(cunsult_CommentDto);
+        if(inserted==0){
+            status = -200;
+        }
+        status = inserted;
+
+        resultMap.put("status", status);
+
+
+
+        return resultMap;
+    }
 
 }

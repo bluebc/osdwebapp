@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="Cunsult_Comment">
+
+<resultMap id="CunsultCommentResultMap" type="com.osd.web.app.dto.Cunsult_CommentDto">
+    <result column="CMT_ID" property="cmt_id"/>
+	<result column="CMT_CONTENT" property="cmt_content"/>
+    <result column="POST_ID" property="post_id"/>
+	<result column="PARENT_CMT_ID" property="parent_cmt_id"/>
+	<result column="CMT_LIKECNT" property="cmt_likecnt"/>
+	<result column="USER_ID" property="user_id"/>
+	<result column="CMT_SORT" property="cmt_sort"/>
+	<result column="CMT_CREATED_AT" property="cmt_created_at"/>
+	<result column="CMT_UPDATED_AT" property="cmt_updated_at"/>
+
+</resultMap>
+		 
+<insert id="insert" parameterType="Cunsult_CommentDto">
+	insert into cunsult_comment(
+		cmt_id, cmt_content, post_id, parent_cmt_id, cmt_likecnt, user_id, cmt_sort, cmt_created_at, cmt_updated_at
+	)
+	values(
+		#{cmt_id}, #{cmt_content}, #{post_id}, #{parent_cmt_id}, #{cmt_likecnt}, #{user_id}, #{cmt_sort}, #{cmt_created_at}, #{cmt_updated_at}
+	)
+</insert>
+		
+</mapper>

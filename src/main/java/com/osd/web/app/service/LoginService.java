@@ -163,4 +163,21 @@ public class LoginService {
         return user_InfoDao.getUser_IdByEmail(user_InfoDto);
     }
 
+
+    public Map<String, Object> getLoginSessionInfo(HttpServletRequest request){
+        Map<String, Object> resultMap = new HashMap<>();
+        HttpSession session = request.getSession();
+        String login_user_id = (String) session.getAttribute(loginSessionName);
+        if (login_user_id != null && !login_user_id.equals("")) {
+            resultMap.put("login_user_id", login_user_id);
+            resultMap.put("loggedIn", true);
+        } else {
+            resultMap.put("login_user_id", "");
+            resultMap.put("loggedIn", false);
+        }
+
+        return resultMap;
+    }
+
+
 }

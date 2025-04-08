@@ -129,5 +129,37 @@
 			</where>
 		</select>
 
+		<!-- 조회수 -->
+		<update id="updateViewcnt" parameterType="int">
+		update cunsult_post 
+		<set>
+			post_viewcnt = post_viewcnt + 1
+		</set>
+		<where>
+			post_id = #{post_id}
+		</where>
+		</update>
+
+		<!-- 좋아요 -->
+		<update id="plusLikecnt" parameterType="int">
+		update cunsult_post
+		<set>
+			post_likecnt = post_likecnt + 1
+		</set>
+		<where>
+			post_id = #{post_id}
+		</where>
+		</update>
+
+		<update id="minusLikecnt" parameterType="int">
+		update cunsult_post
+		<set>
+			post_likecnt = post_likecnt - 1
+		</set>
+		<where>
+			post_id = #{post_id}
+		</where>
+		</update>
+
 		
 </mapper>
