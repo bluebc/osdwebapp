@@ -15,10 +15,7 @@ async function findPage() {
 
     // read(목록)진입
     // var cunsult_post = { post_id: post_id };
-<<<<<<< HEAD
     // console.log(post_id);
-=======
->>>>>>> main
 
     const response = await fetch("/cunsult/getRownumSession", {
         method: "POST",

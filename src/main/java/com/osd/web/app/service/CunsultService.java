@@ -8,7 +8,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.osd.web.app.dao.Cunsult_PostDao;
+import com.osd.web.app.dao.Cunsult_Post_LikeDao;
 import com.osd.web.app.dto.Cunsult_PostDto;
+import com.osd.web.app.dto.Cunsult_Post_LikeDto;
 
 @Service
 public class CunsultService {
@@ -68,8 +70,46 @@ public class CunsultService {
         return cunsult_PostDao.selectRownumById(cunsult_PostDto);
     }
 
-    public int updateViewcnt(int post_id){
+    public int updateViewcnt(int post_id) {
         return cunsult_PostDao.updateViewcnt(post_id);
+    }
+
+    // ==================== 좋아요 ====================
+
+    @Autowired
+    private Cunsult_Post_LikeDao cunsult_Post_LikeDao;
+
+    public int insertLike(Cunsult_Post_LikeDto cunsult_Post_LikeDto) {
+        int result = 0;
+
+        int post_id = cunsult_Post_LikeDto.getPost_id();
+        LocalDateTime like_created_at = LocalDateTime.now().truncatedTo(ChronoUnit.SECONDS);
+        cunsult_Post_LikeDto.setLike_created_at(like_created_at);
+
+        int likeInserted = cunsult_Post_LikeDao.insert(cunsult_Post_LikeDto);
+        int postUpdated = cunsult_PostDao.plusLikecnt(post_id);
+
+        result = likeInserted * 10 + postUpdated;
+        return result;
+    }
+
+    public int deleteLike(Cunsult_Post_LikeDto cunsult_Post_LikeDto) {
+        int result = 0;
+
+        int post_id = cunsult_Post_LikeDto.getPost_id();
+
+        int likeDeleted = cunsult_Post_LikeDao.delete(cunsult_Post_LikeDto);
+        int postUpdated = 0;
+        if (likeDeleted == 1) {
+            cunsult_PostDao.minusLikecnt(post_id);
+        }
+
+        result = likeDeleted * 10 + postUpdated;
+        return result;
+    }
+
+    public int checkPostLiked(Cunsult_Post_LikeDto cunsult_Post_LikeDto) {
+        return cunsult_Post_LikeDao.selectByPostAndUser(cunsult_Post_LikeDto);
     }
 
 }

@@ -70,8 +70,17 @@ public class Cunsult_PostDao {
         return selectRownumById(cunsult_PostDto);
     }
 
+    // 조회수
     public int updateViewcnt(int post_id){
         return session.update("Cunsult_Post.updateViewcnt", post_id);
+    }
+
+    // 좋아요
+    public int plusLikecnt(int post_id){
+        return session.update("Cunsult_Post.plusLikecnt", post_id);
+    }
+    public int minusLikecnt(int post_id){
+        return session.update("Cunsult_Post.minusLikecnt", post_id);
     }
 
 }

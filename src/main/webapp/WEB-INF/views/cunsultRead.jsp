@@ -46,6 +46,14 @@ ${cunsult_post.post_files}
 </div>
 
 
+<div id = "like">
+<input type = "hidden" value = "${liked}" id = "myLike">
+    <div id = "likeButton" onclick = "like()">
+    좋아요
+    </div>
+</div>
+
+
 <div id = "modOrDel" style="display:none">
 <input type = "button" onclick = "modifyPost(${cunsult_post.post_id})" value = "수정"> <input type = "button" onclick = "deletePost(${cunsult_post.post_id})" value = "삭제">
 </div>

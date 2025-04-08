@@ -1,5 +1,7 @@
 addEventListener("DOMContentLoaded", function () {
     showModOrDel();
+    loadLiked();
+    // 파일 없을 때 처리 필요
     setFileList();
 });
 
@@ -29,12 +31,12 @@ function modifyPost() {
 
 
 function deletePost() {
-    if(confirm("글을 삭제하시겠습니까?")){
+    if (confirm("글을 삭제하시겠습니까?")) {
         deleteCunsultPost();
     }
 }
 
-function deleteCunsultPost(){
+function deleteCunsultPost() {
 
     var post_id = document.getElementById("post_id").value;
     var user_id = document.getElementById("user_id").value;
@@ -62,7 +64,7 @@ function deleteCunsultPost(){
 function goPostList() {
     // 목록이 아님
     var post_id = document.getElementById("post_id").value;
-    var cunsult_post  = {post_id:post_id};
+    var cunsult_post = { post_id: post_id };
     // window.history.back();
     // window.location.href = "/cunsult/list?post_id=" + post_id;
 
@@ -74,7 +76,7 @@ function goPostList() {
         return response.json();
     }).then(result => {
         if (result.rownum != 0) {
-            
+
             // window.location.href = "/cunsult/list";
         }
     });
@@ -83,16 +85,68 @@ function goPostList() {
     window.location.href = "/cunsult/list";
 }
 
-function setFileList(){
+function setFileList() {
     const fileJSON = document.getElementById("fileJSON").value;
     const fileListDiv = document.getElementById("fileList");
     const fileList = JSON.parse(fileJSON);
     // console.log(fileList);
     fileList.forEach(file => {
         let fileLinkA = document.createElement("a");
-        fileLinkA.href = "/file/download?filename="+file;
+        fileLinkA.href = "/file/download?filename=" + file;
         fileLinkA.textContent = file.substring(file.indexOf("_") + 1);
         fileListDiv.appendChild(fileLinkA);
     });
+
+}
+
+async function like() {
+
+    var post_id = parseInt(document.getElementById("post_id").value);
+    var myLike = document.getElementById("myLike").value;
+    var result;
     
+    if (myLike == 0) {
+        result = await postLike(post_id, 1);
+        if (result == -1) {
+            alert("로그인 하세요");
+            return;
+        }
+        document.getElementById("myLike").value = 1;
+        likeButton.textContent = unLikeMsg;
+    } else if (myLike > 0) {
+        result = await postLike(post_id, -1);
+        if (result == -1) {
+            alert("로그인 하세요");
+            return;
+        }
+        document.getElementById("myLike").value = 0;
+        likeButton.textContent = likeMsg;
+    }
+
+}
+
+async function postLike(post_id, like) {
+
+    const response = await fetch("/cunsult/postLike", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ post_id: post_id, like: like })
+    });
+    const result = await response.json();
+
+    return result;
+
+}
+
+const likeMsg = "좋아요 버튼";
+const unLikeMsg = "좋아요 취소 버튼";
+
+
+function loadLiked() {
+    var myLike = document.getElementById("myLike").value;
+    if (myLike == 0) {
+        likeButton.textContent = likeMsg;
+    } else if (myLike > 0) {
+        likeButton.textContent = unLikeMsg;
+    }
 }
