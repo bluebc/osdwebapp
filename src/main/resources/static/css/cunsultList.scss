@@ -156,7 +156,14 @@
     .notice-board {
         padding: 15rem 0 6rem;
         .content {
+            display: flex;
+            flex-direction: column;
+            .writing{
+                order: 4;
+            }
+
             #cunsultListTable{
+                order: 2;
                 tr{
                     display: flex;
                     flex-direction: column;
@@ -189,6 +196,9 @@
                         }
                     }
                 }
+            }
+            .pagination{
+                order: 3;
             }
         }
     }
