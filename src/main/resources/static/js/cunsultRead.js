@@ -62,11 +62,9 @@ function deleteCunsultPost() {
 
 // 목록
 function goPostList() {
-    // 목록이 아님
+
     var post_id = document.getElementById("post_id").value;
     var cunsult_post = { post_id: post_id };
-    // window.history.back();
-    // window.location.href = "/cunsult/list?post_id=" + post_id;
 
     fetch("/cunsult/setRownumSession", {
         method: "POST",
@@ -75,12 +73,8 @@ function goPostList() {
     }).then(response => {
         return response.json();
     }).then(result => {
-        if (result.rownum != 0) {
 
-            // window.location.href = "/cunsult/list";
-        }
     });
-
 
     window.location.href = "/cunsult/list";
 }
@@ -104,7 +98,7 @@ async function like() {
     var post_id = parseInt(document.getElementById("post_id").value);
     var myLike = document.getElementById("myLike").value;
     var result;
-    
+
     if (myLike == 0) {
         result = await postLike(post_id, 1);
         if (result == -1) {

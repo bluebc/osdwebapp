@@ -15,7 +15,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.osd.web.app.dto.Cunsult_PostDto;
 import com.osd.web.app.dto.Cunsult_Post_LikeDto;
-import com.osd.web.app.dto.Qna_PostDto;
 import com.osd.web.app.service.CunsultService;
 
 import jakarta.servlet.http.HttpServletRequest;
@@ -40,16 +39,7 @@ public class CunsultBoardController {
     }
 
     @RequestMapping("/list")
-    // int => Integer (int null 허용 X)
-    // public String cunsultListPage(@RequestParam(required = false, name =
-    // "post_id") Integer post_id, Model model) {
     public String cunsultListPage() {
-
-        // if (post_id == null) {
-        // post_id = 0;
-        // }
-
-        // model.addAttribute("post_id", post_id);
 
         return "cunsultList";
     }
@@ -198,18 +188,7 @@ public class CunsultBoardController {
         return resultMap;
     }
 
-    // @ResponseBody
-    // @PostMapping("/getRownumById")
-    // public Map<String, Object> getRownumById(@RequestBody Cunsult_PostDto
-    // cunsult_PostDto) {
-    // Map<String, Object> resultMap = new HashMap<>();
-
-    // int rownum = cunsultService.getRownumById(cunsult_PostDto);
-    // resultMap.put("rownum", rownum);
-
-    // return resultMap;
-    // }
-
+  
     // 글 읽기 화면에서 페이지 목록 이동
     @ResponseBody
     @PostMapping("/setRownumSession")

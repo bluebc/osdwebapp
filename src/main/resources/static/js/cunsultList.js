@@ -5,18 +5,6 @@ const limit = 10;
 
 async function findPage() {
 
-    // var post_id = document.getElementById("post_id").value;
-
-    // list 진입
-    // if (post_id == 0) {
-    //     page = 1;
-    //     return page;
-    // }
-
-    // read(목록)진입
-    // var cunsult_post = { post_id: post_id };
-    // console.log(post_id);
-
     const response = await fetch("/cunsult/getRownumSession", {
         method: "POST",
         headers: { "Content-Type": "application/json" },

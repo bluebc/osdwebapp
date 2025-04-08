@@ -1,6 +1,3 @@
-// var currentPage = 1;
-// var currentKeyword = "";
-
 async function getQnaPostByKeywordAndPage() {
 
     var page = parseInt(currentPage);
@@ -72,22 +69,6 @@ function setQnaListTable(list) {
         const qnaBox = document.createElement("div");
         qnaBox.className = "qnaBox";
 
-
-
-        // const userTd = document.createElement("td");
-        // userTd.textContent = qna.user_id;
-
-        // const createdTd = document.createElement("td");
-        // const qnaCreatedAt = new Date(qna.post_created_at).toISOString().slice(0, 10);
-        // createdTd.textContent = qnaCreatedAt;
-
-        // const viewCntTd = document.createElement("td");
-        // viewCntTd.textContent = qna.post_viewcnt;
-
-        // qnaBox.appendChild(userTd);
-        // qnaBox.appendChild(createdTd);
-        // qnaBox.appendChild(viewCntTd);
-
         const userSpan = document.createElement("span");
         userSpan.textContent = qna.user_id;
 
@@ -104,25 +85,15 @@ function setQnaListTable(list) {
 
         qnaBoxTd.appendChild(qnaBox);
 
-
         qnaTr.appendChild(idTd);
         qnaTr.appendChild(subjectTd);
-        // qnaTr.appendChild(userTd);
-        // qnaTr.appendChild(createdTd);
+
         qnaTr.appendChild(qnaBoxTd);
 
         qnaListTable.appendChild(qnaTr);
 
     });
 }
-
-// document.addEventListener("DOMContentLoaded", async function () {
-//     const qnaMap = await getQnaPostByKeywordAndPage();
-
-//     setQnaListTable(qnaMap.list);
-//     setQnaListPaging(currentPage, qnaMap.maxPage, qnaMap.count, qnaMap.limit);
-
-// })
 
 // 페이지 이동 버튼
 function setQnaListPaging(currentPage, maxPage, count, limit) {
@@ -172,18 +143,6 @@ function setQnaListPaging(currentPage, maxPage, count, limit) {
         qnaListPaging.appendChild(pageDiv);
     }
     
-    // for (let page = startPage; page <= endPage; page++) {
-    //     var pageDiv = document.createElement("div");
-    //     pageDiv.className = "qnaPage";
-    //     pageDiv.textContent = page;
-    //     // console.log("input: " + page);
-    //     pageDiv.onclick = function () {
-    //         // console.log("clicked: " + page);
-    //         qnaPaging(page);
-    //     }
-    //     qnaListPaging.appendChild(pageDiv);
-    // }
-
     if (endPage != maxPage) {
         var rightPageBtn = document.createElement("div");
         rightPageBtn.className = "qnaPage";

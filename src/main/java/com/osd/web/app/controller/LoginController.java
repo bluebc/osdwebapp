@@ -26,6 +26,8 @@ import jakarta.servlet.http.HttpSession;
 @Controller
 public class LoginController {
 
+    private final String loginSessionName = "login_user_id";
+
     @Autowired
     private LoginService loginService;
 
@@ -351,6 +353,26 @@ public class LoginController {
         session.setAttribute("auth_confirmed", null);
 
         return result;
+    }
+
+
+
+    // 로그인 정보 확인
+    @ResponseBody
+    @PostMapping("/login/getLoginSessionInfo")
+    public Map<String, Object> getLoginSessionInfo(HttpServletRequest request) {
+        Map<String, Object> resultMap = new HashMap<>();
+        HttpSession session = request.getSession();
+        String login_user_id = (String) session.getAttribute(loginSessionName);
+        if (login_user_id != null && !login_user_id.equals("")) {
+            resultMap.put("login_user_id", login_user_id);
+            resultMap.put("loggedIn", true);
+        } else {
+            resultMap.put("login_user_id", "");
+            resultMap.put("loggedIn", false);
+        }
+
+        return resultMap;
     }
 
 }
