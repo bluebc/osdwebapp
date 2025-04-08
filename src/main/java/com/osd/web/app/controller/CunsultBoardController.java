@@ -13,9 +13,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.osd.web.app.dto.Cunsult_CommentDto;
 import com.osd.web.app.dto.Cunsult_PostDto;
 import com.osd.web.app.dto.Cunsult_Post_LikeDto;
 import com.osd.web.app.service.CunsultService;
+import com.osd.web.app.service.LoginService;
 
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
@@ -188,7 +190,6 @@ public class CunsultBoardController {
         return resultMap;
     }
 
-  
     // 글 읽기 화면에서 페이지 목록 이동
     @ResponseBody
     @PostMapping("/setRownumSession")
@@ -254,6 +255,45 @@ public class CunsultBoardController {
         }
 
         return result;
+    }
+
+    @Autowired
+    private LoginService loginService;
+
+    // 댓글
+    @ResponseBody
+    @PostMapping("/postComment")
+    public Map<String, Object> postComment(HttpServletRequest request, @RequestBody Cunsult_CommentDto cunsult_CommentDto) {
+        Map<String, Object> resultMap = new HashMap<>();
+        // 코드 미실행
+        int status = 0;
+        // 객체 정보 오류
+        // -100 절차 순 ++ 
+        // DB 오류
+        // -200
+        
+        Map<String, Object> loginSessionInfo = loginService.getLoginSessionInfo(request);
+        String login_user_id = (String) loginSessionInfo.get("login_user_id");
+        // 로그인 세션 확인
+        if(login_user_id==null || login_user_id.equals("")){
+            status = -101;
+        }
+        String user_id = cunsult_CommentDto.getUser_id();
+        if(!user_id.equals(login_user_id)){
+            status = -102;
+        }
+
+        int inserted = cunsultService.insertComment(cunsult_CommentDto);
+        if(inserted==0){
+            status = -200;
+        }
+        status = inserted;
+
+        resultMap.put("status", status);
+
+
+
+        return resultMap;
     }
 
 }

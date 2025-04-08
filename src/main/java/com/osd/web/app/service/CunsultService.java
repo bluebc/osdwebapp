@@ -7,8 +7,10 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.osd.web.app.dao.Cunsult_CommentDao;
 import com.osd.web.app.dao.Cunsult_PostDao;
 import com.osd.web.app.dao.Cunsult_Post_LikeDao;
+import com.osd.web.app.dto.Cunsult_CommentDto;
 import com.osd.web.app.dto.Cunsult_PostDto;
 import com.osd.web.app.dto.Cunsult_Post_LikeDto;
 
@@ -75,7 +77,6 @@ public class CunsultService {
     }
 
     // ==================== 좋아요 ====================
-
     @Autowired
     private Cunsult_Post_LikeDao cunsult_Post_LikeDao;
 
@@ -110,6 +111,15 @@ public class CunsultService {
 
     public int checkPostLiked(Cunsult_Post_LikeDto cunsult_Post_LikeDto) {
         return cunsult_Post_LikeDao.selectByPostAndUser(cunsult_Post_LikeDto);
+    }
+
+
+    // ==================== 댓글 ====================
+    @Autowired
+    private Cunsult_CommentDao cunsult_CommentDao;
+
+    public int insertComment(Cunsult_CommentDto cunsult_CommentDto) {
+        return cunsult_CommentDao.insert(cunsult_CommentDto);
     }
 
 }

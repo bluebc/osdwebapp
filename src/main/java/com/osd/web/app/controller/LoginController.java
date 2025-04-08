@@ -355,22 +355,23 @@ public class LoginController {
         return result;
     }
 
-
-
     // 로그인 정보 확인
     @ResponseBody
     @PostMapping("/login/getLoginSessionInfo")
     public Map<String, Object> getLoginSessionInfo(HttpServletRequest request) {
-        Map<String, Object> resultMap = new HashMap<>();
-        HttpSession session = request.getSession();
-        String login_user_id = (String) session.getAttribute(loginSessionName);
-        if (login_user_id != null && !login_user_id.equals("")) {
-            resultMap.put("login_user_id", login_user_id);
-            resultMap.put("loggedIn", true);
-        } else {
-            resultMap.put("login_user_id", "");
-            resultMap.put("loggedIn", false);
-        }
+
+        Map<String, Object> resultMap = loginService.getLoginSessionInfo(request);
+
+        // Map<String, Object> resultMap = new HashMap<>();
+        // HttpSession session = request.getSession();
+        // String login_user_id = (String) session.getAttribute(loginSessionName);
+        // if (login_user_id != null && !login_user_id.equals("")) {
+        // resultMap.put("login_user_id", login_user_id);
+        // resultMap.put("loggedIn", true);
+        // } else {
+        // resultMap.put("login_user_id", "");
+        // resultMap.put("loggedIn", false);
+        // }
 
         return resultMap;
     }
