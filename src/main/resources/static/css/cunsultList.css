@@ -130,6 +130,16 @@
   .notice-board {
     padding: 15rem 0 6rem;
   }
+  .notice-board .content {
+    display: flex;
+    flex-direction: column;
+  }
+  .notice-board .content .writing {
+    order: 4;
+  }
+  .notice-board .content #cunsultListTable {
+    order: 2;
+  }
   .notice-board .content #cunsultListTable tr {
     display: flex;
     flex-direction: column;
@@ -156,6 +166,9 @@
   }
   .notice-board .content #cunsultListTable tr .cunsultBoxTd .cunsultBox span {
     margin-right: 10px;
+  }
+  .notice-board .content .pagination {
+    order: 3;
   }
 }
 @media screen and (max-width: 344px) {
