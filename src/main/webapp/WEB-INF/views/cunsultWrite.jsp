@@ -7,7 +7,7 @@
     <title>상담 & 게시판 글쓰기</title>
 
     <!-- css -->
-    <link rel="stylesheet" href="css/reset.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/reset.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/cunsultWrite.css">
     
     <!--favicon--->
@@ -36,7 +36,7 @@
 
             <tr>
                 <td class="title">
-                    <h3>카테고리</h3>
+                    <%-- <h3>카테고리</h3> --%>
                     <fieldset>
                         <select>
                             <option value="카테고리"; name="카테고리"; >카테고리를 선택해주세요</option>
@@ -72,20 +72,18 @@
 
 
             <tr>
-  <td>
-                  
+                <td>
                     <label for="file">파일 업로드</label>
                     <form id="uploadForm" enctype="multipart/form-data">
-                      <input type="file" id="fileInput" name="files" multiple>
-                      </form>
+                        <input type="file" id="fileInput" name="files" multiple>
+                    </form>
                     <hr noshade>
                     <!-- <h3>이미지 업로드</h3>
                     <input type="file" name="image" accept="image/*" id="btn-upload"> -->
                 </td>
-
             </tr>
 
-            
+
             <tr>
                 <td class="register-btn">
                 <%-- before : submit --%>
@@ -93,6 +91,7 @@
                     <input type="button" value="취소" onclick="cancelPosting()">
                 </td>
             </tr>
+            
         </table>
     </form>
 

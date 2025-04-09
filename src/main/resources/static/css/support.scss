@@ -5,17 +5,23 @@ body{
     overflow-x: hidden;
 }
 
+header{
+    .top-banner{
+        display: none;
+    }
+}
+
 main{
     .container{
-        padding: 20rem 0 14rem;
+        padding: 14rem 0 14rem;
         min-height: 800px;
         .content{
             display: flex;
-            // margin: 40px auto 0;
             max-width: 1410px;
-            // min-width: 1180px;
             padding: 0 50px;
             margin: 60px auto 0;
+            // min-width: 1180px;
+            // margin: 40px auto 0;
             .snbContainer{
                 margin-top: 10px;
                 width: 260px;
@@ -252,12 +258,18 @@ main{
                                             padding: 1.5rem 2rem;
                                             display: none; 
                                             background-color: #f8f8f8;
-                                            .faq-tit{
-                                                
-                                            }
-                                            .faq-tet{
-                                                line-height: 1.62;
-                                                font-size: 16px;
+                                            table{
+                                                tbody{
+                                                    tr{
+                                                        td{
+                                                            p{
+                                                                span{
+                                                                    line-height: 1.2;
+                                                                }
+                                                            }
+                                                        }
+                                                    }
+                                                }
                                             }
                                         }
             
@@ -303,6 +315,7 @@ main{
                                                     flex: 1;
                                                     text-align: center;
                                                     cursor: default;
+                                                    line-height: 1.2;
                                                     &:nth-child(1){
                                                         cursor: pointer;
                                                     }
@@ -447,6 +460,11 @@ main{
 
 /* 768px*/
 @include itablet{
+    header{
+        .top-banner{
+            display: block;
+        }
+    }    
     main{
         .container{
             padding: 0;

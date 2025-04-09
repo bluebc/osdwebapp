@@ -1,10 +1,11 @@
+header .top-banner {
+  display: none;
+}
+
 /*main*/
 main {
   width: 100%;
   height: 100%;
-}
-main #health {
-  padding: 6rem 0 0;
 }
 main #health .content .he-img {
   position: relative;
@@ -450,6 +451,9 @@ main #top-btn {
 }
 /* 768px*/
 @media screen and (max-width: 768px) {
+  header .top-banner {
+    display: block;
+  }
   main #health {
     padding: 9rem 0 0;
     background-color: #f4f4f4;
@@ -660,6 +664,127 @@ main #top-btn {
     right: 20px;
   }
 }
+@media screen and (min-width: 768px) and (max-width: 1024px) and (orientation: landscape) {
+  header .top-banner {
+    display: block;
+  }
+  main #health {
+    padding: 9rem 0 0;
+    background-color: #f4f4f4;
+  }
+  main #health .content .he-img .he-bg {
+    height: 100vh;
+  }
+  main #health .content .he-img .he-box {
+    position: relative;
+    top: 16rem;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+  main #health .content .he-img .he-box .he-container .he-wrapper .he-sw {
+    margin: 0 auto;
+    text-align: center;
+  }
+  main #health .content .he-img .he-box .he-container .he-wrapper .he-sw:nth-child(1) {
+    transform: translate(-25%, 30%);
+  }
+  main #health .content .he-img .he-box .he-container .he-wrapper .he-sw:nth-child(2) {
+    transform: translate(-2%, -3%);
+  }
+  main #health .content .he-img .he-box .he-container .he-wrapper .he-sw:nth-child(3) {
+    transform: translate(-18%, -29%);
+  }
+  main #health .content .he-img .he-box .he-container .he-wrapper .he-sw img {
+    width: 250px;
+  }
+  main #health .content .he-img .he-box .he-tit {
+    right: 7rem;
+    bottom: 17rem;
+  }
+  main #health .content .he-fix h2 {
+    font-size: 5vw;
+  }
+  main #program52 .content .flex-52 .tet-52 {
+    width: 60%;
+  }
+  main #shoppingmall {
+    height: 100%;
+    position: relative;
+  }
+  main #shoppingmall .content {
+    padding: 5rem 0;
+    flex-direction: column-reverse;
+  }
+  main #shoppingmall .content .shop-img {
+    width: 100%;
+    text-align: center;
+    margin-bottom: 8rem;
+  }
+  main #shoppingmall .content .shop-img img {
+    max-width: 100%;
+    height: auto;
+  }
+  main #shoppingmall .content .shop-tet {
+    width: 100%;
+    padding: 0;
+    align-items: center;
+  }
+  main #shoppingmall .content .shop-tet div {
+    display: flex;
+  }
+  main #shoppingmall .content .shop-tet div h3 {
+    font-size: 5vw;
+    font-weight: bold;
+    margin-right: 0.5rem;
+  }
+  main #shoppingmall .content .shop-tet div h2 {
+    font-size: 5vw;
+  }
+  main #shoppingmall .content .shop-tet h4 {
+    text-align: center;
+    font-size: 3.5vw;
+  }
+  main #shoppingmall .content .shop-tet .shop-now {
+    position: absolute;
+    bottom: 3rem;
+    right: 0;
+  }
+  main #shoppingmall .content .shop-tet .shop-now a {
+    padding: 1rem 3rem;
+    font-size: 1rem;
+  }
+  main #resetprogram {
+    height: 100%;
+  }
+  main #resetprogram .content {
+    padding: 5rem 0;
+    flex-direction: column;
+    justify-content: center;
+  }
+  main #resetprogram .content .rst-tet {
+    margin-left: 0;
+    text-align: center;
+    margin-bottom: 2rem;
+  }
+  main #resetprogram .content .rst-tet h2 {
+    font-size: 6vw;
+  }
+  main #resetprogram .content .rst-tet h4 {
+    font-size: 3.5vw;
+  }
+  main #resetprogram .content .ret-img {
+    margin-left: 0;
+    width: 500px;
+    height: 500px;
+    overflow: hidden;
+  }
+  main #resetprogram .content .ret-img img {
+    border-radius: 50%;
+    max-width: 100%;
+    width: 500px;
+    height: 500px;
+  }
+}
 /* 576px */
 @media screen and (max-width: 576px) {
   main #health .content .he-img .he-box {
@@ -729,6 +854,7 @@ main #top-btn {
   }
   main #resetprogram .content .ret-img {
     height: auto;
+    text-align: center;
   }
   main #resetprogram .content .ret-img img {
     width: 300px;

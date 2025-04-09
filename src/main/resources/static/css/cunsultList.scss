@@ -1,7 +1,13 @@
 @import "./mixin";
 
+header{
+    .top-banner{
+        display: none;
+    }
+}
+
 .notice-board{
-    padding: 20rem 0 14rem;
+    padding: 14rem 0 14rem;
     min-height: 800px;
     .content{
             max-width: 1000px;
@@ -149,6 +155,18 @@
 
 /* 768px*/
 @include itablet{
+    header{
+        .top-banner{
+            display: block;
+        }
+    }  
+}
+@include itablet-landscape{
+    header{
+        .top-banner{
+            display: block;
+        }
+    }  
 }
 
 // 576px
