@@ -3,8 +3,12 @@ body {
   overflow-x: hidden;
 }
 
+header .top-banner {
+  display: none;
+}
+
 main .container {
-  padding: 20rem 0 14rem;
+  padding: 14rem 0 14rem;
   min-height: 800px;
 }
 main .container .content {
@@ -223,9 +227,8 @@ main .container .content .lnbContainer .section-cont .all-category .contents-box
   display: none;
   background-color: #f8f8f8;
 }
-main .container .content .lnbContainer .section-cont .all-category .contents-box #faqList .tab-content .faq-box .faq-answer .faq-tet {
-  line-height: 1.62;
-  font-size: 16px;
+main .container .content .lnbContainer .section-cont .all-category .contents-box #faqList .tab-content .faq-box .faq-answer table tbody tr td p span {
+  line-height: 1.2;
 }
 main .container .content .lnbContainer .section-cont .all-category .contents-box #qnaList table {
   margin: 3rem 0;
@@ -257,6 +260,7 @@ main .container .content .lnbContainer .section-cont .all-category .contents-box
   flex: 1;
   text-align: center;
   cursor: default;
+  line-height: 1.2;
 }
 main .container .content .lnbContainer .section-cont .all-category .contents-box #qnaList table tr .qnaBoxTd .qnaBox span:nth-child(1) {
   cursor: pointer;
@@ -383,6 +387,9 @@ main .container .content .lnbContainer .agent .inner-agent .fq-service .list-ser
 
 /* 768px*/
 @media screen and (max-width: 768px) {
+  header .top-banner {
+    display: block;
+  }
   main .container {
     padding: 0;
   }

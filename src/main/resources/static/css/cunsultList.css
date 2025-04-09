@@ -1,5 +1,9 @@
+header .top-banner {
+  display: none;
+}
+
 .notice-board {
-  padding: 20rem 0 14rem;
+  padding: 14rem 0 14rem;
   min-height: 800px;
 }
 .notice-board .content {
@@ -126,6 +130,16 @@
 }
 
 /* 768px*/
+@media screen and (max-width: 768px) {
+  header .top-banner {
+    display: block;
+  }
+}
+@media screen and (min-width: 768px) and (max-width: 1024px) and (orientation: landscape) {
+  header .top-banner {
+    display: block;
+  }
+}
 @media screen and (max-width: 576px) {
   .notice-board {
     padding: 15rem 0 6rem;
