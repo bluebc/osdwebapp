@@ -17,11 +17,40 @@
 		 
 <insert id="insert" parameterType="Cunsult_CommentDto">
 	insert into cunsult_comment(
-		cmt_id, cmt_content, post_id, parent_cmt_id, cmt_likecnt, user_id, cmt_sort, cmt_created_at, cmt_updated_at
+		cmt_content, post_id, parent_cmt_id, cmt_likecnt, user_id, cmt_sort, cmt_created_at, cmt_updated_at
 	)
 	values(
-		#{cmt_id}, #{cmt_content}, #{post_id}, #{parent_cmt_id}, #{cmt_likecnt}, #{user_id}, #{cmt_sort}, #{cmt_created_at}, #{cmt_updated_at}
+		#{cmt_content}, #{post_id}, #{parent_cmt_id}, #{cmt_likecnt}, #{user_id}, #{cmt_sort}, #{cmt_created_at}, #{cmt_updated_at}
 	)
 </insert>
 		
+<select id="selectParentByPost" parameterType="int" resultMap="CunsultCommentResultMap"> 
+	select * from cunsult_comment
+		<where>
+			post_id = #{post_id} 
+			and 
+			parent_cmt_id = 0
+		</where>
+	order by cmt_id asc
+</select>
+
+<select id="selectChildByPost" parameterType="int" resultMap="CunsultCommentResultMap"> 
+	select * from cunsult_comment
+		<where>
+			post_id = #{post_id} 
+			and 
+			parent_cmt_id = 0
+		</where>
+	order by cmt_id asc
+</select>
+
+<select id="selectByPost" parameterType="int" resultMap="CunsultCommentResultMap">
+	select * from cunsult_comment
+		<where>
+			post_id = #{post_id}
+		</where>
+	order by cmt_created_at
+</select>
+
+
 </mapper>

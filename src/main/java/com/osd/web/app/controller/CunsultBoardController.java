@@ -123,6 +123,7 @@ public class CunsultBoardController {
 
         model.addAttribute("cunsult_post", cunsult_PostDtoFromDb);
         model.addAttribute("liked", liked);
+        model.addAttribute("reader_id", user_id);
 
         return "cunsultRead";
     }
@@ -263,35 +264,54 @@ public class CunsultBoardController {
     // 댓글
     @ResponseBody
     @PostMapping("/postComment")
-    public Map<String, Object> postComment(HttpServletRequest request, @RequestBody Cunsult_CommentDto cunsult_CommentDto) {
+    public Map<String, Object> postComment(HttpServletRequest request,
+            @RequestBody Cunsult_CommentDto cunsult_CommentDto) {
         Map<String, Object> resultMap = new HashMap<>();
         // 코드 미실행
         int status = 0;
+        // -1 로그인 오류
         // 객체 정보 오류
-        // -100 절차 순 ++ 
+        // -100
+        // -200 절차 순 ++
         // DB 오류
-        // -200
-        
+        // -300
+
         Map<String, Object> loginSessionInfo = loginService.getLoginSessionInfo(request);
         String login_user_id = (String) loginSessionInfo.get("login_user_id");
         // 로그인 세션 확인
-        if(login_user_id==null || login_user_id.equals("")){
-            status = -101;
+        if (login_user_id == null || login_user_id.equals("")) {
+            status = -1;
+            resultMap.put("status", status);
+            return resultMap;
         }
         String user_id = cunsult_CommentDto.getUser_id();
-        if(!user_id.equals(login_user_id)){
-            status = -102;
+        if (!user_id.equals(login_user_id)) {
+            status = -2;
+            resultMap.put("status", status);
+            return resultMap;
         }
 
         int inserted = cunsultService.insertComment(cunsult_CommentDto);
-        if(inserted==0){
-            status = -200;
+        if (inserted == 0) {
+            status = -201;
+            resultMap.put("status", status);
+            return resultMap;
         }
         status = inserted;
 
         resultMap.put("status", status);
 
+        return resultMap;
+    }
 
+    @ResponseBody
+    @PostMapping("/getCommentListByPost")
+    public Map<String, Object> getCommentListByPost(@RequestBody int post_id) {
+        Map<String, Object> resultMap = new HashMap<>();
+
+        List<Cunsult_CommentDto> list = cunsultService.getCommentByPost(post_id);
+
+        resultMap.put("list", list);
 
         return resultMap;
     }

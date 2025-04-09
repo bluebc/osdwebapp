@@ -2,7 +2,10 @@ package com.osd.web.app.service;
 
 import java.time.LocalDateTime;
 import java.time.temporal.ChronoUnit;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -113,13 +116,27 @@ public class CunsultService {
         return cunsult_Post_LikeDao.selectByPostAndUser(cunsult_Post_LikeDto);
     }
 
-
     // ==================== 댓글 ====================
     @Autowired
     private Cunsult_CommentDao cunsult_CommentDao;
 
     public int insertComment(Cunsult_CommentDto cunsult_CommentDto) {
+
+        int cmt_likecnt = 0;
+        cunsult_CommentDto.setCmt_likecnt(cmt_likecnt);
+
+        int cmt_sort = 0;
+        cunsult_CommentDto.setCmt_sort(cmt_sort);
+
+        LocalDateTime cmt_created_at = LocalDateTime.now().truncatedTo(ChronoUnit.SECONDS);
+        cunsult_CommentDto.setCmt_created_at(cmt_created_at);
+        cunsult_CommentDto.setCmt_updated_at(cmt_created_at);
+
         return cunsult_CommentDao.insert(cunsult_CommentDto);
+    }
+
+    public List<Cunsult_CommentDto> getCommentByPost(int post_id) {
+        return cunsult_CommentDao.selectByPost(post_id);
     }
 
 }
