@@ -89,8 +89,8 @@ ${cunsult_post.post_files}
         </div>
     </div>
 </div>
-<div id = "postComment">
-    <textarea class = "writeComment" placeholder  = "댓글을 작성하세요" id = "writeComment"></textarea>
+<div id = "writeComment">
+    <textarea class = "writeCommentContent" placeholder  = "댓글을 작성하세요" id = "writeComment"></textarea>
             <input type = "button" value = "작성 완료" onclick = "writeComment()">
 </div>
 </div>

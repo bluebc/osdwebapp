@@ -6,16 +6,13 @@ document.addEventListener("DOMContentLoaded", async function () {
 
 function writeComment() {
 
-
-
     var cmt_content = document.getElementById("writeComment").value;
     var post_id = document.getElementById("post_id").value;
     var user_id = document.getElementById("reader_id").value;
     var cunsult_comment = { cmt_content: cmt_content, post_id: post_id, user_id: user_id };
 
     postComment(cunsult_comment);
-
-
+    afterPostComment();
 }
 
 async function postComment(cunsult_comment) {
@@ -58,11 +55,17 @@ async function setComments() {
     const commentList = await getCommentListByPost();
 
     const displayCommentDiv = document.getElementById("displayComment");
+
+    while (displayCommentDiv.firstChild) {
+        displayCommentDiv.removeChild(displayCommentDiv.firstChild);
+    }
+
     commentList.forEach(comment => {
 
         if (comment.parent_cmt_id == 0) {
             let level1Div = document.createElement("div");
-            level1Div.id = comment.cmt_id;
+            var level1DivId = "cmt_" + comment.cmt_id;
+            level1Div.id = level1DivId;
             level1Div.className = "commentLevel1";
 
             let commentContent = document.createElement("div");
@@ -83,24 +86,44 @@ async function setComments() {
             reReplyButton.value = "대댓글";
             reReplyButton.className = "likeButton";
             reReplyButton.onclick = function () {
-                addReCommentWrite(comment.cmt_id);
+                addReCommentWrite(level1DivId);
             }
 
             level1Div.appendChild(reReplyButton);
 
             displayCommentDiv.appendChild(level1Div);
+        } else {
+            level1DivId = "cmt_" + comment.parent_cmt_id;
+            // console.log(level1DivId);
+            let level1Div = document.getElementById(level1DivId);
+            let level2Div = document.createElement("div");
+            var level2DivId = "recmt_" + comment.cmt_id;
+            level2Div.id = level2DivId;
+            level2Div.className = "commentLevel2";
 
+            let commentContent = document.createElement("div");
+            commentContent.textContent = comment.cmt_content;
+            commentContent.className = "reCommentContent";
 
+            level2Div.appendChild(commentContent);
+
+            let likeButton = document.createElement("input");
+            likeButton.type = "button";
+            likeButton.value = "좋아요";
+            likeButton.className = "likeButton";
+
+            level2Div.appendChild(likeButton);
+            level1Div.appendChild(level2Div);
         }
 
     });
 
 }
 
-function addReCommentWrite(cmt_id) {
-    const level1Div = document.getElementById(cmt_id);
+function addReCommentWrite(level1DivId) {
+    const level1Div = document.getElementById(level1DivId);
     // 댓글창 열고 닫기 전환 필요
-    var re_cmt_id = "re" + cmt_id;
+    var re_cmt_id = "re" + level1DivId;
 
 
 
@@ -132,17 +155,34 @@ function addReCommentWrite(cmt_id) {
     reCommentPostButton.type = "button";
     reCommentPostButton.value = "작성 완료";
     reCommentPostButton.onclick = function () {
-        postReComment(re_cmt_id);
+        postReComment(level1DivId);
     }
     writeReCommentDiv.appendChild(reCommentPostButton);
 
     level1Div.appendChild(writeReCommentDiv);
 
-
-
-
 }
 
-function postReComment() {
-    console.log("누름");
+function postReComment(level1DivId) {
+
+    var parent_cmt_id = level1DivId.substring(4);
+    var reCommentTextareaId = "re" + level1DivId;
+
+    var cmt_content = document.getElementById(reCommentTextareaId).value;
+    var post_id = document.getElementById("post_id").value;
+    var user_id = document.getElementById("reader_id").value;
+    var cunsult_comment = {
+        cmt_content: cmt_content,
+        post_id: post_id,
+        user_id: user_id,
+        parent_cmt_id: parent_cmt_id
+    };
+
+    postComment(cunsult_comment);
+    afterPostComment();
+}
+
+function afterPostComment(){
+    alert("댓글 작성이 완료 되었습니다.");
+    setComments();
 }
