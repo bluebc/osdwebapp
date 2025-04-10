@@ -11,9 +11,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.osd.web.app.dao.Cunsult_CommentDao;
+import com.osd.web.app.dao.Cunsult_Comment_LikeDao;
 import com.osd.web.app.dao.Cunsult_PostDao;
 import com.osd.web.app.dao.Cunsult_Post_LikeDao;
 import com.osd.web.app.dto.Cunsult_CommentDto;
+import com.osd.web.app.dto.Cunsult_Comment_LikeDto;
 import com.osd.web.app.dto.Cunsult_PostDto;
 import com.osd.web.app.dto.Cunsult_Post_LikeDto;
 
@@ -105,7 +107,7 @@ public class CunsultService {
         int likeDeleted = cunsult_Post_LikeDao.delete(cunsult_Post_LikeDto);
         int postUpdated = 0;
         if (likeDeleted == 1) {
-            cunsult_PostDao.minusLikecnt(post_id);
+            postUpdated = cunsult_PostDao.minusLikecnt(post_id);
         }
 
         result = likeDeleted * 10 + postUpdated;
@@ -137,6 +139,44 @@ public class CunsultService {
 
     public List<Cunsult_CommentDto> getCommentByPost(int post_id) {
         return cunsult_CommentDao.selectByPost(post_id);
+    }
+
+    // ==================== 댓글 좋아요 ====================
+    @Autowired
+    private Cunsult_Comment_LikeDao cunsult_Comment_LikeDao;
+
+    public int insertCommentLike(Cunsult_Comment_LikeDto cunsult_Comment_LikeDto) {
+        int result = 0;
+
+        int cmt_id = cunsult_Comment_LikeDto.getCmt_id();
+        LocalDateTime like_created_at = LocalDateTime.now().truncatedTo(ChronoUnit.SECONDS);
+        cunsult_Comment_LikeDto.setLike_created_at(like_created_at);
+
+        int likeInserted = cunsult_Comment_LikeDao.insert(cunsult_Comment_LikeDto);
+        int postUpdated = cunsult_CommentDao.plusLikecnt(cmt_id);
+
+        result = likeInserted * 10 + postUpdated;
+        return result;
+    }
+
+    public int deleteCommentLike(Cunsult_Comment_LikeDto cunsult_Comment_LikeDto) {
+        int result = 0;
+
+        int cmt_id = cunsult_Comment_LikeDto.getCmt_id();
+
+        int likeDeleted = cunsult_Comment_LikeDao.delete(cunsult_Comment_LikeDto);
+        int postUpdated = 0;
+        if (likeDeleted == 1) {
+            postUpdated = cunsult_CommentDao.minusLikecnt(cmt_id);
+        }
+
+        result = likeDeleted * 10 + postUpdated;
+        return result;
+    }
+
+    // 내가 좋아요 댓글 리스트
+    public List<Cunsult_Comment_LikeDto> getCommentMyLike(Map<String, Object> parameterMap) {
+        return cunsult_Comment_LikeDao.selectByUserAndIdByPost(parameterMap);
     }
 
 }

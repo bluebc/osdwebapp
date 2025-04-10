@@ -1,5 +1,6 @@
 package com.osd.web.app.controller;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -14,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.osd.web.app.dto.Cunsult_CommentDto;
+import com.osd.web.app.dto.Cunsult_Comment_LikeDto;
 import com.osd.web.app.dto.Cunsult_PostDto;
 import com.osd.web.app.dto.Cunsult_Post_LikeDto;
 import com.osd.web.app.service.CunsultService;
@@ -310,6 +312,65 @@ public class CunsultBoardController {
         Map<String, Object> resultMap = new HashMap<>();
 
         List<Cunsult_CommentDto> list = cunsultService.getCommentByPost(post_id);
+
+        resultMap.put("list", list);
+
+        return resultMap;
+    }
+
+    // 댓글 좋아요
+    @ResponseBody
+    @PostMapping("/postLikeComment")
+    public int postLikeComment(HttpServletRequest request, @RequestBody Map<String, Object> requestMap) {
+        int result = 0;
+
+        int cmt_id = (int) requestMap.get("cmt_id");
+        int like = (int) requestMap.get("like");
+
+        HttpSession session = request.getSession();
+
+        if (session.getAttribute("login_user_id") == null
+                || ((String) session.getAttribute("login_user_id")).equals("")) {
+            result = -1;
+            return result;
+        }
+
+        String user_id = (String) session.getAttribute("login_user_id");
+        Cunsult_Comment_LikeDto cunsult_Comment_LikeDto = new Cunsult_Comment_LikeDto();
+        cunsult_Comment_LikeDto.setCmt_id(cmt_id);
+        cunsult_Comment_LikeDto.setUser_id(user_id);
+
+        if (like == 1) {
+            result = cunsultService.insertCommentLike(cunsult_Comment_LikeDto);
+        } else if (like == -1) {
+            result = cunsultService.deleteCommentLike(cunsult_Comment_LikeDto);
+        }
+        return result;
+    }
+
+    @ResponseBody
+    @PostMapping("/getCommentMyLike")
+    public Map<String, Object> getCommentMyLike(HttpServletRequest request, @RequestBody int post_id) {
+        Map<String, Object> resultMap = new HashMap<>();
+
+        int status = 0;
+
+        HttpSession session = request.getSession();
+
+        if (session.getAttribute("login_user_id") == null
+                || ((String) session.getAttribute("login_user_id")).equals("")) {
+            status = -1;
+            resultMap.put("status", status);
+            return resultMap;
+        }
+
+        String user_id = (String) session.getAttribute("login_user_id");
+
+        Map<String, Object> parameterMap = new HashMap<>();
+        parameterMap.put("user_id", user_id);
+        parameterMap.put("post_id", post_id);
+
+        List<Cunsult_Comment_LikeDto> list = cunsultService.getCommentMyLike(parameterMap);
 
         resultMap.put("list", list);
 

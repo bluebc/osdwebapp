@@ -26,4 +26,13 @@ public class Cunsult_CommentDao {
         return session.selectList("Cunsult_Comment.selectByPost", post_id);
     }
 
+    // 좋아요
+    public int plusLikecnt(int cmt_id){
+        return session.update("Cunsult_Comment.plusLikecnt", cmt_id);
+    }
+    public int minusLikecnt(int cmt_id){
+        return session.update("Cunsult_Comment.minusLikecnt", cmt_id);
+    }
+
+
 }

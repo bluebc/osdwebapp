@@ -1,5 +1,8 @@
 package com.osd.web.app.dao;
 
+import java.util.List;
+import java.util.Map;
+
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -21,5 +24,9 @@ public class Cunsult_Comment_LikeDao {
     public int selectByCommentAndUser(Cunsult_Comment_LikeDto cunsult_Comment_LikeDto){
         return session.selectOne("Cunsult_Comment_Like.selectByCommentAndUser", cunsult_Comment_LikeDto);
     }
+    public List<Cunsult_Comment_LikeDto> selectByUserAndIdByPost(Map<String, Object> parameterMap){
+        return session.selectList("Cunsult_Comment_Like.selectByUserAndIdByPost", parameterMap);
+    }
+
 
 }

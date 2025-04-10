@@ -1,5 +1,6 @@
 document.addEventListener("DOMContentLoaded", async function () {
-    setComments();
+    await setComments();
+    await setCommentMyLike();
 
 });
 
@@ -74,10 +75,31 @@ async function setComments() {
 
             level1Div.appendChild(commentContent);
 
+            let likeCnt = document.createElement("div");
+            likeCnt.className = "commentLikeCnt";
+            var likeCntId = "cmtLikeCnt_" + comment.cmt_id;
+            likeCnt.id = likeCntId;
+            likeCnt.textContent = comment.cmt_likecnt;
+            level1Div.appendChild(likeCnt);
+
+            let myLike = document.createElement("input");
+            myLike.type = "hidden";
+            var myLikeId = "myLike_" + comment.cmt_id;
+            myLike.id = myLikeId;
+            myLike.value = 0;
+            myLike.className = "myLike";
+            level1Div.appendChild(myLike);
+
+
             let likeButton = document.createElement("input");
             likeButton.type = "button";
-            likeButton.value = "좋아요";
+            likeButton.value = likeButtonMsg;
             likeButton.className = "likeButton";
+            var likeButtonId = "likeBtn_" + comment.cmt_id;
+            likeButton.id = likeButtonId;
+            likeButton.onclick = function () {
+                likeComment(comment.cmt_id);
+            }
 
             level1Div.appendChild(likeButton);
 
@@ -107,12 +129,33 @@ async function setComments() {
 
             level2Div.appendChild(commentContent);
 
+            let likeCnt = document.createElement("div");
+            likeCnt.className = "commentLikeCnt";
+            var likeCntId = "cmtLikeCnt_" + comment.cmt_id;
+            likeCnt.id = likeCntId;
+            likeCnt.textContent = comment.cmt_likecnt;
+            level2Div.appendChild(likeCnt);
+
+            let myLike = document.createElement("input");
+            myLike.type = "hidden";
+            var myLikeId = "myLike_" + comment.cmt_id;
+            myLike.id = myLikeId;
+            myLike.value = 0;
+            myLike.className = "myLike";
+            level2Div.appendChild(myLike);
+
+
             let likeButton = document.createElement("input");
             likeButton.type = "button";
-            likeButton.value = "좋아요";
+            likeButton.value = likeButtonMsg;
             likeButton.className = "likeButton";
-
+            var likeButtonId = "likeBtn_" + comment.cmt_id;
+            likeButton.id = likeButtonId;
+            likeButton.onclick = function () {
+                likeComment(comment.cmt_id);
+            }
             level2Div.appendChild(likeButton);
+
             level1Div.appendChild(level2Div);
         }
 
@@ -182,7 +225,106 @@ function postReComment(level1DivId) {
     afterPostComment();
 }
 
-function afterPostComment(){
+function afterPostComment() {
     alert("댓글 작성이 완료 되었습니다.");
     setComments();
+}
+
+// 좋아요 클릭
+async function likeComment(cmt_id) {
+    // var user_id = document.getElementById("reader_id").value;
+
+    var like = 0;
+    // cmt_id = parseInt(cmt_id);
+
+    var myLikeId = "myLike_" + cmt_id;
+    var myLike = parseInt(document.getElementById(myLikeId).value);
+    if (myLike == 0) {
+        like = 1;
+    }
+    else if (myLike > 0) {
+        like = -1;
+    }
+
+    const result = await postLikeComment(cmt_id, like);
+
+    // console.log(result);
+
+    if (result == -1) {
+        alert("로그인 하세요");
+        return;
+    }
+
+    // 좋아요 버튼 변경
+    commentLikeButton(cmt_id);
+}
+
+async function postLikeComment(cmt_id, like) {
+
+    const response = await fetch("/cunsult/postLikeComment", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ cmt_id: cmt_id, like: like })
+    });
+
+    const result = await response.json();
+
+    return result;
+
+}
+
+// 댓글에 내가 누른 좋아요 구분
+async function setCommentMyLike() {
+
+    var post_id = parseInt(document.getElementById("post_id").value);
+
+    const response = await fetch("/cunsult/getCommentMyLike", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(post_id)
+    });
+
+    const result = await response.json();
+
+    if (result.status == -1) {
+        // 로그인 정보 없음
+        return;
+    }
+
+    commentList = result.list;
+    commentList.forEach(comment => {
+
+        var myLikeId = "myLike_" + comment.cmt_id;
+        document.getElementById(myLikeId).value = 1;
+        var likeBtnId = "likeBtn_" + comment.cmt_id;
+        document.getElementById(likeBtnId).value = cancelLikeButtonMsg;
+
+        // console.log(myLikeId);
+    });
+
+
+}
+
+const likeButtonMsg = "좋아요";
+const cancelLikeButtonMsg = "좋아요 취소";
+
+// 댓글 좋아요 버튼 눌렀을 때 변화 처리
+function commentLikeButton(cmt_id) {
+    var likeBtnId = "likeBtn_" + cmt_id;
+    var myLikeId = "myLike_" + cmt_id;
+    var likeCntId = "cmtLikeCnt_" + cmt_id;
+    var cmtLikeCnt = parseInt(document.getElementById(likeCntId).textContent);
+
+
+    var myLike = document.getElementById(myLikeId).value;
+    if (myLike == 0) {
+        document.getElementById(likeBtnId).value = cancelLikeButtonMsg;
+        document.getElementById(myLikeId).value = 1;
+        document.getElementById(likeCntId).textContent = cmtLikeCnt + 1;
+    } else if (myLike > 0) {
+        document.getElementById(likeBtnId).value = likeButtonMsg;
+        document.getElementById(myLikeId).value = 0;
+        document.getElementById(likeCntId).textContent = cmtLikeCnt - 1;
+    }
+
 }

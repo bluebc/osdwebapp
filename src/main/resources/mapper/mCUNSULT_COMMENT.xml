@@ -52,5 +52,25 @@
 	order by cmt_created_at
 </select>
 
+<!-- 좋아요 -->
+		<update id="plusLikecnt" parameterType="int">
+		update cunsult_comment
+		<set>
+			cmt_likecnt = cmt_likecnt + 1
+		</set>
+		<where>
+			cmt_id = #{cmt_id}
+		</where>
+		</update>
+
+		<update id="minusLikecnt" parameterType="int">
+		update cunsult_comment
+		<set>
+			cmt_likecnt = cmt_likecnt - 1
+		</set>
+		<where>
+			cmt_id = #{cmt_id}
+		</where>
+		</update>
 
 </mapper>

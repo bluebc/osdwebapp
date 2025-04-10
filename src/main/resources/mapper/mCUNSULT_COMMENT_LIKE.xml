@@ -25,13 +25,14 @@
 	</where>
 </delete>
 
-<select id="selectByCommentAndUser" parameterType="Cunsult_Comment_LikeDto" resultType="int">
-	select count(*) from cunsult_comment_like 
-		<where>
-			cmt_id = #{cmt_id} 
-			and 
-			user_id = #{user_id}
-		</where>
+<select id="selectByUserAndIdByPost" parameterType="Map" resultMap="CunsultCommentLikeResultMap">
+	select * from cunsult_comment_like
+	<where>
+		user_id = #{user_id} 
+		and
+		cmt_id in
+			(select cmt_id from cunsult_comment where post_id = #{post_id})
+	</where>
 </select>
 		
 </mapper>
