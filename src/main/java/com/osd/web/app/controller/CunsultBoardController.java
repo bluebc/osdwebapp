@@ -53,6 +53,9 @@ public class CunsultBoardController {
     public Map<String, Object> postCunsultPost(@RequestBody Cunsult_PostDto cunsult_PostDto) {
         Map<String, Object> resultMap = new HashMap<>();
 
+        // 줄내림 처리
+        cunsult_PostDto.setPost_content(cunsult_PostDto.getPost_content().replace("\n", "<br>"));
+
         Cunsult_PostDto cunsult_PostFromDb = cunsultService.insertCunsultPost(cunsult_PostDto);
 
         resultMap.put("cunsult_post", cunsult_PostFromDb);
@@ -122,6 +125,9 @@ public class CunsultBoardController {
             cunsult_Post_LikeDto.setUser_id(user_id);
             liked = cunsultService.checkPostLiked(cunsult_Post_LikeDto);
         }
+
+        // 줄내림 처리
+        cunsult_PostDtoFromDb.setPost_content(cunsult_PostDtoFromDb.getPost_content().replace("\n", "<br>"));
 
         model.addAttribute("cunsult_post", cunsult_PostDtoFromDb);
         model.addAttribute("liked", liked);
@@ -348,6 +354,7 @@ public class CunsultBoardController {
         return result;
     }
 
+    // 좋아요 누른 댓글 리스트
     @ResponseBody
     @PostMapping("/getCommentMyLike")
     public Map<String, Object> getCommentMyLike(HttpServletRequest request, @RequestBody int post_id) {

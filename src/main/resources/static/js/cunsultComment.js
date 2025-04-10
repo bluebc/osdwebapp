@@ -1,7 +1,6 @@
 document.addEventListener("DOMContentLoaded", async function () {
     await setComments();
     await setCommentMyLike();
-
 });
 
 
@@ -328,3 +327,9 @@ function commentLikeButton(cmt_id) {
     }
 
 }
+
+
+// function formatt(){
+//     let formatted = content.replace(/\n/g, "<br>");
+//     document.querySelector('.reCommentContent').innerHTML = formatted;
+// }
