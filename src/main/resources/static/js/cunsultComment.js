@@ -4,15 +4,21 @@ document.addEventListener("DOMContentLoaded", async function () {
 });
 
 
-function writeComment() {
+async function writeComment() {
 
-    var cmt_content = document.getElementById("writeComment").value;
+    var cmt_content = document.getElementById("writeCommentContent").value;
+    console.log(cmt_content);
     var post_id = document.getElementById("post_id").value;
     var user_id = document.getElementById("reader_id").value;
     var cunsult_comment = { cmt_content: cmt_content, post_id: post_id, user_id: user_id };
 
-    postComment(cunsult_comment);
-    afterPostComment();
+    const result = await postComment(cunsult_comment);
+
+
+if(result.status == 1){
+    document.getElementById("writeCommentContent").value = "";
+}
+
 }
 
 async function postComment(cunsult_comment) {
@@ -27,9 +33,22 @@ async function postComment(cunsult_comment) {
 
     console.log("status: " + result.status);
 
+    switch (result.status) {
+        case -1:
+            alert("로그인 후 댓글을 달아주세요.");
+            return;
+        case -2:
+            alert("로그인 정보 오류");
+            return;
+        case -201:
+            alert("DB 오류");
+            return;
+        case 1:
+            alert("댓글 작성이 완료되었습니다.")
+            setComments();
+
+    }
     return result;
-
-
 }
 
 async function getCommentListByPost() {
@@ -205,7 +224,7 @@ function addReCommentWrite(level1DivId) {
 
 }
 
-function postReComment(level1DivId) {
+async function postReComment(level1DivId) {
 
     var parent_cmt_id = level1DivId.substring(4);
     var reCommentTextareaId = "re" + level1DivId;
@@ -220,14 +239,10 @@ function postReComment(level1DivId) {
         parent_cmt_id: parent_cmt_id
     };
 
-    postComment(cunsult_comment);
-    afterPostComment();
+    const result = await postComment(cunsult_comment);
+
 }
 
-function afterPostComment() {
-    alert("댓글 작성이 완료 되었습니다.");
-    setComments();
-}
 
 // 좋아요 클릭
 async function likeComment(cmt_id) {
@@ -319,10 +334,12 @@ function commentLikeButton(cmt_id) {
     if (myLike == 0) {
         document.getElementById(likeBtnId).value = cancelLikeButtonMsg;
         document.getElementById(myLikeId).value = 1;
+        //
         document.getElementById(likeCntId).textContent = cmtLikeCnt + 1;
     } else if (myLike > 0) {
         document.getElementById(likeBtnId).value = likeButtonMsg;
         document.getElementById(myLikeId).value = 0;
+        //
         document.getElementById(likeCntId).textContent = cmtLikeCnt - 1;
     }
 

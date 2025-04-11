@@ -127,7 +127,7 @@ public class CunsultBoardController {
         }
 
         // 줄내림 처리
-        cunsult_PostDtoFromDb.setPost_content(cunsult_PostDtoFromDb.getPost_content().replace("\n", "<br>"));
+        // cunsult_PostDtoFromDb.setPost_content(cunsult_PostDtoFromDb.getPost_content().replace("\n", "<br>"));
 
         model.addAttribute("cunsult_post", cunsult_PostDtoFromDb);
         model.addAttribute("liked", liked);
