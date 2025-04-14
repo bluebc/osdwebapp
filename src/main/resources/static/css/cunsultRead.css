@@ -1,0 +1,87 @@
+header .top-banner {
+  display: none;
+}
+
+.container {
+  padding: 15rem 0 15rem;
+}
+.container .content {
+  max-width: 1000px;
+  margin: 20px auto;
+  padding: 20px;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  background-color: #f9f9f9;
+}
+.container .content .title {
+  color: green;
+  font-size: 14px;
+  margin-bottom: 10px;
+}
+.container .content .post .post-title {
+  font-size: 20px;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+.container .content .post .post-meta {
+  font-size: 12px;
+  color: gray;
+  margin-bottom: 10px;
+  display: flex;
+  align-items: center;
+}
+.container .content .post .post-meta img {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  margin-right: 10px;
+}
+.container .content .post .post-content {
+  font-size: 16px;
+  margin-bottom: 20px;
+}
+.container .content .profile {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  margin-right: 10px;
+}
+.container .content .comment-section {
+  border-top: 2px solid #ddd;
+  padding-top: 10px;
+}
+.container .content .comment-section .comment-header {
+  display: flex;
+  justify-content: space-between;
+  font-size: 14px;
+  margin-bottom: 10px;
+}
+.container .content .comment-section .comment {
+  border-bottom: 1px solid #eee;
+  padding: 10px 0;
+  display: flex;
+  align-items: flex-start;
+}
+.container .content .comment-section .comment .comment-content {
+  flex-grow: 1;
+}
+.container .content .comment-section .comment .comment-content .comment-actions {
+  font-size: 12px;
+  color: gray;
+  margin-top: 5px;
+  display: flex;
+}
+.container .content .comment-section .comment .comment-content .comment-actions span {
+  margin-right: 12px;
+}
+.container .content .comment-section .comment .comment-content .comment-actions span a {
+  text-decoration-line: none;
+  color: black;
+}
+.container .content .comment-section .comment .comment-content .comment-actions .like-button {
+  cursor: pointer;
+}
+.container .content .comment-section .reply {
+  margin-left: 50px;
+  padding-left: 10px;
+}/*# sourceMappingURL=cunsultRead.css.map */
