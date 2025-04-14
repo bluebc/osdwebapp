@@ -132,8 +132,8 @@ async function postLike(post_id, like) {
 
 }
 
-const likeMsg = "좋아요 버튼";
-const unLikeMsg = "좋아요 취소 버튼";
+const likeMsg = "♡";
+const unLikeMsg = "❤︎";
 
 
 function loadLiked() {

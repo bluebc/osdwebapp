@@ -3,11 +3,11 @@
 <!DOCTYPE html>
 <html lang="ko" dir="ltr">
 
-<!-- meta  -->
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <head>
+    <!-- meta  -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>회원가입</title>
 
     <!-- css -->
