@@ -10,7 +10,7 @@
 	<result column="POST_IMAGES" property="post_images"/>
 	<result column="POST_FILES" property="post_files"/>
 	<result column="POST_VIEWCNT" property="post_viewcnt"/>
-	<result column="POST_CHILDCNT" property="post_childcnt"/>
+	<result column="POST_CMTCNT" property="post_cmtcnt"/>
 	<result column="POST_LIKECNT" property="post_likecnt"/>
 	<result column="USER_ID" property="user_id"/>
 	<result column="POST_SORT" property="post_sort"/>
@@ -20,7 +20,7 @@
 		 
 		
 		 <select id = "getCunsult_PostByid" parameterType="String"  resultMap="CunsultPostResultMap">
-		 select post_id, post_subject, post_content, post_images, post_files, post_viewcnt, post_childcnt, post_likecnt, user_id, post_sort
+		 select post_id, post_subject, post_content, post_images, post_files, post_viewcnt, post_cmtcnt, post_likecnt, user_id, post_sort
 		 from cunsult_post
 		  <where>
 		    post_id = #{post_id}
@@ -28,8 +28,8 @@
    		 </select> 	
 
 		<insert id="insert">
-			insert into cunsult_post(post_subject, post_content, post_images, post_files, post_viewcnt, post_childcnt, post_likecnt, user_id, post_sort, post_created_at, post_updated_at)
-				values(#{post_subject}, #{post_content}, #{post_images}, #{post_files}, #{post_viewcnt}, #{post_childcnt}, #{post_likecnt}, #{user_id}, #{post_sort}, #{post_created_at}, #{post_updated_at}) 
+			insert into cunsult_post(post_subject, post_content, post_images, post_files, post_viewcnt, post_cmtcnt, post_likecnt, user_id, post_sort, post_created_at, post_updated_at)
+				values(#{post_subject}, #{post_content}, #{post_images}, #{post_files}, #{post_viewcnt}, #{post_cmtcnt}, #{post_likecnt}, #{user_id}, #{post_sort}, #{post_created_at}, #{post_updated_at}) 
 		</insert>
 
 		<select id="selectBySubjectAndContentAndUserIdAndCreated" parameterType="Cunsult_PostDto" resultMap="CunsultPostResultMap">
@@ -82,9 +82,9 @@
 
 
 	<select id="selectByKeywordAndPage" parameterType="java.util.Map" resultMap="CunsultPostResultMap">
-    select post_id, post_subject, post_content, post_images, post_files, post_viewcnt, post_childcnt, post_likecnt, user_id, post_sort, post_created_at, post_updated_at from 
+    select post_id, post_subject, post_content, post_images, post_files, post_viewcnt, post_cmtcnt, post_likecnt, user_id, post_sort, post_created_at, post_updated_at from 
 		(select * from
-		(select ROW_NUMBER() over(order by post_id desc) as ROWNUM, post_id, post_subject, post_content, post_images, post_files, post_viewcnt, post_childcnt, post_likecnt, user_id, post_sort, post_created_at, post_updated_at from cunsult_post 
+		(select ROW_NUMBER() over(order by post_id desc) as ROWNUM, post_id, post_subject, post_content, post_images, post_files, post_viewcnt, post_cmtcnt, post_likecnt, user_id, post_sort, post_created_at, post_updated_at from cunsult_post 
 			where post_subject like concat('%', #{keyword}, '%')
 					or
 					post_content like concat('%', #{keyword}, '%')
@@ -164,7 +164,7 @@
 		<update id="plusChildcnt" parameterType="int">
 			update cunsult_post
 			<set>
-				post_childcnt = post_childcnt + 1
+				post_cmtcnt = post_cmtcnt + 1
 			</set>
 			<where>
 				post_id = #{post_id}
@@ -174,7 +174,7 @@
 		<update id="minusChildcnt" parameterType="int">
 			update cunsult_post
 			<set>
-				post_childcnt = post_childcnt - 1
+				post_cmtcnt = post_cmtcnt - 1
 			</set>
 			<where>
 				post_id = #{post_id}
@@ -182,9 +182,9 @@
 		</update>
 
 
-		<update id="updateChildcnt" parameterType="int">
+		<update id="updateCmtcnt" parameterType="int">
 			update CUNSULT_POST set 
-				POST_CHILDCNT = (select count(cmt_id) as post_childcnt from cunsult_comment where post_id = #{post_id} group by post_id) 
+			post_cmtcnt = (select count(cmt_id) as post_cmtcnt from cunsult_comment where post_id = #{post_id} group by post_id) 
 					where post_id = #{post_id}
 
 		</update>

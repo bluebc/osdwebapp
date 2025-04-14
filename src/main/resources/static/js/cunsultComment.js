@@ -109,6 +109,11 @@ async function setComments() {
             cmtUser.textContent = comment.user_nickname;
             level1Div.appendChild(cmtUser);
 
+            // 댓글 내용
+            let commentContent = document.createElement("p");
+            commentContent.textContent = comment.cmt_content;
+            commentContent.className = "commentContent";
+            level1Div.appendChild(commentContent);
 
             // 시간
             let createdAt = document.createElement("span");

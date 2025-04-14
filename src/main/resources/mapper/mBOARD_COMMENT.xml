@@ -17,10 +17,10 @@
 </resultMap>
 
 <select id="selectCunsultCmtByPost" parameterType="int" resultMap="BoardCommentResultMap">
-    select a.cmt_id, a.cmt_content, a.post_id, a.parent_cmt_id, a.cmt_likecnt, a.cmt_created_at, a.cmt_updated_at, b.user_id, b.user_nickname, b.user_img 
-	from cunsult_comment as a join user_info as b on a.user_id = b.user_id
-		where post_id = #{post_id}
-        order by a.cmt_created_at asc;
+    select a.CMT_ID, a.CMT_CONTENT, a.POST_ID, a.PARENT_CMT_ID, a.CMT_LIKECNT, a.CMT_CREATED_AT, a.CMT_UPDATED_AT, b.USER_ID, b.USER_NICKNAME, b.USER_IMG 
+	from CUNSULT_COMMENT as a join USER_INFO as b on a.USER_ID = b.USER_ID
+		where POST_ID = #{post_id}
+        order by a.CMT_CREATED_AT asc;
 
 
 </select>

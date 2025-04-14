@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.osd.web.app.dto.Board_CommentDto;
+import com.osd.web.app.dto.Board_PostDto;
 import com.osd.web.app.dto.Cunsult_CommentDto;
 import com.osd.web.app.dto.Cunsult_Comment_LikeDto;
 import com.osd.web.app.dto.Cunsult_PostDto;
@@ -91,7 +92,9 @@ public class CunsultBoardController {
             page = maxPage;
         }
 
-        List<Cunsult_PostDto> list = cunsultService.getCunsultPostByKeywordAndPage(keyword, page, limit);
+        // List<Cunsult_PostDto> list = cunsultService.getCunsultPostByKeywordAndPage(keyword, page, limit);
+        List<Board_PostDto> list = cunsultService.getCunsultPostByKeywordAndPage(keyword, page, limit);
+
         int count = postCount;
         resultMap.put("list", list);
         resultMap.put("count", count);
