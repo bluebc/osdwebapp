@@ -95,21 +95,25 @@ async function setComments() {
             // 임시 사이즈 지정
             cmtUserImg.style.width = "20px";
             cmtUserImg.style.height = "20px";
-            cmtUserImg.src = "../img/re1.jpg";
+            // 이미지 없을 때 기본이미지
+            if (comment.user_img == null || comment.user_img == "") {
+                cmtUserImg.src = "../img/re1.jpg";
+                // 이미지 있는 경우
+            } else {
+
+            }
             level1Div.appendChild(cmtUserImg);
 
             // 사용자명 => 닉네임으로 교체 필요
             let cmtUser = document.createElement("strong");
-            cmtUser.textContent = comment.user_id;
+            cmtUser.textContent = comment.user_nickname;
             level1Div.appendChild(cmtUser);
 
             // 댓글 내용
             let commentContent = document.createElement("p");
             commentContent.textContent = comment.cmt_content;
             commentContent.className = "commentContent";
-
             level1Div.appendChild(commentContent);
-
 
             // 시간
             let createdAt = document.createElement("span");
@@ -205,20 +209,23 @@ async function setComments() {
             level2Div.id = level2DivId;
             level2Div.className = "commentLevel2";
 
-
-//
-
             // 이미지
             let cmtUserImg = document.createElement("img");
             // 임시 사이즈 지정
             cmtUserImg.style.width = "20px";
             cmtUserImg.style.height = "20px";
-            cmtUserImg.src = "../img/re1.jpg";
+            // 이미지 없을 때 기본이미지
+            if (comment.user_img == null || comment.user_img == "") {
+                cmtUserImg.src = "../img/re1.jpg";
+                // 이미지 있는 경우
+            } else {
+
+            }
             level2Div.appendChild(cmtUserImg);
 
             // 사용자명 => 닉네임으로 교체 필요
             let cmtUser = document.createElement("strong");
-            cmtUser.textContent = comment.user_id;
+            cmtUser.textContent = comment.user_nickname;
             level2Div.appendChild(cmtUser);
 
             // 댓글 내용
@@ -296,45 +303,6 @@ async function setComments() {
                 level2Div.appendChild(deleteCmtButton);
 
             }
-
-//
-
-
-
-
-
-            // let commentContent = document.createElement("div");
-            // commentContent.textContent = comment.cmt_content;
-            // commentContent.className = "reCommentContent";
-
-            // level2Div.appendChild(commentContent);
-
-            // let likeCnt = document.createElement("div");
-            // likeCnt.className = "commentLikeCnt";
-            // var likeCntId = "cmtLikeCnt_" + comment.cmt_id;
-            // likeCnt.id = likeCntId;
-            // likeCnt.textContent = comment.cmt_likecnt;
-            // level2Div.appendChild(likeCnt);
-
-            // let myLike = document.createElement("input");
-            // myLike.type = "hidden";
-            // var myLikeId = "myLike_" + comment.cmt_id;
-            // myLike.id = myLikeId;
-            // myLike.value = 0;
-            // myLike.className = "myLike";
-            // level2Div.appendChild(myLike);
-
-
-            // let likeButton = document.createElement("input");
-            // likeButton.type = "button";
-            // likeButton.value = likeButtonMsg;
-            // likeButton.className = "likeButton";
-            // var likeButtonId = "likeBtn_" + comment.cmt_id;
-            // likeButton.id = likeButtonId;
-            // likeButton.onclick = function () {
-            //     likeComment(comment.cmt_id);
-            // }
-            // level2Div.appendChild(likeButton);
 
             level1Div.appendChild(level2Div);
         }

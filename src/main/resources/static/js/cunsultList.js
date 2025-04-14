@@ -103,7 +103,7 @@ function setCunsultListTable(list) {
         idTd.textContent = cunsult.post_id;
 
         const subjectTd = document.createElement("td");
-        subjectTd.textContent = cunsult.post_subject + " [" + cunsult.post_childcnt + "]";
+        subjectTd.textContent = cunsult.post_subject + " [" + cunsult.post_cmtcnt + "]";
         subjectTd.onclick = function () {
             // 글 읽기 기능 구현
             goCunsultRead(cunsult.post_id);
@@ -118,19 +118,8 @@ function setCunsultListTable(list) {
         const cunsultBox = document.createElement("div");
         cunsultBox.className = "cunsultBox";
 
-
-        // const userTd = document.createElement("td");
-        // userTd.textContent = cunsult.user_id;
-        // const createdTd = document.createElement("td");
-        // // createdTd.textContent = cunsult.post_created_at;
-        // const cunsultCreatedAt = new Date(cunsult.post_created_at).toISOString().slice(0, 10);
-        // createdTd.textContent = cunsultCreatedAt;
-
-        // const viewCntTd = document.createElement("td");
-        // viewCntTd.textContent = cunsult.post_viewcnt;
-
         const userTd = document.createElement("span");
-        userTd.textContent = cunsult.user_id;
+        userTd.textContent = cunsult.user_nickname;
 
         const createdTd = document.createElement("span");
         const cunsultCreatedAt = new Date(cunsult.post_created_at).toISOString().slice(0, 10);
@@ -148,9 +137,6 @@ function setCunsultListTable(list) {
 
         cunsultTr.appendChild(idTd);
         cunsultTr.appendChild(subjectTd);
-        // cunsultTr.appendChild(userTd);
-        // cunsultTr.appendChild(createdTd);
-        // cunsultTr.appendChild(viewCntTd);
         cunsultTr.appendChild(cunsultBoxTd);
 
         cunsultListTable.appendChild(cunsultTr);

@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="Board_Comment">
+
+<!-- resultType 으로 값을 반환하지 못해 resultMap 사용하여 DTO로 반환 -->
+<resultMap id="BoardCommentResultMap" type="com.osd.web.app.dto.Board_CommentDto">
+    <result column="POST_ID" property="post_id"/>
+    <result column="CMT_ID" property="cmt_id"/>
+    <result column="PARENT_CMT_ID" property="parent_cmt_id"/>
+    <result column="CMT_CONTENT" property="cmt_content"/>    
+    <result column="CMT_LIKECNT" property="cmt_likecnt"/>
+    <result column="CMT_CREATED_AT" property="cmt_created_at"/>
+    <result column="CMT_UPDATED_AT" property="cmt_updated_at"/>
+    <result column="USER_ID" property="user_id"/>
+    <result column="USER_NICKNAME" property="user_nickname"/>
+	<result column="USER_IMG" property="user_img"/>
+</resultMap>
+
+<select id="selectCunsultCmtByPost" parameterType="int" resultMap="BoardCommentResultMap">
+    select a.CMT_ID, a.CMT_CONTENT, a.POST_ID, a.PARENT_CMT_ID, a.CMT_LIKECNT, a.CMT_CREATED_AT, a.CMT_UPDATED_AT, b.USER_ID, b.USER_NICKNAME, b.USER_IMG 
+	from CUNSULT_COMMENT as a join USER_INFO as b on a.USER_ID = b.USER_ID
+		where POST_ID = #{post_id}
+        order by a.CMT_CREATED_AT asc;
+
+
+</select>
+
+
+
+
+</mapper>

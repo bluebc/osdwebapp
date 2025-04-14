@@ -10,10 +10,14 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.osd.web.app.dao.Board_CommentDao;
+import com.osd.web.app.dao.Board_PostDao;
 import com.osd.web.app.dao.Cunsult_CommentDao;
 import com.osd.web.app.dao.Cunsult_Comment_LikeDao;
 import com.osd.web.app.dao.Cunsult_PostDao;
 import com.osd.web.app.dao.Cunsult_Post_LikeDao;
+import com.osd.web.app.dto.Board_CommentDto;
+import com.osd.web.app.dto.Board_PostDto;
 import com.osd.web.app.dto.Cunsult_CommentDto;
 import com.osd.web.app.dto.Cunsult_Comment_LikeDto;
 import com.osd.web.app.dto.Cunsult_PostDto;
@@ -38,7 +42,7 @@ public class CunsultService {
         cunsult_PostDto.setPost_updated_at(post_created_at);
 
         cunsult_PostDto.setPost_viewcnt(0); // 조회수
-        cunsult_PostDto.setPost_childcnt(0); // 댓글수
+        cunsult_PostDto.setPost_cmtcnt(0); // 댓글수
 
         int inserted = cunsult_PostDao.insert(cunsult_PostDto);
 
@@ -53,8 +57,17 @@ public class CunsultService {
         return cunsult_PostDao.selectById(post_id);
     }
 
-    public List<Cunsult_PostDto> getCunsultPostByKeywordAndPage(String keyword, int page, int limit) {
-        return cunsult_PostDao.selectByKeywordAndPage(keyword, page, limit);
+    // 25.04.14 이전
+    // public List<Cunsult_PostDto> getCunsultPostByKeywordAndPage(String keyword,
+    // int page, int limit) {
+    // return cunsult_PostDao.selectByKeywordAndPage(keyword, page, limit);
+    // }
+
+    @Autowired
+    private Board_PostDao board_PostDao;
+
+    public List<Board_PostDto> getCunsultPostByKeywordAndPage(String keyword, int page, int limit) {
+        return board_PostDao.selectCunsultPostByKeywordAndPage(keyword, page, limit);
     }
 
     public int getCunsultPostCountByKeyword(String keyword) {
@@ -137,8 +150,16 @@ public class CunsultService {
         return cunsult_CommentDao.insert(cunsult_CommentDto);
     }
 
-    public List<Cunsult_CommentDto> getCommentByPost(int post_id) {
-        return cunsult_CommentDao.selectByPost(post_id);
+    // // 25.04.14 이전
+    // public List<Cunsult_CommentDto> getCommentByPost(int post_id) {
+    // return cunsult_CommentDao.selectByPost(post_id);
+    // }
+
+    @Autowired
+    private Board_CommentDao board_CommentDao;
+
+    public List<Board_CommentDto> getCommentByPost(int post_id) {
+        return board_CommentDao.selectCunsultCmtByPost(post_id);
     }
 
     // ==================== 댓글 좋아요 ====================
