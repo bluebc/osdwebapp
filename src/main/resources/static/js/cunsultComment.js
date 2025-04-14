@@ -14,10 +14,10 @@ async function writeComment() {
 
     const result = await postComment(cunsult_comment);
 
-
-if(result.status == 1){
-    document.getElementById("writeCommentContent").value = "";
-}
+    // 댓글 등록 후 작성 내용 제거
+    if (result.status == 1) {
+        document.getElementById("writeCommentContent").value = "";
+    }
 
 }
 
@@ -51,6 +51,7 @@ async function postComment(cunsult_comment) {
     return result;
 }
 
+// 전체 댓글 데이터
 async function getCommentListByPost() {
     var post_id = document.getElementById("post_id").value;
     const response = await fetch("/cunsult/getCommentListByPost", {
@@ -60,15 +61,12 @@ async function getCommentListByPost() {
     });
 
     const result = await response.json();
-    // console.log(result);
-
     const commentList = result.list;
-    // console.log(commentList);
 
     return commentList;
-
 }
 
+// 댓글 출력
 async function setComments() {
 
     const commentList = await getCommentListByPost();
@@ -81,6 +79,7 @@ async function setComments() {
 
     commentList.forEach(comment => {
 
+        // 원댓글
         if (comment.parent_cmt_id == 0) {
             let level1Div = document.createElement("div");
             var level1DivId = "cmt_" + comment.cmt_id;
@@ -132,7 +131,10 @@ async function setComments() {
             level1Div.appendChild(reReplyButton);
 
             displayCommentDiv.appendChild(level1Div);
+
+            // 대댓글
         } else {
+
             level1DivId = "cmt_" + comment.parent_cmt_id;
             // console.log(level1DivId);
             let level1Div = document.getElementById(level1DivId);
@@ -181,27 +183,24 @@ async function setComments() {
 
 }
 
+// 댓글 작성 창 열기
 function addReCommentWrite(level1DivId) {
     const level1Div = document.getElementById(level1DivId);
-    // 댓글창 열고 닫기 전환 필요
+
     var re_cmt_id = "re" + level1DivId;
 
 
-
+    // 열려있는 댓글 창 닫기
     if (document.getElementById(re_cmt_id) != null) {
-        // 클래스 이름이 'targetDiv'인 모든 요소 선택
+
         const divs = document.querySelectorAll(".writeReComment");
-        // 각 요소를 순회하며 제거
         divs.forEach(div => div.remove());
 
         return;
     }
-    // 클래스 이름이 'targetDiv'인 모든 요소 선택
+
     const divs = document.querySelectorAll(".writeReComment");
-    // 각 요소를 순회하며 제거
     divs.forEach(div => div.remove());
-
-
 
     const writeReCommentDiv = document.createElement("div");
     writeReCommentDiv.className = "writeReComment"
