@@ -1,5 +1,6 @@
 package com.osd.web.app.controller;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -14,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.osd.web.app.dto.Cunsult_CommentDto;
+import com.osd.web.app.dto.Cunsult_Comment_LikeDto;
 import com.osd.web.app.dto.Cunsult_PostDto;
 import com.osd.web.app.dto.Cunsult_Post_LikeDto;
 import com.osd.web.app.service.CunsultService;
@@ -50,6 +52,9 @@ public class CunsultBoardController {
     @PostMapping("/postCunsultPost")
     public Map<String, Object> postCunsultPost(@RequestBody Cunsult_PostDto cunsult_PostDto) {
         Map<String, Object> resultMap = new HashMap<>();
+
+        // 줄내림 처리
+        cunsult_PostDto.setPost_content(cunsult_PostDto.getPost_content().replace("\n", "<br>"));
 
         Cunsult_PostDto cunsult_PostFromDb = cunsultService.insertCunsultPost(cunsult_PostDto);
 
@@ -121,8 +126,12 @@ public class CunsultBoardController {
             liked = cunsultService.checkPostLiked(cunsult_Post_LikeDto);
         }
 
+        // 줄내림 처리
+        // cunsult_PostDtoFromDb.setPost_content(cunsult_PostDtoFromDb.getPost_content().replace("\n", "<br>"));
+
         model.addAttribute("cunsult_post", cunsult_PostDtoFromDb);
         model.addAttribute("liked", liked);
+        model.addAttribute("reader_id", user_id);
 
         return "cunsultRead";
     }
@@ -263,35 +272,114 @@ public class CunsultBoardController {
     // 댓글
     @ResponseBody
     @PostMapping("/postComment")
-    public Map<String, Object> postComment(HttpServletRequest request, @RequestBody Cunsult_CommentDto cunsult_CommentDto) {
+    public Map<String, Object> postComment(HttpServletRequest request,
+            @RequestBody Cunsult_CommentDto cunsult_CommentDto) {
         Map<String, Object> resultMap = new HashMap<>();
         // 코드 미실행
         int status = 0;
+        // -1 로그인 오류
         // 객체 정보 오류
-        // -100 절차 순 ++ 
+        // -100
+        // -200 절차 순 ++
         // DB 오류
-        // -200
-        
+        // -300
+
         Map<String, Object> loginSessionInfo = loginService.getLoginSessionInfo(request);
         String login_user_id = (String) loginSessionInfo.get("login_user_id");
         // 로그인 세션 확인
-        if(login_user_id==null || login_user_id.equals("")){
-            status = -101;
+        if (login_user_id == null || login_user_id.equals("")) {
+            status = -1;
+            resultMap.put("status", status);
+            return resultMap;
         }
         String user_id = cunsult_CommentDto.getUser_id();
-        if(!user_id.equals(login_user_id)){
-            status = -102;
+        if (!user_id.equals(login_user_id)) {
+            status = -2;
+            resultMap.put("status", status);
+            return resultMap;
         }
 
         int inserted = cunsultService.insertComment(cunsult_CommentDto);
-        if(inserted==0){
-            status = -200;
+        if (inserted == 0) {
+            status = -201;
+            resultMap.put("status", status);
+            return resultMap;
         }
         status = inserted;
 
         resultMap.put("status", status);
 
+        return resultMap;
+    }
 
+    @ResponseBody
+    @PostMapping("/getCommentListByPost")
+    public Map<String, Object> getCommentListByPost(@RequestBody int post_id) {
+        Map<String, Object> resultMap = new HashMap<>();
+
+        List<Cunsult_CommentDto> list = cunsultService.getCommentByPost(post_id);
+
+        resultMap.put("list", list);
+
+        return resultMap;
+    }
+
+    // 댓글 좋아요
+    @ResponseBody
+    @PostMapping("/postLikeComment")
+    public int postLikeComment(HttpServletRequest request, @RequestBody Map<String, Object> requestMap) {
+        int result = 0;
+
+        int cmt_id = (int) requestMap.get("cmt_id");
+        int like = (int) requestMap.get("like");
+
+        HttpSession session = request.getSession();
+
+        if (session.getAttribute("login_user_id") == null
+                || ((String) session.getAttribute("login_user_id")).equals("")) {
+            result = -1;
+            return result;
+        }
+
+        String user_id = (String) session.getAttribute("login_user_id");
+        Cunsult_Comment_LikeDto cunsult_Comment_LikeDto = new Cunsult_Comment_LikeDto();
+        cunsult_Comment_LikeDto.setCmt_id(cmt_id);
+        cunsult_Comment_LikeDto.setUser_id(user_id);
+
+        if (like == 1) {
+            result = cunsultService.insertCommentLike(cunsult_Comment_LikeDto);
+        } else if (like == -1) {
+            result = cunsultService.deleteCommentLike(cunsult_Comment_LikeDto);
+        }
+        return result;
+    }
+
+    // 좋아요 누른 댓글 리스트
+    @ResponseBody
+    @PostMapping("/getCommentMyLike")
+    public Map<String, Object> getCommentMyLike(HttpServletRequest request, @RequestBody int post_id) {
+        Map<String, Object> resultMap = new HashMap<>();
+
+        int status = 0;
+
+        HttpSession session = request.getSession();
+
+        if (session.getAttribute("login_user_id") == null
+                || ((String) session.getAttribute("login_user_id")).equals("")) {
+            status = -1;
+            resultMap.put("status", status);
+            return resultMap;
+        }
+
+        String user_id = (String) session.getAttribute("login_user_id");
+
+        Map<String, Object> parameterMap = new HashMap<>();
+        parameterMap.put("user_id", user_id);
+        parameterMap.put("post_id", post_id);
+
+        List<Cunsult_Comment_LikeDto> list = cunsultService.getCommentMyLike(parameterMap);
+
+        resultMap.put("list", list);
 
         return resultMap;
     }

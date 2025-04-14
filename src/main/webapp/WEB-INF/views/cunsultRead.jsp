@@ -79,8 +79,8 @@ ${cunsult_post.post_files}
         <div class = "commentContent">
             부모 댓글 내용
         </div>
-        <input type = "button" value = "좋아요">
-            <input type = "button" value = "대댓글">
+        <input type = "button" value = "좋아요" class = "likeButton">
+            <input type = "button" value = "대댓글" class = "reReplyButton">
         <div class = "commentLevel2" id = "cmt_id2">
             <div class = "commentContent">
             자식 댓글 내용
@@ -89,8 +89,8 @@ ${cunsult_post.post_files}
         </div>
     </div>
 </div>
-<div id = "postComment">
-    <textarea class = "writeComment" placeholder  = "댓글을 작성하세요" id = "writeComment"></textarea>
+<div id = "writeComment">
+    <textarea class = "writeCommentContent" placeholder  = "댓글을 작성하세요" id = "writeCommentContent"></textarea>
             <input type = "button" value = "작성 완료" onclick = "writeComment()">
 </div>
 </div>
