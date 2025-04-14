@@ -11,7 +11,6 @@ header .top-banner {
   padding: 20px;
   border: 1px solid #ddd;
   border-radius: 10px;
-  background-color: #f9f9f9;
 }
 .container .content .title {
   color: green;
@@ -24,27 +23,37 @@ header .top-banner {
   margin-bottom: 10px;
 }
 .container .content .post .post-meta {
-  font-size: 12px;
-  color: gray;
   margin-bottom: 10px;
   display: flex;
   align-items: center;
 }
-.container .content .post .post-meta img {
-  width: 30px;
-  height: 30px;
+.container .content .post .post-meta .thumb {
+  width: 45px;
+  height: 45px;
   border-radius: 50%;
   margin-right: 10px;
+}
+.container .content .post .post-meta .infoItem .nickname {
+  font-size: 14px;
+}
+.container .content .post .post-meta .infoItem .article-info {
+  font-size: 12px;
+  color: gray;
 }
 .container .content .post .post-content {
+  white-space: break-spaces;
   font-size: 16px;
-  margin-bottom: 20px;
+  margin: 2rem 0;
 }
-.container .content .profile {
-  width: 30px;
-  height: 30px;
-  border-radius: 50%;
-  margin-right: 10px;
+.container .content .post #modOrDel {
+  margin-bottom: 2rem;
+}
+.container .content .post #modOrDel input[type=button] {
+  margin: 2px;
+  padding: 5px 15px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  cursor: pointer;
 }
 .container .content .comment-section {
   border-top: 2px solid #ddd;
@@ -56,32 +65,70 @@ header .top-banner {
   font-size: 14px;
   margin-bottom: 10px;
 }
-.container .content .comment-section .comment {
-  border-bottom: 1px solid #eee;
-  padding: 10px 0;
-  display: flex;
-  align-items: flex-start;
+.container .content .comment-section #comment #displayComment .commentLevel1 .commentContent {
+  white-space: pre-wrap;
+  padding: 8px;
+  border: 1px solid #ccc;
+  background-color: #fdfdfd;
+  margin-bottom: 5px;
+  border-radius: 4px;
 }
-.container .content .comment-section .comment .comment-content {
+.container .content .comment-section #comment #displayComment .commentLevel1 .comment {
+  display: flex;
+}
+.container .content .comment-section #comment #displayComment .commentLevel1 .reply {
+  display: flex;
+  margin-left: 50px;
+  padding-left: 10px;
+}
+.container .content .comment-section #comment #displayComment .commentLevel1 div {
+  margin-bottom: 12px;
+}
+.container .content .comment-section #comment #displayComment .commentLevel1 div .profile {
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+  margin-right: 10px;
+}
+.container .content .comment-section #comment #displayComment .commentLevel1 div .comment-content {
   flex-grow: 1;
 }
-.container .content .comment-section .comment .comment-content .comment-actions {
+.container .content .comment-section #comment #displayComment .commentLevel1 div .comment-content p {
+  margin: 10px 0;
+}
+.container .content .comment-section #comment #displayComment .commentLevel1 div .comment-content .comment-actions {
   font-size: 12px;
   color: gray;
   margin-top: 5px;
   display: flex;
 }
-.container .content .comment-section .comment .comment-content .comment-actions span {
+.container .content .comment-section #comment #displayComment .commentLevel1 div .comment-content .comment-actions span {
   margin-right: 12px;
 }
-.container .content .comment-section .comment .comment-content .comment-actions span a {
+.container .content .comment-section #comment #displayComment .commentLevel1 div .comment-content .comment-actions span a {
   text-decoration-line: none;
   color: black;
 }
-.container .content .comment-section .comment .comment-content .comment-actions .like-button {
+.container .content .comment-section #comment #displayComment .commentLevel1 div .comment-content .comment-actions .like-button {
   cursor: pointer;
 }
-.container .content .comment-section .reply {
-  margin-left: 50px;
+.container .content .comment-section #comment #displayComment .commentLevel1 .commentLevel2 {
+  margin-top: 10px;
+  margin-left: 40px;
+  border-left: 2px solid #ddd;
   padding-left: 10px;
+  background-color: #fff;
+}
+.container .content .comment-section #comment #writeComment textarea {
+  width: 100%;
+  height: 60px;
+  resize: vertical;
+  padding: 5px;
+  box-sizing: border-box;
+  margin-bottom: 5px;
+}
+.container .content .comment-section #comment #writeComment input[type=button] {
+  margin-right: 5px;
+  padding: 5px 10px;
+  cursor: pointer;
 }/*# sourceMappingURL=cunsultRead.css.map */

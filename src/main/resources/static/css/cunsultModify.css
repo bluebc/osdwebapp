@@ -14,6 +14,9 @@ header .top-banner {
 .container .content form table {
   width: 100%;
 }
+.container .content form table tr td {
+  line-height: 1.7;
+}
 .container .content form table tr td hr {
   margin: 2rem 0;
   border: 0;
