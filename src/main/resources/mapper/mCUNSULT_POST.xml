@@ -161,5 +161,32 @@
 		</where>
 		</update>
 
+		<update id="plusChildcnt" parameterType="int">
+			update cunsult_post
+			<set>
+				post_childcnt = post_childcnt + 1
+			</set>
+			<where>
+				post_id = #{post_id}
+			</where>
+		</update>
+
+		<update id="minusChildcnt" parameterType="int">
+			update cunsult_post
+			<set>
+				post_childcnt = post_childcnt - 1
+			</set>
+			<where>
+				post_id = #{post_id}
+			</where>
+		</update>
+
+
+		<update id="updateChildcnt" parameterType="int">
+			update CUNSULT_POST set 
+				POST_CHILDCNT = (select count(cmt_id) as post_childcnt from cunsult_comment where post_id = #{post_id} group by post_id) 
+					where post_id = #{post_id}
+
+		</update>
 		
 </mapper>

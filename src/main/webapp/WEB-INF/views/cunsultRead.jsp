@@ -7,17 +7,22 @@
     <title>Document</title>
 
 
-    <!--js-->
-    <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
-    <script src="http://code.jquery.com/jquery-latest.min.js"></script>
-    <script src ="${pageContext.request.contextPath}/js/cunsultRead.js"></script>
-    <script src ="${pageContext.request.contextPath}/js/cunsultComment.js"></script>
+
 </head>
 
 <body>
     
 <input type = "hidden" id = "post_id" value = "${cunsult_post.post_id}">
 <input type = "hidden" id = "user_id" value = "${cunsult_post.user_id}">
+<input type = "hidden" id = "reader_id" value = "${reader_id}">
+
+<%-- jstl 값 load 후 js load --%>
+
+    <!--js-->
+    <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
+    <script src="http://code.jquery.com/jquery-latest.min.js"></script>
+    <script src ="${pageContext.request.contextPath}/js/cunsultRead.js"></script>
+    <script src ="${pageContext.request.contextPath}/js/cunsultComment.js"></script>
 
 <div>
 제목 ${cunsult_post.post_subject}
@@ -73,7 +78,7 @@ ${cunsult_post.post_files}
 <br>
 
 <div id = "comment">
-<input type = "hidden" id = "reader_id" value = "${reader_id}">
+
 <div id = "displayComment">
     <div class = "commentLevel1" id = "cmt_id1">
         <div class = "commentContent">
