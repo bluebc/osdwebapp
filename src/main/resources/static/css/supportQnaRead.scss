@@ -188,3 +188,21 @@ header{
         }
     }
 }
+
+
+/* 768px*/
+@include itablet{
+    header{
+        .top-banner{
+            display: block;
+        }
+    } 
+}
+
+@include itablet-landscape{
+    header{
+        .top-banner{
+            display: block;
+        }
+    }  
+} 
