@@ -10,24 +10,21 @@
     <title>상담 & 게시판</title>
 
 
-    <!-- css -->
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/reset.css">
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/cunsultRead.css">
+</head>
 
-    <!--favicon--->
-    <link href="img/favicon.ico" rel="icon">
+<body>
+    
+<input type = "hidden" id = "post_id" value = "${cunsult_post.post_id}">
+<input type = "hidden" id = "user_id" value = "${cunsult_post.user_id}">
+<input type = "hidden" id = "reader_id" value = "${reader_id}">
+
+<%-- jstl 값 load 후 js load --%>
 
     <!--js-->
     <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
     <script src="http://code.jquery.com/jquery-latest.min.js"></script>
     <script src ="${pageContext.request.contextPath}/js/cunsultRead.js"></script>
     <script src ="${pageContext.request.contextPath}/js/cunsultComment.js"></script>
-</head>
-
-<body>
-    
-<!-- header -->
-<jsp:include page="header.jsp"></jsp:include>
 
 <div class="container">
     <div class="content">
@@ -57,6 +54,16 @@
         <div class="comment-header">
             <span>댓글 n개</span>
             <span>정렬: <a href="#">등록순</a> | <a href="#">좋아요순</a></span>
+<br>
+<br>
+<br>
+
+<div id = "comment">
+
+<div id = "displayComment">
+    <div class = "commentLevel1" id = "cmt_id1">
+        <div class = "commentContent">
+            부모 댓글 내용
         </div>
         
         <div class="comment">

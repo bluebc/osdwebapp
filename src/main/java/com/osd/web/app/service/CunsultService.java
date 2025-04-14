@@ -179,4 +179,12 @@ public class CunsultService {
         return cunsult_Comment_LikeDao.selectByUserAndIdByPost(parameterMap);
     }
 
+    // 댓글 수
+    public int plusChildcnt(int post_id) {
+        return cunsult_PostDao.plusChildcnt(post_id);
+    }
+
+    public int minusChildcnt(int post_id) {
+        return cunsult_PostDao.minusChildcnt(post_id);
+    }
 }

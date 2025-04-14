@@ -71,16 +71,31 @@ public class Cunsult_PostDao {
     }
 
     // 조회수
-    public int updateViewcnt(int post_id){
+    public int updateViewcnt(int post_id) {
         return session.update("Cunsult_Post.updateViewcnt", post_id);
     }
 
     // 좋아요
-    public int plusLikecnt(int post_id){
+    public int plusLikecnt(int post_id) {
         return session.update("Cunsult_Post.plusLikecnt", post_id);
     }
-    public int minusLikecnt(int post_id){
+
+    public int minusLikecnt(int post_id) {
         return session.update("Cunsult_Post.minusLikecnt", post_id);
+    }
+
+    // 댓글
+    public int plusChildcnt(int post_id) {
+        return session.update("Cunsult_Post.plusChildcnt", post_id);
+    }
+
+    public int minusChildcnt(int post_id) {
+        return session.update("Cunsult_Post.minusChildcnt", post_id);
+    }
+
+    // 댓글 수 업데이트 (미사용)
+    public int updateChildcnt(int post_id){
+        return session.update("Cunsult_Post.updateChildcnt", post_id);
     }
 
 }

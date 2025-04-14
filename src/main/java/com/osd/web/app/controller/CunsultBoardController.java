@@ -305,6 +305,11 @@ public class CunsultBoardController {
             resultMap.put("status", status);
             return resultMap;
         }
+
+        // 댓글 카운트
+        int post_id = cunsult_CommentDto.getPost_id();
+        int updated = cunsultService.plusChildcnt(post_id);
+
         status = inserted;
 
         resultMap.put("status", status);

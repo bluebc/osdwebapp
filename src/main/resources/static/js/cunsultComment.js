@@ -1,7 +1,10 @@
+const reader_id = document.getElementById("reader_id").value;
+
 document.addEventListener("DOMContentLoaded", async function () {
     await setComments();
     await setCommentMyLike();
 });
+
 
 
 async function writeComment() {
@@ -9,7 +12,8 @@ async function writeComment() {
     var cmt_content = document.getElementById("writeCommentContent").value;
     console.log(cmt_content);
     var post_id = document.getElementById("post_id").value;
-    var user_id = document.getElementById("reader_id").value;
+    // var user_id = document.getElementById("reader_id").value;
+    var user_id = reader_id;
     var cunsult_comment = { cmt_content: cmt_content, post_id: post_id, user_id: user_id };
 
     const result = await postComment(cunsult_comment);
@@ -86,28 +90,55 @@ async function setComments() {
             level1Div.id = level1DivId;
             level1Div.className = "commentLevel1";
 
-            let commentContent = document.createElement("div");
+            // 이미지
+            let cmtUserImg = document.createElement("img");
+            // 임시 사이즈 지정
+            cmtUserImg.style.width = "20px";
+            cmtUserImg.style.height = "20px";
+            cmtUserImg.src = "../img/re1.jpg";
+            level1Div.appendChild(cmtUserImg);
+
+            // 사용자명 => 닉네임으로 교체 필요
+            let cmtUser = document.createElement("strong");
+            cmtUser.textContent = comment.user_id;
+            level1Div.appendChild(cmtUser);
+
+            // 댓글 내용
+            let commentContent = document.createElement("p");
             commentContent.textContent = comment.cmt_content;
             commentContent.className = "commentContent";
 
             level1Div.appendChild(commentContent);
 
-            let likeCnt = document.createElement("div");
-            likeCnt.className = "commentLikeCnt";
-            var likeCntId = "cmtLikeCnt_" + comment.cmt_id;
-            likeCnt.id = likeCntId;
-            likeCnt.textContent = comment.cmt_likecnt;
-            level1Div.appendChild(likeCnt);
 
-            let myLike = document.createElement("input");
-            myLike.type = "hidden";
-            var myLikeId = "myLike_" + comment.cmt_id;
-            myLike.id = myLikeId;
-            myLike.value = 0;
-            myLike.className = "myLike";
-            level1Div.appendChild(myLike);
+            // 시간
+            let createdAt = document.createElement("span");
+            createdAt.className = "commentCreatedAt";
+            let cmtCreatedAt = new Date(comment.cmt_created_at);
+            let formattedCmtCreatedAt = cmtCreatedAt.getFullYear() + '-' +
+                String(cmtCreatedAt.getMonth() + 1).padStart(2, '0') + '-' +
+                String(cmtCreatedAt.getDate()).padStart(2, '0') + ' ' +
+                String(cmtCreatedAt.getHours()).padStart(2, '0') + ':' +
+                String(cmtCreatedAt.getMinutes()).padStart(2, '0');
+            // String(cmtCreatedAt.getMinutes()).padStart(2, '0') + ':' +
+            // String(cmtCreatedAt.getSeconds()).padStart(2, '0');
+            createdAt.textContent = formattedCmtCreatedAt;
+            level1Div.appendChild(createdAt);
 
 
+            // 대댓글 버튼
+            let reReplyButton = document.createElement("span");
+            // reReplyButton.type = "button";
+            // reReplyButton.value = "답글쓰기";
+            reReplyButton.textContent = "답글쓰기";
+            reReplyButton.className = "reReplyButton";
+            reReplyButton.onclick = function () {
+                addReCommentWrite(level1DivId);
+            }
+            level1Div.appendChild(reReplyButton);
+
+
+            // 좋아요 버튼
             let likeButton = document.createElement("input");
             likeButton.type = "button";
             likeButton.value = likeButtonMsg;
@@ -117,18 +148,49 @@ async function setComments() {
             likeButton.onclick = function () {
                 likeComment(comment.cmt_id);
             }
-
             level1Div.appendChild(likeButton);
 
-            let reReplyButton = document.createElement("input");
-            reReplyButton.type = "button";
-            reReplyButton.value = "대댓글";
-            reReplyButton.className = "likeButton";
-            reReplyButton.onclick = function () {
-                addReCommentWrite(level1DivId);
+            // 좋아요 수
+            let likeCnt = document.createElement("span");
+            likeCnt.className = "commentLikeCnt";
+            var likeCntId = "cmtLikeCnt_" + comment.cmt_id;
+            likeCnt.id = likeCntId;
+            likeCnt.textContent = comment.cmt_likecnt;
+            level1Div.appendChild(likeCnt);
+
+            // 내가 좋아요 누름
+            let myLike = document.createElement("input");
+            myLike.type = "hidden";
+            var myLikeId = "myLike_" + comment.cmt_id;
+            myLike.id = myLikeId;
+            myLike.value = 0;
+            myLike.className = "myLike";
+            level1Div.appendChild(myLike);
+
+            if (reader_id == comment.user_id) {
+
+                // 수정
+                let modifyCmtButton = document.createElement("input");
+                modifyCmtButton.type = "button";
+                modifyCmtButton.value = "수정";
+                // modifyCmtButton.style.display = "none";
+                modifyCmtButton.onclick = function () {
+                    alert("댓글 수정버튼");
+                }
+                level1Div.appendChild(modifyCmtButton);
+
+                // 삭제
+                let deleteCmtButton = document.createElement("input");
+                deleteCmtButton.type = "button";
+                deleteCmtButton.value = "삭제";
+                // deleteCmtButton.style.display = "none";
+                deleteCmtButton.onclick = function () {
+                    alert("댓글 삭제버튼");
+                }
+                level1Div.appendChild(deleteCmtButton);
+
             }
 
-            level1Div.appendChild(reReplyButton);
 
             displayCommentDiv.appendChild(level1Div);
 
@@ -143,28 +205,46 @@ async function setComments() {
             level2Div.id = level2DivId;
             level2Div.className = "commentLevel2";
 
-            let commentContent = document.createElement("div");
+
+//
+
+            // 이미지
+            let cmtUserImg = document.createElement("img");
+            // 임시 사이즈 지정
+            cmtUserImg.style.width = "20px";
+            cmtUserImg.style.height = "20px";
+            cmtUserImg.src = "../img/re1.jpg";
+            level2Div.appendChild(cmtUserImg);
+
+            // 사용자명 => 닉네임으로 교체 필요
+            let cmtUser = document.createElement("strong");
+            cmtUser.textContent = comment.user_id;
+            level2Div.appendChild(cmtUser);
+
+            // 댓글 내용
+            let commentContent = document.createElement("p");
             commentContent.textContent = comment.cmt_content;
-            commentContent.className = "reCommentContent";
+            commentContent.className = "commentContent";
 
             level2Div.appendChild(commentContent);
 
-            let likeCnt = document.createElement("div");
-            likeCnt.className = "commentLikeCnt";
-            var likeCntId = "cmtLikeCnt_" + comment.cmt_id;
-            likeCnt.id = likeCntId;
-            likeCnt.textContent = comment.cmt_likecnt;
-            level2Div.appendChild(likeCnt);
 
-            let myLike = document.createElement("input");
-            myLike.type = "hidden";
-            var myLikeId = "myLike_" + comment.cmt_id;
-            myLike.id = myLikeId;
-            myLike.value = 0;
-            myLike.className = "myLike";
-            level2Div.appendChild(myLike);
+            // 시간
+            let createdAt = document.createElement("span");
+            createdAt.className = "commentCreatedAt";
+            let cmtCreatedAt = new Date(comment.cmt_created_at);
+            let formattedCmtCreatedAt = cmtCreatedAt.getFullYear() + '-' +
+                String(cmtCreatedAt.getMonth() + 1).padStart(2, '0') + '-' +
+                String(cmtCreatedAt.getDate()).padStart(2, '0') + ' ' +
+                String(cmtCreatedAt.getHours()).padStart(2, '0') + ':' +
+                String(cmtCreatedAt.getMinutes()).padStart(2, '0');
+            // String(cmtCreatedAt.getMinutes()).padStart(2, '0') + ':' +
+            // String(cmtCreatedAt.getSeconds()).padStart(2, '0');
+            createdAt.textContent = formattedCmtCreatedAt;
+            level2Div.appendChild(createdAt);
 
 
+            // 좋아요 버튼
             let likeButton = document.createElement("input");
             likeButton.type = "button";
             likeButton.value = likeButtonMsg;
@@ -175,6 +255,86 @@ async function setComments() {
                 likeComment(comment.cmt_id);
             }
             level2Div.appendChild(likeButton);
+
+            // 좋아요 수
+            let likeCnt = document.createElement("span");
+            likeCnt.className = "commentLikeCnt";
+            var likeCntId = "cmtLikeCnt_" + comment.cmt_id;
+            likeCnt.id = likeCntId;
+            likeCnt.textContent = comment.cmt_likecnt;
+            level2Div.appendChild(likeCnt);
+
+            // 내가 좋아요 누름
+            let myLike = document.createElement("input");
+            myLike.type = "hidden";
+            var myLikeId = "myLike_" + comment.cmt_id;
+            myLike.id = myLikeId;
+            myLike.value = 0;
+            myLike.className = "myLike";
+            level2Div.appendChild(myLike);
+
+            if (reader_id == comment.user_id) {
+
+                // 수정
+                let modifyCmtButton = document.createElement("input");
+                modifyCmtButton.type = "button";
+                modifyCmtButton.value = "수정";
+                // modifyCmtButton.style.display = "none";
+                modifyCmtButton.onclick = function () {
+                    alert("댓글 수정버튼");
+                }
+                level2Div.appendChild(modifyCmtButton);
+
+                // 삭제
+                let deleteCmtButton = document.createElement("input");
+                deleteCmtButton.type = "button";
+                deleteCmtButton.value = "삭제";
+                // deleteCmtButton.style.display = "none";
+                deleteCmtButton.onclick = function () {
+                    alert("댓글 삭제버튼");
+                }
+                level2Div.appendChild(deleteCmtButton);
+
+            }
+
+//
+
+
+
+
+
+            // let commentContent = document.createElement("div");
+            // commentContent.textContent = comment.cmt_content;
+            // commentContent.className = "reCommentContent";
+
+            // level2Div.appendChild(commentContent);
+
+            // let likeCnt = document.createElement("div");
+            // likeCnt.className = "commentLikeCnt";
+            // var likeCntId = "cmtLikeCnt_" + comment.cmt_id;
+            // likeCnt.id = likeCntId;
+            // likeCnt.textContent = comment.cmt_likecnt;
+            // level2Div.appendChild(likeCnt);
+
+            // let myLike = document.createElement("input");
+            // myLike.type = "hidden";
+            // var myLikeId = "myLike_" + comment.cmt_id;
+            // myLike.id = myLikeId;
+            // myLike.value = 0;
+            // myLike.className = "myLike";
+            // level2Div.appendChild(myLike);
+
+
+            // let likeButton = document.createElement("input");
+            // likeButton.type = "button";
+            // likeButton.value = likeButtonMsg;
+            // likeButton.className = "likeButton";
+            // var likeButtonId = "likeBtn_" + comment.cmt_id;
+            // likeButton.id = likeButtonId;
+            // likeButton.onclick = function () {
+            //     likeComment(comment.cmt_id);
+            // }
+            // level2Div.appendChild(likeButton);
 
             level1Div.appendChild(level2Div);
         }
@@ -349,3 +509,9 @@ function commentLikeButton(cmt_id) {
 //     let formatted = content.replace(/\n/g, "<br>");
 //     document.querySelector('.reCommentContent').innerHTML = formatted;
 // }
+
+
+// 댓글 수정
+function modifyComment(cmt_id) {
+
+}

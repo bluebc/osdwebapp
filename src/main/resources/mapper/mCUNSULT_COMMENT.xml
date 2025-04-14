@@ -72,5 +72,5 @@
 			cmt_id = #{cmt_id}
 		</where>
 		</update>
-
+		
 </mapper>
