@@ -10,10 +10,12 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.osd.web.app.dao.Board_CommentDao;
 import com.osd.web.app.dao.Cunsult_CommentDao;
 import com.osd.web.app.dao.Cunsult_Comment_LikeDao;
 import com.osd.web.app.dao.Cunsult_PostDao;
 import com.osd.web.app.dao.Cunsult_Post_LikeDao;
+import com.osd.web.app.dto.Board_CommentDto;
 import com.osd.web.app.dto.Cunsult_CommentDto;
 import com.osd.web.app.dto.Cunsult_Comment_LikeDto;
 import com.osd.web.app.dto.Cunsult_PostDto;
@@ -137,8 +139,16 @@ public class CunsultService {
         return cunsult_CommentDao.insert(cunsult_CommentDto);
     }
 
-    public List<Cunsult_CommentDto> getCommentByPost(int post_id) {
-        return cunsult_CommentDao.selectByPost(post_id);
+    // // 25.04.14 이전
+    // public List<Cunsult_CommentDto> getCommentByPost(int post_id) {
+    //     return cunsult_CommentDao.selectByPost(post_id);
+    // }
+
+    @Autowired
+    private Board_CommentDao board_CommentDao;
+
+    public List<Board_CommentDto> getCommentByPost(int post_id){
+        return board_CommentDao.selectCunsultCmtByPost(post_id);
     }
 
     // ==================== 댓글 좋아요 ====================
