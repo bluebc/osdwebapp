@@ -29,7 +29,7 @@
             <hr class ="hr1" noshade> 
 
             <form>
-                <span> ▷ 총 n개의 게시물이 있습니다. </span>
+                <span> ▷ 총 <span id = "postCount">n</span>개의 게시물이 있습니다. </span>
             </form>
 
             <div class="writing">

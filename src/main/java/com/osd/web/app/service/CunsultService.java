@@ -53,6 +53,7 @@ public class CunsultService {
         return cunsult_PostFromDb;
     }
 
+    // 25.04.14 이전
     public Cunsult_PostDto getCunsultPostById(int post_id) {
         return cunsult_PostDao.selectById(post_id);
     }
@@ -66,8 +67,11 @@ public class CunsultService {
     @Autowired
     private Board_PostDao board_PostDao;
 
-    public List<Board_PostDto> getCunsultPostByKeywordAndPage(String keyword, int page, int limit) {
-        return board_PostDao.selectCunsultPostByKeywordAndPage(keyword, page, limit);
+    public List<Board_PostDto> getCunsultPostListByKeywordAndPage(String keyword, int page, int limit) {
+        return board_PostDao.selectCunsultPostListByKeywordAndPage(keyword, page, limit);
+    }
+    public Board_PostDto getPostById(int post_id){
+        return board_PostDao.selectCunsultPostById(post_id);
     }
 
     public int getCunsultPostCountByKeyword(String keyword) {

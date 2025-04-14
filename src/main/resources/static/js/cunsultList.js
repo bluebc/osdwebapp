@@ -147,6 +147,8 @@ function setCunsultListTable(list) {
 // 페이지 이동 버튼
 function setCunsultListPaging(currentPage, maxPage, count, limit) {
 
+    setPostCount(count);
+
     var cunsultListPaging = document.getElementById("cunsultPaging");
     while (cunsultListPaging.firstChild) {
         cunsultListPaging.removeChild(cunsultListPaging.firstChild);
@@ -185,7 +187,7 @@ function setCunsultListPaging(currentPage, maxPage, count, limit) {
         if (page === currentPage) {
             pageDiv.classList.add("selected");
         }
-        
+
         pageDiv.onclick = function () {
             // console.log("clicked: " + page);
             cunsultPaging(page);
@@ -225,4 +227,8 @@ function goCunsultRead(post_id) {
 
 function goCunsultWrite() {
     window.location.href = "/cunsult/write";
+}
+
+function setPostCount(count) {
+    document.getElementById("postCount").textContent = count;
 }

@@ -27,7 +27,7 @@
 <div>
 제목 ${cunsult_post.post_subject}
 <br>
-작성자 ${cunsult_post.user_id}
+작성자 ${cunsult_post.user_nickname}
 <br>
 
 <br>
