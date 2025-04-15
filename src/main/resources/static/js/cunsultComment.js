@@ -85,8 +85,13 @@ async function setComments() {
 
         // 원댓글
         if (comment.parent_cmt_id == 0) {
+
+            let level0Div = document.createElement("div");
+            level0Div.id = "cmt_" + comment.cmt_id;
+            level0Div.className = "commentLevel0";
+
             let level1Div = document.createElement("div");
-            var level1DivId = "cmt_" + comment.cmt_id;
+            var level1DivId = "ocmt_" + comment.cmt_id;
             level1Div.id = level1DivId;
             level1Div.className = "commentLevel1";
 
@@ -206,9 +211,10 @@ async function setComments() {
             }
             commentDiv.appendChild(commentButtonsDiv);
             level1Div.appendChild(commentDiv);
+            level0Div.appendChild(level1Div);
 
 
-            displayCommentDiv.appendChild(level1Div);
+            displayCommentDiv.appendChild(level0Div);
 
             // 대댓글
         } else {
