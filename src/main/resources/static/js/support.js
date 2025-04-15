@@ -18,6 +18,17 @@ function setSupportType(type) {
     }
 
     if (supportType == "faq") {
+
+        //
+        const faqWriteButton = document.createElement("input");
+        faqWriteButton.type = "button";
+        faqWriteButton.value = "글 작성(관리자)";
+        faqWriteButton.className = "faqWriteButton";
+        faqWriteButton.onclick = function(){
+            location.href = "/support/faq/write";
+        }
+        supportContentDiv.appendChild(faqWriteButton);
+
         const faqCategoryDiv = document.createElement("div");
         faqCategoryDiv.id = "faqCategory";
         supportContentDiv.appendChild(faqCategoryDiv);
