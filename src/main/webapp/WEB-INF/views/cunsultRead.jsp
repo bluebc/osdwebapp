@@ -66,9 +66,15 @@
         </div>
     
         <div class="comment-section">
-            <div class="comment-header">
-                <span>댓글 n개</span>
-                <span>정렬: <a href="#">등록순</a> | <a href="#">좋아요순</a></span>
+            <div class="reply-box">
+                <div id = "like">
+                    <input type = "hidden" value = "${liked}" id = "myLike">
+                    <div id = "likeButton" onclick = "like()">♡ 좋아요</div>
+                </div>
+
+                <div class="comment-header">
+                    <span>댓글 n개</span>
+                </div>
             </div>
 
             <div id = "comment">
@@ -83,21 +89,24 @@
             </div>
 
 
-            <div id = "like">
-                <input type = "hidden" value = "${liked}" id = "myLike">
-                <div id = "likeButton" onclick = "like()">♡</div>
-            </div>
-
-
-
-            <input type = "button" value = "목록" onclick = "goPostList()">
-
             <div id = "writeComment">
-                <textarea class = "writeCommentContent" placeholder  = "댓글을 작성하세요" id = "writeCommentContent"></textarea>
-                <input type = "button" value = "작성 완료" onclick = "writeComment()">
+                <div class="comment-inbox">
+                    <div class="nickname"><h3>${cunsult_post.user_id}</h3></div>
+                    <textarea  class = "write-content" placeholder  = "댓글을 작성하세요"></textarea>
+                </div>
+
+                <div  class="comment-attach">
+                    <div  class="register-box">
+                        <input type = "button" value = "등록" onclick = "writeComment()">
+                    </div>
+                </div>
             </div>
 
             </div>
+        </div>
+
+        <div class="list-frame">
+            <input type = "button" value = "목록" onclick = "goPostList()">
         </div>
 
     </div>
