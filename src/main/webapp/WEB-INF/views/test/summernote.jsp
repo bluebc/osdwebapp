@@ -4,16 +4,41 @@
 <head>
     <title>오생단</title>
 
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
- <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+
+	<link href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" rel="stylesheet">
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+	
+	<!-- include summernote css/js -->
+	<link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.css" rel="stylesheet">
+	<script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.js"></script>
+
+<script src="/js/test/summernote.js"></script>
+<%-- ================================================ --%>
+
+ <%-- <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
     <link href="https://cdn.jsdelivr.net/npm/summernote@0.9.0/dist/summernote-lite.min.css" rel="stylesheet">
-    <script src="https://cdn.jsdelivr.net/npm/summernote@0.9.0/dist/summernote-lite.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/summernote@0.9.0/dist/summernote-lite.min.js"></script> --%>
+
+
+<%-- =================================================================== --%>
     <%-- <link href="summernote.css" rel="stylesheet"> --%>
 <%-- <script src="summernote.min.js"></script> --%>
 
-<!-- include summernote-ko-KR -->
-<script src="/js/summernote/lang/summernote-ko-KR.js"></script>
 
+<%-- =================================================================== --%>
+
+<!-- include summernote-ko-KR -->
+<%-- <script src="/js/summernote/lang/summernote-ko-KR.js"></script>
+ --%>
+
+<%-- =================================================================== --%>
+
+
+
+<%-- <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script> --%>
+<%-- =================================================================== --%>
 </head>
 <body>
 
@@ -40,14 +65,25 @@
       $('#summernote').summernote({
         placeholder: 'Hello stand alone ui',
         tabsize: 2,
-        height: 1200,
+        height: 500,
         toolbar: [
 
           ['font', ['bold', 'underline', 'clear']],
           ['color', ['color']],
           ['insert', [ 'picture']]
        
-        ]
+        ],
+
+
+callbacks : {                                                    
+			onImageUpload : function(files, editor, welEditable) {   
+                // 다중 이미지 처리를 위해 for문을 사용했습니다.
+				for (var i = 0; i < files.length; i++) {
+					imageUploader(files[i], this);
+				}
+			}
+		}
+
       });
 
 
