@@ -23,6 +23,7 @@ header{
         }
         
         .post{
+            position: relative;
             .post-title {
                 font-size: 20px;
                 font-weight: bold;
@@ -56,12 +57,19 @@ header{
             }
             #modOrDel{
                 margin-bottom: 2rem;
+                position: absolute;
+                right: 0;
+                top: 0;
                 input[type="button"] {
                     margin: 2px;
                     padding: 5px 15px;
                     border: 1px solid #ccc;
                     border-radius: 4px;
                     cursor: pointer;
+                    &:hover{
+                        background: #616161;
+                        color: white;
+                    }
                 }
 
             }
@@ -72,72 +80,74 @@ header{
         .comment-section {
             border-top: 2px solid #ddd;
             padding-top: 10px;
-            .comment-header {
+
+            .reply-box{
                 display: flex;
-                justify-content: space-between;
-                font-size: 14px;
-                margin-bottom: 10px;
+                gap: 1rem;
+                margin: 1rem 0;
+                #like{}
+                .comment-header {
+                    display: flex;
+                    justify-content: space-between;
+                    font-size: 14px;
+                    margin-bottom: 10px;
+                }
+                
             }
             #comment {
                 #displayComment{    
-                    .commentLevel1{
-                        .commentContent{
-                            white-space: pre-wrap; 
-                            padding: 8px;
-                            border: 1px solid #ccc;
-                            background-color: #fdfdfd;
+                    .commentLevel1,
+                    .commentLevel2 {
+                        border-bottom: 1px solid #eee;
+                        padding: 10px 0;
+                        display: flex;
+                        align-items: flex-start;
+                        gap: 15px;
+
+                        img {
+                            width: 40px ;
+                            height: 40px ;
+                            border-radius: 50%;
+                            flex-shrink: 0;
+                        }
+
+                        .commentContent {
+                            flex-grow: 1;
+                            strong {
+                            display: block;
+                            font-weight: bold;
                             margin-bottom: 5px;
-                            border-radius: 4px;
+                            }
+
+                            p {
+                            margin: 15px 0;
+                            }
+
+                            .commentButtons {
+                            font-size: 12px;
+                            color: gray;
+                            margin-top: 5px;
+                                .commentCreatedAt {
+                                    margin-right: 10px;
+                                }
+                                .reReplyButton {
+                                cursor: pointer;
+                                }
+                            }
                         }
-                        .comment{
-                            display: flex;
-                            
-                        }
-                        .reply{
-                            display: flex;
+                        
+                    }
+                    .commentLevel2 {
+                        margin-top: 10px;
+                        img{
                             margin-left: 50px;
-                            padding-left: 10px;
-                        }
-                        div{
-                            margin-bottom: 12px;
-                            .profile{
-                                width: 45px;
-                                height: 45px;
-                                border-radius: 50%;
-                                margin-right: 10px;
-                            }
-                            .comment-content {
-                                flex-grow: 1;
-                                p{
-                                    margin: 10px 0;
-                                }
-                                .comment-actions {
-                                    font-size: 12px;
-                                    color: gray;
-                                    margin-top: 5px;
-                                    display: flex;
-                                    span{
-                                        margin-right: 12px;
-                                        a{
-                                            text-decoration-line: none;
-                                            color: black;
-                                        }
-                                    }
-                                    .like-button {
-                                        cursor: pointer;
-                                    }
-                                }
-                            }
-                        }
-                        .commentLevel2 {
-                            margin-top: 10px;
-                            margin-left: 40px;
-                            border-left: 2px solid #ddd;
-                            padding-left: 10px;
-                            background-color: #fff;
                         }
                     }
                 }
+
+
+
+
                 #like{}
                 #writeComment{
                     textarea {

@@ -98,8 +98,8 @@ async function setComments() {
             // 이미지
             let cmtUserImg = document.createElement("img");
             // 임시 사이즈 지정
-            cmtUserImg.style.width = "20px";
-            cmtUserImg.style.height = "20px";
+            cmtUserImg.style.width = "40px";
+            cmtUserImg.style.height = "40px";
             // 이미지 없을 때 기본이미지
             if (comment.user_img == null || comment.user_img == "") {
                 cmtUserImg.src = "../img/re1.jpg";
@@ -230,8 +230,8 @@ async function setComments() {
             // 이미지
             let cmtUserImg = document.createElement("img");
             // 임시 사이즈 지정
-            cmtUserImg.style.width = "20px";
-            cmtUserImg.style.height = "20px";
+            cmtUserImg.style.width = "40px";
+            cmtUserImg.style.height = "40px";
             // 이미지 없을 때 기본이미지
             if (comment.user_img == null || comment.user_img == "") {
                 cmtUserImg.src = "../img/re1.jpg";

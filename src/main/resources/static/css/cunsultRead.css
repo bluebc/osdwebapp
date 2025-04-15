@@ -17,6 +17,9 @@ header .top-banner {
   font-size: 14px;
   margin-bottom: 10px;
 }
+.container .content .post {
+  position: relative;
+}
 .container .content .post .post-title {
   font-size: 20px;
   font-weight: bold;
@@ -47,6 +50,9 @@ header .top-banner {
 }
 .container .content .post #modOrDel {
   margin-bottom: 2rem;
+  position: absolute;
+  right: 0;
+  top: 0;
 }
 .container .content .post #modOrDel input[type=button] {
   margin: 2px;
@@ -55,69 +61,73 @@ header .top-banner {
   border-radius: 4px;
   cursor: pointer;
 }
+.container .content .post #modOrDel input[type=button]:hover {
+  background: #616161;
+  color: white;
+}
 .container .content .comment-section {
   border-top: 2px solid #ddd;
   padding-top: 10px;
 }
-.container .content .comment-section .comment-header {
+.container .content .comment-section .reply-box {
+  display: flex;
+  gap: 1rem;
+  margin: 1rem 0;
+}
+.container .content .comment-section .reply-box .comment-header {
   display: flex;
   justify-content: space-between;
   font-size: 14px;
   margin-bottom: 10px;
 }
-.container .content .comment-section #comment #displayComment .commentLevel1 .commentContent {
-  white-space: pre-wrap;
-  padding: 8px;
-  border: 1px solid #ccc;
-  background-color: #fdfdfd;
-  margin-bottom: 5px;
-  border-radius: 4px;
-}
-.container .content .comment-section #comment #displayComment .commentLevel1 .comment {
+.container .content .comment-section #comment #displayComment .commentLevel1,
+.container .content .comment-section #comment #displayComment .commentLevel2 {
+  border-bottom: 1px solid #eee;
+  padding: 10px 0;
   display: flex;
+  align-items: flex-start;
+  gap: 15px;
 }
-.container .content .comment-section #comment #displayComment .commentLevel1 .reply {
-  display: flex;
-  margin-left: 50px;
-  padding-left: 10px;
-}
-.container .content .comment-section #comment #displayComment .commentLevel1 div {
-  margin-bottom: 12px;
-}
-.container .content .comment-section #comment #displayComment .commentLevel1 div .profile {
-  width: 45px;
-  height: 45px;
+.container .content .comment-section #comment #displayComment .commentLevel1 img,
+.container .content .comment-section #comment #displayComment .commentLevel2 img {
+  width: 40px;
+  height: 40px;
   border-radius: 50%;
-  margin-right: 10px;
+  flex-shrink: 0;
 }
-.container .content .comment-section #comment #displayComment .commentLevel1 div .comment-content {
+.container .content .comment-section #comment #displayComment .commentLevel1 .commentContent,
+.container .content .comment-section #comment #displayComment .commentLevel2 .commentContent {
   flex-grow: 1;
 }
-.container .content .comment-section #comment #displayComment .commentLevel1 div .comment-content p {
-  margin: 10px 0;
+.container .content .comment-section #comment #displayComment .commentLevel1 .commentContent strong,
+.container .content .comment-section #comment #displayComment .commentLevel2 .commentContent strong {
+  display: block;
+  font-weight: bold;
+  margin-bottom: 5px;
 }
-.container .content .comment-section #comment #displayComment .commentLevel1 div .comment-content .comment-actions {
+.container .content .comment-section #comment #displayComment .commentLevel1 .commentContent p,
+.container .content .comment-section #comment #displayComment .commentLevel2 .commentContent p {
+  margin: 15px 0;
+}
+.container .content .comment-section #comment #displayComment .commentLevel1 .commentContent .commentButtons,
+.container .content .comment-section #comment #displayComment .commentLevel2 .commentContent .commentButtons {
   font-size: 12px;
   color: gray;
   margin-top: 5px;
-  display: flex;
 }
-.container .content .comment-section #comment #displayComment .commentLevel1 div .comment-content .comment-actions span {
-  margin-right: 12px;
+.container .content .comment-section #comment #displayComment .commentLevel1 .commentContent .commentButtons .commentCreatedAt,
+.container .content .comment-section #comment #displayComment .commentLevel2 .commentContent .commentButtons .commentCreatedAt {
+  margin-right: 10px;
 }
-.container .content .comment-section #comment #displayComment .commentLevel1 div .comment-content .comment-actions span a {
-  text-decoration-line: none;
-  color: black;
-}
-.container .content .comment-section #comment #displayComment .commentLevel1 div .comment-content .comment-actions .like-button {
+.container .content .comment-section #comment #displayComment .commentLevel1 .commentContent .commentButtons .reReplyButton,
+.container .content .comment-section #comment #displayComment .commentLevel2 .commentContent .commentButtons .reReplyButton {
   cursor: pointer;
 }
-.container .content .comment-section #comment #displayComment .commentLevel1 .commentLevel2 {
+.container .content .comment-section #comment #displayComment .commentLevel2 {
   margin-top: 10px;
-  margin-left: 40px;
-  border-left: 2px solid #ddd;
-  padding-left: 10px;
-  background-color: #fff;
+}
+.container .content .comment-section #comment #displayComment .commentLevel2 img {
+  margin-left: 50px;
 }
 .container .content .comment-section #comment #writeComment textarea {
   width: 100%;
