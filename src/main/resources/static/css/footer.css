@@ -130,6 +130,8 @@ footer .footer_nav {
   }
   footer .footer_info .ft-fot .ft_link li {
     align-items: flex-start;
+    gap: 15px;
+    flex-direction: row;
   }
 }
 @media screen and (max-width: 768px) {
@@ -201,6 +203,7 @@ footer .footer_nav {
   }
   footer .footer_info .ft-fot .ft_link li {
     align-items: flex-start;
+    flex-direction: column;
   }
   footer .footer_nav {
     display: block;

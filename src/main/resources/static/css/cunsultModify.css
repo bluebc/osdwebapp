@@ -118,4 +118,45 @@ header .top-banner {
   vertical-align: middle;
   background-color: #616161;
   cursor: pointer;
+}
+
+/* 768px*/
+@media screen and (max-width: 768px) {
+  header .top-banner {
+    display: block;
+  }
+  .container {
+    padding: 18rem 0 8rem;
+  }
+  .container .content {
+    margin: 0 20px;
+  }
+}
+@media screen and (min-width: 768px) and (max-width: 1024px) and (orientation: landscape) {
+  header .top-banner {
+    display: block;
+  }
+  .container {
+    padding: 18rem 0 8rem;
+  }
+  .container .content {
+    margin: 0 20px;
+  }
+}
+@media screen and (max-width: 425px) {
+  .container .content {
+    margin: 0;
+  }
+  .container .content form table tr .title fieldset {
+    padding: 20px;
+  }
+  .container .content form table tr .title fieldset select {
+    padding: 7px;
+  }
+  .container .content form table tr .comment .text-box {
+    padding: 20px 30px 20px 20px;
+  }
+  .container .content form table tr .comment .text-box textarea {
+    padding: 20px 10px 0 0px;
+  }
 }/*# sourceMappingURL=cunsultModify.css.map */

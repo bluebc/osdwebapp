@@ -125,6 +125,8 @@ footer{
           width: 100%;
           li{
             align-items: flex-start;
+            gap: 15px;
+            flex-direction: row;
           }
         }
       }
@@ -199,6 +201,7 @@ footer{
               margin-bottom: 1rem;
               li{
                   align-items: flex-start;
+                  flex-direction: column;
               }
           }
       }
