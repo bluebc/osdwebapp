@@ -93,7 +93,7 @@ public class CunsultBoardController {
         }
 
         // List<Cunsult_PostDto> list = cunsultService.getCunsultPostByKeywordAndPage(keyword, page, limit);
-        List<Board_PostDto> list = cunsultService.getCunsultPostByKeywordAndPage(keyword, page, limit);
+        List<Board_PostDto> list = cunsultService.getCunsultPostListByKeywordAndPage(keyword, page, limit);
 
         int count = postCount;
         resultMap.put("list", list);
@@ -110,8 +110,9 @@ public class CunsultBoardController {
             Model model) {
 
         // 글 존재 여부 확인
-        Cunsult_PostDto cunsult_PostDtoFromDb = cunsultService.getCunsultPostById(post_id);
-        if (cunsult_PostDtoFromDb == null) {
+        // Cunsult_PostDto cunsult_PostDtoFromDb = cunsultService.getCunsultPostById(post_id);
+        Board_PostDto board_PostDto = cunsultService.getPostById(post_id);
+        if (board_PostDto == null) {
             return "redirect:/wrongPath";
         }
 
@@ -133,7 +134,7 @@ public class CunsultBoardController {
         // 줄내림 처리
         // cunsult_PostDtoFromDb.setPost_content(cunsult_PostDtoFromDb.getPost_content().replace("\n", "<br>"));
 
-        model.addAttribute("cunsult_post", cunsult_PostDtoFromDb);
+        model.addAttribute("cunsult_post", board_PostDto);
         model.addAttribute("liked", liked);
         model.addAttribute("reader_id", user_id);
 

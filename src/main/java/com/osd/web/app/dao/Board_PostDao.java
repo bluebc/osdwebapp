@@ -16,12 +16,16 @@ public class Board_PostDao {
     @Autowired
     private SqlSession session;
 
-    public List<Board_PostDto> selectCunsultPostByKeywordAndPage(String keyword, int page, int limit) {
+    public List<Board_PostDto> selectCunsultPostListByKeywordAndPage(String keyword, int page, int limit) {
         Map<String, Object> parameterMap = new HashMap<>();
         parameterMap.put("keyword", keyword);
         parameterMap.put("page", page);
         parameterMap.put("limit", limit);
-        return session.selectList("Board_Post.selectCunsultPostByKeywordAndPage", parameterMap);
+        return session.selectList("Board_Post.selectCunsultPostListByKeywordAndPage", parameterMap);
+    }
+
+    public Board_PostDto selectCunsultPostById(int post_id) {
+        return session.selectOne("Board_Post.selectCunsultPostById", post_id);
     }
 
 }

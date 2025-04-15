@@ -37,7 +37,15 @@ public class SupportController {
     private User_InfoService user_InfoService;
 
     @RequestMapping("")
-    public String supportPage() {
+    public String supportPage(HttpServletRequest request, Model model) {
+        HttpSession session = request.getSession();
+
+        String login_user_id;
+         if(session.getAttribute("login_user_id")!=null){
+            login_user_id = (String) session.getAttribute("login_user_id");
+         }
+
+
         return "support";
     }
 

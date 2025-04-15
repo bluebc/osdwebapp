@@ -19,7 +19,7 @@
 	<result column="USER_IMG" property="user_img"/>
 </resultMap>
 
-<select id="selectCunsultPostByKeywordAndPage" parameterType="Map" resultMap="BoardCommentResultMap">
+<select id="selectCunsultPostListByKeywordAndPage" parameterType="Map" resultMap="BoardCommentResultMap">
 select POST_ID, POST_SUBJECT, POST_CONTENT, POST_IMAGES, POST_FILES, POST_VIEWCNT, POST_CMTCNT, POST_LIKECNT, POST_CREATED_AT, POST_UPDATED_AT,
     USER_ID, USER_NICKNAME, USER_IMG
     from 
@@ -41,7 +41,12 @@ select POST_ID, POST_SUBJECT, POST_CONTENT, POST_IMAGES, POST_FILES, POST_VIEWCN
 
 </select>
 
-
+<select id="selectCunsultPostById" parameterType="int" resultMap="BoardCommentResultMap">
+    select a.POST_ID, a.POST_SUBJECT, a.POST_CONTENT, a.POST_IMAGES, a.POST_FILES, a.POST_VIEWCNT, a.POST_CMTCNT, a.POST_LIKECNT, a.POST_CREATED_AT, a.POST_UPDATED_AT ,
+	    b.USER_ID, b.USER_NICKNAME, b.USER_IMG 
+    from CUNSULT_POST as a join USER_INFO as b on a.USER_ID = b.USER_ID 
+    where POST_ID = #{post_id};
+</select>
 
 
 </mapper>
