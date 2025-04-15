@@ -52,7 +52,9 @@ function setSupportType(type) {
         qnaWriteButton.type = "button";
         qnaWriteButton.value = "문의하기";
         qnaWriteButton.onclick = function(){
-            location.href = "/support/qna/write";
+            // supportqnaList.js
+            goQnaWrite();
+            // location.href = "/support/qna/write";
         }
         qnaButtonDiv.appendChild(qnaWriteButton);
         supportContentDiv.appendChild(qnaButtonDiv);
@@ -123,5 +125,4 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     });
 });
-
 

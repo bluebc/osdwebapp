@@ -171,3 +171,24 @@ async function qnaPaging(page) {
 function goQnaRead(post_id) {
     window.location.href = "/support/qna/read?post_id=" + post_id;
 }
+
+
+// 글 쓰기 이동
+async function goQnaWrite(){
+    
+    const response = await fetch("/login/getLoginSessionInfo", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: {}
+    });
+
+    const result = await response.json();
+
+    var loggenIn = result.loggedIn;
+
+    if(loggenIn === true){
+        window.location.href = "/support/qna/write";
+    }else{
+        alert("로그인 후 작성이 가능합니다.");
+    }
+}
