@@ -188,25 +188,28 @@ async function setComments() {
 
             if (reader_id == comment.user_id) {
 
+                let inpButtonsDiv = document.createElement("div");
+                inpButtonsDiv.className = "inpButtons";
+
                 // 수정
                 let modifyCmtButton = document.createElement("input");
                 modifyCmtButton.type = "button";
                 modifyCmtButton.value = "수정";
-                // modifyCmtButton.style.display = "none";
                 modifyCmtButton.onclick = function () {
                     alert("댓글 수정버튼");
                 }
-                commentButtonsDiv.appendChild(modifyCmtButton);
+                inpButtonsDiv.appendChild(modifyCmtButton);
 
                 // 삭제
                 let deleteCmtButton = document.createElement("input");
                 deleteCmtButton.type = "button";
                 deleteCmtButton.value = "삭제";
-                // deleteCmtButton.style.display = "none";
                 deleteCmtButton.onclick = function () {
                     alert("댓글 삭제버튼");
                 }
-                commentButtonsDiv.appendChild(deleteCmtButton);
+                inpButtonsDiv.appendChild(deleteCmtButton);
+
+                commentButtonsDiv.appendChild(inpButtonsDiv);
 
             }
             commentDiv.appendChild(commentButtonsDiv);
@@ -305,25 +308,28 @@ async function setComments() {
 
             if (reader_id == comment.user_id) {
 
+                let inpButtonsDiv = document.createElement("div");
+                inpButtonsDiv.className = "inpButtons";
+
                 // 수정
                 let modifyCmtButton = document.createElement("input");
                 modifyCmtButton.type = "button";
                 modifyCmtButton.value = "수정";
-                // modifyCmtButton.style.display = "none";
                 modifyCmtButton.onclick = function () {
                     alert("댓글 수정버튼");
                 }
-                commentButtonsDiv.appendChild(modifyCmtButton);
+                inpButtonsDiv.appendChild(modifyCmtButton);
 
                 // 삭제
                 let deleteCmtButton = document.createElement("input");
                 deleteCmtButton.type = "button";
                 deleteCmtButton.value = "삭제";
-                // deleteCmtButton.style.display = "none";
                 deleteCmtButton.onclick = function () {
                     alert("댓글 삭제버튼");
                 }
-                commentButtonsDiv.appendChild(deleteCmtButton);
+                inpButtonsDiv.appendChild(deleteCmtButton);
+
+                commentButtonsDiv.appendChild(inpButtonsDiv);
 
             }
 

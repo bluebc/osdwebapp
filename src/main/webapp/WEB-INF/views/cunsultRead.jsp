@@ -89,18 +89,24 @@
             </div>
 
 
-
-
-
-
-            <input type = "button" value = "목록" onclick = "goPostList()">
-
             <div id = "writeComment">
-                <textarea class = "writeCommentContent" placeholder  = "댓글을 작성하세요" id = "writeCommentContent"></textarea>
-                <input type = "button" value = "작성 완료" onclick = "writeComment()">
+                <div class="comment-inbox">
+                    <div class="nickname"><h3>${cunsult_post.user_id}</h3></div>
+                    <textarea  class = "write-content" placeholder  = "댓글을 작성하세요"></textarea>
+                </div>
+
+                <div  class="comment-attach">
+                    <div  class="register-box">
+                        <input type = "button" value = "등록" onclick = "writeComment()">
+                    </div>
+                </div>
             </div>
 
             </div>
+        </div>
+
+        <div class="list-frame">
+            <input type = "button" value = "목록" onclick = "goPostList()">
         </div>
 
     </div>
