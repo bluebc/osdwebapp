@@ -80,6 +80,13 @@ public class LoginController {
             response.addCookie(rememberMeCookie);
         }
 
+        // redirect
+        HttpSession session = request.getSession();
+        String redirect_uri = (String) session.getAttribute("redirect_uri");
+        if(redirect_uri != null && !redirect_uri.equals("")){
+            result.put("redirect_uri", redirect_uri);
+        }
+
         return result;
     }
 
@@ -372,6 +379,25 @@ public class LoginController {
         // resultMap.put("login_user_id", "");
         // resultMap.put("loggedIn", false);
         // }
+
+        return resultMap;
+    }
+
+    @ResponseBody
+    @PostMapping("/loginRequired")
+    public Map<String, Object> loginRequired(@RequestBody String uri, HttpServletRequest request) {
+        Map<String, Object> resultMap = new HashMap<>();
+        int status = 0;
+        HttpSession session = request.getSession();
+        String login_user_id = (String) session.getAttribute("login_user_id");
+        // String redirect_uri = (String) session.getAttribute("redirect_uri");
+        if (login_user_id != null && !login_user_id.equals("")) {
+            status = 1;
+        } else {
+            session.setAttribute("redirect_uri", uri);
+            status = -1;
+        }
+        resultMap.put("status", status);
 
         return resultMap;
     }

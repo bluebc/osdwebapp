@@ -27,6 +27,8 @@
 </head>
 <body>
 
+<input type = "hidden" value = "${login_user_role}" id = "login_user_role">
+
     <!-- header -->
     <jsp:include page="header.jsp"></jsp:include>
 

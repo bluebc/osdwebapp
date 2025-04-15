@@ -19,15 +19,18 @@ function setSupportType(type) {
 
     if (supportType == "faq") {
 
-        //
-        const faqWriteButton = document.createElement("input");
-        faqWriteButton.type = "button";
-        faqWriteButton.value = "글 작성(관리자)";
-        faqWriteButton.className = "faqWriteButton";
-        faqWriteButton.onclick = function(){
-            location.href = "/support/faq/write";
+        // 관리자 FAQ 작성 버튼
+        var login_user_role = document.getElementById("login_user_role").value;
+        if (login_user_role == "ADMIN") {
+            const faqWriteButton = document.createElement("input");
+            faqWriteButton.type = "button";
+            faqWriteButton.value = "글 작성(관리자)";
+            faqWriteButton.className = "faqWriteButton";
+            faqWriteButton.onclick = function () {
+                location.href = "/support/faq/write";
+            }
+            supportContentDiv.appendChild(faqWriteButton);
         }
-        supportContentDiv.appendChild(faqWriteButton);
 
         const faqCategoryDiv = document.createElement("div");
         faqCategoryDiv.id = "faqCategory";
@@ -41,6 +44,20 @@ function setSupportType(type) {
     }
 
     if (supportType == "qna") {
+
+
+        const qnaButtonDiv = document.createElement("div");
+        qnaButtonDiv.id = "qnaButton";
+        const qnaWriteButton = document.createElement("input");
+        qnaWriteButton.type = "button";
+        qnaWriteButton.value = "문의하기";
+        qnaWriteButton.onclick = function(){
+            location.href = "/support/qna/write";
+        }
+        qnaButtonDiv.appendChild(qnaWriteButton);
+        supportContentDiv.appendChild(qnaButtonDiv);
+        
+
         const qnaListDiv = document.createElement("div");
         qnaListDiv.id = "qnaList";
 
@@ -67,7 +84,7 @@ document.addEventListener("DOMContentLoaded", async function () {
 
     categoryList = await getCategories();
 
-    
+
     setSupportType("faq");
 
 
@@ -86,7 +103,7 @@ function search() {
     if (supportType == "qna") {
         qnaPaging(1);
     }
-    
+
 
 }
 

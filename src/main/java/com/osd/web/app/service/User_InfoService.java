@@ -30,4 +30,9 @@ public class User_InfoService {
         return result;
     }
 
+    public User_InfoDto getUserRoleById(String user_id){
+        return user_InfoDao.selectRoleById(user_id);
+    }
+
+
 }

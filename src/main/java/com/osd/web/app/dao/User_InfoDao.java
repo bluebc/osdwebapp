@@ -1,7 +1,5 @@
 package com.osd.web.app.dao;
 
-import java.util.List;
-
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -42,6 +40,9 @@ public class User_InfoDao {
     }
     public User_InfoDto getUser_IdByEmail(User_InfoDto user_InfoDto){
         return session.selectOne("User_Info.getUser_IdByEmail", user_InfoDto);
+    }
+    public User_InfoDto selectRoleById(String user_id){
+        return session.selectOne("User_Info.selectRoleById",user_id);
     }
 
 }
