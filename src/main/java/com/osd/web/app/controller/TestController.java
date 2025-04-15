@@ -122,4 +122,9 @@ public class TestController {
         return "test/checkbox";
     }
 
+    @RequestMapping("/tsummernote")
+    public String summernotePage() {
+        return "test/summernote";
+    }
+
 }
