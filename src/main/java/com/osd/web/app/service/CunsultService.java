@@ -70,7 +70,8 @@ public class CunsultService {
     public List<Board_PostDto> getCunsultPostListByKeywordAndPage(String keyword, int page, int limit) {
         return board_PostDao.selectCunsultPostListByKeywordAndPage(keyword, page, limit);
     }
-    public Board_PostDto getPostById(int post_id){
+
+    public Board_PostDto getPostById(int post_id) {
         return board_PostDao.selectCunsultPostById(post_id);
     }
 
@@ -166,6 +167,49 @@ public class CunsultService {
         return board_CommentDao.selectCunsultCmtByPost(post_id);
     }
 
+    // 댓글 수정
+
+    public int updateCommentByIdAndUser(Cunsult_CommentDto cunsult_CommentDto) {
+        LocalDateTime cmt_updated_at = LocalDateTime.now().truncatedTo(ChronoUnit.SECONDS);
+        cunsult_CommentDto.setCmt_updated_at(cmt_updated_at);
+        return cunsult_CommentDao.updateContentByIdAndUser(cunsult_CommentDto);
+    }
+
+    // 댓글 삭제
+    public int deleteCommentByIdAndUser(Cunsult_CommentDto cunsult_CommentDto) {
+        int result = 0;
+
+        int exist = cunsult_CommentDao.selectCountIdAndUser(cunsult_CommentDto);
+        if (exist != 1) {
+            result = -1;
+            return result;
+        }
+
+        int child = cunsult_CommentDao.selectCountChild(cunsult_CommentDto);
+        if (child == 0) {
+            return cunsult_CommentDao.deleteByIdAndUser(cunsult_CommentDto);
+        }
+        // 대댓글 존재, 댓글 삭제표시 처리
+
+        String cmt_content = "삭제된 댓글입니다.";
+        String user_id = "deleted";
+        LocalDateTime cmt_updated_at = LocalDateTime.now().truncatedTo(ChronoUnit.SECONDS);
+
+        cunsult_CommentDto.setCmt_content(cmt_content);
+        cunsult_CommentDto.setUser_id(user_id);
+        cunsult_CommentDto.setCmt_updated_at(cmt_updated_at);
+
+        int updated = cunsult_CommentDao.updateToDeleted(cunsult_CommentDto);
+        if (updated != 1) {
+            result = -2;
+            return result;
+        }
+
+        result = 2;
+
+        return result;
+    }
+    
     // ==================== 댓글 좋아요 ====================
     @Autowired
     private Cunsult_Comment_LikeDao cunsult_Comment_LikeDao;

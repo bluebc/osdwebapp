@@ -72,5 +72,42 @@
 			cmt_id = #{cmt_id}
 		</where>
 		</update>
-		
+
+
+<update id="updateContentByIdAndUser" parameterType="Cunsult_CommentDto">
+	update cunsult_comment 
+	set cmt_content = #{cmt_content}, cmt_updated_at = #{cmt_updated_at} 
+	where cmt_id = #{cmt_id} and user_id = #{user_id}
+</update>
+
+<delete id="deleteByIdAndUser" parameterType="Cunsult_CommentDto">
+	delete from cunsult_comment
+	where cmt_id = #{cmt_id} and user_id = #{user_id}
+</delete>
+
+<select id="selectCountChild" parameterType="Cunsult_CommentDto" resultType="int">
+	select count(*) from cunsult_comment where parent_cmt_id = #{cmt_id}
+</select>
+
+<select id="selectCountIdAndUser" parameterType="Cunsult_CommentDto" resultType="int">
+	select count(*) from cunsult_comment
+		<where>
+			cmt_id = #{cmt_id} 
+			and 
+			user_id = #{user_id}
+		</where>
+</select>
+
+<update id="updateToDeleted" parameterType="Cunsult_CommentDto">
+	update cunsult_comment 
+	<set>
+		cmt_content = #{cmt_content} ,
+		user_id = #{user_id},
+		cmt_updated_at = #{cmt_updated_at}
+	</set>
+	<where>
+		cmt_id = #{cmt_id} 
+	</where>
+</update>
+
 </mapper>
