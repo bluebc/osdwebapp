@@ -2,8 +2,6 @@ package com.osd.web.app.service;
 
 import java.time.LocalDateTime;
 import java.time.temporal.ChronoUnit;
-import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -53,24 +51,19 @@ public class CunsultService {
         return cunsult_PostFromDb;
     }
 
-    // 25.04.14 이전
     public Cunsult_PostDto getCunsultPostById(int post_id) {
         return cunsult_PostDao.selectById(post_id);
     }
 
-    // 25.04.14 이전
-    // public List<Cunsult_PostDto> getCunsultPostByKeywordAndPage(String keyword,
-    // int page, int limit) {
-    // return cunsult_PostDao.selectByKeywordAndPage(keyword, page, limit);
-    // }
-
+    // 글, 작성자 정보 JOIN
     @Autowired
     private Board_PostDao board_PostDao;
 
     public List<Board_PostDto> getCunsultPostListByKeywordAndPage(String keyword, int page, int limit) {
         return board_PostDao.selectCunsultPostListByKeywordAndPage(keyword, page, limit);
     }
-    public Board_PostDto getPostById(int post_id){
+
+    public Board_PostDto getPostById(int post_id) {
         return board_PostDao.selectCunsultPostById(post_id);
     }
 
@@ -154,16 +147,53 @@ public class CunsultService {
         return cunsult_CommentDao.insert(cunsult_CommentDto);
     }
 
-    // // 25.04.14 이전
-    // public List<Cunsult_CommentDto> getCommentByPost(int post_id) {
-    // return cunsult_CommentDao.selectByPost(post_id);
-    // }
-
     @Autowired
     private Board_CommentDao board_CommentDao;
 
     public List<Board_CommentDto> getCommentByPost(int post_id) {
         return board_CommentDao.selectCunsultCmtByPost(post_id);
+    }
+
+    // 댓글 수정
+    public int updateCommentByIdAndUser(Cunsult_CommentDto cunsult_CommentDto) {
+        LocalDateTime cmt_updated_at = LocalDateTime.now().truncatedTo(ChronoUnit.SECONDS);
+        cunsult_CommentDto.setCmt_updated_at(cmt_updated_at);
+        return cunsult_CommentDao.updateContentByIdAndUser(cunsult_CommentDto);
+    }
+
+    // 댓글 삭제
+    public int deleteCommentByIdAndUser(Cunsult_CommentDto cunsult_CommentDto) {
+        int result = 0;
+
+        int exist = cunsult_CommentDao.selectCountIdAndUser(cunsult_CommentDto);
+        if (exist != 1) {
+            result = -1;
+            return result;
+        }
+
+        int child = cunsult_CommentDao.selectCountChild(cunsult_CommentDto);
+        if (child == 0) {
+            return cunsult_CommentDao.deleteByIdAndUser(cunsult_CommentDto);
+        }
+        // 대댓글 존재, 댓글 삭제표시 처리
+
+        String cmt_content = "삭제된 댓글입니다.";
+        String user_id = "deleted";
+        LocalDateTime cmt_updated_at = LocalDateTime.now().truncatedTo(ChronoUnit.SECONDS);
+
+        cunsult_CommentDto.setCmt_content(cmt_content);
+        cunsult_CommentDto.setUser_id(user_id);
+        cunsult_CommentDto.setCmt_updated_at(cmt_updated_at);
+
+        int updated = cunsult_CommentDao.updateToDeleted(cunsult_CommentDto);
+        if (updated != 1) {
+            result = -2;
+            return result;
+        }
+
+        result = 2;
+
+        return result;
     }
 
     // ==================== 댓글 좋아요 ====================

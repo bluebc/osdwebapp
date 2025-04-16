@@ -34,5 +34,27 @@ public class Cunsult_CommentDao {
         return session.update("Cunsult_Comment.minusLikecnt", cmt_id);
     }
 
+    // 댓글 수정 삭제
+    public int updateContentByIdAndUser(Cunsult_CommentDto cunsult_CommentDto){
+        return session.update("Cunsult_Comment.updateContentByIdAndUser", cunsult_CommentDto);
+    }
+    public int deleteByIdAndUser(Cunsult_CommentDto cunsult_CommentDto){
+        return session.update("Cunsult_Comment.deleteByIdAndUser", cunsult_CommentDto);
+    }
+
+    // 대댓글 수
+    public int selectCountChild(Cunsult_CommentDto cunsult_CommentDto){
+        return session.selectOne("Cunsult_Comment.selectCountChild", cunsult_CommentDto);
+    }
+
+    // 댓글 확인
+    public int selectCountIdAndUser(Cunsult_CommentDto cunsult_CommentDto){
+        return session.selectOne("Cunsult_Comment.selectCountIdAndUser", cunsult_CommentDto);
+    }
+
+    // 댓글 삭제표시로 업데이트
+    public int updateToDeleted(Cunsult_CommentDto cunsult_CommentDto){
+        return session.update("Cunsult_Comment.updateToDeleted", cunsult_CommentDto);
+    }
 
 }

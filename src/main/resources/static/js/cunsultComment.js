@@ -5,8 +5,6 @@ document.addEventListener("DOMContentLoaded", async function () {
     await setCommentMyLike();
 });
 
-
-
 async function writeComment() {
 
     var cmt_content = document.getElementById("writeCommentContent").value;
@@ -87,11 +85,11 @@ async function setComments() {
         if (comment.parent_cmt_id == 0) {
 
             let level0Div = document.createElement("div");
-            level0Div.id = "cmt_" + comment.cmt_id;
+            level0Div.id = "cmtLv0_" + comment.cmt_id;
             level0Div.className = "commentLevel0";
 
             let level1Div = document.createElement("div");
-            var level1DivId = "ocmt_" + comment.cmt_id;
+            var level1DivId = "cmtLv1_" + comment.cmt_id;
             level1Div.id = level1DivId;
             level1Div.className = "commentLevel1";
 
@@ -122,7 +120,7 @@ async function setComments() {
             // 댓글 내용
             let commentContent = document.createElement("p");
             commentContent.textContent = comment.cmt_content;
-            // commentContent.className = "commentContent";
+            commentContent.id = "cmtContent_" + comment.cmt_id;
             commentDiv.appendChild(commentContent);
 
 
@@ -192,20 +190,21 @@ async function setComments() {
                 inpButtonsDiv.className = "inpButtons";
 
                 // 수정
-                let modifyCmtButton = document.createElement("input");
-                modifyCmtButton.type = "button";
-                modifyCmtButton.value = "수정";
-                modifyCmtButton.onclick = function () {
-                    alert("댓글 수정버튼");
+                let editCmtButton = document.createElement("input");
+                editCmtButton.type = "button";
+                editCmtButton.value = "수정";
+                editCmtButton.onclick = function () {
+                    // alert("댓글 수정버튼");
+                    editComment(level1DivId);
                 }
-                inpButtonsDiv.appendChild(modifyCmtButton);
+                commentButtonsDiv.appendChild(editCmtButton);
 
                 // 삭제
                 let deleteCmtButton = document.createElement("input");
                 deleteCmtButton.type = "button";
                 deleteCmtButton.value = "삭제";
                 deleteCmtButton.onclick = function () {
-                    alert("댓글 삭제버튼");
+                    deleteComment(level1DivId);
                 }
                 inpButtonsDiv.appendChild(deleteCmtButton);
 
@@ -222,11 +221,12 @@ async function setComments() {
             // 대댓글
         } else {
 
-            level1DivId = "cmt_" + comment.parent_cmt_id;
+            let level0DivId = "cmtLv0_" + comment.parent_cmt_id;
             // console.log(level1DivId);
-            let level1Div = document.getElementById(level1DivId);
+            let level0Div = document.getElementById(level0DivId);
+
             let level2Div = document.createElement("div");
-            var level2DivId = "recmt_" + comment.cmt_id;
+            let level2DivId = "cmtLv2_" + comment.cmt_id;
             level2Div.id = level2DivId;
             level2Div.className = "commentLevel2";
 
@@ -255,7 +255,7 @@ async function setComments() {
             // 댓글 내용
             let commentContent = document.createElement("p");
             commentContent.textContent = comment.cmt_content;
-            commentContent.className = "commentContent";
+            commentContent.id = "cmtContent_" + comment.cmt_id;
 
             commentDiv.appendChild(commentContent);
 
@@ -312,20 +312,20 @@ async function setComments() {
                 inpButtonsDiv.className = "inpButtons";
 
                 // 수정
-                let modifyCmtButton = document.createElement("input");
-                modifyCmtButton.type = "button";
-                modifyCmtButton.value = "수정";
-                modifyCmtButton.onclick = function () {
-                    alert("댓글 수정버튼");
+                let editCmtButton = document.createElement("input");
+                editCmtButton.type = "button";
+                editCmtButton.value = "수정";
+                editCmtButton.onclick = function () {
+                    editComment(level2DivId);
                 }
-                inpButtonsDiv.appendChild(modifyCmtButton);
+                commentButtonsDiv.appendChild(editCmtButton);
 
                 // 삭제
                 let deleteCmtButton = document.createElement("input");
                 deleteCmtButton.type = "button";
                 deleteCmtButton.value = "삭제";
                 deleteCmtButton.onclick = function () {
-                    alert("댓글 삭제버튼");
+                    deleteComment(level2DivId);
                 }
                 inpButtonsDiv.appendChild(deleteCmtButton);
 
@@ -336,7 +336,7 @@ async function setComments() {
             commentDiv.appendChild(commentButtonsDiv);
             level2Div.appendChild(commentDiv);
 
-            level1Div.appendChild(level2Div);
+            level0Div.appendChild(level2Div);
         }
 
     });
@@ -385,7 +385,7 @@ function addReCommentWrite(level1DivId) {
 
 async function postReComment(level1DivId) {
 
-    var parent_cmt_id = level1DivId.substring(4);
+    const parent_cmt_id = level1DivId.split("_")[1];
     var reCommentTextareaId = "re" + level1DivId;
 
     var cmt_content = document.getElementById(reCommentTextareaId).value;
@@ -405,11 +405,9 @@ async function postReComment(level1DivId) {
 
 // 좋아요 클릭
 async function likeComment(cmt_id) {
-    // var user_id = document.getElementById("reader_id").value;
-
+  
     var like = 0;
-    // cmt_id = parseInt(cmt_id);
-
+  
     var myLikeId = "myLike_" + cmt_id;
     var myLike = parseInt(document.getElementById(myLikeId).value);
     if (myLike == 0) {
@@ -505,13 +503,143 @@ function commentLikeButton(cmt_id) {
 }
 
 
-// function formatt(){
-//     let formatted = content.replace(/\n/g, "<br>");
-//     document.querySelector('.reCommentContent').innerHTML = formatted;
-// }
-
-
 // 댓글 수정
-function modifyComment(cmt_id) {
+async function editComment(cmtLvId) {
+
+    cancelEditComment();
+
+    const cmt_id = cmtLvId.split("_")[1];
+
+    let cmtContentId = "cmtContent_" + cmt_id;
+    let cmtContent = document.getElementById(cmtContentId).textContent;
+
+    let cmtLvDiv = document.getElementById(cmtLvId);
+
+    // 기존 댓글 숨기기
+    Array.from(cmtLvDiv.children).forEach(child => {
+        child.style.display = "none";
+    });
+
+    let editCmtDiv = document.createElement("div");
+    editCmtDiv.className = "editComment";
+
+    // 입력창
+    let editCmtContent = document.createElement("input");
+    editCmtContent.type = "textarea";
+    editCmtContent.value = cmtContent;
+    editCmtContent.id = "editCmt_" + cmt_id;
+    editCmtDiv.appendChild(editCmtContent);
+
+    let updateCmtButton = document.createElement("input");
+    updateCmtButton.value = "수정 완료";
+    updateCmtButton.onclick = function () {
+        updateComment(cmt_id);
+    }
+    editCmtDiv.appendChild(updateCmtButton);
+
+    let cancelEditButton = document.createElement("input");
+    cancelEditButton.value = "수정 취소";
+    cancelEditButton.onclick = function () {
+        cancelEditComment();
+    }
+    editCmtDiv.appendChild(cancelEditButton);
+
+    cmtLvDiv.appendChild(editCmtDiv);
+
+}
+
+// 댓글 수정 취소
+function cancelEditComment() {
+
+    let editCommentDivs = document.querySelectorAll(".editComment");
+
+    editCommentDivs.forEach(editCommentDiv => {
+        while (editCommentDiv.firstChild) {
+            editCommentDiv.removeChild(editCommentDiv.firstChild);
+        }
+    });
+
+    let commentContentDivs = document.querySelectorAll(".commentContent");
+    commentContentDivs.forEach(commentContentDiv => {
+        commentContentDiv.style.display = "block";
+    });
+}
+
+// 댓글 수정 - 업데이트
+async function updateComment(cmt_id) {
+
+    const cmtContentId = "editCmt_" + cmt_id;
+    const cmt_content = document.getElementById(cmtContentId).value;
+
+    const cunsult_comment = { cmt_id: cmt_id, cmt_content: cmt_content };
+
+    const response = await fetch("/cunsult/updateComment", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(cunsult_comment)
+    });
+
+    const result = await response.json();
+
+    switch (result.status) {
+        case 0:
+            alert("서버 오류");
+            return;
+        case -1:
+            alert("로그인 세션이 만료되었습니다.");
+            return;
+        case -301:
+            alert("DB 오류");
+            return;
+        case 1:
+            // alert("댓글 수정이 완료되었습니다.");
+            break;
+    }
+
+    // 완료 후 댓글 창 초기화
+    await setComments();
+    await setCommentMyLike();
+
+    return result;
+}
+
+async function deleteComment(cmtLvId) {
+
+
+    if (confirm("댓글을 삭제하시겠습니까?")) {
+
+        const cmt_id = cmtLvId.split("_")[1];
+        const cunsult_comment = { cmt_id: cmt_id };
+
+        const response = await fetch("/cunsult/deleteComment", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(cunsult_comment)
+        });
+
+        const result = await response.json();
+
+        switch (result.status) {
+            case 0:
+                alert("서버 오류");
+                return;
+            case -1:
+                alert("로그인 세션이 만료되었습니다.");
+                return;
+            case -301:
+                alert("DB 오류");
+                return;
+            case 1:
+                alert("댓글 삭제가 완료되었습니다.");
+                break;
+            case 2:
+                // 대댓글이 있어 삭제표시 처리
+                alert("댓글 삭제가 완료되었습니다.");
+                break;
+        }
+        // 완료 후 댓글 창 초기화
+        await setComments();
+        await setCommentMyLike();
+    }
 
 }

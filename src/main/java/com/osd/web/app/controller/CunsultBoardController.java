@@ -1,6 +1,5 @@
 package com.osd.web.app.controller;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -92,7 +91,6 @@ public class CunsultBoardController {
             page = maxPage;
         }
 
-        // List<Cunsult_PostDto> list = cunsultService.getCunsultPostByKeywordAndPage(keyword, page, limit);
         List<Board_PostDto> list = cunsultService.getCunsultPostListByKeywordAndPage(keyword, page, limit);
 
         int count = postCount;
@@ -109,8 +107,6 @@ public class CunsultBoardController {
             HttpServletRequest request,
             Model model) {
 
-        // 글 존재 여부 확인
-        // Cunsult_PostDto cunsult_PostDtoFromDb = cunsultService.getCunsultPostById(post_id);
         Board_PostDto board_PostDto = cunsultService.getPostById(post_id);
         if (board_PostDto == null) {
             return "redirect:/wrongPath";
@@ -132,7 +128,8 @@ public class CunsultBoardController {
         }
 
         // 줄내림 처리
-        // cunsult_PostDtoFromDb.setPost_content(cunsult_PostDtoFromDb.getPost_content().replace("\n", "<br>"));
+        // cunsult_PostDtoFromDb.setPost_content(cunsult_PostDtoFromDb.getPost_content().replace("\n",
+        // "<br>"));
 
         model.addAttribute("cunsult_post", board_PostDto);
         model.addAttribute("liked", liked);
@@ -391,6 +388,73 @@ public class CunsultBoardController {
         List<Cunsult_Comment_LikeDto> list = cunsultService.getCommentMyLike(parameterMap);
 
         resultMap.put("list", list);
+
+        return resultMap;
+    }
+
+    // 댓글 수정
+    @ResponseBody
+    @PostMapping("/updateComment")
+    public Map<String, Object> updateComment(HttpServletRequest request,
+            @RequestBody Cunsult_CommentDto cunsult_CommentDto) {
+        Map<String, Object> resultMap = new HashMap<>();
+        int status = 0;
+
+        // 로그인 정보 없음
+        HttpSession session = request.getSession();
+        String login_user_id = (String) session.getAttribute("login_user_id");
+        if (login_user_id == null || login_user_id.equals("")) {
+            status = -1;
+            resultMap.put("status", status);
+            return resultMap;
+        }
+        cunsult_CommentDto.setUser_id(login_user_id);
+
+        int updated = cunsultService.updateCommentByIdAndUser(cunsult_CommentDto);
+
+        if (updated != 1) {
+            status = -301;
+            resultMap.put("status", status);
+            return resultMap;
+        }
+        if (updated == 1) {
+            status = 1;
+        }
+        resultMap.put("status", status);
+
+        return resultMap;
+    }
+
+    // 댓글 삭제
+    @ResponseBody
+    @PostMapping("/deleteComment")
+    public Map<String, Object> deleteComment(HttpServletRequest request,
+            @RequestBody Cunsult_CommentDto cunsult_CommentDto) {
+        Map<String, Object> resultMap = new HashMap<>();
+        int status = 0;
+
+        // 로그인 정보 없음
+        HttpSession session = request.getSession();
+        String login_user_id = (String) session.getAttribute("login_user_id");
+        if (login_user_id == null || login_user_id.equals("")) {
+            status = -1;
+            resultMap.put("status", status);
+            return resultMap;
+        }
+
+        cunsult_CommentDto.setUser_id(login_user_id);
+
+        // 삭제 전 대댓글 여부 확인
+        int deleted = cunsultService.deleteCommentByIdAndUser(cunsult_CommentDto);
+        if (deleted == 0) {
+            status = -301;
+            resultMap.put("status", status);
+            return resultMap;
+        }
+        status = deleted;
+        
+        // 좋아요 삭제
+        resultMap.put("status", status);
 
         return resultMap;
     }

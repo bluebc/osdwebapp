@@ -42,13 +42,13 @@ public class SupportController {
 
         String login_user_id = (String) session.getAttribute("login_user_id");
         String user_role = "";
-        if (login_user_id != null && !login_user_id.equals("")){
-        User_InfoDto user_InfoDto = user_InfoService.getUserRoleById(login_user_id);
-        user_role = user_InfoDto.getUser_role();
+        if (login_user_id != null && !login_user_id.equals("")) {
+            User_InfoDto user_InfoDto = user_InfoService.getUserRoleById(login_user_id);
+            user_role = user_InfoDto.getUser_role();
         }
         model.addAttribute("login_user_role", user_role);
 
-            return "support";
+        return "support";
     }
 
     @RequestMapping("/")
@@ -91,7 +91,7 @@ public class SupportController {
             user_InfoDto.setUser_id(user_id);
             User_InfoDto user_InfoFromDb = user_InfoService.getUser_InfoById(user_InfoDto);
             String user_role = user_InfoFromDb.getUser_role();
-            if (!user_role.equals("ADMIN")) {
+            if (user_role == null || !user_role.equals("ADMIN")) {
                 return "redirect:/wrongPath";
             }
         } catch (Exception e) {
