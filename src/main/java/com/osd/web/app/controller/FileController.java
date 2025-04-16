@@ -15,6 +15,7 @@ import java.util.Map;
 import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.io.FileSystemResource;
 import org.springframework.core.io.Resource;
 import org.springframework.core.io.UrlResource;
 import org.springframework.http.HttpHeaders;
@@ -23,6 +24,7 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -102,8 +104,9 @@ public class FileController {
         try {
             // 서버에 저장할 경로
             // String uploadDirectory = context.getServletContext().getRealPath("/resources/assets/images/upload");
-            String uploadDirectory = context.getServletContext().getRealPath("/resources/static/img/upload");
-            System.out.println(uploadDirectory);
+            // String uploadDirectory = context.getServletContext().getRealPath("/resources/static/img/upload");
+            String uploadDirectory = System.getProperty("user.dir") + "/src/main/resources/static/img/upload";
+            // System.out.println(uploadDirectory);
 
             // 업로드 된 파일의 이름
             String originalFileName = file.getOriginalFilename();
@@ -124,5 +127,6 @@ public class FileController {
         }
 
     }
+
 
 }

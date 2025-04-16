@@ -42,9 +42,9 @@
 </head>
 <body>
 
- <div id="summernote">
+ <%-- <div id="summernote"> --%>
  <%-- <textarea id = "summernote"></textarea> --%>
- </div>
+ <%-- </div> --%>
     <%-- <script>
       $('#summernote').summernote({
         placeholder: 'Hello stand alone ui',
@@ -61,7 +61,17 @@
         ]
       });
     </script> --%>
+
+<form method="post">
+  <textarea id="summernote" name="editordata"></textarea>
+</form>
+
         <script>
+
+ //const contextPath = '${pageContext.request.contextPath}';
+
+
+
       $('#summernote').summernote({
         placeholder: 'Hello stand alone ui',
         tabsize: 2,
