@@ -5,8 +5,6 @@ document.addEventListener("DOMContentLoaded", async function () {
     await setCommentMyLike();
 });
 
-
-
 async function writeComment() {
 
     var cmt_content = document.getElementById("writeCommentContent").value;
@@ -641,4 +639,3 @@ async function deleteComment(cmtLvId) {
     }
 
 }
-// 대댓이 있지만 원댓글이 삭제된 경우 처리 필요

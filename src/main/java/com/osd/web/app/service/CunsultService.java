@@ -2,8 +2,6 @@ package com.osd.web.app.service;
 
 import java.time.LocalDateTime;
 import java.time.temporal.ChronoUnit;
-import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -53,17 +51,11 @@ public class CunsultService {
         return cunsult_PostFromDb;
     }
 
-    // 25.04.14 이전
     public Cunsult_PostDto getCunsultPostById(int post_id) {
         return cunsult_PostDao.selectById(post_id);
     }
 
-    // 25.04.14 이전
-    // public List<Cunsult_PostDto> getCunsultPostByKeywordAndPage(String keyword,
-    // int page, int limit) {
-    // return cunsult_PostDao.selectByKeywordAndPage(keyword, page, limit);
-    // }
-
+    // 글, 작성자 정보 JOIN
     @Autowired
     private Board_PostDao board_PostDao;
 
@@ -155,11 +147,6 @@ public class CunsultService {
         return cunsult_CommentDao.insert(cunsult_CommentDto);
     }
 
-    // // 25.04.14 이전
-    // public List<Cunsult_CommentDto> getCommentByPost(int post_id) {
-    // return cunsult_CommentDao.selectByPost(post_id);
-    // }
-
     @Autowired
     private Board_CommentDao board_CommentDao;
 
@@ -168,7 +155,6 @@ public class CunsultService {
     }
 
     // 댓글 수정
-
     public int updateCommentByIdAndUser(Cunsult_CommentDto cunsult_CommentDto) {
         LocalDateTime cmt_updated_at = LocalDateTime.now().truncatedTo(ChronoUnit.SECONDS);
         cunsult_CommentDto.setCmt_updated_at(cmt_updated_at);
@@ -209,7 +195,7 @@ public class CunsultService {
 
         return result;
     }
-    
+
     // ==================== 댓글 좋아요 ====================
     @Autowired
     private Cunsult_Comment_LikeDao cunsult_Comment_LikeDao;

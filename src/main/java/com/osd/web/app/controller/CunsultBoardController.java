@@ -1,6 +1,5 @@
 package com.osd.web.app.controller;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -92,8 +91,6 @@ public class CunsultBoardController {
             page = maxPage;
         }
 
-        // List<Cunsult_PostDto> list =
-        // cunsultService.getCunsultPostByKeywordAndPage(keyword, page, limit);
         List<Board_PostDto> list = cunsultService.getCunsultPostListByKeywordAndPage(keyword, page, limit);
 
         int count = postCount;
@@ -110,9 +107,6 @@ public class CunsultBoardController {
             HttpServletRequest request,
             Model model) {
 
-        // 글 존재 여부 확인
-        // Cunsult_PostDto cunsult_PostDtoFromDb =
-        // cunsultService.getCunsultPostById(post_id);
         Board_PostDto board_PostDto = cunsultService.getPostById(post_id);
         if (board_PostDto == null) {
             return "redirect:/wrongPath";
@@ -451,7 +445,6 @@ public class CunsultBoardController {
         cunsult_CommentDto.setUser_id(login_user_id);
 
         // 삭제 전 대댓글 여부 확인
-
         int deleted = cunsultService.deleteCommentByIdAndUser(cunsult_CommentDto);
         if (deleted == 0) {
             status = -301;
