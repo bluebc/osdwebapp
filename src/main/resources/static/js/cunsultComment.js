@@ -1,9 +1,13 @@
 const reader_id = document.getElementById("reader_id").value;
 
 document.addEventListener("DOMContentLoaded", async function () {
+    await loadComments();
+});
+
+async function loadComments() {
     await setComments();
     await setCommentMyLike();
-});
+}
 
 async function writeComment() {
 
@@ -405,9 +409,9 @@ async function postReComment(level1DivId) {
 
 // 좋아요 클릭
 async function likeComment(cmt_id) {
-  
+
     var like = 0;
-  
+
     var myLikeId = "myLike_" + cmt_id;
     var myLike = parseInt(document.getElementById(myLikeId).value);
     if (myLike == 0) {
@@ -597,8 +601,7 @@ async function updateComment(cmt_id) {
     }
 
     // 완료 후 댓글 창 초기화
-    await setComments();
-    await setCommentMyLike();
+    await loadComments();
 
     return result;
 }
@@ -609,7 +612,8 @@ async function deleteComment(cmtLvId) {
     if (confirm("댓글을 삭제하시겠습니까?")) {
 
         const cmt_id = cmtLvId.split("_")[1];
-        const cunsult_comment = { cmt_id: cmt_id };
+        const post_id = document.getElementById("post_id").value;
+        const cunsult_comment = { cmt_id: cmt_id, post_id: post_id };
 
         const response = await fetch("/cunsult/deleteComment", {
             method: "POST",
@@ -638,8 +642,7 @@ async function deleteComment(cmtLvId) {
                 break;
         }
         // 완료 후 댓글 창 초기화
-        await setComments();
-        await setCommentMyLike();
+        await loadComments();
     }
 
 }

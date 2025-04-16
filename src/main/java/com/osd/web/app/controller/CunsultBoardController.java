@@ -1,5 +1,7 @@
 package com.osd.web.app.controller;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -127,14 +129,16 @@ public class CunsultBoardController {
             liked = cunsultService.checkPostLiked(cunsult_Post_LikeDto);
         }
 
-        // 줄내림 처리
-        // cunsult_PostDtoFromDb.setPost_content(cunsult_PostDtoFromDb.getPost_content().replace("\n",
-        // "<br>"));
-
         model.addAttribute("cunsult_post", board_PostDto);
         model.addAttribute("liked", liked);
         model.addAttribute("reader_id", user_id);
 
+        LocalDateTime post_created_at = board_PostDto.getPost_created_at();
+
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
+        String formatted = post_created_at.format(formatter);
+        model.addAttribute("postCreatedAt", formatted);
+ 
         return "cunsultRead";
     }
 
@@ -444,7 +448,6 @@ public class CunsultBoardController {
 
         cunsult_CommentDto.setUser_id(login_user_id);
 
-        // 삭제 전 대댓글 여부 확인
         int deleted = cunsultService.deleteCommentByIdAndUser(cunsult_CommentDto);
         if (deleted == 0) {
             status = -301;
@@ -452,8 +455,15 @@ public class CunsultBoardController {
             return resultMap;
         }
         status = deleted;
-        
-        // 좋아요 삭제
+
+        if (deleted == 1) {
+            // 대댓글 없음, 좋아요 삭제
+        }
+
+        // 게시글 정보 댓글 수 감소
+        int post_id = cunsult_CommentDto.getPost_id();
+        cunsultService.minusChildcnt(post_id);
+
         resultMap.put("status", status);
 
         return resultMap;

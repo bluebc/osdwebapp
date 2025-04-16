@@ -50,8 +50,8 @@
                 <div class="infoItem">
                     <div class="nickname"><h3>${cunsult_post.user_id}</h3></div>
                     <div class="article-info">
-                        <span>2025.04.01. 00:00</span>
-                        <span>조회 144</span>
+                        <span>${postCreatedAt}</span>
+                        <span>조회 ${cunsult_post.post_viewcnt}</span>
                     </div>
                     
                 </div>
@@ -73,7 +73,7 @@
                 </div>
 
                 <div class="comment-header">
-                    <span>댓글 n개</span>
+                    <span id = "cmtCount">댓글 ${cunsult_post.post_cmtcnt}개</span>
                 </div>
             </div>
 
