@@ -43,6 +43,12 @@ header .top-banner {
   font-size: 12px;
   color: gray;
 }
+.container .content .post hr {
+  margin: 2rem 0;
+  border: 0;
+  height: 2px;
+  background: #d3d3d3;
+}
 .container .content .post .post-content {
   white-space: break-spaces;
   font-size: 16px;

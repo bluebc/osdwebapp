@@ -50,6 +50,12 @@ header{
                     }
                 }
             }
+            hr{
+                margin: 2rem 0;
+                border: 0;
+                height: 2px;
+                background: #d3d3d3;
+            }
             .post-content {
                 white-space: break-spaces;
                 font-size: 16px;
