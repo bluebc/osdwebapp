@@ -48,7 +48,7 @@ header .hd_all article .gnb div {
 header .hd_all article .gnb div a {
   width: 100%;
 }
-header .hd_all article .gnb div a h1 img {
+header .hd_all article .gnb div a img {
   width: 80px;
   margin-bottom: 5px;
 }
@@ -69,7 +69,7 @@ header .hd_all article .gnb .pc_menu .menu_style li {
 header .hd_all article .gnb .pc_menu .menu_style li a {
   font-weight: bold;
   color: #3D210F;
-  font-size: 1.2em;
+  font-size: 1.2rem;
   display: inline-block;
   margin: 0;
   text-transform: uppercase;
@@ -137,7 +137,7 @@ header .hd_all .hd_m {
   }
 }
 @media screen and (max-width: 1024px) {
-  header .hd_all article .gnb div a h1 img {
+  header .hd_all article .gnb div a img {
     width: 50px;
   }
   header .hd_all article .gnb .pc_menu .menu_style li a {

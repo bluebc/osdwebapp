@@ -21,9 +21,7 @@
                 <hgroup class="gnb">
                     <div>
                         <a href="/">
-                            <h1 >
                                 <img src="${pageContext.request.contextPath}/img/uni-well-logo.png" alt="logo">
-                            </h1>
                         </a>
                 
                     </div>

@@ -13,13 +13,12 @@ $('#summernote').summernote({
     focus: true, // 에디터 로딩후 포커스를 맞출지 여부( true, false )
     lang: "ko-KR",    // 한글 설정
     toolbar: [
-
+        ['style', ['style']],
         ['font', ['bold', 'underline', 'clear']],
         ['color', ['color']],
-        ['insert', ['picture']]
-
+        ['insert', ['picture']],
     ],
-
+    styleTags: ['p', 'h1', 'h2', 'h3', 'blockquote'],
     callbacks: {
         onImageUpload: function (files, editor, welEditable) {
             for (var i = 0; i < files.length; i++) {
