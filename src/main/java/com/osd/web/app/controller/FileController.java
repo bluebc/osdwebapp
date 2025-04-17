@@ -93,18 +93,10 @@ public class FileController {
                 .body(resource);
     }
 
-
-    @Autowired
-    private WebApplicationContext context;
-
-    // @ResponseBody
     @PostMapping("/uploadBoardImage")
     public ResponseEntity<?> uploadBoardImage(@RequestParam("file") MultipartFile file)
             throws IllegalStateException, IOException {
         try {
-            // 서버에 저장할 경로
-            // String uploadDirectory = context.getServletContext().getRealPath("/resources/assets/images/upload");
-            // String uploadDirectory = context.getServletContext().getRealPath("/resources/static/img/upload");
             String uploadDirectory = System.getProperty("user.dir") + "/src/main/resources/static/img/upload";
             // System.out.println(uploadDirectory);
 
@@ -114,9 +106,6 @@ public class FileController {
             // 업로드 된 파일의 확장자
             String fileExtension = originalFileName.substring(originalFileName.lastIndexOf("."));
 
-
-
-            
             // 업로드 될 파일의 이름 재설정 (중복 방지를 위해 UUID 사용)
             String uuidFileName = UUID.randomUUID().toString() + fileExtension;
 
@@ -131,5 +120,20 @@ public class FileController {
 
     }
 
+    @PostMapping("/uploadUserImage")
+    public ResponseEntity<?> uploadUserImage(@RequestParam("file") MultipartFile file)
+            throws IllegalStateException, IOException {
+        try {
+            String uploadDirectory = System.getProperty("user.dir") + "/src/main/resources/static/img/user";
+            String originalFileName = file.getOriginalFilename();
+            String fileExtension = originalFileName.substring(originalFileName.lastIndexOf("."));
+            String uuidFileName = UUID.randomUUID().toString() + fileExtension;
+            file.transferTo(new File(uploadDirectory, uuidFileName));
+            return ResponseEntity.ok(uuidFileName);
+        } catch (Exception e) {
+            return ResponseEntity.badRequest().body("이미지 업로드 실패");
+        }
+
+    }
 
 }

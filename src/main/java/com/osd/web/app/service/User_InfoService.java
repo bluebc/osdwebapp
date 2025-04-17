@@ -18,7 +18,6 @@ public class User_InfoService {
         return user_InfoDao.getUser_InfoById(user_InfoDto);
     }
 
-    // TestController
     public int updateUser_Info(User_InfoDto user_InfoDto) {
         int result = 0;
 
