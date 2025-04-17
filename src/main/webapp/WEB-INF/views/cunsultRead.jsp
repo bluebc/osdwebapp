@@ -33,7 +33,7 @@
 
 <input type = "hidden" id = "post_id" value = "${cunsult_post.post_id}">
 <input type = "hidden" id = "user_id" value = "${cunsult_post.user_id}">
-<input type = "hidden" id = "reader_id" value = "${reader_id}">
+<input type = "hidden" id = "login_user_id" value = "${login_user_id}">
 
 
 
@@ -46,7 +46,7 @@
 
             <div class="post-title">${cunsult_post.post_subject}</div>
             <div class="post-meta">
-                <img class="thumb" src="../img/hd-pop.jpg" alt="작성자 프로필">
+                <img class="thumb" src="${pageContext.request.contextPath}/img/user/${cunsult_post.user_img}" alt="작성자 프로필">
                 <div class="infoItem">
                     <div class="nickname"><h3>${cunsult_post.user_id}</h3></div>
                     <div class="article-info">
@@ -91,7 +91,7 @@
 
             <div id = "writeComment">
                 <div class="comment-inbox">
-                    <div class="nickname"><h3>${cunsult_post.user_id}</h3></div>
+                    <div class="nickname"><h3>${login_user_nickname}</h3></div>
                     <textarea  class = "write-content" placeholder  = "댓글을 작성하세요"></textarea>
                 </div>
 

@@ -21,8 +21,10 @@ import com.osd.web.app.dto.Cunsult_CommentDto;
 import com.osd.web.app.dto.Cunsult_Comment_LikeDto;
 import com.osd.web.app.dto.Cunsult_PostDto;
 import com.osd.web.app.dto.Cunsult_Post_LikeDto;
+import com.osd.web.app.dto.User_InfoDto;
 import com.osd.web.app.service.CunsultService;
 import com.osd.web.app.service.LoginService;
+import com.osd.web.app.service.User_InfoService;
 
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
@@ -33,6 +35,9 @@ public class CunsultBoardController {
 
     @Autowired
     private CunsultService cunsultService;
+
+    @Autowired
+    private User_InfoService user_InfoService;
 
     @RequestMapping("/write")
     public String cunsultWritePage(HttpServletRequest request, Model model) {
@@ -121,24 +126,27 @@ public class CunsultBoardController {
         int liked = 0;
 
         HttpSession session = request.getSession();
-        String user_id = (String) session.getAttribute("login_user_id");
-        if (user_id != null && !user_id.equals("")) {
+        String login_user_id = (String) session.getAttribute("login_user_id");
+        if (login_user_id != null && !login_user_id.equals("")) {
             Cunsult_Post_LikeDto cunsult_Post_LikeDto = new Cunsult_Post_LikeDto();
             cunsult_Post_LikeDto.setPost_id(post_id);
-            cunsult_Post_LikeDto.setUser_id(user_id);
+            cunsult_Post_LikeDto.setUser_id(login_user_id);
             liked = cunsultService.checkPostLiked(cunsult_Post_LikeDto);
         }
 
+        User_InfoDto login_user_Info = user_InfoService.getUser_InfoById(login_user_id);
+        String login_user_nickname = login_user_Info.getUser_nickname();
         model.addAttribute("cunsult_post", board_PostDto);
         model.addAttribute("liked", liked);
-        model.addAttribute("reader_id", user_id);
+        model.addAttribute("login_user_id", login_user_id);
+        model.addAttribute("login_user_nickname", login_user_nickname);
 
         LocalDateTime post_created_at = board_PostDto.getPost_created_at();
 
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
         String formatted = post_created_at.format(formatter);
         model.addAttribute("postCreatedAt", formatted);
- 
+
         return "cunsultRead";
     }
 
