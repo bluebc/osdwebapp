@@ -8,9 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>상담 & 게시판 글쓰기</title>
 
-    <!-- css -->
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/reset.css">
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/cunsultWrite.css">
+    
     
     <!--favicon--->
     <link href="img/favicon.ico" rel="icon">
@@ -134,4 +132,8 @@
     <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/lang/summernote-ko-KR.js"></script>
     <script src ="${pageContext.request.contextPath}/js/summernote/summernote.js"></script>
 
+    <!-- css -->
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/reset.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/cunsultWrite.css">
+    
 </html>

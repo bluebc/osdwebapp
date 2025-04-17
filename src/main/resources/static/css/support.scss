@@ -200,12 +200,13 @@ main{
                                 text-align: right;
                                 margin: 2px;
                                 padding: 10px 20px;
-                                border: 1px solid #ccc;
+                                color: #82a90d;
+                                border: 1px solid #82a90d;
                                 border-radius: 4px;
-                                font-weight: bold;
+                                //font-weight: bold;
                                 cursor: pointer;
                                 &:hover{
-                                    background: #494949;
+                                    background: #82a90d;
                                     color: white;
                                 }
                             }
@@ -298,12 +299,13 @@ main{
                                 input{
                                 margin: 2px;
                                 padding: 10px 20px;
-                                border: 1px solid #ccc;
+                                color: #82a90d;
+                                border: 1px solid #82a90d;
                                 border-radius: 4px;
-                                font-weight: bold;
+                                //font-weight: bold;
                                 cursor: pointer;
                                     &:hover{
-                                        background: #494949;
+                                        background: #82a90d;
                                         color: white;
                                     }
                                 }
@@ -535,6 +537,16 @@ main{
                         .form-area{
                             margin: 0;
                             padding: 1rem;
+                        }
+                        .all-category{
+                            .contents-box{
+                                .faqWriteButton{
+                                    margin-top: 2rem;
+                                }
+                                #qnaButton{
+                                    margin-top: 2rem;
+                                }
+                            }
                         }
                     }
                     .agent{
