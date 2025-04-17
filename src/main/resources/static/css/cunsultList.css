@@ -13,7 +13,7 @@ header .top-banner {
   padding: 20px;
 }
 .notice-board .content h2 {
-  font-weight: border;
+  font-weight: bold;
   margin-bottom: 2rem;
 }
 .notice-board .content hr {

@@ -195,6 +195,21 @@ main{
                     .all-category{
                         .contents-box{
                             // faq
+
+                            .faqWriteButton{
+                                text-align: right;
+                                margin: 2px;
+                                padding: 10px 20px;
+                                border: 1px solid #ccc;
+                                border-radius: 4px;
+                                font-weight: bold;
+                                cursor: pointer;
+                                &:hover{
+                                    background: #494949;
+                                    color: white;
+                                }
+                            }
+
                             #faqCategory{
                                 padding-top: 2rem;
                                 padding-bottom: 2rem;                   
@@ -204,7 +219,6 @@ main{
                                     padding: 10px 20px;
                                     border: 1px solid #ccc;
                                     border-radius: 4px;
-                                    cursor: pointer;
                                     &:hover{
                                         background-color: #494949;
                                         color: white;
@@ -280,6 +294,22 @@ main{
                             }
 
                             // qna
+                            #qnaButton{
+                                input{
+                                margin: 2px;
+                                padding: 10px 20px;
+                                border: 1px solid #ccc;
+                                border-radius: 4px;
+                                font-weight: bold;
+                                cursor: pointer;
+                                    &:hover{
+                                        background: #494949;
+                                        color: white;
+                                    }
+                                }
+                                
+                            }
+
                             #qnaList{
                                 table{
                                     margin: 3rem 0;
