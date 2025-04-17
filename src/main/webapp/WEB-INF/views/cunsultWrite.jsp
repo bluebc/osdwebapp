@@ -20,7 +20,9 @@
     <script src="http://code.jquery.com/jquery-latest.min.js"></script>
     <script src ="${pageContext.request.contextPath}/js/cunsultWrite.js"></script>
     <script src ="${pageContext.request.contextPath}/js/fileUpload.js"></script>
-    
+
+
+
 </head>
 
 <body>
@@ -60,8 +62,15 @@
                     <td class="comment">
                         <!-- <h3>Comment</h3> -->
                         <div class="text-box">
-                            <textarea placeholder="내용을 입력해주세요" name="detail" id = "post_content"></textarea>
+                            <%-- <textarea placeholder="내용을 입력해주세요" name="detail" id = "post_content"></textarea> --%>
+                            
+                            <%-- summernote --%>
+                            <div>
+                                <div id="summernote" name="editordata"></div>
+                            </div>
                         </div>
+
+  
                     </td>
                 </tr>
 
@@ -116,5 +125,13 @@
     </script>
 
 </body>
+
+    <%-- summernote --%>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" rel="stylesheet">
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.css" rel="stylesheet">
+	<script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/lang/summernote-ko-KR.js"></script>
+    <script src ="${pageContext.request.contextPath}/js/summernote/summernote.js"></script>
 
 </html>

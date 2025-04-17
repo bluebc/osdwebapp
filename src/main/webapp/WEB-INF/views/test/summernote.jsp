@@ -13,8 +13,29 @@
 	<!-- include summernote css/js -->
 	<link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.css" rel="stylesheet">
 	<script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.js"></script>
+   <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/lang/summernote-ko-KR.js"></script>
+      <%-- <style>
+        @font-face {
+            font-family: 'NotoSansKR';
+            src: url('font/NotoSansKR-Black.otf') format('opentype')
+        }
+    </style>
+
+
+    <script>
+        $(document).ready(function() {
+            var fontList = ['맑은 고딕','NotoSansKR'];
+            $('#summernote').summernote({
+                lang: 'ko-KR',
+                fontNames: fontList,
+                fontNamesIgnoreCheck: fontList,
+            });
+        });
+    </script> --%>
+
 
 <script src="/js/test/summernote.js"></script>
+<script src="/js/test/testSummernote.js"></script>
 <%-- ================================================ --%>
 
  <%-- <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
@@ -30,8 +51,8 @@
 <%-- =================================================================== --%>
 
 <!-- include summernote-ko-KR -->
-<%-- <script src="/js/summernote/lang/summernote-ko-KR.js"></script>
- --%>
+<%-- <script src="/js/summernote/lang/summernote-ko-KR.js"></script> --%>
+
 
 <%-- =================================================================== --%>
 
@@ -42,9 +63,9 @@
 </head>
 <body>
 
- <div id="summernote">
+ <%-- <div id="summernote"> --%>
  <%-- <textarea id = "summernote"></textarea> --%>
- </div>
+ <%-- </div> --%>
     <%-- <script>
       $('#summernote').summernote({
         placeholder: 'Hello stand alone ui',
@@ -61,11 +82,25 @@
         ]
       });
     </script> --%>
+
+<form method="post">
+  <textarea id="summernote" name="editordata"></textarea>
+</form>
+
         <script>
+
+ //const contextPath = '${pageContext.request.contextPath}';
+
+
+
       $('#summernote').summernote({
-        placeholder: 'Hello stand alone ui',
+        placeholder: '글을 작성해주세요.',
         tabsize: 2,
         height: 500,
+        minHeight : null,  // 최소 높이
+        maxHeight : null,  // 최대 높이
+        focus : true , // 에디터 로딩후 포커스를 맞출지 여부( true, false )
+        lang : "ko-KR",    // 한글 설정
         toolbar: [
 
           ['font', ['bold', 'underline', 'clear']],
@@ -107,6 +142,7 @@ function text(){
 <div>
 
 <input type = "button" value = "글 내용" onclick = "text()">
+<input type = "button" value = "글 저장" onclick = "save()">
 <script>
 
 </script>

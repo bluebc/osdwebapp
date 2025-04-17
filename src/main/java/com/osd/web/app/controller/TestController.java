@@ -127,4 +127,14 @@ public class TestController {
         return "test/summernote";
     }
 
+    @ResponseBody
+    @PostMapping("/tSummernoteSave")
+    public Map<String, Object> tSummernoteSave(@RequestBody Map<String, Object> requestMap){
+        Map<String, Object> resultMap = new HashMap<>();
+
+
+        
+        return resultMap;
+    }
+
 }

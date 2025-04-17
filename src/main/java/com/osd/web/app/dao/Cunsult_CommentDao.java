@@ -57,4 +57,9 @@ public class Cunsult_CommentDao {
         return session.update("Cunsult_Comment.updateToDeleted", cunsult_CommentDto);
     }
 
+    // 댓글 수
+    public int selectCountByPost(int post_id){
+        return session.selectOne("Cunsult_Comment.selectCountByPost", post_id);
+    }
+
 }

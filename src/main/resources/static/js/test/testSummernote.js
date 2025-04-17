@@ -1,19 +1,48 @@
+async function save() {
+    var markupStr = $('#summernote').summernote('code');
+    console.log(list);
+    usedImages = getUsedImageList();
+    console.log(usedImages);
+    await posting();
+}
+
+function getUsedImageList() {
+    let usedImages = [];
+    let content = $('#summernote').summernote('code');
+
+    // DOMParser로 HTML 문자열 파싱
+    let parser = new DOMParser();
+    let doc = parser.parseFromString(content, 'text/html');
+
+    // 이미지 태그를 모두 찾고
+    let imgTags = doc.querySelectorAll('img');
+
+    imgTags.forEach(img => {
+        let src = img.getAttribute('src');
+        if (src && src.startsWith('/img/upload/')) {
+            // 파일명만 추출
+            let fileName = src.split('/').pop();
+            usedImages.push(fileName);
+        }
+    });
+
+    return usedImages;
+}
+
+
 // 글 작성 완료
 async function posting() {
     // console.log("게시");
 
-    var user_id = document.getElementById("user_id").value;
-    var post_subject = document.getElementById("post_subject").value;
+    // var user_id = document.getElementById("user_id").value;
+    const user_id = 'sh';
+    // var post_subject = document.getElementById("post_subject").value;
+    var post_subject = "사진 테스트";
     // var post_content = document.getElementById("post_content").value;
-    // summernote.js
-    let post_content = getMarkupStr();
-    let usedImages = getUsedImageList();
-    let post_images = null;
+    let post_content = $('#summernote').summernote('code');
     
-    if (usedImages.length > 0) {
-        post_images = JSON.stringify(usedImages);
-    }
-    
+    let images = getUsedImageList();
+    let post_images = JSON.stringify(images);
 
 
     if (user_id == null || user_id == "") {
@@ -39,21 +68,21 @@ async function posting() {
     var fileInputId = "fileInput";
     var files = [];
 
-    const uploaded = await uploadFiles(fileInputId);
-    if (uploaded != null) {
-        const fileList = uploaded.fileList;
+    // const uploaded = await uploadFiles(fileInputId);
+    // if (uploaded != null) {
+    //     const fileList = uploaded.fileList;
 
-        fileList.forEach(file => {
-            files.push(file);
-        });
-        // console.log(files);
-        var post_files = JSON.stringify(files);
-    }
+    //     fileList.forEach(file => {
+    //         files.push(file);
+    //     });
+    //     // console.log(files);
+    //     var post_files = JSON.stringify(files);
+    // }
     var post = {
         user_id: user_id,
         post_subject: post_subject,
         post_content: post_content,
-        post_files: post_files,
+        // post_files: post_files,
         post_images: post_images
     };
 

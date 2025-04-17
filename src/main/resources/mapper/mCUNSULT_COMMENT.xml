@@ -110,4 +110,11 @@
 	</where>
 </update>
 
+<select id="selectCountByPost" parameterType="int">
+	select count(*) from cunsult_comment 
+	<where>
+		post_id = #{post_id}
+	</where>
+</select>
+
 </mapper>
