@@ -7,7 +7,7 @@ document.addEventListener("DOMContentLoaded", function () {
 $('#summernote').summernote({
     placeholder: '글을 작성해주세요.',
     tabsize: 2,
-    height: 500,
+    height: 300,
     minHeight: null,  // 최소 높이
     maxHeight: null,  // 최대 높이
     focus: true, // 에디터 로딩후 포커스를 맞출지 여부( true, false )

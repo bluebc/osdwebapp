@@ -3,7 +3,7 @@ header .top-banner {
 }
 
 .container {
-  padding: 10rem 0 10rem;
+  padding: 7rem 0 8rem;
 }
 .container .content {
   max-width: 1000px;
@@ -16,6 +16,11 @@ header .top-banner {
 }
 .container .content form table tr td {
   line-height: 1.7;
+}
+.container .content form table tr td h2 {
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin-bottom: 2rem;
 }
 .container .content form table tr td hr {
   margin: 2rem 0;

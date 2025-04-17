@@ -56,6 +56,7 @@
                     
                 </div>
             </div>
+            <hr noshade>
             <div class="post-content">${cunsult_post.post_content}</div>
 
             <div id = "modOrDel" style="display:none">
