@@ -1,3 +1,9 @@
+document.addEventListener("DOMContentLoaded", function () {
+
+
+});
+
+
 $('#summernote').summernote({
     placeholder: '글을 작성해주세요.',
     tabsize: 2,
@@ -24,6 +30,30 @@ $('#summernote').summernote({
 
 });
 
+function imageUploader(file, el) {
+    var formData = new FormData();
+    formData.append('file', file);
+
+    $.ajax({
+        data: formData,
+        type: "POST",
+        // url 이미지 업로드 처리 컨트롤러 경로
+        url: '/file/uploadBoardImage',
+        contentType: false,
+        processData: false,
+        enctype: 'multipart/form-data',
+        success: function (data) {
+
+            // 파일 생성이 완료되는데 대략 4초
+            $(".spinner-border").css("display", "inline-block");
+            setTimeout(function () {
+                $(".spinner-border").css("display", "none");
+                $(el).summernote('editor.insertImage', "/img/upload/" + data);
+            }, 4000);
+        }
+    });
+}
+
 function getUsedImageList() {
     let usedImages = [];
     let content = $('#summernote').summernote('code');
@@ -48,7 +78,7 @@ function getUsedImageList() {
     return usedImages;
 }
 
-function getMarkupStr(){
+function getMarkupStr() {
     let markupStr = $('#summernote').summernote('code');
     return markupStr;
 }

@@ -4,7 +4,17 @@ async function posting() {
 
     var user_id = document.getElementById("user_id").value;
     var post_subject = document.getElementById("post_subject").value;
-    var post_content = document.getElementById("post_content").value;
+    // var post_content = document.getElementById("post_content").value;
+    // summernote.js
+    let post_content = getMarkupStr();
+    let usedImages = getUsedImageList();
+    let post_images = null;
+    
+    if (usedImages.length > 0) {
+        post_images = JSON.stringify(usedImages);
+    }
+    
+
 
     if (user_id == null || user_id == "") {
 
@@ -43,7 +53,8 @@ async function posting() {
         user_id: user_id,
         post_subject: post_subject,
         post_content: post_content,
-        post_files: post_files
+        post_files: post_files,
+        post_images: post_images
     };
 
     // 글 보내기
@@ -56,7 +67,7 @@ async function posting() {
     //
     alert("글 작성이 완료되었습니다.");
 
-    window.location.href = "/cunsult/read?post_id="+post_id;
+    window.location.href = "/cunsult/read?post_id=" + post_id;
 }
 
 // 서버에 글 post
