@@ -114,6 +114,9 @@ public class FileController {
             // 업로드 된 파일의 확장자
             String fileExtension = originalFileName.substring(originalFileName.lastIndexOf("."));
 
+
+
+            
             // 업로드 될 파일의 이름 재설정 (중복 방지를 위해 UUID 사용)
             String uuidFileName = UUID.randomUUID().toString() + fileExtension;
 

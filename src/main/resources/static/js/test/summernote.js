@@ -1,3 +1,5 @@
+const list = [];
+
 function imageUploader(file, el) {
 	var formData = new FormData();
 	formData.append('file', file);
@@ -13,17 +15,19 @@ function imageUploader(file, el) {
 		processData: false,
 		enctype: 'multipart/form-data',
 		success: function (data) {
+			list.push(data);
 			// $(el).summernote('insertImage', "${pageContext.request.contextPath}/img/upload/"+data, function($image) {
 			// 	$image.css('width', "100%");
 			// });
 			// $(el).summernote('insertImage', '/img/upload/' + data, function ($image) {
 			// 	$image.css('width', "100%");
 			// });
+			//파일 생성이 완료되는데 대략 4초가 걸려서 4초를 주고 사용자에게 업로드중인걸 알리기위해 스피너를 사용했다. (좋은 방법 아님)
 			$(".spinner-border").css("display","inline-block");
 			setTimeout(function() {
 				$(".spinner-border").css("display","none");
 				$(el).summernote('editor.insertImage', "/img/upload/" + data);
-			}, 100);
+			}, 4000);
 
 
 
