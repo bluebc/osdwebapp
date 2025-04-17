@@ -167,6 +167,19 @@ main .container .content .lnbContainer .section-cont .form-area .search .btn-sea
   padding: 0;
   border: 0;
 }
+main .container .content .lnbContainer .section-cont .all-category .contents-box .faqWriteButton {
+  text-align: right;
+  margin: 2px;
+  padding: 10px 20px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-weight: bold;
+  cursor: pointer;
+}
+main .container .content .lnbContainer .section-cont .all-category .contents-box .faqWriteButton:hover {
+  background: #494949;
+  color: white;
+}
 main .container .content .lnbContainer .section-cont .all-category .contents-box #faqCategory {
   padding-top: 2rem;
   padding-bottom: 2rem;
@@ -177,7 +190,6 @@ main .container .content .lnbContainer .section-cont .all-category .contents-box
   padding: 10px 20px;
   border: 1px solid #ccc;
   border-radius: 4px;
-  cursor: pointer;
 }
 main .container .content .lnbContainer .section-cont .all-category .contents-box #faqCategory .tab-button:hover {
   background-color: #494949;
@@ -229,6 +241,18 @@ main .container .content .lnbContainer .section-cont .all-category .contents-box
 }
 main .container .content .lnbContainer .section-cont .all-category .contents-box #faqList .tab-content .faq-box .faq-answer table tbody tr td p span {
   line-height: 1.2;
+}
+main .container .content .lnbContainer .section-cont .all-category .contents-box #qnaButton input {
+  margin: 2px;
+  padding: 10px 20px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-weight: bold;
+  cursor: pointer;
+}
+main .container .content .lnbContainer .section-cont .all-category .contents-box #qnaButton input:hover {
+  background: #494949;
+  color: white;
 }
 main .container .content .lnbContainer .section-cont .all-category .contents-box #qnaList table {
   margin: 3rem 0;
