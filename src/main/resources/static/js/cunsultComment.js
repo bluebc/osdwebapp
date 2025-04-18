@@ -528,13 +528,16 @@ async function editComment(cmtLvId) {
     let editCmtDiv = document.createElement("div");
     editCmtDiv.className = "editComment";
 
+    // input-타입말고 textarea 바꾸기 크게 한번더div로 묶기
     // 입력창
     let editCmtContent = document.createElement("input");
     editCmtContent.type = "textarea";
     editCmtContent.value = cmtContent;
     editCmtContent.id = "editCmt_" + cmt_id;
     editCmtDiv.appendChild(editCmtContent);
-
+    
+    
+    // 완료,취소 div로 한번 묶기
     let updateCmtButton = document.createElement("input");
     updateCmtButton.value = "수정 완료";
     updateCmtButton.onclick = function () {
