@@ -36,7 +36,7 @@
 		</insert>
 
 	 	<select id="getUser_InfoById" parameterType="User_InfoDto" resultMap="UserInfoResultMap">
-		 	select user_id, user_name, user_hpno, user_email, user_addr, user_birth, user_gender, user_role, user_nickname from user_info 
+		 	select user_id, user_name, user_hpno, user_email, user_addr, user_birth, user_gender, user_role, user_nickname, user_img from user_info 
 			<where>
 			user_id = #{user_id}
 			</where> 
@@ -57,29 +57,35 @@
 			</where>
 		</delete>
 
-		<update id="update">
+		<update id="update" parameterType = "User_InfoDto">
 			update user_info
 			<set>
-				<if test="#{user_pw}!=null">
+				<if test="user_pw!=null">
 					user_pw = #{user_pw} ,
 				</if>
-				<if test="#{user_name}!=null">
+				<if test="user_name!=null">
 					user_name = #{user_name} ,
 				</if>
-				<if test="#{user_hpno}!=null">
+				<if test="user_hpno!=null">
 					user_hpno = #{user_hpno} ,
 				</if>
-				<if test="#{user_email}!=null">
+				<if test="user_email!=null">
 					user_email = #{user_email} ,
 				</if>
-				<if test="#{user_addr}!=null">
+				<if test="user_addr!=null">
 					user_addr = #{user_addr} ,
 				</if>
-				<if test="#{user_birth}!=null">
+				<if test="user_birth!=null">
 					user_birth = #{user_birth} ,
 				</if>
-				<if test="#{user_gender}!=null">
+				<if test="user_gender!=null">
 					user_gender = #{user_gender} ,
+				</if>
+				<if test="user_nickname!=null">
+					user_nickname = #{user_nickname} ,
+				</if>
+				<if test="user_img!=null">
+					user_img = #{user_img} ,
 				</if>
 				user_updated_at = #{user_updated_at}
 			</set>

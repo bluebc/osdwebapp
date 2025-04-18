@@ -1,4 +1,4 @@
-const reader_id = document.getElementById("reader_id").value;
+const login_user_id = document.getElementById("login_user_id").value;
 
 document.addEventListener("DOMContentLoaded", async function () {
     await loadComments();
@@ -14,8 +14,7 @@ async function writeComment() {
     var cmt_content = document.getElementById("writeCommentContent").value;
     console.log(cmt_content);
     var post_id = document.getElementById("post_id").value;
-    // var user_id = document.getElementById("reader_id").value;
-    var user_id = reader_id;
+    var user_id = login_user_id;
     var cunsult_comment = { cmt_content: cmt_content, post_id: post_id, user_id: user_id };
 
     const result = await postComment(cunsult_comment);
@@ -83,6 +82,8 @@ async function setComments() {
         displayCommentDiv.removeChild(displayCommentDiv.firstChild);
     }
 
+    let userImgPath = "/img/user/";
+
     commentList.forEach(comment => {
 
         // 원댓글
@@ -107,7 +108,7 @@ async function setComments() {
                 cmtUserImg.src = "../img/re1.jpg";
                 // 이미지 있는 경우
             } else {
-
+                cmtUserImg.src = userImgPath + comment.user_img;
             }
             level1Div.appendChild(cmtUserImg);
 
@@ -188,7 +189,7 @@ async function setComments() {
             myLike.className = "myLike";
             commentButtonsDiv.appendChild(myLike);
 
-            if (reader_id == comment.user_id) {
+            if (login_user_id == comment.user_id) {
 
                 let inpButtonsDiv = document.createElement("div");
                 inpButtonsDiv.className = "inpButtons";
@@ -244,7 +245,7 @@ async function setComments() {
                 cmtUserImg.src = "../img/re1.jpg";
                 // 이미지 있는 경우
             } else {
-
+                cmtUserImg.src = userImgPath + comment.user_img;
             }
             level2Div.appendChild(cmtUserImg);
 
@@ -310,7 +311,7 @@ async function setComments() {
             myLike.className = "myLike";
             commentButtonsDiv.appendChild(myLike);
 
-            if (reader_id == comment.user_id) {
+            if (login_user_id == comment.user_id) {
 
                 let inpButtonsDiv = document.createElement("div");
                 inpButtonsDiv.className = "inpButtons";
@@ -394,7 +395,7 @@ async function postReComment(level1DivId) {
 
     var cmt_content = document.getElementById(reCommentTextareaId).value;
     var post_id = document.getElementById("post_id").value;
-    var user_id = document.getElementById("reader_id").value;
+    var user_id = document.getElementById("login_user_id").value;
     var cunsult_comment = {
         cmt_content: cmt_content,
         post_id: post_id,

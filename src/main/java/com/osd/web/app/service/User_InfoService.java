@@ -14,11 +14,16 @@ public class User_InfoService {
     @Autowired
     private User_InfoDao user_InfoDao;
 
+    public User_InfoDto getUser_InfoById(String user_id) {
+        User_InfoDto user_InfoDto = new User_InfoDto();
+        user_InfoDto.setUser_id(user_id);
+        return getUser_InfoById(user_InfoDto);
+    }
     public User_InfoDto getUser_InfoById(User_InfoDto user_InfoDto) {
         return user_InfoDao.getUser_InfoById(user_InfoDto);
     }
 
-    // TestController
+
     public int updateUser_Info(User_InfoDto user_InfoDto) {
         int result = 0;
 
