@@ -24,6 +24,11 @@ public class User_InfoDao {
     public User_InfoDto getUser_InfoById(User_InfoDto user_InfoDto) {
         return session.selectOne("User_Info.getUser_InfoById", user_InfoDto);
     }
+    public User_InfoDto getUser_InfoById(String user_id) {
+        User_InfoDto user_InfoDto = new User_InfoDto();
+        user_InfoDto.setUser_id(user_id);
+        return getUser_InfoById(user_InfoDto);
+    }
     public User_InfoDto getUser_InfoForAuth(User_InfoDto user_InfoDto){
         return session.selectOne("User_Info.getUser_InfoForAuth", user_InfoDto);
     }
