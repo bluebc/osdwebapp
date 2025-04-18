@@ -107,7 +107,8 @@
         </div>
 
         <div class="list-frame">
-            <input type = "button" value = "목록" onclick = "goPostList()">
+            <%-- <input type = "button" value = "목록" onclick = "goPostList()"> --%>
+            <input type = "button" value = "목록" onclick = "location.href='/cunsultList'">
         </div>
 
     </div>
