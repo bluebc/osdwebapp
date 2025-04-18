@@ -351,42 +351,45 @@ async function setComments() {
 // 댓글 작성 창 열기
 function addReCommentWrite(level1DivId) {
     const level1Div = document.getElementById(level1DivId);
+    const level0Div = level1Div.parentElement;
 
-    var re_cmt_id = "re" + level1DivId;
-
+    const re_cmt_id = "re" + level1DivId;
 
     // 열려있는 댓글 창 닫기
     if (document.getElementById(re_cmt_id) != null) {
-
         const divs = document.querySelectorAll(".writeReComment");
         divs.forEach(div => div.remove());
-
         return;
     }
 
-    const divs = document.querySelectorAll(".writeReComment");
-    divs.forEach(div => div.remove());
-
     const writeReCommentDiv = document.createElement("div");
-    writeReCommentDiv.className = "writeReComment"
+    writeReCommentDiv.className = "writeReComment";
 
     const reCommentTextarea = document.createElement("textarea");
     reCommentTextarea.placeholder = "댓글을 작성하세요";
     reCommentTextarea.id = re_cmt_id;
-    reCommentTextarea.className = "writeReCommentContent";
     writeReCommentDiv.appendChild(reCommentTextarea);
+
+    const buttonWrapper = document.createElement("div");
+    buttonWrapper.className = "reWrapper";
 
     const reCommentPostButton = document.createElement("input");
     reCommentPostButton.type = "button";
     reCommentPostButton.value = "작성 완료";
     reCommentPostButton.onclick = function () {
         postReComment(level1DivId);
+    };
+
+    buttonWrapper.appendChild(reCommentPostButton);
+    writeReCommentDiv.appendChild(buttonWrapper);
+
+    if (level1Div.nextSibling) {
+        level0Div.insertBefore(writeReCommentDiv, level1Div.nextSibling);
+    } else {
+        level0Div.appendChild(writeReCommentDiv);
     }
-    writeReCommentDiv.appendChild(reCommentPostButton);
-
-    level1Div.appendChild(writeReCommentDiv);
-
 }
+
 
 async function postReComment(level1DivId) {
 
