@@ -156,6 +156,43 @@ header{
                                 }
                             }
                         }
+                        .editComment{
+                            width: 100%;
+                            margin: 3rem 0;
+                            padding: 16px 10px 10px 18px;
+                            border: 2px solid #ccc;
+                            border-radius: 6px;
+                            box-sizing: border-box;
+                            background: transparent;
+                            textarea{
+                                overflow: hidden;
+                                overflow-wrap: break-word;
+                                display: block;
+                                width: 100%;
+                                min-height: 17px;
+                                padding-right: 1px;
+                                border: none;
+                                font-size: 13px;
+                                resize: none;
+                                box-sizing: border-box;
+                                background: transparent;
+                                outline: 0;
+                            }
+                            .editButtons{
+                                float: right;
+                                input{
+                                    margin: 2px;
+                                    padding: 5px 15px;
+                                    border: 1px solid #ccc;
+                                    border-radius: 4px;
+                                    cursor: pointer;
+                                    &:nth-child(1){
+                                        background: #616161;
+                                        color: white;
+                                    }
+                                }
+                            }
+                        }
                         
                     }
                     .commentLevel2 {
@@ -303,6 +340,24 @@ header{
                                     .reReplyButton{
                                         margin-right: 5px;
                                     }
+                                }
+                            }
+                            .editComment{
+                                .editButtons{
+                                    input{
+                                    padding: 3px 7px;
+                                    font-size: 12px;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    #writeComment {
+                        .comment-attach {
+                            .register-box{
+                                input{
+                                    padding: 3px 7px;
+                                    font-size: 12px;                                    
                                 }
                             }
                         }

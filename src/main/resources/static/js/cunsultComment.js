@@ -525,32 +525,40 @@ async function editComment(cmtLvId) {
         child.style.display = "none";
     });
 
+
     let editCmtDiv = document.createElement("div");
     editCmtDiv.className = "editComment";
 
-    // input-타입말고 textarea 바꾸기 크게 한번더div로 묶기
-    // 입력창
-    let editCmtContent = document.createElement("input");
-    editCmtContent.type = "textarea";
+    // input에서- textarea 변경
+    let editCmtContent = document.createElement("textarea");
     editCmtContent.value = cmtContent;
     editCmtContent.id = "editCmt_" + cmt_id;
+    editCmtContent.placeholder = "댓글을 수정하세요";
     editCmtDiv.appendChild(editCmtContent);
-    
-    
-    // 완료,취소 div로 한번 묶기
+
+    // 버튼 감싸는 div
+    let buttonWrapper = document.createElement("div");
+    buttonWrapper.className = "editButtons";
+
+    // 수정 완료 버튼
     let updateCmtButton = document.createElement("input");
-    updateCmtButton.value = "수정 완료";
+    updateCmtButton.type = "button";
+    updateCmtButton.value = "등록";
     updateCmtButton.onclick = function () {
         updateComment(cmt_id);
-    }
-    editCmtDiv.appendChild(updateCmtButton);
+    };
+    buttonWrapper.appendChild(updateCmtButton);
 
+    // 수정 취소 버튼
     let cancelEditButton = document.createElement("input");
-    cancelEditButton.value = "수정 취소";
+    cancelEditButton.type = "button";
+    cancelEditButton.value = "취소";
     cancelEditButton.onclick = function () {
         cancelEditComment();
-    }
-    editCmtDiv.appendChild(cancelEditButton);
+    };
+    buttonWrapper.appendChild(cancelEditButton);
+
+    editCmtDiv.appendChild(buttonWrapper);
 
     cmtLvDiv.appendChild(editCmtDiv);
 

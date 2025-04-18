@@ -143,6 +143,48 @@ header .top-banner {
 .container .content .comment-section #comment #displayComment .commentLevel2 .commentContent .commentButtons .inpButtons input:nth-child(1) {
   margin-right: 10px;
 }
+.container .content .comment-section #comment #displayComment .commentLevel1 .editComment,
+.container .content .comment-section #comment #displayComment .commentLevel2 .editComment {
+  width: 100%;
+  margin: 3rem 0;
+  padding: 16px 10px 10px 18px;
+  border: 2px solid #ccc;
+  border-radius: 6px;
+  box-sizing: border-box;
+  background: transparent;
+}
+.container .content .comment-section #comment #displayComment .commentLevel1 .editComment textarea,
+.container .content .comment-section #comment #displayComment .commentLevel2 .editComment textarea {
+  overflow: hidden;
+  overflow-wrap: break-word;
+  display: block;
+  width: 100%;
+  min-height: 17px;
+  padding-right: 1px;
+  border: none;
+  font-size: 13px;
+  resize: none;
+  box-sizing: border-box;
+  background: transparent;
+  outline: 0;
+}
+.container .content .comment-section #comment #displayComment .commentLevel1 .editComment .editButtons,
+.container .content .comment-section #comment #displayComment .commentLevel2 .editComment .editButtons {
+  float: right;
+}
+.container .content .comment-section #comment #displayComment .commentLevel1 .editComment .editButtons input,
+.container .content .comment-section #comment #displayComment .commentLevel2 .editComment .editButtons input {
+  margin: 2px;
+  padding: 5px 15px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  cursor: pointer;
+}
+.container .content .comment-section #comment #displayComment .commentLevel1 .editComment .editButtons input:nth-child(1),
+.container .content .comment-section #comment #displayComment .commentLevel2 .editComment .editButtons input:nth-child(1) {
+  background: #616161;
+  color: white;
+}
 .container .content .comment-section #comment #displayComment .commentLevel2 {
   margin-top: 10px;
 }
@@ -264,5 +306,14 @@ header .top-banner {
   .container .content .comment-section #comment #displayComment .commentLevel1 .commentContent .commentButtons .reReplyButton,
   .container .content .comment-section #comment #displayComment .commentLevel2 .commentContent .commentButtons .reReplyButton {
     margin-right: 5px;
+  }
+  .container .content .comment-section #comment #displayComment .commentLevel1 .editComment .editButtons input,
+  .container .content .comment-section #comment #displayComment .commentLevel2 .editComment .editButtons input {
+    padding: 3px 7px;
+    font-size: 12px;
+  }
+  .container .content .comment-section #comment #writeComment .comment-attach .register-box input {
+    padding: 3px 7px;
+    font-size: 12px;
   }
 }/*# sourceMappingURL=cunsultRead.css.map */
