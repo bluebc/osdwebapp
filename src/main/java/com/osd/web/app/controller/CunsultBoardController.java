@@ -135,11 +135,16 @@ public class CunsultBoardController {
         }
 
         User_InfoDto login_user_Info = user_InfoService.getUser_InfoById(login_user_id);
-        String login_user_nickname = login_user_Info.getUser_nickname();
+        
+        if(login_user_Info!=null){
+            String login_user_nickname = login_user_Info.getUser_nickname();
+            model.addAttribute("login_user_nickname", login_user_nickname);
+        }
+        
         model.addAttribute("cunsult_post", board_PostDto);
         model.addAttribute("liked", liked);
         model.addAttribute("login_user_id", login_user_id);
-        model.addAttribute("login_user_nickname", login_user_nickname);
+        
 
         LocalDateTime post_created_at = board_PostDto.getPost_created_at();
 
