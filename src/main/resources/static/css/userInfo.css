@@ -1,0 +1,139 @@
+header .top-banner {
+  display: none;
+}
+
+.container {
+  padding: 15rem 0 15rem;
+}
+.container .content {
+  max-width: 1000px;
+  margin: 20px auto;
+  padding: 20px;
+}
+.container .content .title {
+  margin-bottom: 30px;
+}
+.container .content .title h2 {
+  margin-bottom: 10px;
+}
+.container .content .title p {
+  font-size: 14px;
+}
+.container .content form fieldset .tbl_model {
+  position: relative;
+  width: 100%;
+  table-layout: fixed;
+  border-spacing: 0;
+  border-collapse: collapse;
+  word-wrap: break-word;
+  word-break: keep-all;
+  border: 0;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+}
+.container .content form fieldset .tbl_model tbody {
+  display: table-row-group;
+  vertical-align: middle;
+  unicode-bidi: isolate;
+  border-color: inherit;
+}
+.container .content form fieldset .tbl_model tbody tr th {
+  line-height: 14px;
+  text-align: left;
+  vertical-align: top;
+  letter-spacing: -1px;
+  border: 0;
+  border-top: 1px solid #e5e5e5;
+  color: #333;
+  border-right: 1px solid #e5e5e5;
+  background: #f9f9f9;
+}
+.container .content form fieldset .tbl_model tbody tr th .thcell {
+  padding: 32px 31px 32px;
+}
+.container .content form fieldset .tbl_model tbody tr td {
+  line-height: 14px;
+  text-align: left;
+  vertical-align: top;
+  letter-spacing: -1px;
+  border: 0;
+  border-top: 1px solid #e5e5e5;
+}
+.container .content form fieldset .tbl_model tbody tr td .tdcell {
+  padding: 32px 31px 32px;
+}
+.container .content form fieldset .tbl_model tbody tr td .tdcell .profile_photo img {
+  border: 0;
+  width: 130px;
+  height: 130px;
+  -o-object-fit: contain;
+     object-fit: contain;
+}
+.container .content form fieldset .tbl_model tbody tr td .tdcell .btn_area_btm {
+  overflow: visible;
+  position: relative;
+  height: 33px;
+  padding-top: 21px;
+  margin-left: -8px;
+  text-align: left;
+}
+.container .content form fieldset .tbl_model tbody tr td .tdcell .btn_area_btm .btn_file {
+  position: relative;
+  display: inline-block;
+  float: left;
+  margin-left: 8px;
+}
+.container .content form fieldset .tbl_model tbody tr td .tdcell .btn_area_btm .btn_file label {
+  display: inline-block;
+  cursor: pointer;
+  font-size: 12px;
+  line-height: 14px;
+  display: inline-block;
+  vertical-align: top;
+  text-decoration: none !important;
+}
+.container .content form fieldset .tbl_model tbody tr td .tdcell .btn_area_btm .btn_file label b {
+  min-width: 52px;
+  min-height: 21px;
+  line-height: 15px;
+  padding: 8px 18px;
+  box-sizing: border-box;
+  border: 1px solid #bfbfbf;
+  background: #fff;
+  color: #333;
+}
+.container .content form fieldset .tbl_model tbody tr td .tdcell .btn_area_btm .btn_file input {
+  position: absolute;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  border: 0;
+}
+.container .content form fieldset .tbl_model tbody tr td .tdcell .contxt_webctrl input {
+  line-height: 27px;
+  float: left;
+  height: 27px;
+  padding: 0 0 0 7px;
+  vertical-align: top;
+  color: #333;
+  border: 1px solid #ccc;
+  opacity: 1;
+}
+.container .content form fieldset .btn_wrap {
+  margin-top: 30px;
+  overflow: hidden;
+  text-align: center;
+}
+.container .content form fieldset .btn_wrap input {
+  min-width: 52px;
+  min-height: 21px;
+  line-height: 15px;
+  padding: 8px 18px;
+  box-sizing: border-box;
+  border: 1px solid #bfbfbf;
+  background: #fff;
+  color: #333;
+}/*# sourceMappingURL=userInfo.css.map */

@@ -215,7 +215,7 @@ header .hd_all .hd_m {
   header .hd_all .hd_m .hd_info .gnbbar .group_option .op_list .op_item {
     padding: 0.7rem 0;
   }
-  header .hd_all .hd_m .hd_info .gnbbar .group_option .op_list .op_item button {
+  header .hd_all .hd_m .hd_info .gnbbar .group_option .op_list .op_item a {
     background: none;
     border: 0;
     cursor: pointer;
