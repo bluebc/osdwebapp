@@ -67,7 +67,7 @@ $(document).ready(function () {
     });
 
     opList.addEventListener('click', function (event) {
-        if (event.target.tagName !== 'BUTTON') return false;
+        if (event.target.tagName !== 'A') return false;
         opTitle.innerText = event.target.innerText;
         opList.classList.remove('on');
     });

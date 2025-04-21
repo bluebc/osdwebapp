@@ -21,14 +21,16 @@ async function sessionCheck(request) {
             if (isLoggedIn != true) {
                 window.location.href = "/login";
             } else {
-                window.location.href = "/mypage";
+                // window.location.href = "/mypage";
+                window.location.href = "/user/info";
             }
             break;
         case "headerSignup":
             if (isLoggedIn != true) {
                 window.location.href = "/signup";
             } else {
-                window.location.href = "/mypage";
+                // window.location.href = "/mypage";
+                window.location.href = "/user/info";
             }
             break;
         case "isLoggedIn":

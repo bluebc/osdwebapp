@@ -1,0 +1,154 @@
+@import "./mixin";
+
+header{
+    .top-banner{
+        display: none;
+    }
+}
+
+.container{
+    padding: 15rem 0 15rem;
+    .content{
+        max-width: 1000px;
+        margin: 20px auto;
+        padding: 20px;
+        //background-color: #f9f9f9;
+        .title {
+            margin-bottom: 30px;
+            h2{
+                
+                margin-bottom: 10px;
+            }
+            p{
+                font-size: 14px;
+            }
+        }
+        form{
+            fieldset{
+                .tbl_model{
+                    position: relative;
+                    width: 100%;
+                    table-layout: fixed;
+                    border-spacing: 0;
+                    border-collapse: collapse;
+                    word-wrap: break-word;
+                    word-break: keep-all;
+                    border: 0;
+                    border: 1px solid #ddd;
+                    border-radius: 10px;
+                    tbody{
+                        display: table-row-group;
+                        vertical-align: middle;
+                        unicode-bidi: isolate;
+                        border-color: inherit;
+                        tr{
+                            th{
+                                line-height: 14px;
+                                text-align: left;
+                                vertical-align: top;
+                                letter-spacing: -1px;
+                                border: 0;
+                                border-top: 1px solid #e5e5e5;
+                                color: #333;
+                                border-right: 1px solid #e5e5e5;
+                                background: #f9f9f9;
+                                .thcell{
+                                    padding: 32px 31px 32px;
+                                }
+                            }
+                            td{
+                                line-height: 14px;
+                                text-align: left;
+                                vertical-align: top;
+                                letter-spacing: -1px;
+                                border: 0;
+                                border-top: 1px solid #e5e5e5;
+                                .tdcell{
+                                    padding: 32px 31px 32px;
+                                    .profile_photo{
+                                        img{
+                                            border: 0;
+                                            width: 130px;
+                                            height: 130px;
+                                            object-fit: contain;
+                                        }
+                                    }
+                                    .btn_area_btm{
+                                        overflow: visible;
+                                        position: relative;
+                                        height: 33px;
+                                        padding-top: 21px;
+                                        margin-left: -8px;
+                                        text-align: left;
+                                        .btn_file{
+                                            position: relative;
+                                            display: inline-block;
+                                            float: left;
+                                            margin-left: 8px;
+                                            label{
+                                                display: inline-block;
+                                                cursor: pointer;
+                                                font-size: 12px;
+                                                line-height: 14px;
+                                                display: inline-block;
+                                                vertical-align: top;
+                                                text-decoration: none !important;
+                                                b{
+                                                    min-width: 52px;
+                                                    min-height: 21px;
+                                                    line-height: 15px;
+                                                    padding: 8px 18px;
+                                                    box-sizing: border-box;
+                                                    border: 1px solid #bfbfbf;
+                                                    background: #fff;
+                                                    color: #333;
+                                                }
+                                            }
+                                            input{
+                                                position: absolute;
+                                                overflow: hidden;
+                                                clip: rect(0, 0, 0, 0);
+                                                width: 1px;
+                                                height: 1px;
+                                                margin: -1px;
+                                                padding: 0;
+                                                border: 0;
+                                            }
+                                        }
+                                    }
+                                    .contxt_webctrl{
+                                        input{
+                                            line-height: 27px;
+                                            float: left;
+                                            height: 27px;
+                                            padding: 0 0 0 7px;
+                                            vertical-align: top;
+                                            color: #333;
+                                            border: 1px solid #ccc;
+                                            opacity: 1;
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+                .btn_wrap{
+                    margin-top: 30px;
+                    overflow: hidden;
+                    text-align: center;
+                    input{
+                        min-width: 52px;
+                        min-height: 21px;
+                        line-height: 15px;
+                        padding: 8px 18px;
+                        box-sizing: border-box;
+                        border: 1px solid #bfbfbf;
+                        background: #fff;
+                        color: #333;
+                    }
+                }
+            }
+        }
+    }
+}
