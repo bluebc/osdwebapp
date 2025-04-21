@@ -48,7 +48,7 @@
             <div class="post-meta">
                 <img class="thumb" src="${pageContext.request.contextPath}/img/user/${cunsult_post.user_img}" alt="작성자 프로필">
                 <div class="infoItem">
-                    <div class="nickname"><h3>${cunsult_post.user_id}</h3></div>
+                    <div class="nickname"><h3>${cunsult_post.user_nickname}</h3></div>
                     <div class="article-info">
                         <span>${postCreatedAt}</span>
                         <span>조회 ${cunsult_post.post_viewcnt}</span>
