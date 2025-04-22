@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="Community_Post">
+
+	<resultMap id="CommunityPostResultMap" type="com.osd.web.app.dto.Community_PostDto">
+		<result column="POST_ID" property="post_id"/>
+		<result column="TYPE_ID" property="type_id"/>
+		<result column="THEME_ID" property="theme_id"/>
+		<result column="POST_SUBJECT" property="post_subject"/>
+		<result column="POST_CONTENT" property="post_content"/>
+		<result column="POST_IMAGES" property="post_images"/>
+		<result column="POST_FILES" property="post_files"/>
+		<result column="POST_VIEWCNT" property="post_viewcnt"/>
+		<result column="POST_CMTCNT" property="post_cmtcnt"/>
+		<result column="POST_LIKECNT" property="post_likecnt"/>
+		<result column="USER_ID" property="user_id"/>
+		<result column="POST_CREATED_AT" property="post_created_at"/>
+		<result column="POST_CREATED_AT" property="post_updated_at"/>
+	</resultMap>
+		 
+	<insert id="insert">
+		insert into community_post
+			(type_id, theme_id, 
+			post_subject, post_content, post_images, post_files, 
+			post_viewcnt, post_cmtcnt, post_likecnt, 
+			user_id, 
+			post_created_at, post_updated_at) 
+		values
+			(#{type_id}, #{theme_id}, 
+			#{post_subject}, #{post_content}, #{post_images}, #{post_files}, 
+			#{post_viewcnt}, #{post_cmtcnt}, #{post_likecnt}, 
+			#{user_id}, 
+			#{post_created_at}, #{post_updated_at})
+	</insert>
+
+	<select id="selectBySubjectAndUserAndCreated" parameterType="Community_PostDto" resultMap="CommunityPostResultMap">
+		select * from community_post 
+			<where>
+				post_subject = #{post_subject} 
+				and 
+				user_id = #{user_id} 
+				and 
+				post_created_at = #{post_created_at}
+			</where>
+	</select>
+
+	<update id="updateViewcnt" parameterType="int">
+		update community_post set post_viewcnt = post_viewcnt + 1 where post_id = #{post_id}
+	</update>
+
+	<delete id="deleteById" parameterType="int">
+		delete from community_post where post_id = #{post_id}
+	</delete>
+
+	<select id="selectById" parameterType="int" resultMap="CommunityPostResultMap">
+		select * from community_post where post_id = #{post_id}
+	</select>
+
+</mapper>

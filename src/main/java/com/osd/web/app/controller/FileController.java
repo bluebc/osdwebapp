@@ -39,6 +39,9 @@ import lombok.RequiredArgsConstructor;
 public class FileController {
 
     private final String uploadDir = "D:/osd/upload/";
+    private final String imgUploadDir = System.getProperty("user.dir") + "/src/main/resources/static/img/upload/";
+    private final String fileUploadDir = System.getProperty("user.dir") + "/src/main/resources/static/file/upload/";
+    
 
     @ResponseBody
     @PostMapping("/upload")
@@ -52,7 +55,8 @@ public class FileController {
             if (!file.isEmpty()) {
                 try {
                     String fileName = System.currentTimeMillis() + "_" + file.getOriginalFilename();
-                    Path filePath = Paths.get(uploadDir + fileName);
+                    // Path filePath = Paths.get(uploadDir + fileName);
+                    Path filePath = Paths.get(fileUploadDir + fileName);
                     Files.copy(file.getInputStream(), filePath, StandardCopyOption.REPLACE_EXISTING);
                     fileList.add(fileName);
                     fileOriginalNames.add(file.getOriginalFilename());
@@ -72,7 +76,9 @@ public class FileController {
     @GetMapping("/download")
     public ResponseEntity<Resource> downloadFile(@RequestParam("filename") String filename) throws IOException {
         // 저장된 경로에서 파일을 불러옴
-        String filePath = uploadDir + filename;
+        // String filePath = uploadDir + filename;
+        String filePath = fileUploadDir + filename;
+        System.out.println(filePath);
         Path path = Paths.get(filePath);
 
         if (!Files.exists(path)) {
@@ -97,7 +103,7 @@ public class FileController {
     public ResponseEntity<?> uploadBoardImage(@RequestParam("file") MultipartFile file)
             throws IllegalStateException, IOException {
         try {
-            String uploadDirectory = System.getProperty("user.dir") + "/src/main/resources/static/img/upload";
+            // String uploadDirectory = System.getProperty("user.dir") + "/src/main/resources/static/img/upload";
             // System.out.println(uploadDirectory);
 
             // 업로드 된 파일의 이름
@@ -111,7 +117,7 @@ public class FileController {
 
             // 위에서 설정한 서버 경로에 이미지 저장
             // file.transferTo(new File(uploadDirectory, uuidFileName));
-            file.transferTo(new File(uploadDirectory, uuidFileName));
+            file.transferTo(new File(imgUploadDir, uuidFileName));
 
             return ResponseEntity.ok(uuidFileName);
         } catch (Exception e) {

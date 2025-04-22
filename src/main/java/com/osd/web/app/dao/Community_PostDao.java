@@ -1,0 +1,36 @@
+package com.osd.web.app.dao;
+
+import org.apache.ibatis.session.SqlSession;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
+
+import com.osd.web.app.dto.Community_PostDto;
+
+@Repository
+public class Community_PostDao {
+
+    @Autowired
+    private SqlSession session;
+
+    public int insert(Community_PostDto community_PostDto) {
+        return session.insert("Community_Post.insert", community_PostDto);
+    }
+
+    // after Insert
+    public Community_PostDto selectBySubjectAndUserAndCreated(Community_PostDto community_PostDto) {
+        return session.selectOne("Community_Post.selectBySubjectAndUserAndCreated", community_PostDto);
+    }
+
+    public int updateViewcnt(int post_id){
+        return session.update("Community_Post.updateViewcnt", post_id);
+    }
+
+    public int deleteById(int post_id){
+        return session.delete("Community_Post.deleteById", post_id);
+    }
+
+    public Community_PostDto selectById(int post_id){
+        return session.selectOne("Community_Post.selectById", post_id);
+    }
+
+}
