@@ -84,8 +84,10 @@
                 <div id = "displayComment">
                     <div class = "commentLevel1" id = "cmt_id1">
                     </div>
-                    <input type = "hidden" id = "fileJSON" value = '${community_post.post_files}'>
-                    <input type="hidden" id="fileJSON" value='<c:out value='${community_post.post_files}' escapeXml="false" />'>
+                    <input type = "hidden" id = "fileJSON" value = "${community_post.post_files}">
+                    <%-- <input type="hidden" id="fileJSON" value="<c:out value='${community_post.post_files}' escapeXml='false' />"> --%>
+                    
+
                     <div id = fileList>
                     <%-- ${community_post.post_files} --%>
                 </div>

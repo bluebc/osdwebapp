@@ -2,7 +2,7 @@ addEventListener("DOMContentLoaded", function () {
     showModOrDel();
     loadLiked();
     // 파일 없을 때 처리 필요
-   setFileList();
+    setFileList();
 });
 
 function showModOrDel() {
@@ -25,8 +25,11 @@ function showModOrDel() {
 }
 
 function modifyPost() {
-    var post_id = document.getElementById("post_id").value;
-    window.location.href = "/community/modify?post_id=" + post_id;
+    if (confirm("글을 수정하시겠습니까?")) {
+        var post_id = document.getElementById("post_id").value;
+        window.location.href = "/community/modify?post_id=" + post_id;
+    }
+
 }
 
 
@@ -81,6 +84,7 @@ function goPostList() {
 
 function setFileList() {
     const fileJSON = document.getElementById("fileJSON").value;
+    console.log(fileJSON);
     const fileListDiv = document.getElementById("fileList");
     const fileList = JSON.parse(fileJSON);
     // console.log(fileList);

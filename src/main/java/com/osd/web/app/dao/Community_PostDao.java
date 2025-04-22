@@ -33,4 +33,8 @@ public class Community_PostDao {
         return session.selectOne("Community_Post.selectById", post_id);
     }
 
+    public int updateContent(Community_PostDto community_PostDto){
+        return session.update("Community_Post.update", community_PostDto);
+    }
+
 }

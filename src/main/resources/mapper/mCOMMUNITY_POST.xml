@@ -56,4 +56,21 @@
 		select * from community_post where post_id = #{post_id}
 	</select>
 
+	<update id="update" parameterType="Community_PostDto">
+		update 
+			community_post
+			<set>
+			type_id = #{type_id},
+			theme_id = #{theme_id},
+			post_subject = #{post_subject}, 
+			post_content = #{post_content}, 
+			post_images = #{post_images}, 
+			post_files = #{post_files}, 
+			post_updated_at = #{post_updated_at}, 
+			</set>
+		<where>
+		post_id = #{post_id}
+		</where>
+	</update>
+
 </mapper>

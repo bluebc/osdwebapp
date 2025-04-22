@@ -33,17 +33,22 @@ public class CommunityService {
         return board_PostDao.selectCommunityPostById(post_id);
     }
 
-    public int updatePostViewcnt(int post_id){
+    public int updatePostViewcnt(int post_id) {
         return community_PostDao.updateViewcnt(post_id);
     }
 
-    public int deletePostById(int post_id){
+    public int deletePostById(int post_id) {
         return community_PostDao.deleteById(post_id);
     }
 
-    public Community_PostDto getPostById(int post_id){
+    public Community_PostDto getPostById(int post_id) {
         return community_PostDao.selectById(post_id);
     }
 
+    public int updatePost(Community_PostDto community_PostDto) {
+        LocalDateTime post_updated_at = LocalDateTime.now().truncatedTo(ChronoUnit.SECONDS);
+        community_PostDto.setPost_updated_at(post_updated_at);
+        return community_PostDao.updateContent(community_PostDto);
+    }
 
 }

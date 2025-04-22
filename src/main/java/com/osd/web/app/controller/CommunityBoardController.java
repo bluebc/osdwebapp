@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.osd.web.app.dto.Board_PostDto;
 import com.osd.web.app.dto.Community_PostDto;
+import com.osd.web.app.dto.Cunsult_PostDto;
 import com.osd.web.app.service.CommunityService;
 
 import jakarta.servlet.http.HttpServletRequest;
@@ -164,6 +165,79 @@ public class CommunityBoardController {
     @RequestMapping("/none")
     public String communityNonePage() {
         return "communityNone";
+    }
+
+    @RequestMapping("/modify")
+    public String communityModifyPage(HttpServletRequest request,
+            @RequestParam(required = true, defaultValue = "0", name = "post_id") int post_id, Model model) {
+
+        HttpSession session = request.getSession();
+        String login_user_id = (String) session.getAttribute("login_user_id");
+
+        // 글 번호 오류
+        Community_PostDto community_PostDto = communityService.getPostById(post_id);
+        if (community_PostDto == null) {
+            return "redirect:/none";
+        }
+
+        // 세션 X
+        if (login_user_id == null || login_user_id == "") {
+            return "redirect:/wrongPath";
+        }
+
+        // 세션과 작성자 불일치
+        if (!community_PostDto.getUser_id().equals(login_user_id)) {
+            return "redirect:/wrongPath";
+        }
+
+        model.addAttribute("community_post", community_PostDto);
+
+        return "communityModify";
+    }
+
+    @ResponseBody
+    @PostMapping("/modifyCommunityPost")
+    public Map<String, Object> modifyCommunityPost(HttpServletRequest request,
+            @RequestBody Community_PostDto community_PostDto) {
+        Map<String, Object> resultMap = new HashMap<>();
+        int status = 0;
+
+        HttpSession session = request.getSession();
+        String login_user_id = (String) session.getAttribute("login_user_id");
+        if (login_user_id == null || login_user_id.equals("")) {
+            status = -1;
+            resultMap.put("status", status);
+            return resultMap;
+        }
+
+        if (community_PostDto == null) {
+            status = -101;
+            resultMap.put("status", status);
+            return resultMap;
+        }
+
+        int post_id = community_PostDto.getPost_id();
+        Community_PostDto community_PostFromDb = communityService.getPostById(post_id);
+        if (!login_user_id.equals(community_PostFromDb.getUser_id())) {
+            status = -2;
+            resultMap.put("status", status);
+            return resultMap;
+        }
+
+System.out.println(community_PostDto);
+
+        int updated = communityService.updatePost(community_PostDto);
+        if (updated != 1) {
+            status = -301;
+            resultMap.put("status", status);
+            return resultMap;
+        }
+
+        status = updated;
+        resultMap.put("status", status);
+        resultMap.put("updated", updated);
+
+        return resultMap;
     }
 
 }
