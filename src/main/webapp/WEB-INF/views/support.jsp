@@ -44,6 +44,9 @@
                         <div class="snb-btn">
                             <input type = "button" value = "QNA" onclick = "setSupportType('qna')">
                         </div>
+                        <div class="snb-btn">
+                            <input type = "button" value = "공지사항" onclick = "">
+                        </div>
                     </div>
                 </div>    
 
