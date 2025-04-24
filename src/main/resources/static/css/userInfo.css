@@ -64,16 +64,16 @@ header .top-banner {
   margin-left: 60px;
   margin-top: -5px;
 }
-.container .content .lnbContainer .contents-box #profileContent .title {
+.container .content .lnbContainer .contents-box #profile .title {
   margin-bottom: 30px;
 }
-.container .content .lnbContainer .contents-box #profileContent .title h2 {
+.container .content .lnbContainer .contents-box #profile .title h2 {
   margin-bottom: 10px;
 }
-.container .content .lnbContainer .contents-box #profileContent .title p {
+.container .content .lnbContainer .contents-box #profile .title p {
   font-size: 14px;
 }
-.container .content .lnbContainer .contents-box #profileContent form fieldset .tbl_model {
+.container .content .lnbContainer .contents-box #profile form fieldset .tbl_model {
   position: relative;
   width: 100%;
   table-layout: fixed;
@@ -85,16 +85,16 @@ header .top-banner {
   border: 1px solid #ddd;
   border-radius: 10px;
 }
-.container .content .lnbContainer .contents-box #profileContent form fieldset .tbl_model caption {
+.container .content .lnbContainer .contents-box #profile form fieldset .tbl_model caption {
   display: none;
 }
-.container .content .lnbContainer .contents-box #profileContent form fieldset .tbl_model tbody {
+.container .content .lnbContainer .contents-box #profile form fieldset .tbl_model tbody {
   display: table-row-group;
   vertical-align: middle;
   unicode-bidi: isolate;
   border-color: inherit;
 }
-.container .content .lnbContainer .contents-box #profileContent form fieldset .tbl_model tbody tr th {
+.container .content .lnbContainer .contents-box #profile form fieldset .tbl_model tbody tr th {
   line-height: 14px;
   text-align: left;
   vertical-align: top;
@@ -105,10 +105,10 @@ header .top-banner {
   border-right: 1px solid #e5e5e5;
   background: #f9f9f9;
 }
-.container .content .lnbContainer .contents-box #profileContent form fieldset .tbl_model tbody tr th .thcell {
+.container .content .lnbContainer .contents-box #profile form fieldset .tbl_model tbody tr th .thcell {
   padding: 32px 31px 32px;
 }
-.container .content .lnbContainer .contents-box #profileContent form fieldset .tbl_model tbody tr td {
+.container .content .lnbContainer .contents-box #profile form fieldset .tbl_model tbody tr td {
   line-height: 14px;
   text-align: left;
   vertical-align: top;
@@ -116,17 +116,17 @@ header .top-banner {
   border: 0;
   border-top: 1px solid #e5e5e5;
 }
-.container .content .lnbContainer .contents-box #profileContent form fieldset .tbl_model tbody tr td .tdcell {
+.container .content .lnbContainer .contents-box #profile form fieldset .tbl_model tbody tr td .tdcell {
   padding: 32px 31px 32px;
 }
-.container .content .lnbContainer .contents-box #profileContent form fieldset .tbl_model tbody tr td .tdcell .profile_photo img {
+.container .content .lnbContainer .contents-box #profile form fieldset .tbl_model tbody tr td .tdcell .profile_photo img {
   border: 0;
   width: 130px;
   height: 130px;
   -o-object-fit: contain;
      object-fit: contain;
 }
-.container .content .lnbContainer .contents-box #profileContent form fieldset .tbl_model tbody tr td .tdcell .btn_area_btm {
+.container .content .lnbContainer .contents-box #profile form fieldset .tbl_model tbody tr td .tdcell .btn_area_btm {
   overflow: visible;
   position: relative;
   height: 33px;
@@ -134,13 +134,13 @@ header .top-banner {
   margin-left: -8px;
   text-align: left;
 }
-.container .content .lnbContainer .contents-box #profileContent form fieldset .tbl_model tbody tr td .tdcell .btn_area_btm .btn_file {
+.container .content .lnbContainer .contents-box #profile form fieldset .tbl_model tbody tr td .tdcell .btn_area_btm .btn_file {
   position: relative;
   display: inline-block;
   float: left;
   margin-left: 8px;
 }
-.container .content .lnbContainer .contents-box #profileContent form fieldset .tbl_model tbody tr td .tdcell .btn_area_btm .btn_file label {
+.container .content .lnbContainer .contents-box #profile form fieldset .tbl_model tbody tr td .tdcell .btn_area_btm .btn_file label {
   display: inline-block;
   cursor: pointer;
   font-size: 12px;
@@ -149,7 +149,7 @@ header .top-banner {
   vertical-align: top;
   text-decoration: none !important;
 }
-.container .content .lnbContainer .contents-box #profileContent form fieldset .tbl_model tbody tr td .tdcell .btn_area_btm .btn_file label b {
+.container .content .lnbContainer .contents-box #profile form fieldset .tbl_model tbody tr td .tdcell .btn_area_btm .btn_file label b {
   min-width: 52px;
   min-height: 21px;
   line-height: 15px;
@@ -159,7 +159,7 @@ header .top-banner {
   background: #fff;
   color: #333;
 }
-.container .content .lnbContainer .contents-box #profileContent form fieldset .tbl_model tbody tr td .tdcell .btn_area_btm .btn_file input {
+.container .content .lnbContainer .contents-box #profile form fieldset .tbl_model tbody tr td .tdcell .btn_area_btm .btn_file input {
   position: absolute;
   overflow: hidden;
   clip: rect(0, 0, 0, 0);
@@ -169,7 +169,7 @@ header .top-banner {
   padding: 0;
   border: 0;
 }
-.container .content .lnbContainer .contents-box #profileContent form fieldset .tbl_model tbody tr td .tdcell .contxt_webctrl input {
+.container .content .lnbContainer .contents-box #profile form fieldset .tbl_model tbody tr td .tdcell .contxt_webctrl input {
   line-height: 27px;
   float: left;
   height: 27px;
@@ -179,12 +179,12 @@ header .top-banner {
   border: 1px solid #ccc;
   opacity: 1;
 }
-.container .content .lnbContainer .contents-box #profileContent form fieldset .btn_wrap {
+.container .content .lnbContainer .contents-box #profile form fieldset .btn_wrap {
   margin-top: 30px;
   overflow: hidden;
   text-align: center;
 }
-.container .content .lnbContainer .contents-box #profileContent form fieldset .btn_wrap input {
+.container .content .lnbContainer .contents-box #profile form fieldset .btn_wrap input {
   min-width: 52px;
   min-height: 21px;
   line-height: 15px;
