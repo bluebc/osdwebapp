@@ -7,7 +7,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
-    <title>상담 & 게시판</title>
+    <title>건강 나눔</title>
 
     <!-- css -->
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/reset.css">
@@ -31,37 +31,39 @@
 
 <%-- jstl 값 load 후 js load --%>
 
-<input type = "hidden" id = "post_id" value = "${cunsult_post.post_id}">
-<input type = "hidden" id = "user_id" value = "${cunsult_post.user_id}">
+<input type = "hidden" id = "post_id" value = "${community_post.post_id}">
+<input type = "hidden" id = "user_id" value = "${community_post.user_id}">
 <input type = "hidden" id = "login_user_id" value = "${login_user_id}">
 
 
 
 <div class="container">
     <div class="content">
-        <div class="title">게시판</div>
-        <div class="post">
-            <input type = "hidden" id = "post_id" value = "${cunsult_post.post_id}">
-            <input type = "hidden" id = "user_id" value = "${cunsult_post.user_id}">
+        <div class="title">게시판 type theme</div>
 
-            <div class="post-title">${cunsult_post.post_subject}</div>
+        <%-- 카테고리 표시 필요 --%>
+
+        <div class="post">
+            <input type = "hidden" id = "post_id" value = "${community_post.post_id}">
+            <input type = "hidden" id = "user_id" value = "${community_post.user_id}">
+
+            <div class="post-title">${community_post.post_subject}</div>
             <div class="post-meta">
-                <img class="thumb" src="${pageContext.request.contextPath}/img/user/${cunsult_post.user_img}" alt="작성자 프로필">
+                <img class="thumb" src="${pageContext.request.contextPath}/img/user/${community_post.user_img}" alt="작성자 프로필">
                 <div class="infoItem">
-                    <div class="nickname"><h3>${cunsult_post.user_nickname}</h3></div>
+                    <div class="nickname"><h3>${community_post.user_nickname}</h3></div>
                     <div class="article-info">
                         <span>${postCreatedAt}</span>
-                        <span>조회 ${cunsult_post.post_viewcnt}</span>
+                        <span>조회 ${community_post.post_viewcnt}</span>
                     </div>
                     
                 </div>
             </div>
-            <hr noshade>
-            <div class="post-content">${cunsult_post.post_content}</div>
+            <div class="post-content">${community_post.post_content}</div>
 
             <div id = "modOrDel" style="display:none">
-                <input type = "button" onclick = "modifyPost(${cunsult_post.post_id})" value = "수정">
-                <input type = "button" onclick = "deletePost(${cunsult_post.post_id})" value = "삭제">
+                <input type = "button" onclick = "modifyPost(${community_post.post_id})" value = "수정">
+                <input type = "button" onclick = "deletePost(${community_post.post_id})" value = "삭제">
             </div>
 
         </div>
@@ -74,7 +76,7 @@
                 </div>
 
                 <div class="comment-header">
-                    <span id = "cmtCount">댓글 ${cunsult_post.post_cmtcnt}개</span>
+                    <span id = "cmtCount">댓글 ${community_post.post_cmtcnt}개</span>
                 </div>
             </div>
 
@@ -82,10 +84,12 @@
                 <div id = "displayComment">
                     <div class = "commentLevel1" id = "cmt_id1">
                     </div>
-                    <input type = "hidden" id = "fileJSON" value = "${cunsult_post.post_files}">
-                    <input type="hidden" id="fileJSON" value='<c:out value="${cunsult_post.post_files}" escapeXml="false" />'>
+                    <input type = "hidden" id = "fileJSON" value = "${community_post.post_files}">
+                    <%-- <input type="hidden" id="fileJSON" value="<c:out value='${community_post.post_files}' escapeXml='false' />"> --%>
+                    
+
                     <div id = fileList>
-                    ${cunsult_post.post_files}
+                    <%-- ${community_post.post_files} --%>
                 </div>
             </div>
 
@@ -107,8 +111,7 @@
         </div>
 
         <div class="list-frame">
-            <%-- <input type = "button" value = "목록" onclick = "goPostList()"> --%>
-            <input type = "button" value = "목록" onclick = "location.href='/cunsultList'">
+            <input type = "button" value = "목록" onclick = "goPostList()">
         </div>
 
     </div>
@@ -122,8 +125,8 @@
 
 
 
-<script src ="${pageContext.request.contextPath}/js/cunsultRead.js"></script>
-<script src ="${pageContext.request.contextPath}/js/cunsultComment.js"></script>
+<script src ="${pageContext.request.contextPath}/js/communityRead.js"></script>
+<script src ="${pageContext.request.contextPath}/js/communityComment.js"></script>
 
 
 </body>

@@ -25,6 +25,15 @@
 
 </select>
 
+<select id="selectCommunityCmtByPost" parameterType="int" resultMap="BoardCommentResultMap">
+    select a.CMT_ID, a.CMT_CONTENT, a.POST_ID, a.PARENT_CMT_ID, a.CMT_LIKECNT, a.CMT_CREATED_AT, a.CMT_UPDATED_AT, b.USER_ID, b.USER_NICKNAME, b.USER_IMG 
+	from COMMUNITY_COMMENT as a join USER_INFO as b on a.USER_ID = b.USER_ID
+		where POST_ID = #{post_id}
+        order by a.CMT_CREATED_AT asc;
+
+
+</select>
+
 
 
 

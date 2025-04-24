@@ -137,4 +137,10 @@ public class TestController {
         return resultMap;
     }
 
+
+    @RequestMapping("/tCommunity")
+    public String tCommunityPage(){
+        return "test/community/community";
+    }
+
 }

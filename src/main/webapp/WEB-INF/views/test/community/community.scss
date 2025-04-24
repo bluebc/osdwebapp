@@ -1,0 +1,154 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f9f9f9;
+    margin: 0;
+    padding: 20px;
+}
+
+.blog-container {
+    max-width: 800px;
+    margin: auto;
+    .post {
+        background-color: #fff;
+        border: 1px solid #ddd;
+        border-radius: 10px;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        padding: 15px;
+        margin-bottom: 20px;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+        .post-left {
+            flex: 1;
+            margin-right: 15px;
+            min-width: 250px;
+            .author {
+                display: flex;
+                align-items: center;
+                font-size: 13px;
+                color: #666;
+                margin-bottom: 8px;
+                img {
+                    width: 30px;
+                    height: 30px;
+                    border-radius: 50%;
+                    margin-right: 8px;
+                }
+                .write-time{
+                    h3{margin: 0;}
+                    h4{
+                        margin: 0;
+                        font-weight: 100;
+                    }
+                }
+            }
+            .m-thumbnail{
+                display: none;
+            }
+            .title {
+                font-size: 1.5rem;
+                font-weight: 600;
+                color: #222;
+                margin-bottom: 8px;
+            }
+            .desc {
+                font-size: 14px;
+                color: #444;
+                margin-bottom: 10px;
+                max-height: 3.6em; 
+                overflow: hidden;
+                text-overflow: ellipsis;
+                display: -webkit-box;
+                -webkit-line-clamp: 3; 
+                -webkit-box-orient: vertical;
+            }
+            .buttons {
+                margin-top: 10px;
+                display: flex;
+                gap: 10px;
+                .button {
+                    font-size: 12px;
+                    padding: 5px 10px;
+                    border-radius: 5px;
+                    border: none;
+                    cursor: pointer;
+                    background-color: #eee;
+                    transition: background 0.3s;
+                    &:hover{
+                        background-color: #ddd;
+                    }
+                }
+            }
+        }
+        .thumbnail {
+            width: 150px;
+            height: 150px; 
+            flex-shrink: 0;
+            overflow: hidden;
+            border-radius: 5px;
+            img {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+            }
+        }
+    }
+}
+
+
+@media (max-width: 600px) {
+    .blog-container{
+        .post {
+    
+            .post-left {
+                width: 100%;
+                .buttons {
+                    //justify-content: center;
+                }
+                .m-thumbnail{
+                    display: block;
+                    position: relative;
+                    .m-imgbox{
+                        img{
+                            width: 100%;
+                            height: 100%;
+                            object-fit: cover;
+                        }
+                    }
+                    .m-num-photos{
+                        background: rgba(0, 0, 0, .4);
+                        border-radius: 24px;
+                        color: #fff;
+                        font-size: 12px;
+                        height: 24px;
+                        letter-spacing: -.3px;
+                        line-height: 24px;
+                        min-width: 21px;
+                        padding: 0 15px;
+                        position: absolute;
+                        right: 10px;
+                        text-align: center;
+                        top: 10px;
+                        .blind{
+                            overflow: hidden;
+                            position: absolute;
+                            clip: rect(0 0 0 0);
+                            font-size: 0;
+                            height: 1px;
+                            line-height: 0;
+                            margin: -1px;
+                            width: 1px;
+                        }
+                    }
+                }
+            }
+            .thumbnail {
+                display: none;
+            }
+        }
+    } 
+}

@@ -28,4 +28,10 @@ public class Board_PostDao {
         return session.selectOne("Board_Post.selectCunsultPostById", post_id);
     }
 
+    // community ==================================================
+
+    public Board_PostDto selectCommunityPostById(int post_id) {
+        return session.selectOne("Board_Post.selectCommunityPostById", post_id);
+    }
+
 }
