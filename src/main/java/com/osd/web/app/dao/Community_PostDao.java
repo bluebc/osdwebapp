@@ -21,20 +21,36 @@ public class Community_PostDao {
         return session.selectOne("Community_Post.selectBySubjectAndUserAndCreated", community_PostDto);
     }
 
-    public int updateViewcnt(int post_id){
+    public int updateViewcnt(int post_id) {
         return session.update("Community_Post.updateViewcnt", post_id);
     }
 
-    public int deleteById(int post_id){
+    public int deleteById(int post_id) {
         return session.delete("Community_Post.deleteById", post_id);
     }
 
-    public Community_PostDto selectById(int post_id){
+    public Community_PostDto selectById(int post_id) {
         return session.selectOne("Community_Post.selectById", post_id);
     }
 
-    public int updateContent(Community_PostDto community_PostDto){
+    public int updateContent(Community_PostDto community_PostDto) {
         return session.update("Community_Post.update", community_PostDto);
+    }
+
+    public int plusCmtcnt(int post_id) {
+        return session.update("Community_Post.plusCmtcnt", post_id);
+    }
+
+    public int minusCmtcnt(int post_id) {
+        return session.update("Community_Post.minusCmtcnt", post_id);
+    }
+
+    public int plusLikecnt(int post_id) {
+        return session.update("Community_Post.plusLikecnt", post_id);
+    }
+
+    public int minusLikecnt(int post_id) {
+        return session.update("Community_Post.minusLikecnt", post_id);
     }
 
 }

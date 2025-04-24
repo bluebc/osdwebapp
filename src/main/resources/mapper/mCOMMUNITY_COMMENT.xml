@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="Community_Comment">
+
+<resultMap id="CommunityCommentResultMap" type="com.osd.web.app.dto.Community_CommentDto">
+    <result column="CMT_ID" property="cmt_id"/>
+	<result column="CMT_CONTENT" property="cmt_content"/>
+    <result column="POST_ID" property="post_id"/>
+	<result column="PARENT_CMT_ID" property="parent_cmt_id"/>
+	<result column="CMT_LIKECNT" property="cmt_likecnt"/>
+	<result column="USER_ID" property="user_id"/>
+	<result column="CMT_CREATED_AT" property="cmt_created_at"/>
+	<result column="CMT_UPDATED_AT" property="cmt_updated_at"/>
+
+</resultMap>
+		 
+<insert id="insert" parameterType="Community_CommentDto">
+	insert into community_comment(
+		cmt_content, post_id, parent_cmt_id, cmt_likecnt, user_id, cmt_created_at, cmt_updated_at
+	)
+	values(
+		#{cmt_content}, #{post_id}, #{parent_cmt_id}, #{cmt_likecnt}, #{user_id}, #{cmt_sort}, #{cmt_created_at}, #{cmt_updated_at}
+	)
+</insert>
+		
+<select id="selectParentByPost" parameterType="int" resultMap="CommunityCommentResultMap"> 
+	select * from community_comment
+		<where>
+			post_id = #{post_id} 
+			and 
+			parent_cmt_id = 0
+		</where>
+	order by cmt_id asc
+</select>
+
+<select id="selectChildByPost" parameterType="int" resultMap="CommunityCommentResultMap"> 
+	select * from community_comment
+		<where>
+			post_id = #{post_id} 
+			and 
+			parent_cmt_id = 0
+		</where>
+	order by cmt_id asc
+</select>
+
+<select id="selectByPost" parameterType="int" resultMap="CommunityCommentResultMap">
+	select * from community_comment
+		<where>
+			post_id = #{post_id}
+		</where>
+	order by cmt_created_at
+</select>
+
+<!-- 좋아요 -->
+		<update id="plusLikecnt" parameterType="int">
+		update community_comment
+		<set>
+			cmt_likecnt = cmt_likecnt + 1
+		</set>
+		<where>
+			cmt_id = #{cmt_id}
+		</where>
+		</update>
+
+		<update id="minusLikecnt" parameterType="int">
+		update community_comment
+		<set>
+			cmt_likecnt = cmt_likecnt - 1
+		</set>
+		<where>
+			cmt_id = #{cmt_id}
+		</where>
+		</update>
+
+
+<update id="updateContentByIdAndUser" parameterType="Community_CommentDto">
+	update community_comment 
+	set cmt_content = #{cmt_content}, cmt_updated_at = #{cmt_updated_at} 
+	where cmt_id = #{cmt_id} and user_id = #{user_id}
+</update>
+
+<delete id="deleteByIdAndUser" parameterType="Community_CommentDto">
+	delete from community_comment
+	where cmt_id = #{cmt_id} and user_id = #{user_id}
+</delete>
+
+<select id="selectCountChild" parameterType="Community_CommentDto" resultType="int">
+	select count(*) from community_comment where parent_cmt_id = #{cmt_id}
+</select>
+
+<select id="selectCountIdAndUser" parameterType="Community_CommentDto" resultType="int">
+	select count(*) from community_comment
+		<where>
+			cmt_id = #{cmt_id} 
+			and 
+			user_id = #{user_id}
+		</where>
+</select>
+
+<update id="updateToDeleted" parameterType="Community_CommentDto">
+	update community_comment 
+	<set>
+		cmt_content = #{cmt_content} ,
+		user_id = #{user_id},
+		cmt_updated_at = #{cmt_updated_at}
+	</set>
+	<where>
+		cmt_id = #{cmt_id} 
+	</where>
+</update>
+
+<select id="selectCountByPost" parameterType="int">
+	select count(*) from community_comment 
+	<where>
+		post_id = #{post_id}
+	</where>
+</select>
+
+</mapper>

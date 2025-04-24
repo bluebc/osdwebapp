@@ -73,4 +73,58 @@
 		</where>
 	</update>
 
+	
+<!-- ============================== 댓글 수 ============================== -->
+
+	<update id="plusCmtcnt" parameterType="int">
+		update cunsult_post
+		<set>
+			post_cmtcnt = post_cmtcnt + 1
+		</set>
+		<where>
+			post_id = #{post_id}
+		</where>
+	</update>
+
+	
+	<update id="minusCmtcnt" parameterType="int">
+		update cunsult_post
+		<set>
+			post_cmtcnt = post_cmtcnt - 1
+		</set>
+		<where>
+			post_id = #{post_id}
+		</where>
+	</update>
+
+
+	<update id="updateCmtcnt" parameterType="int">
+		update CUNSULT_POST set 
+		post_cmtcnt = (select count(cmt_id) as post_cmtcnt from cunsult_comment where post_id = #{post_id} group by post_id) 
+				where post_id = #{post_id}
+
+	</update>
+	
+<!-- ============================== 좋아요 수 ============================== -->
+
+	<update id="plusLikecnt" parameterType="int">
+	update community_post
+	<set>
+		post_likecnt = post_likecnt + 1
+	</set>
+	<where>
+		post_id = #{post_id}
+	</where>
+	</update>
+
+	<update id="minusLikecnt" parameterType="int">
+	update community_post
+	<set>
+		post_likecnt = post_likecnt - 1
+	</set>
+	<where>
+		post_id = #{post_id}
+	</where>
+	</update>
+
 </mapper>

@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="Community_Post_Like">
+
+<resultMap id="CommunityPostLikeResultMap" type="com.osd.web.app.dto.Community_Post_LikeDto">
+    <result column="LIKE_ID" property="like_id"/>
+    <result column="POST_ID" property="post_id"/>
+	<result column="USER_ID" property="user_id"/>
+	<result column="LIKE_CREATED_AT" property="like_created_at"/>
+
+</resultMap>
+		 
+<insert id="insert" parameterType="Community_Post_LikeDto">
+	insert into community_post_like(post_id, user_id, like_created_at)
+		values (#{post_id}, #{user_id}, #{like_created_at})			
+</insert>
+
+<delete id="delete" parameterType="Community_Post_LikeDto">
+	delete community_post_like 
+	<where>
+		post_id = #{post_id} 
+		and 
+		user_id = #{user_id}
+	</where>
+</delete>
+
+<select id="selectByPostAndUser" parameterType="Community_Post_LikeDto" resultType="int">
+	select count(*) from community_post_like 
+		<where>
+			post_id = #{post_id} 
+			and 
+			user_id = #{user_id}
+		</where>
+</select>
+		
+</mapper>
