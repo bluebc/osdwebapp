@@ -293,6 +293,32 @@
 
                             <div class="blank-space"></div>
                         </div>
+
+
+                        <%-- 지사 --%>
+                                                <div class="form-item">
+                            <div class="form-tit">
+                                <label class="title">지사찾기<span class="symbol">*</span></label>
+                            </div>
+
+                            <div class="form-cont">
+                                <div class="cont-box">
+                                    <div class="save-inp">
+                                        <input type="text" id="" name="" placeholder="지사를 입력해주세요"
+                                            data-testid="input-box" >
+                                        <div class="m-duplication">
+                                            <input type="button" id="" class="btn-point2" value="" onclick="">
+                                        </div>    
+                                    </div>
+                                </div>
+                                
+                            </div>
+
+                            <div class="blank-space">
+                                <input type="button" id="" class="btn-point" value="확인" onclick="">
+                            </div>
+                            <input type="hidden" id="" name="" value=0>
+                        </div>
                     </div>
 
                     <div class="lineDivide"></div>

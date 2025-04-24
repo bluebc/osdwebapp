@@ -43,6 +43,9 @@
                     <input type = "button" value = "비밀번호변경" onclick = "">
                 </div>
                 <div class="snb-btn">
+                    <input type = "button" value = "지사찾기" onclick = "">
+                </div>
+                <div class="snb-btn">
                     <input type = "button" value = "회원탈퇴" onclick = "">
                 </div>
             </div>
@@ -53,10 +56,10 @@
 
             <%-- 프로필 profile --%>
             <div class="contents-box" >
-                <div id="profile" >
+                <div id="myProfile" >
                     <div class=title>
                         <h2>프로필 수정</h2>
-                        <p class="contxt">대표 프로필과 아이디를 수정 하실 수 있습니다.</p>
+                        <p class="contxt">대표 프로필과 닉네임을 수정하실 수 있습니다.</p>
                     </div>
                     
                     <form>          
@@ -92,7 +95,7 @@
 
                                     <tr>
                                         <th scope="row">
-                                            <div class="thcell"><label for="inpNickname">아이디</label></div>
+                                            <div class="thcell"><label for="inpNickname">닉네임</label></div>
                                         </th>
                                         <td>
                                             <div class="tdcell">
@@ -137,6 +140,11 @@
                                 <tr>
                                     <th>이름</th>
                                     <td>관리자</td>
+                                </tr>
+
+                                <tr>
+                                    <th>아이디</th>
+                                    <td>adad</td>
                                 </tr>
 
                                 <tr>
@@ -205,6 +213,94 @@
                 </div>
             </div>
             
+            <div class="contents-box">
+                <div id="myPassword">
+                    <div class="title">
+                        <h2>비밀번호 변경</h2>
+                        <p >고객님의 소중한 정보를 보호하기 위하여 새로운 비밀번호로 변경 후 서비스를 이용해 주세요.</p>
+                    </div>
+
+                    <div class="cont_area">
+                        <div class="login_sec">
+                            <!-- 비밀번호 입력 홈 -->
+                            <div class="member_info">
+                                <div class="table_col">
+                                    <table>
+                                        <caption>비밀번호 변경을 위한 새 비밀번호, 새 비밀번호 확인 입력을 나타냅니다.</caption>
+                                        <colgroup>
+                                            <col class="title">
+                                            <col class="body">
+                                        </colgroup>
+                                        <tbody>
+                                            <tr class="input">
+                                                <th scope="row">
+                                                    <label for="bef_pwd">현재 비밀번호</label>
+                                                </th>
+                                                <td>
+                                                    <div class="input_group">
+                                                        <span class="input_txt w250"><input type="password" id="bef_pwd"
+                                                                name="bef_pwd" class="text" placeholder="비밀번호를 입력해주세요."></span>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            <tr class="input">
+                                                <th scope="row">
+                                                    <label for="new_pwd">새 비밀번호</label>
+                                                </th>
+                                                <td>
+                                                    <div class="input_group">
+                                                        <span class="input_txt w250"><input type="password" id="new_pwd"
+                                                                name="new_pwd" class="text" placeholder="새 비밀번호를 입력해주세요."></span>
+                                                        <%-- <span class="pwd_lv"><em id="msg_pwd">강도 : 약함</em></span> --%>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            <tr class="input">
+                                                <th scope="row">
+                                                    <label for="new_pwd_check">새 비밀번호 확인</label>
+                                                </th>
+                                                <td>
+                                                    <div class="input_group">
+                                                        <span class="input_txt w250"><input type="password" id="new_pwd_check"
+                                                                name="new_pwd_check" class="text"
+                                                                placeholder="새 비밀번호를 재입력해주세요."></span>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                            <!-- // 비밀번호 입력 홈 -->
+                            <!-- 이용안내 -->
+                            <div class="box_gray">
+                                <dl class="box_info">
+                                    <dt>비밀번호 변경 시 유의사항</dt>
+                                    <dd>
+                                        <ul class="bul_list">
+                                            <li class="dot_arr">영문, 숫자, 특수문자를 모두 조합하여 8~20자리를 입력해주세요.</li>
+                                            <li class="dot_arr">사용 가능 특수 문자는 !@#$%^&*(),.?":{}|<> 입니다.</li>
+                                            <!-- 사용 가능 특수문자 -->
+                                            <%-- <li class="dot_arr">아이디와 4자리 이상 동일한 비밀번호는 사용 불가합니다.</li>
+                                            <li class="dot_arr">동일문자를 4번 이상 사용할 수 없습니다.</li>
+                                            <li class="dot_arr">4자리 이상 연속되는 문자와 숫자는 사용 불가합니다.</li>
+                                            <li class="dot_arr">휴대전화번호와 4자리 이상 동일한 비밀번호는 사용 불가합니다.</li>
+                                            <li class="dot_arr">생년월일과 4자리 이상 동일한 비밀번호는 사용 불가합니다.</li>
+                                            <li class="dot_arr">연속된 자판배열이 4자리 이상 포함된 비밀번호는 사용 불가합니다.</li> --%>
+                                        </ul>
+                                    </dd>
+                                </dl>
+                            </div>
+                            <!-- // 이용안내 -->
+                            <div class="btn_sec">
+                                <button type="button" class="btn" onclick="goCancel()">나중에</button>
+                                <button type="button" class="btn btn_em" onclick="goChange()">비밀번호 변경</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
         </div>
     </div>
 </div>
