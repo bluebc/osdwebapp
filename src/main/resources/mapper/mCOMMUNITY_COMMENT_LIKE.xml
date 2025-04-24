@@ -25,7 +25,7 @@
 	</where>
 </delete>
 
-<select id="selectByUserAndIdByPost" parameterType="Map" resultMap="Community_Comment_LikeDto">
+<select id="selectByUserAndIdByPost" parameterType="Map" resultMap="CommunityCommentLikeResultMap">
 	select * from community_comment_like
 	<where>
 		user_id = #{user_id} 
