@@ -220,5 +220,13 @@ public class CommunityService {
         return community_CommentDao.selectCountByPost(post_id);
     }
 
+    public int getPostCountByKeyword(String keyword){
+        return 0;
+    }
+
+    public List<Board_PostDto> getPostListByKeywordAndPage(String keyword, int page, int limit){
+        return null;
+    }
+
 
 }

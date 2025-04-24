@@ -127,4 +127,15 @@
 	</where>
 	</update>
 
+<!-- ============================== 전체글 수 ============================== -->
+
+<select id="selectCountByKeyword" parameterType="String" resultType="int">
+	select count(post_id) from 
+			(select * from community_post 
+				where post_subject like concat('%', #{keyword}, '%')
+						or
+						post_content like concat('%', #{keyword}, '%')
+			) as a
+</select>
+			
 </mapper>

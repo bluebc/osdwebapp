@@ -39,49 +39,49 @@ public class CommunityBoardController {
         return "communityList";
     }
 
-    // @ResponseBody
-    // @PostMapping("/getCommunityPostKeywordAndPage")
-    // public Map<String, Object> getCommunityList(@RequestBody Map<String, Object> parameterMap) {
-    //     Map<String, Object> resultMap = new HashMap<>();
-    //     int status = 0;
-    //     List<Board_PostDto> list = new ArrayList<>();
+    @ResponseBody
+    @PostMapping("/getPostListByKeywordAndPage")
+    public Map<String, Object> getCommunityList(@RequestBody Map<String, Object> parameterMap) {
+        Map<String, Object> resultMap = new HashMap<>();
+        int status = 0;
+        // List<Board_PostDto> list = new ArrayList<>();
 
 
 
-    //     String keyword = (String) parameterMap.get("keyword");
-    //     int page = (int) parameterMap.get("page");
+        String keyword = (String) parameterMap.get("keyword");
+        int page = (int) parameterMap.get("page");
 
-    //     // 페이지당 글 개수
-    //     int limit = 10;
+        // 페이지당 글 개수
+        int limit = 10;
 
-    //     // 전체 글 개수
-    //     int postCount = communityService.getCunsultPostCountByKeyword(keyword);
+        // 전체 글 개수
+        int postCount = communityService.getPostCountByKeyword(keyword);
 
-    //     int maxPage = postCount / limit;
-    //     if (postCount % limit > 0) {
-    //         maxPage += 1;
-    //     }
+        int maxPage = postCount / limit;
+        if (postCount % limit > 0) {
+            maxPage += 1;
+        }
 
-    //     if (page < 1) {
-    //         page = 1;
+        if (page < 1) {
+            page = 1;
 
-    //     }
-    //     if (page > maxPage) {
-    //         page = maxPage;
-    //     }
+        }
+        if (page > maxPage) {
+            page = maxPage;
+        }
 
-    //     List<Board_PostDto> list = communityService.getCunsultPostListByKeywordAndPage(keyword, page, limit);
+        List<Board_PostDto> list = communityService.getPostListByKeywordAndPage(keyword, page, limit);
 
-    //     int count = postCount;
-    //     resultMap.put("list", list);
-    //     resultMap.put("count", count);
-    //     resultMap.put("limit", limit);
-    //     resultMap.put("maxPage", maxPage);
+        int count = postCount;
+        resultMap.put("list", list);
+        resultMap.put("count", count);
+        resultMap.put("limit", limit);
+        resultMap.put("maxPage", maxPage);
 
 
 
-    //     return resultMap;
-    // }
+        return resultMap;
+    }
 
     @RequestMapping("/write")
     public String communityWritePage(HttpServletRequest request, Model model) {
