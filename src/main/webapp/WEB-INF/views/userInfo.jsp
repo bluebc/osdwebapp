@@ -37,7 +37,7 @@
                     <input type = "button" value = "프로필" onclick = "">
                 </div>
                 <div class="snb-btn">
-                    <input type = "button" value = "내정보" onclick = "">
+                    <input type = "button" value = "회원정보" onclick = "">
                 </div>
                 <div class="snb-btn">
                     <input type = "button" value = "비밀번호변경" onclick = "">
@@ -53,7 +53,7 @@
 
             <%-- 프로필 profile --%>
             <div class="contents-box" >
-                <div id="profileContent" >
+                <div id="profile" >
                     <div class=title>
                         <h2>프로필 수정</h2>
                         <p class="contxt">대표 프로필과 아이디를 수정 하실 수 있습니다.</p>
