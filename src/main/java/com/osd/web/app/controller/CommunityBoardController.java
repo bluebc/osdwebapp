@@ -224,8 +224,6 @@ public class CommunityBoardController {
             return resultMap;
         }
 
-System.out.println(community_PostDto);
-
         int updated = communityService.updatePost(community_PostDto);
         if (updated != 1) {
             status = -301;
@@ -236,6 +234,16 @@ System.out.println(community_PostDto);
         status = updated;
         resultMap.put("status", status);
         resultMap.put("updated", updated);
+
+        return resultMap;
+    }
+
+//  ================================================== 댓글 ==================================================
+
+    @ResponseBody
+    @PostMapping("/postComment")
+    public Map<String, Object> postCommunityComment() {
+        Map<String, Object> resultMap = new HashMap<>();
 
         return resultMap;
     }
