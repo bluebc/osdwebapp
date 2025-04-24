@@ -208,11 +208,11 @@ public class CommunityService {
     }
 
     // 댓글 수 증감
-    public int plusChildcnt(int post_id) {
+    public int plusCmtcnt(int post_id) {
         return community_PostDao.plusCmtcnt(post_id);
     }
 
-    public int minusChildcnt(int post_id) {
+    public int minusCmtcnt(int post_id) {
         return community_PostDao.minusCmtcnt(post_id);
     }
 

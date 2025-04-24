@@ -77,7 +77,7 @@
 <!-- ============================== 댓글 수 ============================== -->
 
 	<update id="plusCmtcnt" parameterType="int">
-		update cunsult_post
+		update community_post
 		<set>
 			post_cmtcnt = post_cmtcnt + 1
 		</set>
@@ -88,7 +88,7 @@
 
 	
 	<update id="minusCmtcnt" parameterType="int">
-		update cunsult_post
+		update community_post
 		<set>
 			post_cmtcnt = post_cmtcnt - 1
 		</set>
@@ -99,7 +99,7 @@
 
 
 	<update id="updateCmtcnt" parameterType="int">
-		update CUNSULT_POST set 
+		update community_post set 
 		post_cmtcnt = (select count(cmt_id) as post_cmtcnt from cunsult_comment where post_id = #{post_id} group by post_id) 
 				where post_id = #{post_id}
 
