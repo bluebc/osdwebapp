@@ -211,13 +211,13 @@ header{
                                     height: 38px;
                                     margin: 0 3px;
                                     padding: 0 15px;
-                                    background-color: #373737;
-                                    border-color: #373737;
+                                    background-color: #535353;
+                                    border-color: #535353;
                                     color: #fff;
                                     &:nth-child(2){
                                         background-color: #fff;
-                                        border: 1px solid #373737;
-                                        color: #373737;
+                                        border: 1px solid #535353;
+                                        color: #535353;
                                     }
                                 }
                             }
@@ -236,7 +236,7 @@ header{
                         }
                     }
                     .formList{
-                        padding: 60px 0 40px;
+                        padding: 40px 0;
                         border-top: 1px solid #999;
                         border-bottom: 1px solid #ddd;
                         table{
@@ -269,14 +269,13 @@ header{
                                         border-bottom: 1px solid #ddd;
                                     }
                                     td{
+                                        border-top: 1px solid #e5e5e5;
                                         padding: 23px 20px 21px 20px;
                                         line-height: 26px;
                                         letter-spacing: -.2px;
                                         font-size: 17px;
                                         color: #222;
                                         font-weight: 500;
-                                        padding-bottom: 40px;
-
                                     }
                                 }
 
@@ -422,8 +421,8 @@ header{
                             margin: 0 3px;
                             padding: 0 15px;
                             // line-height: 58px;
-                            background-color: #373737;
-                            border-color: #373737;
+                            background-color: #535353;
+                            border-color: #535353;
                             color: #fff;
                             span{   
                                 position: relative;    
@@ -437,7 +436,6 @@ header{
             .contents-box{
                 #myPassword{
                     .title{
-                        margin-bottom: 30px;
                         h2{
                             margin-bottom: 10px;
                         }
@@ -446,11 +444,11 @@ header{
                         }
                     }
                     .cont_area{
-                        padding-top: 60px;
+                        padding-top: 40px;
                         .login_sec{
                             .member_info{
                                 .table_col {
-                                    border-top: 1px solid #222;
+                                    //border-top: 1px solid #222;
                                     table{
                                         border: 1px solid #ddd;
                                         width: 100%;
@@ -493,40 +491,68 @@ header{
                                                     padding: 23px 20px 21px 20px;
                                                     border-bottom: 1px solid #ddd;
                                                     background-color: #fff;
-                                                    .input_group{
-                                                        padding-bottom: 0;
-                                                        float: left;
-                                                        .input_txt{
-                                                            padding-right: 3px;
-                                                            display: inline-block;
-                                                            height: 34px;
-                                                            vertical-align: middle;
-                                                            zoom: 1;
-                                                            .text{
-                                                                display: block;
-                                                                //width: 100%;
-                                                                width: 218px;
-                                                                height: 32px;
-                                                                padding: 0 15px;
-                                                                border: 1px solid #ddd;
-                                                                color: #888;
-                                                                font-size: 14px;
-                                                                line-height: 32px;
-                                                                vertical-align: top;
+                                                    .cont-box{
+                                                        display: flex;
+                                                        flex-direction: column;
+                                                        .input_group{
+                                                            padding-bottom: 0;
+                                                            float: left;
+                                                            .input_txt{
+                                                                padding-right: 3px;
+                                                                display: inline-block;
+                                                                height: 34px;
+                                                                vertical-align: middle;
+                                                                zoom: 1;
+                                                                .text{
+                                                                    display: block;
+                                                                    //width: 100%;
+                                                                    width: 218px;
+                                                                    height: 32px;
+                                                                    padding: 0 15px;
+                                                                    border: 1px solid #ddd;
+                                                                    color: #888;
+                                                                    font-size: 14px;
+                                                                    line-height: 32px;
+                                                                    vertical-align: top;
+                                                                }
+                                                            }
+                                                            // .pwd_lv{
+                                                            //     em {
+                                                            //         display: inline-block;
+                                                            //         height: 30px;
+                                                            //         margin-top: 4px;
+                                                            //         margin-left: 6px;
+                                                            //         color: #ee3000;
+                                                            //         font-size: 12px;
+                                                            //         font-style: normal;
+                                                            //     }
+                                                            // }
+                                                        }
+                                                        .validator{
+                                                            position: relative;
+                                                            margin-top: 0.4rem;
+                                                            padding: 0 1.5rem;
+                                                            line-height: 1.3;
+                                                            letter-spacing: -0.06rem;
+                                                            font-size: 0.8rem;
+                                                            color: red;
+                                                            transition: color 0.3s ease;
+                                                            &::before{
+                                                                content: "";
+                                                                position: absolute;
+                                                                left: 0;
+                                                                top: 0;
+                                                                width: 1rem;
+                                                                height: 1rem;
+                                                                background-position: 0 0;
+                                                                background-repeat: no-repeat;
+                                                                background-size: 1rem auto;
+                                                                background-image: url(../img/validator.svg);
                                                             }
                                                         }
-                                                        // .pwd_lv{
-                                                        //     em {
-                                                        //         display: inline-block;
-                                                        //         height: 30px;
-                                                        //         margin-top: 4px;
-                                                        //         margin-left: 6px;
-                                                        //         color: #ee3000;
-                                                        //         font-size: 12px;
-                                                        //         font-style: normal;
-                                                        //     }
-                                                        // }
                                                     }
+
+
                                                 }
                                             }
                                         }
@@ -573,10 +599,10 @@ header{
                                     height: 38px;
                                     margin: 0 3px;
                                     padding: 0 15px;
-                                    border: 1px solid #333;
+                                    border: 1px solid #535353;
                                     border-radius: 3px;
                                     background-color: #fff;
-                                    color: #333;
+                                    color: #535353;
                                     text-align: center;
                                     line-height: 38px;
                                     vertical-align: middle;
@@ -584,7 +610,7 @@ header{
                                     transition: border .5s, background .5s, color .5s;
                                 }
                                 .btn_em{
-                                    background-color: #333;
+                                    background-color: #535353;
                                     color: #fff;
                                 }
                             }

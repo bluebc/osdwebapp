@@ -189,14 +189,14 @@ header .top-banner {
   height: 38px;
   margin: 0 3px;
   padding: 0 15px;
-  background-color: #373737;
-  border-color: #373737;
+  background-color: #535353;
+  border-color: #535353;
   color: #fff;
 }
 .container .content .lnbContainer .contents-box #myProfile form fieldset .btn_wrap input:nth-child(2) {
   background-color: #fff;
-  border: 1px solid #373737;
-  color: #373737;
+  border: 1px solid #535353;
+  color: #535353;
 }
 .container .content .lnbContainer .contents-box #myInfo .title {
   margin-bottom: 30px;
@@ -205,7 +205,7 @@ header .top-banner {
   margin-bottom: 10px;
 }
 .container .content .lnbContainer .contents-box #myInfo .formList {
-  padding: 60px 0 40px;
+  padding: 40px 0;
   border-top: 1px solid #999;
   border-bottom: 1px solid #ddd;
 }
@@ -241,13 +241,13 @@ header .top-banner {
   border-bottom: 1px solid #ddd;
 }
 .container .content .lnbContainer .contents-box #myInfo .formList table tbody tr td {
+  border-top: 1px solid #e5e5e5;
   padding: 23px 20px 21px 20px;
   line-height: 26px;
   letter-spacing: -0.2px;
   font-size: 17px;
   color: #222;
   font-weight: 500;
-  padding-bottom: 40px;
 }
 .container .content .lnbContainer .contents-box #myInfo .formList table tbody .form-item-address td .form-cont .m_address .address_postcode {
   overflow: hidden;
@@ -371,15 +371,12 @@ header .top-banner {
   height: 38px;
   margin: 0 3px;
   padding: 0 15px;
-  background-color: #373737;
-  border-color: #373737;
+  background-color: #535353;
+  border-color: #535353;
   color: #fff;
 }
 .container .content .lnbContainer .contents-box #myInfo .boxBtn .btnBasic span {
   position: relative;
-}
-.container .content .lnbContainer .contents-box #myPassword .title {
-  margin-bottom: 30px;
 }
 .container .content .lnbContainer .contents-box #myPassword .title h2 {
   margin-bottom: 10px;
@@ -388,10 +385,7 @@ header .top-banner {
   font-size: 14px;
 }
 .container .content .lnbContainer .contents-box #myPassword .cont_area {
-  padding-top: 60px;
-}
-.container .content .lnbContainer .contents-box #myPassword .cont_area .login_sec .member_info .table_col {
-  border-top: 1px solid #222;
+  padding-top: 40px;
 }
 .container .content .lnbContainer .contents-box #myPassword .cont_area .login_sec .member_info .table_col table {
   border: 1px solid #ddd;
@@ -439,18 +433,22 @@ header .top-banner {
   border-bottom: 1px solid #ddd;
   background-color: #fff;
 }
-.container .content .lnbContainer .contents-box #myPassword .cont_area .login_sec .member_info .table_col table tbody tr td .input_group {
+.container .content .lnbContainer .contents-box #myPassword .cont_area .login_sec .member_info .table_col table tbody tr td .cont-box {
+  display: flex;
+  flex-direction: column;
+}
+.container .content .lnbContainer .contents-box #myPassword .cont_area .login_sec .member_info .table_col table tbody tr td .cont-box .input_group {
   padding-bottom: 0;
   float: left;
 }
-.container .content .lnbContainer .contents-box #myPassword .cont_area .login_sec .member_info .table_col table tbody tr td .input_group .input_txt {
+.container .content .lnbContainer .contents-box #myPassword .cont_area .login_sec .member_info .table_col table tbody tr td .cont-box .input_group .input_txt {
   padding-right: 3px;
   display: inline-block;
   height: 34px;
   vertical-align: middle;
   zoom: 1;
 }
-.container .content .lnbContainer .contents-box #myPassword .cont_area .login_sec .member_info .table_col table tbody tr td .input_group .input_txt .text {
+.container .content .lnbContainer .contents-box #myPassword .cont_area .login_sec .member_info .table_col table tbody tr td .cont-box .input_group .input_txt .text {
   display: block;
   width: 218px;
   height: 32px;
@@ -460,6 +458,28 @@ header .top-banner {
   font-size: 14px;
   line-height: 32px;
   vertical-align: top;
+}
+.container .content .lnbContainer .contents-box #myPassword .cont_area .login_sec .member_info .table_col table tbody tr td .cont-box .validator {
+  position: relative;
+  margin-top: 0.4rem;
+  padding: 0 1.5rem;
+  line-height: 1.3;
+  letter-spacing: -0.06rem;
+  font-size: 0.8rem;
+  color: red;
+  transition: color 0.3s ease;
+}
+.container .content .lnbContainer .contents-box #myPassword .cont_area .login_sec .member_info .table_col table tbody tr td .cont-box .validator::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 1rem;
+  height: 1rem;
+  background-position: 0 0;
+  background-repeat: no-repeat;
+  background-size: 1rem auto;
+  background-image: url(../img/validator.svg);
 }
 .container .content .lnbContainer .contents-box #myPassword .cont_area .login_sec .box_gray {
   min-height: 1%;
@@ -501,10 +521,10 @@ header .top-banner {
   height: 38px;
   margin: 0 3px;
   padding: 0 15px;
-  border: 1px solid #333;
+  border: 1px solid #535353;
   border-radius: 3px;
   background-color: #fff;
-  color: #333;
+  color: #535353;
   text-align: center;
   line-height: 38px;
   vertical-align: middle;
@@ -512,6 +532,6 @@ header .top-banner {
   transition: border 0.5s, background 0.5s, color 0.5s;
 }
 .container .content .lnbContainer .contents-box #myPassword .cont_area .login_sec .btn_sec .btn_em {
-  background-color: #333;
+  background-color: #535353;
   color: #fff;
 }/*# sourceMappingURL=userInfo.css.map */

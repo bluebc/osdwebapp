@@ -237,10 +237,12 @@
                                                     <label for="bef_pwd">현재 비밀번호</label>
                                                 </th>
                                                 <td>
-                                                    <div class="input_group">
-                                                        <span class="input_txt w250"><input type="password" id="bef_pwd"
-                                                                name="bef_pwd" class="text" placeholder="비밀번호를 입력해주세요."></span>
-                                                    </div>
+                                                    <div class="cont-box">
+                                                        <div class="input_group">
+                                                            <span class="input_txt w250"><input type="password" id="bef_pwd"
+                                                                    name="bef_pwd" class="text" placeholder="비밀번호를 입력해주세요."></span>
+                                                        </div>
+                                                    </div>    
                                                 </td>
                                             </tr>
                                             <tr class="input">
@@ -248,11 +250,15 @@
                                                     <label for="new_pwd">새 비밀번호</label>
                                                 </th>
                                                 <td>
-                                                    <div class="input_group">
-                                                        <span class="input_txt w250"><input type="password" id="new_pwd"
-                                                                name="new_pwd" class="text" placeholder="새 비밀번호를 입력해주세요."></span>
-                                                        <%-- <span class="pwd_lv"><em id="msg_pwd">강도 : 약함</em></span> --%>
-                                                    </div>
+                                                    <div class="cont-box">
+                                                        <div class="input_group">
+                                                            <span class="input_txt w250"><input type="password" id="new_pwd"
+                                                                    name="new_pwd" class="text" placeholder="새 비밀번호를 입력해주세요."></span>
+                                                            <%-- <span class="pwd_lv"><em id="msg_pwd">강도 : 약함</em></span> --%>
+                                                        </div>
+                                                        <p class="validator">최소 8자 이상 20자 이하 입력</p>
+                                                        <p class="validator">영문/숫자/특수문자(공백 제외)만 허용하며, 세가지 문자 전부 조합</p>
+                                                    </div>    
                                                 </td>
                                             </tr>
                                             <tr class="input">
@@ -260,11 +266,15 @@
                                                     <label for="new_pwd_check">새 비밀번호 확인</label>
                                                 </th>
                                                 <td>
-                                                    <div class="input_group">
-                                                        <span class="input_txt w250"><input type="password" id="new_pwd_check"
-                                                                name="new_pwd_check" class="text"
-                                                                placeholder="새 비밀번호를 재입력해주세요."></span>
-                                                    </div>
+                                                    <div class="cont-box">
+                                                        <div class="input_group">
+                                                            <span class="input_txt w250"><input type="password" id="new_pwd_check"
+                                                                    name="new_pwd_check" class="text"
+                                                                    placeholder="새 비밀번호를 재입력해주세요."></span>
+                                                        </div>
+                                                        <p class="validator">최소 8자 이상 20자 이하 입력</p>
+                                                        <p class="validator">영문/숫자/특수문자(공백 제외)만 허용하며, 세가지 문자 전부 조합</p>
+                                                    </div>      
                                                 </td>
                                             </tr>
                                         </tbody>
