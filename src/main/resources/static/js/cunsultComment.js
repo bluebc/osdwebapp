@@ -204,6 +204,67 @@ async function setComments() {
                 }
                 commentButtonsDiv.appendChild(editCmtButton);
 
+                // 수정 함수
+                function editComment(levelDivId) {
+                    const levelDiv = document.getElementById(levelDivId);
+                    const commentContent = levelDiv.querySelector(".commentContent");
+
+                    //  수정폼중복 생성 방지
+                    if (levelDiv.querySelector(".editComment")) return;
+
+                    // 열려 있는 다른 수정폼 닫기
+                    document.querySelectorAll(".editComment").forEach(editDiv => {
+                        const parent = editDiv.parentElement;
+                        const originalContent = parent.querySelector(".commentContent");
+                        if (originalContent) originalContent.style.display = "block";
+                        editDiv.remove();
+                    });
+
+                    commentContent.style.display = 'none';
+
+                    let editDiv = document.createElement("div");
+                    editDiv.className = "editComment";
+
+                    let textarea = document.createElement("textarea");
+                    textarea.value = commentContent.querySelector("p").textContent;
+                    editDiv.appendChild(textarea);
+
+                    let buttonWrapper = document.createElement("div");
+                    buttonWrapper.className = "editButtons";
+
+                    // 수정 버튼
+                    let saveButton = document.createElement("input");
+                    saveButton.type = "button";
+                    saveButton.value = "수정";
+                    saveButton.onclick = function () {
+
+                    };
+                    buttonWrapper.appendChild(saveButton);
+
+                    // 취소 버튼
+                    let cancelButton = document.createElement("input");
+                    cancelButton.type = "button";
+                    cancelButton.value = "취소";
+                    cancelButton.onclick = function () {
+                        cancelEdit(levelDivId);
+                    };
+                    buttonWrapper.appendChild(cancelButton);
+
+                    editDiv.appendChild(buttonWrapper);
+                    levelDiv.appendChild(editDiv);
+                }
+
+                // 취소 함수
+                function cancelEdit(levelDivId) {
+                    const levelDiv = document.getElementById(levelDivId);
+                    const editDiv = levelDiv.querySelector(".editComment");
+                    if (editDiv) editDiv.remove();
+
+                    const commentContent = levelDiv.querySelector(".commentContent");
+                    if (commentContent) commentContent.style.display = "block";
+                }
+
+
                 // 삭제
                 let deleteCmtButton = document.createElement("input");
                 deleteCmtButton.type = "button";
@@ -216,6 +277,7 @@ async function setComments() {
                 commentButtonsDiv.appendChild(inpButtonsDiv);
 
             }
+            
             commentDiv.appendChild(commentButtonsDiv);
             level1Div.appendChild(commentDiv);
             level0Div.appendChild(level1Div);
@@ -315,28 +377,91 @@ async function setComments() {
 
                 let inpButtonsDiv = document.createElement("div");
                 inpButtonsDiv.className = "inpButtons";
-
-                // 수정
+            
+                // 수정 버튼
                 let editCmtButton = document.createElement("input");
                 editCmtButton.type = "button";
                 editCmtButton.value = "수정";
                 editCmtButton.onclick = function () {
                     editComment(level2DivId);
-                }
+                };
                 commentButtonsDiv.appendChild(editCmtButton);
+            
+                // 수정 함수
+                function editComment(levelDivId) {
+                    const levelDiv = document.getElementById(levelDivId);
+                    const commentContent = levelDiv.querySelector(".commentContent");
 
-                // 삭제
+                    //  수정폼중복 생성 방지
+                    if (levelDiv.querySelector(".editComment")) return;
+
+                    // 열려 있는 다른 수정폼 닫기
+                    document.querySelectorAll(".editComment").forEach(editDiv => {
+                        const parent = editDiv.parentElement;
+                        const originalContent = parent.querySelector(".commentContent");
+                        if (originalContent) originalContent.style.display = "block";
+                        editDiv.remove();
+                    });
+
+                    commentContent.style.display = 'none';
+
+                    let editDiv = document.createElement("div");
+                    editDiv.className = "editComment";
+
+                    let textarea = document.createElement("textarea");
+                    textarea.value = commentContent.querySelector("p").textContent;
+                    editDiv.appendChild(textarea);
+
+                    let buttonWrapper = document.createElement("div");
+                    buttonWrapper.className = "editButtons";
+
+                    // 수정 버튼
+                    let saveButton = document.createElement("input");
+                    saveButton.type = "button";
+                    saveButton.value = "수정";
+                    saveButton.onclick = function () {
+
+                    };
+
+                    buttonWrapper.appendChild(saveButton);
+
+                    // 취소 버튼
+                    let cancelButton = document.createElement("input");
+                    cancelButton.type = "button";
+                    cancelButton.value = "취소";
+                    cancelButton.onclick = function () {
+                        cancelEdit(levelDivId);
+                    };
+                    buttonWrapper.appendChild(cancelButton);
+
+                    editDiv.appendChild(buttonWrapper);
+                    levelDiv.appendChild(editDiv);
+                }
+
+                // 취소 함수
+                function cancelEdit(levelDivId) {
+                    const levelDiv = document.getElementById(levelDivId);
+                    const editDiv = levelDiv.querySelector(".editComment");
+                    if (editDiv) editDiv.remove();
+
+                    const commentContent = levelDiv.querySelector(".commentContent");
+                    if (commentContent) commentContent.style.display = "block";
+                }
+
+                // 삭제 버튼
                 let deleteCmtButton = document.createElement("input");
                 deleteCmtButton.type = "button";
                 deleteCmtButton.value = "삭제";
                 deleteCmtButton.onclick = function () {
                     deleteComment(level2DivId);
-                }
+                };
                 inpButtonsDiv.appendChild(deleteCmtButton);
-
+            
                 commentButtonsDiv.appendChild(inpButtonsDiv);
-
             }
+            
+            
+            
 
             commentDiv.appendChild(commentButtonsDiv);
             level2Div.appendChild(commentDiv);
