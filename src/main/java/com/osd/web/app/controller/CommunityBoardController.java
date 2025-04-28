@@ -34,6 +34,16 @@ public class CommunityBoardController {
     @Autowired
     private CommunityService communityService;
 
+    @RequestMapping("/")
+    public String communityPage() {
+        return "redirect:/community/list";
+    }
+
+    @RequestMapping("")
+    public String communityPage2() {
+        return "redirect:/community/";
+    }
+
     @RequestMapping("/list")
     public String communityListPage() {
         return "communityList";
@@ -45,8 +55,6 @@ public class CommunityBoardController {
         Map<String, Object> resultMap = new HashMap<>();
         int status = 0;
         // List<Board_PostDto> list = new ArrayList<>();
-
-
 
         String keyword = (String) parameterMap.get("keyword");
         int page = (int) parameterMap.get("page");
@@ -77,8 +85,6 @@ public class CommunityBoardController {
         resultMap.put("count", count);
         resultMap.put("limit", limit);
         resultMap.put("maxPage", maxPage);
-
-
 
         return resultMap;
     }
