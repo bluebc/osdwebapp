@@ -77,7 +77,7 @@
 <!-- ============================== 댓글 수 ============================== -->
 
 	<update id="plusCmtcnt" parameterType="int">
-		update cunsult_post
+		update community_post
 		<set>
 			post_cmtcnt = post_cmtcnt + 1
 		</set>
@@ -88,7 +88,7 @@
 
 	
 	<update id="minusCmtcnt" parameterType="int">
-		update cunsult_post
+		update community_post
 		<set>
 			post_cmtcnt = post_cmtcnt - 1
 		</set>
@@ -99,7 +99,7 @@
 
 
 	<update id="updateCmtcnt" parameterType="int">
-		update CUNSULT_POST set 
+		update community_post set 
 		post_cmtcnt = (select count(cmt_id) as post_cmtcnt from cunsult_comment where post_id = #{post_id} group by post_id) 
 				where post_id = #{post_id}
 
@@ -127,4 +127,15 @@
 	</where>
 	</update>
 
+<!-- ============================== 전체글 수 ============================== -->
+
+<select id="selectCountByKeyword" parameterType="String" resultType="int">
+	select count(post_id) from 
+			(select * from community_post 
+				where post_subject like concat('%', #{keyword}, '%')
+						or
+						post_content like concat('%', #{keyword}, '%')
+			) as a
+</select>
+			
 </mapper>

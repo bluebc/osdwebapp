@@ -53,4 +53,8 @@ public class Community_PostDao {
         return session.update("Community_Post.minusLikecnt", post_id);
     }
 
+    public int selectCountByKeyword(String keyword){
+        return session.selectOne("Community_Post.selectCountByKeyword", keyword);
+    }
+
 }

@@ -19,7 +19,7 @@
 		cmt_content, post_id, parent_cmt_id, cmt_likecnt, user_id, cmt_created_at, cmt_updated_at
 	)
 	values(
-		#{cmt_content}, #{post_id}, #{parent_cmt_id}, #{cmt_likecnt}, #{user_id}, #{cmt_sort}, #{cmt_created_at}, #{cmt_updated_at}
+		#{cmt_content}, #{post_id}, #{parent_cmt_id}, #{cmt_likecnt}, #{user_id}, #{cmt_created_at}, #{cmt_updated_at}
 	)
 </insert>
 		

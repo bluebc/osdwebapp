@@ -2,6 +2,7 @@ package com.osd.web.app.controller;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -15,10 +16,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.osd.web.app.dto.Board_CommentDto;
 import com.osd.web.app.dto.Board_PostDto;
 import com.osd.web.app.dto.Community_CommentDto;
 import com.osd.web.app.dto.Community_Comment_LikeDto;
 import com.osd.web.app.dto.Community_PostDto;
+import com.osd.web.app.dto.Community_Post_LikeDto;
 import com.osd.web.app.service.CommunityService;
 
 import jakarta.servlet.http.HttpServletRequest;
@@ -31,9 +34,59 @@ public class CommunityBoardController {
     @Autowired
     private CommunityService communityService;
 
+    @RequestMapping("/")
+    public String communityPage() {
+        return "redirect:/community/list";
+    }
+
+    @RequestMapping("")
+    public String communityPage2() {
+        return "redirect:/community/";
+    }
+
     @RequestMapping("/list")
     public String communityListPage() {
         return "communityList";
+    }
+
+    @ResponseBody
+    @PostMapping("/getPostListByKeywordAndPage")
+    public Map<String, Object> getCommunityList(@RequestBody Map<String, Object> parameterMap) {
+        Map<String, Object> resultMap = new HashMap<>();
+        int status = 0;
+        // List<Board_PostDto> list = new ArrayList<>();
+
+        String keyword = (String) parameterMap.get("keyword");
+        int page = (int) parameterMap.get("page");
+
+        // 페이지당 글 개수
+        int limit = 10;
+
+        // 전체 글 개수
+        int postCount = communityService.getPostCountByKeyword(keyword);
+
+        int maxPage = postCount / limit;
+        if (postCount % limit > 0) {
+            maxPage += 1;
+        }
+
+        if (page < 1) {
+            page = 1;
+
+        }
+        if (page > maxPage) {
+            page = maxPage;
+        }
+
+        List<Board_PostDto> list = communityService.getPostListByKeywordAndPage(keyword, page, limit);
+
+        int count = postCount;
+        resultMap.put("list", list);
+        resultMap.put("count", count);
+        resultMap.put("limit", limit);
+        resultMap.put("maxPage", maxPage);
+
+        return resultMap;
     }
 
     @RequestMapping("/write")
@@ -49,6 +102,47 @@ public class CommunityBoardController {
         model.addAttribute("user_id", login_user_id);
 
         return "communityWrite";
+    }
+
+    @RequestMapping("/read")
+    public String communityReadPage(@RequestParam(required = true, defaultValue = "0", name = "post_id") int post_id,
+            HttpServletRequest request,
+            Model model) {
+
+        HttpSession session = request.getSession();
+        String login_user_id = (String) session.getAttribute("login_user_id");
+        if (login_user_id != null) {
+            model.addAttribute("login_user_id", login_user_id);
+        }
+
+        // 글 존재 여부 확인
+        Community_PostDto community_PostDto = communityService.getPostById(post_id);
+        if (community_PostDto == null) {
+            return "redirect:/community/none";
+        }
+
+        // 조회수 업데이트
+        communityService.updatePostViewcnt(post_id);
+
+        Board_PostDto board_PostDto = communityService.getBoardById(post_id);
+
+        int liked = 0;
+        if (login_user_id != null && !login_user_id.equals("")) {
+            Community_Post_LikeDto community_Post_LikeDto = new Community_Post_LikeDto();
+            community_Post_LikeDto.setPost_id(post_id);
+            community_Post_LikeDto.setUser_id(login_user_id);
+            liked = communityService.checkPostLiked(community_Post_LikeDto);
+        }
+
+        // 작성 시간 포맷
+        LocalDateTime post_created_at = board_PostDto.getPost_created_at();
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
+        String formatted = post_created_at.format(formatter);
+        model.addAttribute("postCreatedAt", formatted);
+        model.addAttribute("liked", liked);
+        model.addAttribute("community_post", board_PostDto);
+
+        return "communityRead";
     }
 
     @ResponseBody
@@ -88,38 +182,6 @@ public class CommunityBoardController {
         resultMap.put("status", status);
 
         return resultMap;
-    }
-
-    @RequestMapping("/read")
-    public String communityReadPage(@RequestParam(required = true, defaultValue = "0", name = "post_id") int post_id,
-            HttpServletRequest request,
-            Model model) {
-
-        HttpSession session = request.getSession();
-        String login_user_id = (String) session.getAttribute("login_user_id");
-        if (login_user_id != null) {
-            model.addAttribute("login_user_id", login_user_id);
-        }
-
-        // 글 존재 여부 확인
-        Community_PostDto community_PostDto = communityService.getPostById(post_id);
-        if (community_PostDto == null) {
-            return "redirect:/community/none";
-        }
-
-        communityService.updatePostViewcnt(post_id);
-
-        Board_PostDto board_PostDto = communityService.getBoardById(post_id);
-
-        // 작성 시간 포맷
-        LocalDateTime post_created_at = board_PostDto.getPost_created_at();
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
-        String formatted = post_created_at.format(formatter);
-        model.addAttribute("postCreatedAt", formatted);
-
-        model.addAttribute("community_post", board_PostDto);
-
-        return "communityRead";
     }
 
     @ResponseBody
@@ -241,11 +303,11 @@ public class CommunityBoardController {
     }
 
     // ================================================== 댓글
-    
 
     @ResponseBody
     @PostMapping("/postComment")
-    public Map<String, Object> postCommunityComment(HttpServletRequest request, @RequestBody Community_CommentDto community_CommentDto) {
+    public Map<String, Object> postCommunityComment(HttpServletRequest request,
+            @RequestBody Community_CommentDto community_CommentDto) {
         Map<String, Object> resultMap = new HashMap<>();
         int status = 0;
 
@@ -276,16 +338,27 @@ public class CommunityBoardController {
 
         // 댓글 카운트
         int post_id = community_CommentDto.getPost_id();
-        int updated = communityService.plusChildcnt(post_id);
+        int updated = communityService.plusCmtcnt(post_id);
 
         status = inserted;
 
         resultMap.put("status", status);
 
+        return resultMap;
+    }
+
+    @ResponseBody
+    @PostMapping("/getCommentListByPost")
+    public Map<String, Object> getCommentListByPost(@RequestBody int post_id) {
+        Map<String, Object> resultMap = new HashMap<>();
+
+        List<Board_CommentDto> list = communityService.getCommentByPost(post_id);
+
+        resultMap.put("list", list);
 
         return resultMap;
     }
-    
+
     // 좋아요 누른 댓글 리스트
     @ResponseBody
     @PostMapping("/getCommentMyLike")
@@ -382,12 +455,72 @@ public class CommunityBoardController {
 
         // 게시글 정보 댓글 수 감소
         int post_id = community_CommentDto.getPost_id();
-        communityService.minusChildcnt(post_id);
+        communityService.minusCmtcnt(post_id);
 
         resultMap.put("status", status);
 
         return resultMap;
     }
 
+    // 좋아요
+    @ResponseBody
+    @PostMapping("/postLike")
+    public int likePost(@RequestBody Map<String, Object> requestMap, HttpServletRequest request) {
+        int result = 0;
+
+        int post_id = (int) requestMap.get("post_id");
+        int like = (int) requestMap.get("like");
+
+        HttpSession session = request.getSession();
+
+        if (session.getAttribute("login_user_id") == null
+                || ((String) session.getAttribute("login_user_id")).equals("")) {
+            result = -1;
+            return result;
+        }
+
+        String user_id = (String) session.getAttribute("login_user_id");
+        Community_Post_LikeDto community_Post_LikeDto = new Community_Post_LikeDto();
+        community_Post_LikeDto.setPost_id(post_id);
+        community_Post_LikeDto.setUser_id(user_id);
+
+        if (like == 1) {
+            result = communityService.insertLike(community_Post_LikeDto);
+        } else if (like == -1) {
+            result = communityService.deleteLike(community_Post_LikeDto);
+        }
+
+        return result;
+    }
+
+    // 댓글 좋아요
+    @ResponseBody
+    @PostMapping("/postLikeComment")
+    public int postLikeComment(HttpServletRequest request, @RequestBody Map<String, Object> requestMap) {
+        int result = 0;
+
+        int cmt_id = (int) requestMap.get("cmt_id");
+        int like = (int) requestMap.get("like");
+
+        HttpSession session = request.getSession();
+
+        if (session.getAttribute("login_user_id") == null
+                || ((String) session.getAttribute("login_user_id")).equals("")) {
+            result = -1;
+            return result;
+        }
+
+        String user_id = (String) session.getAttribute("login_user_id");
+        Community_Comment_LikeDto community_Comment_LikeDto = new Community_Comment_LikeDto();
+        community_Comment_LikeDto.setCmt_id(cmt_id);
+        community_Comment_LikeDto.setUser_id(user_id);
+
+        if (like == 1) {
+            result = communityService.insertCommentLike(community_Comment_LikeDto);
+        } else if (like == -1) {
+            result = communityService.deleteCommentLike(community_Comment_LikeDto);
+        }
+        return result;
+    }
 
 }

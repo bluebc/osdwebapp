@@ -208,16 +208,24 @@ public class CommunityService {
     }
 
     // 댓글 수 증감
-    public int plusChildcnt(int post_id) {
+    public int plusCmtcnt(int post_id) {
         return community_PostDao.plusCmtcnt(post_id);
     }
 
-    public int minusChildcnt(int post_id) {
+    public int minusCmtcnt(int post_id) {
         return community_PostDao.minusCmtcnt(post_id);
     }
 
     public int getCountCommentByPost(int post_id) {
         return community_CommentDao.selectCountByPost(post_id);
+    }
+
+    public int getPostCountByKeyword(String keyword){
+        return 0;
+    }
+
+    public List<Board_PostDto> getPostListByKeywordAndPage(String keyword, int page, int limit){
+        return null;
     }
 
 
