@@ -14,7 +14,7 @@
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
         integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <link rel="stylesheet" href="css/reset.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/reset.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/community.css">
 
     <!--favicon--->
@@ -24,12 +24,15 @@
     <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
     <script src="http://code.jquery.com/jquery-latest.min.js"></script>
 
+    <script src = "${pageContext.request.contextPath}/js/communityList.js"></script>
+
     <title>블로그 형식</title>
 
 </head>
 
 <body>
 
+<input type = "button" value = "Function Test Button" onclick = "loadAndSetTest()">
 
 <main>
     <div class="container">
@@ -55,7 +58,7 @@
                 </div>
             </div>
 
-            <div class="blog-container">
+            <div class="blog-container" id = "blogContainer">
 
                 <div class="form-area">
                     <span class="search">

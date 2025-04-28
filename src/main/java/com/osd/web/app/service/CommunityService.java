@@ -21,7 +21,6 @@ import com.osd.web.app.dto.Community_Comment_LikeDto;
 import com.osd.web.app.dto.Community_PostDto;
 import com.osd.web.app.dto.Community_Post_LikeDto;
 
-
 @Service
 public class CommunityService {
 
@@ -62,7 +61,7 @@ public class CommunityService {
         return community_PostDao.updateContent(community_PostDto);
     }
 
-// ==================== 좋아요 ====================
+    // ==================== 좋아요 ====================
     @Autowired
     private Community_Post_LikeDao community_Post_LikeDao;
 
@@ -99,18 +98,15 @@ public class CommunityService {
         return community_Post_LikeDao.selectByPostAndUser(community_Post_LikeDto);
     }
 
-
-
     // 댓글 ==================================================
 
- @Autowired
+    @Autowired
     private Community_CommentDao community_CommentDao;
 
     public int insertComment(Community_CommentDto community_CommentDto) {
 
         int cmt_likecnt = 0;
         community_CommentDto.setCmt_likecnt(cmt_likecnt);
-
 
         LocalDateTime cmt_created_at = LocalDateTime.now().truncatedTo(ChronoUnit.SECONDS);
         community_CommentDto.setCmt_created_at(cmt_created_at);
@@ -168,7 +164,6 @@ public class CommunityService {
         return result;
     }
 
-
     // ==================== 댓글 좋아요 ====================
     @Autowired
     private Community_Comment_LikeDao community_Comment_LikeDao;
@@ -220,13 +215,12 @@ public class CommunityService {
         return community_CommentDao.selectCountByPost(post_id);
     }
 
-    public int getPostCountByKeyword(String keyword){
-        return 0;
+    public int getPostCountByKeyword(String keyword) {
+        return community_PostDao.selectCountByKeyword(keyword);
     }
 
-    public List<Board_PostDto> getPostListByKeywordAndPage(String keyword, int page, int limit){
-        return null;
+    public List<Board_PostDto> getPostListByKeywordAndPage(String keyword, int page, int limit) {
+        return community_PostDao.selectByKeywordAndPage(keyword, page, limit);
     }
-
 
 }
