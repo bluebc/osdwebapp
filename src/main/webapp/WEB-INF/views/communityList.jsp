@@ -10,15 +10,18 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+    <!--favicon--->
+    <link href="${pageContext.request.contextPath}/img/favicon.ico" rel="icon">
+
     <!-- css -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
         integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/reset.css">
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/community.css">
+    <link rel="stylesheet" href="<c:url value='/css/community.css?ver=1'/>">
 
-    <!--favicon--->
-    <link href="img/favicon.ico" rel="icon">
+
+
 
     <!--js-->
     <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
@@ -37,26 +40,20 @@
 <main>
     <div class="container">
         <div class="content">
-            <div class="basic-type">
-                <%-- pc --%>
-                <div class="pc-type">
-                    <h2>비움과 채움 스토리</h2>
-                </div>
-                <%-- mobile --%>
-                <div class="mobil-type">
-                    <div class="tit-wrap">
-                            <%-- <a href="/" class="btn-back">
-                                <i class="hidden">닫기</i>
-                            </a>  --%>
-                        <h2 class="header-sub-tit">비움과 채움 스토리</h2>
+            <div class="snbContainer">
+                <div class="title"><h1>비움과 채움 스토리</h1></div>
+                <div id = "communityTypeBtnSection" class="snbMenu">
+                    <div class="snb-btn">
+                            <input type = "button" value = "비움과 채움 스토리" onclick = "">
                     </div>
-                    <%-- <div class="header-util">
-                        <a href="/" class="btn-home">
-                            <img src="img/홈.svg" alt="home">
-                        </a> 
-                    </div> --%>
+                    <div class="snb-btn">
+                            <input type = "button" value = "키토산 스토리" onclick = "">
+                    </div>
+                    <div class="snb-btn">
+                            <input type = "button" value = "건강 스토리" onclick = "">
+                    </div>
                 </div>
-            </div>
+            </div> 
 
             <div class="blog-container">
 
@@ -172,12 +169,29 @@
                     </div>
                 </div>
 
+                <div class="pagination" >
+                    <div class="pagenumber selected">1</div>
+                    <div class="pagenumber">2</div>
+                    <div class="pagenumber">3</div>
+                    <div class="pagenumber">4</div>
+                    <div class="pagenumber">5</div>
+                    <div class="pagenumber">6</div>
+                </div>
+
             </div>
+
+
+
+
+
         </div>    
     </div>
 </main>
 
-<script>
+<!-- footer -->
+<jsp:include page="footer.jsp"></jsp:include>
+
+<%-- <script>
         function likePost(button) {
             let text = button.innerText;
             let count = parseInt(text.match(/\d+/)[0]);
@@ -189,7 +203,7 @@
         function commentPost() {
             alert('댓글 기능은 아직 준비 중입니다!');
         }
-</script>
+</script> --%>
 
 </body>
 

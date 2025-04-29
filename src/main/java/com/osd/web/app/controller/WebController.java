@@ -42,6 +42,8 @@ public class WebController {
     public String cunsultList() {
     return "cunsultList";
     }
+
+
     // 다른페이지 가지고 올때 사용할 예시
     // @RequestMapping("/main")
     // public String mainPage() {
