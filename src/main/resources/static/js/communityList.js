@@ -4,6 +4,71 @@ let currentType = 0;
 const viewPage = 10;
 const limit = 10;
 
+async function paging(page){
+
+currentPage = page;
+loadAndSetPostList();
+
+}
+
+function setPagination(currentPage, maxPage, count, limit){
+    
+    let pagination = document.getElementById("pagination");
+    while (pagination.firstChild) {
+        pagination.removeChild(pagination.firstChild);
+    }
+
+    // 10페이지씩
+    
+    let startPage = parseInt(currentPage / viewPage) * viewPage + 1;
+    if (currentPage % viewPage == 0) {
+        startPage = (parseInt(currentPage / viewPage) - 1) * viewPage + 1;
+    }
+
+    var endPage = startPage + viewPage - 1;
+    if (endPage > maxPage) {
+        endPage = maxPage;
+    }
+
+    if (currentPage > viewPage) {
+        let leftPageBtn = document.createElement("div");
+        leftPageBtn.className = "pagination";
+        
+        leftPageBtn.textContent = "<<"
+        leftPageBtn.onclick = function () {
+        paging(startPage - 1);
+        }
+        pagination.appendChild(leftPageBtn);
+    }
+
+
+    for (let page = startPage; page <= endPage; page++) {
+        let pageDiv = document.createElement("div");
+        pageDiv.className = "pagenumber";
+        pageDiv.textContent = page;
+        
+        if (page === currentPage) {
+            pageDiv.classList.add("selected");
+        }
+
+        pageDiv.onclick = function () {
+               paging(page);
+        }
+        pagination.appendChild(pageDiv);
+    }
+
+    if (endPage != maxPage) {
+        let rightPageBtn = document.createElement("div");
+        rightPageBtn.className = "pagination";
+
+        rightPageBtn.textContent = ">>"
+        rightPageBtn.onclick = function () {
+            paging(endPage + 1);
+        }
+        pagination.appendChild(rightPageBtn);
+    }
+
+}
 
 function setType(type_id){
     currentType = type_id;
@@ -16,20 +81,18 @@ function goPostRead(post_id) {
 }
 
 
-async function loadAndSetTest() {
+async function loadAndSetPostList() {
 
-    const result = await getPostList();
-    const postList = result.list;
+    const resultMap = await getPostList();
+    const postList = resultMap.list;
+    const postCount = resultMap.count;
+    const maxPage = resultMap.maxPage;
 
     console.log(postList);
 
     setPostList(postList);
+    setPagination(currentPage, maxPage, postCount)
 
-}
-
-
-
-function page() {
 
 }
 
@@ -81,7 +144,8 @@ function setPostList(postList) {
 
     removeAllPost();
 
-    let blogContainerDiv = document.getElementById("blogContainer");
+    // let blogContainerDiv = document.getElementById("blogContainer");
+    let postContatinerDiv = document.getElementById("postContainer");
 
     postList.forEach(post => {
 
@@ -283,7 +347,9 @@ function setPostList(postList) {
         thumbnailDiv.appendChild(thumbnailDiv2);
         postDiv.appendChild(thumbnailDiv);
 
-        blogContainerDiv.appendChild(postDiv);
+        // blogContainerDiv.appendChild(postDiv);
+        postContatinerDiv.appendChild(postDiv);
+        
 
     });
 

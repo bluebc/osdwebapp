@@ -36,19 +36,28 @@
 <body>
 
 
-<input type = "button" value = "Function Test Button" onclick = "loadAndSetTest()">
+<!-- header -->
+<jsp:include page="header.jsp"></jsp:include>
+
+
+
+
+<main>
+    <div class="container">
+
+<div>
+<input type = "button" value = "Function Test loadAndSetTest" onclick = "loadAndSetPostList()">
+<input type = "button" value = "Function Test setPagination" onclick = "setPagination()">
+</div>
 <div>
 <input type = "button" value = "Type 1" onclick = "setType(1)">
 <input type = "button" value = "Type 2" onclick = "setType(2)">
 <input type = "button" value = "Type 3" onclick = "setType(3)">
 </div>
 
-<!-- header -->
-<jsp:include page="header.jsp"></jsp:include>
 
 
-<main>
-    <div class="container">
+
         <div class="content">
             <div class="snbContainer">
                 <div class="title"><h1>비움과 채움 스토리</h1></div>
@@ -75,6 +84,8 @@
                 </div>
 
 
+                <%-- 페이징 위치 문제로 컨테이너 추가 --%>
+                <div class = "postContainer" id = "postContainer">
 
                 <div class="post">
                     <div class="post-left">
@@ -179,7 +190,10 @@
                     </div>
                 </div>
 
-                <div class="pagination" >
+                </div> 
+                <%-- postContatiner --%>
+
+                <div class="pagination" id = "pagination">
                     <div class="pagenumber selected">1</div>
                     <div class="pagenumber">2</div>
                     <div class="pagenumber">3</div>
