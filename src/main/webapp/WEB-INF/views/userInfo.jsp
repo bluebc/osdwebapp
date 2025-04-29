@@ -32,7 +32,7 @@
     <div class="content">
         <div class="snbContainer"> 
             <div class="title"><h1>내 정보</h1></div>
-            <div id = "supportTypeBtnSection" class="snbMenu">
+            <div id = "userTypeBtnSection" class="snbMenu">
                 <div class="snb-btn">
                     <input type = "button" value = "프로필" onclick = "">
                 </div>
