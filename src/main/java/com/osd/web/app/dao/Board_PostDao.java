@@ -34,4 +34,22 @@ public class Board_PostDao {
         return session.selectOne("Board_Post.selectCommunityPostById", post_id);
     }
 
+    public List<Board_PostDto> selectCommunityPostListByKeywordAndPage(String keyword, int page, int limit) {
+        Map<String, Object> parameterMap = new HashMap<>();
+        parameterMap.put("keyword", keyword);
+        parameterMap.put("page", page);
+        parameterMap.put("limit", limit);
+        return session.selectList("Board_Post.selectCommunityPostListByKeywordAndPage", parameterMap);
+    }
+
+    public List<Board_PostDto> selectCommunityPostListByTypeAndKeywordAndPage(int type_id, String keyword, int page, int limit) {
+        Map<String, Object> parameterMap = new HashMap<>();
+        parameterMap.put("type_id", type_id);
+        parameterMap.put("keyword", keyword);
+        parameterMap.put("page", page);
+        parameterMap.put("limit", limit);
+        return session.selectList("Board_Post.selectCommunityPostListByTypeAndKeywordAndPage", parameterMap);
+    }
+
+
 }

@@ -220,7 +220,7 @@ public class CommunityService {
     }
 
     public List<Board_PostDto> getPostListByKeywordAndPage(String keyword, int page, int limit) {
-        return community_PostDao.selectByKeywordAndPage(keyword, page, limit);
+        return board_PostDao.selectCommunityPostListByKeywordAndPage(keyword, page, limit);
     }
 
 }

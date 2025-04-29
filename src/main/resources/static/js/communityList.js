@@ -1,7 +1,13 @@
 let currentPage = 1;
 let currentKeyword = "";
+let currentType = 0;
 const viewPage = 10;
 const limit = 10;
+
+function goPostRead(post_id) {
+    window.location.href = "/community/read?post_id=" + post_id;
+}
+
 
 async function loadAndSetTest() {
 
@@ -13,19 +19,44 @@ async function loadAndSetTest() {
 
 }
 
+
+
+function page() {
+
+}
+function search() {
+    let keyword = document.getElementById("keyword").value;
+    currentKeyword = keyword;
+    console.log(currentKeyword);
+    currentPage = 1;
+}
+
 async function getPostList() {
 
     let page = currentPage;
     let keyword = currentKeyword;
+    let type = currentType;
 
-    var parameterMap = { keyword: keyword, page: page };
+    var parameterMap = { keyword: keyword, page: page, type: type };
 
 
-    const response = await fetch("/community/getPostListByKeywordAndPage", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(parameterMap)
-    });
+    let response;
+
+    if (type <= 1) {
+        response = await fetch("/community/getPostListByKeywordAndPage", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(parameterMap)
+        });
+    } else {
+        response = await fetch("/community/getPostListByTypeAndKeywordAndPage", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(parameterMap)
+        });
+    }
+
+
 
     const result = await response.json();
     const postList = result.list;
@@ -71,6 +102,9 @@ function setPostList(postList) {
         let postDiv = document.createElement("div");
         postDiv.className = "post"
         postDiv.id = "post_" + post.post_id;
+        postDiv.onclick = function () {
+            // goPostRead(post.post_id);
+        }
 
         // lv2
         let postLeftDiv = document.createElement("div");
@@ -98,7 +132,8 @@ function setPostList(postList) {
         let mm = String(date.getMinutes()).padStart(2, '0');
         let ss = String(date.getSeconds()).padStart(2, '0');
 
-        let formattedTime = `${yyyy}-${MM}-${dd} ${hh}:${mm}:${ss}`;
+        // let formattedTime = `${yyyy}-${MM}-${dd} ${hh}:${mm}:${ss}`;
+        let formattedTime = `${yyyy}.${MM}.${dd}`;
 
         // writeTimeDiv.textContent = formattedTime;
         // hh 시간 전 표기?
@@ -120,6 +155,9 @@ function setPostList(postList) {
         // lv3
         let mThumbnailDiv = document.createElement("div");
         mThumbnailDiv.className = "m-thumbnail";
+        mThumbnailDiv.onclick = function () {
+            goPostRead(post.post_id);
+        }
 
         // lv4
         let mImgbox = document.createElement("div");
@@ -146,6 +184,9 @@ function setPostList(postList) {
         let titleDiv = document.createElement("div");
         titleDiv.className = "title";
         titleDiv.textContent = post.post_subject;
+        titleDiv.onclick = function () {
+            goPostRead(post.post_id);
+        }
         postLeftDiv.appendChild(titleDiv);
 
         // lv3
@@ -161,6 +202,9 @@ function setPostList(postList) {
 
         // descDiv.textContent = post.post_content;
         descDiv.textContent = textOnly;
+        descDiv.onclick = function () {
+            goPostRead(post.post_id);
+        }
 
         // // 3줄만 표시하는 스타일 적용
         // descDiv.style.display = "-webkit-box";
@@ -189,6 +233,7 @@ function setPostList(postList) {
         likePostButton.textContent = "좋아요";
         likePostButton.textContent += " ";
         likePostButton.textContent += post.post_likecnt;
+
         // 좋아요 개수 표기
         buttonsDiv.appendChild(likePostButton);
 
@@ -211,6 +256,9 @@ function setPostList(postList) {
         // lv2 ====================
         let thumbnailDiv = document.createElement("div");
         thumbnailDiv.className = "thumbnail";
+        thumbnailDiv.onclick = function () {
+            goPostRead(post.post_id);
+        }
 
         // lv3
         let thumbnailDiv2 = document.createElement("div");

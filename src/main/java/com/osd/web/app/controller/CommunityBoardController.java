@@ -89,6 +89,50 @@ public class CommunityBoardController {
         return resultMap;
     }
 
+    // 게시글 분류
+    
+    @ResponseBody
+    @PostMapping("/getPostListByTypeAndKeywordAndPage")
+    public Map<String, Object> getCommunityListByType(@RequestBody Map<String, Object> parameterMap) {
+        Map<String, Object> resultMap = new HashMap<>();
+        int status = 0;
+        // List<Board_PostDto> list = new ArrayList<>();
+
+        String keyword = (String) parameterMap.get("keyword");
+        int page = (int) parameterMap.get("page");
+        int type = (int) parameterMap.get("type");
+
+        // 페이지당 글 개수
+        int limit = 10;
+
+        // 전체 글 개수
+        // int postCount = communityService.getPostCountByKeyword(keyword);
+        int postCount = 0;
+
+        int maxPage = postCount / limit;
+        if (postCount % limit > 0) {
+            maxPage += 1;
+        }
+
+        if (page < 1) {
+            page = 1;
+
+        }
+        if (page > maxPage) {
+            page = maxPage;
+        }
+
+        List<Board_PostDto> list = communityService.getPostListByKeywordAndPage(keyword, page, limit);
+
+        int count = postCount;
+        resultMap.put("list", list);
+        resultMap.put("count", count);
+        resultMap.put("limit", limit);
+        resultMap.put("maxPage", maxPage);
+
+        return resultMap;
+    }
+
     @RequestMapping("/write")
     public String communityWritePage(HttpServletRequest request, Model model) {
         HttpSession session = request.getSession();
