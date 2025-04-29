@@ -4,6 +4,13 @@ let currentType = 0;
 const viewPage = 10;
 const limit = 10;
 
+
+function setType(type_id){
+    currentType = type_id;
+    console.log(currentType);
+}
+
+
 function goPostRead(post_id) {
     window.location.href = "/community/read?post_id=" + post_id;
 }
@@ -11,7 +18,8 @@ function goPostRead(post_id) {
 
 async function loadAndSetTest() {
 
-    const postList = await getPostList();
+    const result = await getPostList();
+    const postList = result.list;
 
     console.log(postList);
 
@@ -24,6 +32,7 @@ async function loadAndSetTest() {
 function page() {
 
 }
+
 function search() {
     let keyword = document.getElementById("keyword").value;
     currentKeyword = keyword;
@@ -35,14 +44,14 @@ async function getPostList() {
 
     let page = currentPage;
     let keyword = currentKeyword;
-    let type = currentType;
+    let type_id = currentType;
 
-    var parameterMap = { keyword: keyword, page: page, type: type };
+    var parameterMap = { keyword: keyword, page: page, type_id: type_id };
 
 
     let response;
 
-    if (type <= 1) {
+    if (type_id <= 1) {
         response = await fetch("/community/getPostListByKeywordAndPage", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
@@ -56,12 +65,11 @@ async function getPostList() {
         });
     }
 
-
-
     const result = await response.json();
-    const postList = result.list;
+    // const postList = result.list;
+    // const postCount = result.count;
 
-    return postList;
+    return result;
 }
 
 function removeAllPost() {

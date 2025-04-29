@@ -33,6 +33,11 @@
 <body>
 
 <input type = "button" value = "Function Test Button" onclick = "loadAndSetTest()">
+<div>
+<input type = "button" value = "Type 1" onclick = "setType(1)">
+<input type = "button" value = "Type 2" onclick = "setType(2)">
+<input type = "button" value = "Type 3" onclick = "setType(3)">
+</div>
 
 <main>
     <div class="container">

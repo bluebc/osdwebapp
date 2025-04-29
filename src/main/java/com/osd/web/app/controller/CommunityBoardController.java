@@ -100,14 +100,13 @@ public class CommunityBoardController {
 
         String keyword = (String) parameterMap.get("keyword");
         int page = (int) parameterMap.get("page");
-        int type = (int) parameterMap.get("type");
+        int type_id = (int) parameterMap.get("type_id");
 
         // 페이지당 글 개수
         int limit = 10;
 
         // 전체 글 개수
-        // int postCount = communityService.getPostCountByKeyword(keyword);
-        int postCount = 0;
+        int postCount = communityService.getPostCountByTypeAndKeyword(type_id, keyword);
 
         int maxPage = postCount / limit;
         if (postCount % limit > 0) {
@@ -122,9 +121,10 @@ public class CommunityBoardController {
             page = maxPage;
         }
 
-        List<Board_PostDto> list = communityService.getPostListByKeywordAndPage(keyword, page, limit);
+        List<Board_PostDto> list = communityService.getPostListByTypeAndKeywordAndPage(type_id, keyword, page, limit);
 
         int count = postCount;
+        resultMap.put("type_id", type_id);
         resultMap.put("list", list);
         resultMap.put("count", count);
         resultMap.put("limit", limit);

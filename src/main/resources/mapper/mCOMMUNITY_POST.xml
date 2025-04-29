@@ -138,6 +138,18 @@
 			) as a
 </select>
 
+<select id="selectCountByTypeAndKeyword" parameterType="Map" resultType="int">
+	select count(post_id) from 
+			(select * from community_post 
+				where 
+					type_id = #{type_id} 
+					and 
+					(post_subject like concat('%', #{keyword}, '%')
+						or
+						post_content like concat('%', #{keyword}, '%'))
+			) as a
+</select>
+
 
 			
 </mapper>

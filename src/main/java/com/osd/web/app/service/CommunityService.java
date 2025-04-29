@@ -218,9 +218,16 @@ public class CommunityService {
     public int getPostCountByKeyword(String keyword) {
         return community_PostDao.selectCountByKeyword(keyword);
     }
+    public int getPostCountByTypeAndKeyword(int type_id, String keyword) {
+        return community_PostDao.selectCountByTypeAndKeyword(type_id, keyword);
+    }
 
     public List<Board_PostDto> getPostListByKeywordAndPage(String keyword, int page, int limit) {
         return board_PostDao.selectCommunityPostListByKeywordAndPage(keyword, page, limit);
+    }
+
+    public List<Board_PostDto> getPostListByTypeAndKeywordAndPage(int type_id, String keyword, int page, int limit) {
+        return board_PostDao.selectCommunityPostListByTypeAndKeywordAndPage(type_id, keyword, page, limit);
     }
 
 }

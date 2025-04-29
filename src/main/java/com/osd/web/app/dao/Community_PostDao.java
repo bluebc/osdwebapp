@@ -61,5 +61,11 @@ public class Community_PostDao {
     public int selectCountByKeyword(String keyword) {
         return session.selectOne("Community_Post.selectCountByKeyword", keyword);
     }
+
+    public int selectCountByTypeAndKeyword(int type_id, String keyword) {
+        Map<String, Object> parameterMap = new HashMap<>();
+        parameterMap.put("type_id", type_id);
+        parameterMap.put("keyword", keyword);
+        return session.selectOne("Community_Post.selectCountByTypeAndKeyword", parameterMap);
+    }
 }
- 
