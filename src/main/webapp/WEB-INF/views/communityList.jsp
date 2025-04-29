@@ -11,7 +11,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <!-- css -->
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
         integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/reset.css">
@@ -32,12 +32,17 @@
 
 <body>
 
+
 <input type = "button" value = "Function Test Button" onclick = "loadAndSetTest()">
 <div>
 <input type = "button" value = "Type 1" onclick = "setType(1)">
 <input type = "button" value = "Type 2" onclick = "setType(2)">
 <input type = "button" value = "Type 3" onclick = "setType(3)">
 </div>
+
+<!-- header -->
+<jsp:include page="header.jsp"></jsp:include>
+
 
 <main>
     <div class="container">
