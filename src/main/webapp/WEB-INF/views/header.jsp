@@ -29,7 +29,7 @@
                     <nav class="pc_menu">
                         <ul class="menu_style">
                             <li><a href="#health" class="scroll">건강 프로그램</a></li>
-                            <li><a href="#story" class="scroll" >건강 나눔</a></li>
+                            <li><a href="/community/list" class="scroll" >건강 나눔</a></li>
                             <li><a href="#program52" class="scroll" >회원방</a></li>
                             <li><a href="#shoppingmall" class="scroll" >건강 이벤트</a></li>
                             <li><a href="/cunsultList" class="scroll" >상담 & 게시판</a></li>
