@@ -22,6 +22,7 @@ import com.osd.web.app.dto.Community_CommentDto;
 import com.osd.web.app.dto.Community_Comment_LikeDto;
 import com.osd.web.app.dto.Community_PostDto;
 import com.osd.web.app.dto.Community_Post_LikeDto;
+import com.osd.web.app.dto.Community_TypeDto;
 import com.osd.web.app.service.CommunityService;
 
 import jakarta.servlet.http.HttpServletRequest;
@@ -89,8 +90,19 @@ public class CommunityBoardController {
         return resultMap;
     }
 
+    @ResponseBody
+    @PostMapping("/getCommunityType")
+    public Map<String, Object> getCommunityType(){
+        Map<String, Object> resultMap = new HashMap<>();
+        
+        List<Community_TypeDto> list = communityService.getTypeList();
+
+        resultMap.put("list", list);
+
+        return resultMap;
+    }
+
     // 게시글 분류
-    
     @ResponseBody
     @PostMapping("/getPostListByTypeAndKeywordAndPage")
     public Map<String, Object> getCommunityListByType(@RequestBody Map<String, Object> parameterMap) {
@@ -132,6 +144,14 @@ public class CommunityBoardController {
 
         return resultMap;
     }
+
+    @PostMapping("/getRownumSession")
+    public Map<String, Object> getRownumSession(){
+        Map<String, Object> resultMap = new HashMap<>();
+
+        return resultMap;
+    }
+
 
     @RequestMapping("/write")
     public String communityWritePage(HttpServletRequest request, Model model) {

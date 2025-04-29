@@ -4,22 +4,78 @@ let currentType = 0;
 const viewPage = 10;
 const limit = 10;
 
-async function paging(page){
+document.addEventListener("DOMContentLoaded", async function () {
+    await setCommunityType();
+    await loadAndSetPostList();
+});
 
-currentPage = page;
-loadAndSetPostList();
+async function setCommunityType() {
+    resultMap = await getCommunityType();
+    typeList = resultMap.list;
+
+    let communityTypeBtnSectionDiv = document.getElementById("communityTypeBtnSection");
+    while (communityTypeBtnSectionDiv.firstChild) {
+        communityTypeBtnSectionDiv.removeChild(communityTypeBtnSectionDiv.firstChild);
+    }
+
+    typeList.forEach(type => {
+        let snbBtnDiv = document.createElement("div");
+        snbBtnDiv.className = "snb-btn";
+
+        let typeBtn = document.createElement("input");
+        typeBtn.type = "button";
+        typeBtn.value = type.type_name;
+        typeBtn.onclick = function () {
+            setType(type.type_id);
+        }
+
+        snbBtnDiv.appendChild(typeBtn);
+        communityTypeBtnSectionDiv.appendChild(snbBtnDiv);
+    });
+}
+
+async function getCommunityType() {
+
+    const response = await fetch("/community/getCommunityType", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: {}
+    });
+
+    const result = await response.json();
+
+    return result;
+}
+
+
+function search() {
+    let keyword = document.getElementById("keyword").value;
+    currentKeyword = keyword;
+    paging(1);
+}
+
+function setType(type_id) {
+    currentType = type_id;
+    // document.getElementById("keyword").value = "";
+    currentKeyword = "";
+    paging(1);
+}
+
+// 페이지 이동
+async function paging(page) {
+
+    currentPage = page;
+    await loadAndSetPostList();
 
 }
 
-function setPagination(currentPage, maxPage, count, limit){
-    
+function setPagination(currentPage, maxPage, count, limit) {
+
     let pagination = document.getElementById("pagination");
     while (pagination.firstChild) {
         pagination.removeChild(pagination.firstChild);
     }
 
-    // 10페이지씩
-    
     let startPage = parseInt(currentPage / viewPage) * viewPage + 1;
     if (currentPage % viewPage == 0) {
         startPage = (parseInt(currentPage / viewPage) - 1) * viewPage + 1;
@@ -33,26 +89,25 @@ function setPagination(currentPage, maxPage, count, limit){
     if (currentPage > viewPage) {
         let leftPageBtn = document.createElement("div");
         leftPageBtn.className = "pagination";
-        
+
         leftPageBtn.textContent = "<<"
         leftPageBtn.onclick = function () {
-        paging(startPage - 1);
+            paging(startPage - 1);
         }
         pagination.appendChild(leftPageBtn);
     }
-
 
     for (let page = startPage; page <= endPage; page++) {
         let pageDiv = document.createElement("div");
         pageDiv.className = "pagenumber";
         pageDiv.textContent = page;
-        
+
         if (page === currentPage) {
             pageDiv.classList.add("selected");
         }
 
         pageDiv.onclick = function () {
-               paging(page);
+            paging(page);
         }
         pagination.appendChild(pageDiv);
     }
@@ -67,19 +122,11 @@ function setPagination(currentPage, maxPage, count, limit){
         }
         pagination.appendChild(rightPageBtn);
     }
-
 }
-
-function setType(type_id){
-    currentType = type_id;
-    console.log(currentType);
-}
-
 
 function goPostRead(post_id) {
     window.location.href = "/community/read?post_id=" + post_id;
 }
-
 
 async function loadAndSetPostList() {
 
@@ -88,19 +135,9 @@ async function loadAndSetPostList() {
     const postCount = resultMap.count;
     const maxPage = resultMap.maxPage;
 
-    console.log(postList);
-
     setPostList(postList);
-    setPagination(currentPage, maxPage, postCount)
+    setPagination(currentPage, maxPage, postCount);
 
-
-}
-
-function search() {
-    let keyword = document.getElementById("keyword").value;
-    currentKeyword = keyword;
-    console.log(currentKeyword);
-    currentPage = 1;
 }
 
 async function getPostList() {
@@ -108,12 +145,9 @@ async function getPostList() {
     let page = currentPage;
     let keyword = currentKeyword;
     let type_id = currentType;
-
-    var parameterMap = { keyword: keyword, page: page, type_id: type_id };
-
+    let parameterMap = { keyword: keyword, page: page, type_id: type_id };
 
     let response;
-
     if (type_id <= 1) {
         response = await fetch("/community/getPostListByKeywordAndPage", {
             method: "POST",
@@ -129,8 +163,6 @@ async function getPostList() {
     }
 
     const result = await response.json();
-    // const postList = result.list;
-    // const postCount = result.count;
 
     return result;
 }
@@ -349,7 +381,7 @@ function setPostList(postList) {
 
         // blogContainerDiv.appendChild(postDiv);
         postContatinerDiv.appendChild(postDiv);
-        
+
 
     });
 
