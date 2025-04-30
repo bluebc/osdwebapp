@@ -32,10 +32,6 @@ async function getRownumSession() {
         return page;
     }
 
-    console.log("page: " + page);
-    console.log("rownum: " + rownum);
-    console.log("limit: " + limit);
-
     page = parseInt(rownum / limit) + 1;
     if ((rownum / limit) == 0) {
         page -= 1;
@@ -182,10 +178,8 @@ async function getPostList() {
     let type_id = currentType;
     let parameterMap = { keyword: keyword, page: page, type_id: type_id };
 
-    console.log("page : " + page);
-
     let response;
-    if (type_id <= 1) {
+    if (type_id == 0) {
         response = await fetch("/community/getPostListByKeywordAndPage", {
             method: "POST",
             headers: { "Content-Type": "application/json" },

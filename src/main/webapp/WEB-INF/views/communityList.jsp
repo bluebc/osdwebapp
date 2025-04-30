@@ -44,20 +44,6 @@
 
 <main>
     <div class="container">
-
-<div>
-<input type = "button" value = "Function Test loadAndSetTest" onclick = "loadAndSetPostList()">
-<input type = "button" value = "Function Test setPagination" onclick = "setPagination()">
-</div>
-<div>
-<input type = "button" value = "Type 1" onclick = "setType(1)">
-<input type = "button" value = "Type 2" onclick = "setType(2)">
-<input type = "button" value = "Type 3" onclick = "setType(3)">
-</div>
-
-
-
-
         <div class="content">
             <div class="snbContainer">
                 <div class="title"><h1>비움과 채움 스토리</h1></div>
