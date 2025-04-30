@@ -20,8 +20,8 @@ public class WebConfig implements WebMvcConfigurer {
 
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
-        // registry.addInterceptor(loginInterceptor)
-        //         .addPathPatterns("/**"); // 모든 경로에 적용
+        registry.addInterceptor(loginInterceptor)
+                .addPathPatterns("/**"); // 모든 경로에 적용
 
         registry.addInterceptor(findLoginInfoInterceptor)
                 .addPathPatterns("/find/result/**");
