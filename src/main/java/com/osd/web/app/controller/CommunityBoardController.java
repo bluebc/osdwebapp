@@ -212,6 +212,18 @@ public class CommunityBoardController {
         return "communityWrite";
     }
 
+    @ResponseBody
+    @PostMapping("/getPostTypeList")
+    public Map<String, Object> getPostTypeList(){
+        Map<String, Object> resultMap = new HashMap<>();
+
+        List<Community_TypeDto> list = communityService.getTypeList();
+        resultMap.put("list", list);
+
+        return resultMap;
+    }
+
+
     @RequestMapping("/read")
     public String communityReadPage(@RequestParam(required = true, defaultValue = "0", name = "post_id") int post_id,
             HttpServletRequest request,
@@ -242,6 +254,10 @@ public class CommunityBoardController {
             liked = communityService.checkPostLiked(community_Post_LikeDto);
         }
 
+        int type_id = community_PostDto.getType_id();
+        String type_name = communityService.getTypeNameById(type_id);
+
+
         // 작성 시간 포맷
         LocalDateTime post_created_at = board_PostDto.getPost_created_at();
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
@@ -249,6 +265,7 @@ public class CommunityBoardController {
         model.addAttribute("postCreatedAt", formatted);
         model.addAttribute("liked", liked);
         model.addAttribute("community_post", board_PostDto);
+        model.addAttribute("type_name", type_name);
 
         return "communityRead";
     }

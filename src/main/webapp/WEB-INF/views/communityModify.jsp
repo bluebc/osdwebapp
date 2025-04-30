@@ -33,6 +33,7 @@
         <form action="#" method="post" enctype="multipart/form-data">
         <input type = "hidden" id = "user_id" value = "${community_post.user_id}">
         <input type = "hidden" id = "post_id" value = "${community_post.post_id}">
+        <input type = "hidden" id = "type_id" value = "${community_post.type_id}">
             <table>
                 <tr>
                     <td>
@@ -45,7 +46,7 @@
                     <td class="title">
                         <%-- <h3>카테고리</h3> --%>
                         <fieldset>
-                            <select>
+                            <select id = "post_type">
                                 <option value="카테고리"; name="카테고리"; >카테고리를 선택해주세요</option>
                                 <option value="카테고리1";name="카테고리1";>카테고리1</option>
                                 <option value="카테고리2";name="카테고리2";>카테고리2</option>

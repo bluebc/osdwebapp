@@ -244,4 +244,8 @@ public class CommunityService {
         return community_PostDao.selectRownumByTypeAndId(type_id, post_id);
     }
 
+    public String getTypeNameById(int type_id){
+        return community_TypeDao.selectNameById(type_id);
+    }
+
 }

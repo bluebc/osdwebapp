@@ -1,8 +1,44 @@
-addEventListener("DOMContentLoaded", function () {
+addEventListener("DOMContentLoaded", async function () {
+    const typeResultMap = await getPostTypeList();
+    const typeList = typeResultMap.list;
+    setPostTypeList(typeList);
+
+    let type_id = document.getElementById("type_id").value;
+    document.getElementById("post_type").value = type_id;
 
 });
 
 
+
+async function getPostTypeList() {
+
+    const response = await fetch("/community/getPostTypeList", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: {}
+    });
+
+    const result = await response.json();
+
+    return result;
+}
+
+function setPostTypeList(typeList) {
+
+    let postTypeSelect = document.getElementById("post_type");
+
+    while (postTypeSelect.firstChild) {
+        postTypeSelect.removeChild(postTypeSelect.firstChild);
+    }
+
+    typeList.forEach(type => {
+        let postTypeOption = document.createElement("option");
+        postTypeOption.value = type.type_id;
+        postTypeOption.textContent = type.type_name;
+        postTypeSelect.append(postTypeOption);
+    });
+
+}
 
 // 글 작성 완료
 async function modify() {

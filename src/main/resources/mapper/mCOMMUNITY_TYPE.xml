@@ -13,5 +13,9 @@
 <select id="selectAll" resultMap="CommunityTypeResultMap">
 	select * from community_type order by type_sort asc
 </select>
+
+<select id="selectNameById" parameterType="int" resultType="String">
+	select type_name from community_type where type_id = #{type_id}
+</select>
 		
 </mapper>

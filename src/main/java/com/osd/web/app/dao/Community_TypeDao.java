@@ -18,4 +18,8 @@ public class Community_TypeDao {
         return session.selectList("Community_Type.selectAll");
     }
 
+    public String selectNameById(int type_id){
+        return session.selectOne("Community_Type.selectNameById", type_id);
+    }
+
 }
