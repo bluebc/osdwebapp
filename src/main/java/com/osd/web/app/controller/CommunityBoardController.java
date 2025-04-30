@@ -92,9 +92,9 @@ public class CommunityBoardController {
 
     @ResponseBody
     @PostMapping("/getCommunityType")
-    public Map<String, Object> getCommunityType(){
+    public Map<String, Object> getCommunityType() {
         Map<String, Object> resultMap = new HashMap<>();
-        
+
         List<Community_TypeDto> list = communityService.getTypeList();
 
         resultMap.put("list", list);
@@ -145,13 +145,67 @@ public class CommunityBoardController {
         return resultMap;
     }
 
-    @PostMapping("/getRownumSession")
-    public Map<String, Object> getRownumSession(){
+    @ResponseBody
+    @PostMapping("/setRownumSession")
+    public Map<String, Object> setRownumSession(HttpServletRequest request,
+            @RequestBody Community_PostDto community_PostDto) {
         Map<String, Object> resultMap = new HashMap<>();
+
+        int type_id = community_PostDto.getType_id();
+        int post_id = community_PostDto.getPost_id();
+        int rownum = communityService.getPostRownumByTypeAndId(type_id, post_id);
+
+        resultMap.put("rownum", rownum);
+
+        HttpSession session = request.getSession();
+        session.setAttribute("post_rownum", rownum);
+        session.setAttribute("post_type", type_id);
 
         return resultMap;
     }
 
+    @ResponseBody
+    @PostMapping("/getRownumSession")
+    public Map<String, Object> getRownumSession(HttpServletRequest request) {
+        Map<String, Object> resultMap = new HashMap<>();
+        HttpSession session = request.getSession();
+        int status = 0;
+
+        int rownum = 0;
+        if (session.getAttribute("post_rownum") == null) {
+            status = -201;
+            resultMap.put("status", status);
+            return resultMap;
+        }
+        rownum = (int) session.getAttribute("post_rownum");
+        resultMap.put("rownum", rownum);
+
+        if (session.getAttribute("post_type") == null) {
+            status = -202;
+            resultMap.put("status", status);
+            return resultMap;
+        }
+        int type_id = (int) session.getAttribute("post_type");
+        resultMap.put("type_id", type_id);
+
+System.out.println("rownum: " + rownum);
+System.out.println("rownum: " + rownum);
+System.out.println("rownum: " + rownum);
+System.out.println("rownum: " + rownum);
+System.out.println("rownum: " + rownum);
+System.out.println("rownum: " + rownum);
+System.out.println("rownum: " + rownum);
+System.out.println("rownum: " + rownum);
+
+
+        status = 1;
+        resultMap.put("rownum", rownum);
+        resultMap.put("status", status);
+
+        session.setAttribute("post_rownum", null);
+
+        return resultMap;
+    }
 
     @RequestMapping("/write")
     public String communityWritePage(HttpServletRequest request, Model model) {

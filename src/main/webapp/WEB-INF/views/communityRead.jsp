@@ -33,6 +33,7 @@
 
 <input type = "hidden" id = "post_id" value = "${community_post.post_id}">
 <input type = "hidden" id = "user_id" value = "${community_post.user_id}">
+<input type = "hidden" id = "type_id" value = "${community_post.type_id}">
 <input type = "hidden" id = "login_user_id" value = "${login_user_id}">
 
 

@@ -150,6 +150,8 @@
 			) as a
 </select>
 
-
+<select id="selectRownumByTypeAndId" parameterType="Map" resultType="int">
+	select ROWNUM from (select ROW_NUMBER() over (order by POST_ID asc) ROWNUM, POST_ID, TYPE_ID from COMMUNITY_POST where TYPE_ID = #{type_id}) as a where POST_ID = #{post_id};
+</select>
 			
 </mapper>
