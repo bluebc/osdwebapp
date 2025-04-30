@@ -5,7 +5,6 @@ const viewPage = 10;
 const limit = 10;
 
 document.addEventListener("DOMContentLoaded", async function () {
-
     await getRownumSession();
     await setCommunityType();
     await loadAndSetPostList();
@@ -20,24 +19,18 @@ async function getRownumSession() {
         });
     const result = await response.json();
 
-    console.log("진입지점1");
-
     if (result.status != 1) {
         return;
     }
     currentType = result.type_id;
-    
+
     let rownum = result.rownum;
 
     let page = 1;
 
-    console.log("진입지점2");
-
     if (rownum == 0) {
         return page;
     }
-
-    console.log("진입지점3");
 
     console.log("page: " + page);
     console.log("rownum: " + rownum);
@@ -48,10 +41,6 @@ async function getRownumSession() {
         page -= 1;
     }
 
-    console.log(page);
-    console.log(currentPage);
-
-    console.log("진입지점4");
     currentPage = page;
 }
 

@@ -188,16 +188,6 @@ public class CommunityBoardController {
         int type_id = (int) session.getAttribute("post_type");
         resultMap.put("type_id", type_id);
 
-System.out.println("rownum: " + rownum);
-System.out.println("rownum: " + rownum);
-System.out.println("rownum: " + rownum);
-System.out.println("rownum: " + rownum);
-System.out.println("rownum: " + rownum);
-System.out.println("rownum: " + rownum);
-System.out.println("rownum: " + rownum);
-System.out.println("rownum: " + rownum);
-
-
         status = 1;
         resultMap.put("rownum", rownum);
         resultMap.put("status", status);
