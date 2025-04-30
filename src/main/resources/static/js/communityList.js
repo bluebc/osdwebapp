@@ -4,40 +4,171 @@ let currentType = 0;
 const viewPage = 10;
 const limit = 10;
 
+document.addEventListener("DOMContentLoaded", async function () {
+    await getRownumSession();
+    await setCommunityType();
+    await loadAndSetPostList();
+});
 
-function setType(type_id){
-    currentType = type_id;
-    console.log(currentType);
+async function getRownumSession() {
+    const response = await fetch("/community/getRownumSession",
+        {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: {}
+        });
+    const result = await response.json();
+
+    if (result.status != 1) {
+        return;
+    }
+    currentType = result.type_id;
+
+    let rownum = result.rownum;
+
+    let page = 1;
+
+    if (rownum == 0) {
+        return page;
+    }
+
+    page = parseInt(rownum / limit) + 1;
+    if ((rownum / limit) == 0) {
+        page -= 1;
+    }
+
+    currentPage = page;
 }
 
+async function setCommunityType() {
+    resultMap = await getCommunityType();
+    typeList = resultMap.list;
+
+    let communityTypeBtnSectionDiv = document.getElementById("communityTypeBtnSection");
+    while (communityTypeBtnSectionDiv.firstChild) {
+        communityTypeBtnSectionDiv.removeChild(communityTypeBtnSectionDiv.firstChild);
+    }
+
+    typeList.forEach(type => {
+        let snbBtnDiv = document.createElement("div");
+        snbBtnDiv.className = "snb-btn";
+
+        let typeBtn = document.createElement("input");
+        typeBtn.type = "button";
+        typeBtn.value = type.type_name;
+        typeBtn.onclick = function () {
+            setType(type.type_id);
+        }
+
+        snbBtnDiv.appendChild(typeBtn);
+        communityTypeBtnSectionDiv.appendChild(snbBtnDiv);
+    });
+}
+
+async function getCommunityType() {
+
+    const response = await fetch("/community/getCommunityType", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: {}
+    });
+
+    const result = await response.json();
+
+    return result;
+}
+
+
+function search() {
+    let keyword = document.getElementById("keyword").value;
+    currentKeyword = keyword;
+    paging(1);
+}
+
+function setType(type_id) {
+    currentType = type_id;
+    // document.getElementById("keyword").value = "";
+    currentKeyword = "";
+    paging(1);
+}
+
+// 페이지 이동
+async function paging(page) {
+
+    currentPage = page;
+    await loadAndSetPostList();
+
+}
+
+function setPagination(currentPage, maxPage, count, limit) {
+
+    let pagination = document.getElementById("pagination");
+    while (pagination.firstChild) {
+        pagination.removeChild(pagination.firstChild);
+    }
+
+    let startPage = parseInt(currentPage / viewPage) * viewPage + 1;
+    if (currentPage % viewPage == 0) {
+        startPage = (parseInt(currentPage / viewPage) - 1) * viewPage + 1;
+    }
+
+    var endPage = startPage + viewPage - 1;
+    if (endPage > maxPage) {
+        endPage = maxPage;
+    }
+
+    if (currentPage > viewPage) {
+        let leftPageBtn = document.createElement("div");
+        leftPageBtn.className = "pagination";
+
+        leftPageBtn.textContent = "<<"
+        leftPageBtn.onclick = function () {
+            paging(startPage - 1);
+        }
+        pagination.appendChild(leftPageBtn);
+    }
+
+    for (let page = startPage; page <= endPage; page++) {
+        let pageDiv = document.createElement("div");
+        pageDiv.className = "pagenumber";
+        pageDiv.textContent = page;
+
+        if (page === currentPage) {
+            pageDiv.classList.add("selected");
+        }
+
+        pageDiv.onclick = function () {
+            paging(page);
+        }
+        pagination.appendChild(pageDiv);
+    }
+
+    if (endPage != maxPage) {
+        let rightPageBtn = document.createElement("div");
+        rightPageBtn.className = "pagination";
+
+        rightPageBtn.textContent = ">>"
+        rightPageBtn.onclick = function () {
+            paging(endPage + 1);
+        }
+        pagination.appendChild(rightPageBtn);
+    }
+}
 
 function goPostRead(post_id) {
     window.location.href = "/community/read?post_id=" + post_id;
 }
 
+async function loadAndSetPostList() {
 
-async function loadAndSetTest() {
-
-    const result = await getPostList();
-    const postList = result.list;
-
-    console.log(postList);
+    const resultMap = await getPostList();
+    const postList = resultMap.list;
+    const postCount = resultMap.count;
+    const maxPage = resultMap.maxPage;
 
     setPostList(postList);
+    setPagination(currentPage, maxPage, postCount);
 
-}
-
-
-
-function page() {
-
-}
-
-function search() {
-    let keyword = document.getElementById("keyword").value;
-    currentKeyword = keyword;
-    console.log(currentKeyword);
-    currentPage = 1;
 }
 
 async function getPostList() {
@@ -45,13 +176,10 @@ async function getPostList() {
     let page = currentPage;
     let keyword = currentKeyword;
     let type_id = currentType;
-
-    var parameterMap = { keyword: keyword, page: page, type_id: type_id };
-
+    let parameterMap = { keyword: keyword, page: page, type_id: type_id };
 
     let response;
-
-    if (type_id <= 1) {
+    if (type_id == 0) {
         response = await fetch("/community/getPostListByKeywordAndPage", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
@@ -66,8 +194,6 @@ async function getPostList() {
     }
 
     const result = await response.json();
-    // const postList = result.list;
-    // const postCount = result.count;
 
     return result;
 }
@@ -81,7 +207,8 @@ function setPostList(postList) {
 
     removeAllPost();
 
-    let blogContainerDiv = document.getElementById("blogContainer");
+    // let blogContainerDiv = document.getElementById("blogContainer");
+    let postContatinerDiv = document.getElementById("postContainer");
 
     postList.forEach(post => {
 
@@ -283,7 +410,9 @@ function setPostList(postList) {
         thumbnailDiv.appendChild(thumbnailDiv2);
         postDiv.appendChild(thumbnailDiv);
 
-        blogContainerDiv.appendChild(postDiv);
+        // blogContainerDiv.appendChild(postDiv);
+        postContatinerDiv.appendChild(postDiv);
+
 
     });
 

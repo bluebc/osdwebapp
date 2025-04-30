@@ -22,6 +22,7 @@ import com.osd.web.app.dto.Community_CommentDto;
 import com.osd.web.app.dto.Community_Comment_LikeDto;
 import com.osd.web.app.dto.Community_PostDto;
 import com.osd.web.app.dto.Community_Post_LikeDto;
+import com.osd.web.app.dto.Community_TypeDto;
 import com.osd.web.app.service.CommunityService;
 
 import jakarta.servlet.http.HttpServletRequest;
@@ -89,8 +90,19 @@ public class CommunityBoardController {
         return resultMap;
     }
 
+    @ResponseBody
+    @PostMapping("/getCommunityType")
+    public Map<String, Object> getCommunityType() {
+        Map<String, Object> resultMap = new HashMap<>();
+
+        List<Community_TypeDto> list = communityService.getTypeList();
+
+        resultMap.put("list", list);
+
+        return resultMap;
+    }
+
     // 게시글 분류
-    
     @ResponseBody
     @PostMapping("/getPostListByTypeAndKeywordAndPage")
     public Map<String, Object> getCommunityListByType(@RequestBody Map<String, Object> parameterMap) {
@@ -133,6 +145,58 @@ public class CommunityBoardController {
         return resultMap;
     }
 
+    @ResponseBody
+    @PostMapping("/setRownumSession")
+    public Map<String, Object> setRownumSession(HttpServletRequest request,
+            @RequestBody Community_PostDto community_PostDto) {
+        Map<String, Object> resultMap = new HashMap<>();
+
+        int type_id = community_PostDto.getType_id();
+        int post_id = community_PostDto.getPost_id();
+        int rownum = communityService.getPostRownumByTypeAndId(type_id, post_id);
+
+        resultMap.put("rownum", rownum);
+
+        HttpSession session = request.getSession();
+        session.setAttribute("post_rownum", rownum);
+        session.setAttribute("post_type", type_id);
+
+        return resultMap;
+    }
+
+    @ResponseBody
+    @PostMapping("/getRownumSession")
+    public Map<String, Object> getRownumSession(HttpServletRequest request) {
+        Map<String, Object> resultMap = new HashMap<>();
+        HttpSession session = request.getSession();
+        int status = 0;
+
+        int rownum = 0;
+        if (session.getAttribute("post_rownum") == null) {
+            status = -201;
+            resultMap.put("status", status);
+            return resultMap;
+        }
+        rownum = (int) session.getAttribute("post_rownum");
+        resultMap.put("rownum", rownum);
+
+        if (session.getAttribute("post_type") == null) {
+            status = -202;
+            resultMap.put("status", status);
+            return resultMap;
+        }
+        int type_id = (int) session.getAttribute("post_type");
+        resultMap.put("type_id", type_id);
+
+        status = 1;
+        resultMap.put("rownum", rownum);
+        resultMap.put("status", status);
+
+        session.setAttribute("post_rownum", null);
+
+        return resultMap;
+    }
+
     @RequestMapping("/write")
     public String communityWritePage(HttpServletRequest request, Model model) {
         HttpSession session = request.getSession();
@@ -147,6 +211,18 @@ public class CommunityBoardController {
 
         return "communityWrite";
     }
+
+    @ResponseBody
+    @PostMapping("/getPostTypeList")
+    public Map<String, Object> getPostTypeList(){
+        Map<String, Object> resultMap = new HashMap<>();
+
+        List<Community_TypeDto> list = communityService.getTypeList();
+        resultMap.put("list", list);
+
+        return resultMap;
+    }
+
 
     @RequestMapping("/read")
     public String communityReadPage(@RequestParam(required = true, defaultValue = "0", name = "post_id") int post_id,
@@ -178,6 +254,10 @@ public class CommunityBoardController {
             liked = communityService.checkPostLiked(community_Post_LikeDto);
         }
 
+        int type_id = community_PostDto.getType_id();
+        String type_name = communityService.getTypeNameById(type_id);
+
+
         // 작성 시간 포맷
         LocalDateTime post_created_at = board_PostDto.getPost_created_at();
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
@@ -185,6 +265,7 @@ public class CommunityBoardController {
         model.addAttribute("postCreatedAt", formatted);
         model.addAttribute("liked", liked);
         model.addAttribute("community_post", board_PostDto);
+        model.addAttribute("type_name", type_name);
 
         return "communityRead";
     }

@@ -1,3 +1,42 @@
+addEventListener("DOMContentLoaded", async function () {
+    const typeResultMap = await getPostTypeList();
+    const typeList = typeResultMap.list;
+    setPostTypeList(typeList);
+});
+
+async function getPostTypeList() {
+
+    const response = await fetch("/community/getPostTypeList", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: {}
+    });
+
+    const result = await response.json();
+
+    return result;
+}
+
+function setPostTypeList(typeList) {
+
+    let postTypeDiv = document.getElementById("post_type");
+
+    while (postTypeDiv.firstChild) {
+        postTypeDiv.removeChild(postTypeDiv.firstChild);
+    }
+
+    typeList.forEach(type => {
+        let postTypeOption = document.createElement("option");
+        postTypeOption.value = type.type_id;
+        postTypeOption.textContent = type.type_name;
+        postTypeDiv.append(postTypeOption);
+    });
+
+
+
+}
+
+
 // 글 작성 완료
 async function posting() {
     // console.log("게시");
@@ -50,7 +89,7 @@ async function posting() {
         // console.log(files);
         var post_files = JSON.stringify(files);
     }
-    
+
     var post = {
         type_id: type_id,
         theme_id: theme_id,

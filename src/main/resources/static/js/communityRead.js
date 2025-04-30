@@ -66,13 +66,14 @@ function postdeletePost() {
 // 목록
 function goPostList() {
 
-    var post_id = document.getElementById("post_id").value;
-    var cunsult_post = { post_id: post_id };
+    let post_id = document.getElementById("post_id").value;
+    let type_id = document.getElementById("type_id").value;
+    let post = { post_id: post_id, type_id: type_id };
 
     fetch("/community/setRownumSession", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(cunsult_post)
+        body: JSON.stringify(post)
     }).then(response => {
         return response.json();
     }).then(result => {

@@ -14,12 +14,14 @@ import com.osd.web.app.dao.Community_CommentDao;
 import com.osd.web.app.dao.Community_Comment_LikeDao;
 import com.osd.web.app.dao.Community_PostDao;
 import com.osd.web.app.dao.Community_Post_LikeDao;
+import com.osd.web.app.dao.Community_TypeDao;
 import com.osd.web.app.dto.Board_CommentDto;
 import com.osd.web.app.dto.Board_PostDto;
 import com.osd.web.app.dto.Community_CommentDto;
 import com.osd.web.app.dto.Community_Comment_LikeDto;
 import com.osd.web.app.dto.Community_PostDto;
 import com.osd.web.app.dto.Community_Post_LikeDto;
+import com.osd.web.app.dto.Community_TypeDto;
 
 @Service
 public class CommunityService {
@@ -29,6 +31,9 @@ public class CommunityService {
 
     @Autowired
     private Board_PostDao board_PostDao;
+
+    @Autowired
+    private Community_TypeDao community_TypeDao;
 
     public Community_PostDto insertPost(Community_PostDto community_PostDto) {
         LocalDateTime post_created_at = LocalDateTime.now().truncatedTo(ChronoUnit.SECONDS);
@@ -218,6 +223,7 @@ public class CommunityService {
     public int getPostCountByKeyword(String keyword) {
         return community_PostDao.selectCountByKeyword(keyword);
     }
+
     public int getPostCountByTypeAndKeyword(int type_id, String keyword) {
         return community_PostDao.selectCountByTypeAndKeyword(type_id, keyword);
     }
@@ -228,6 +234,18 @@ public class CommunityService {
 
     public List<Board_PostDto> getPostListByTypeAndKeywordAndPage(int type_id, String keyword, int page, int limit) {
         return board_PostDao.selectCommunityPostListByTypeAndKeywordAndPage(type_id, keyword, page, limit);
+    }
+
+    public List<Community_TypeDto> getTypeList() {
+        return community_TypeDao.selectAll();
+    }
+
+    public int getPostRownumByTypeAndId(int type_id, int post_id) {
+        return community_PostDao.selectRownumByTypeAndId(type_id, post_id);
+    }
+
+    public String getTypeNameById(int type_id){
+        return community_TypeDao.selectNameById(type_id);
     }
 
 }
