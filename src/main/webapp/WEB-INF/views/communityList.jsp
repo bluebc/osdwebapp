@@ -1,35 +1,31 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-
 <!DOCTYPE html>
 <html lang="ko" dir="ltr">
 <head>
-    <title>오생단</title>
-
     <!-- meta  -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>오생단</title>
 
-    <!--favicon--->
-    <link href="${pageContext.request.contextPath}/img/favicon.ico" rel="icon">
 
     <!-- css -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
         integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/reset.css">
-    <link rel="stylesheet" href="<c:url value='/css/community.css?ver=1'/>">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/community.css?ver=1">
+    <%-- <link rel="stylesheet" href="<c:url value='/css/community.css?ver=1'/>"> --%>
 
-
-
+    <!--favicon--->
+    <link href="${pageContext.request.contextPath}/img/favicon.ico" rel="icon">
 
     <!--js-->
     <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
     <script src="http://code.jquery.com/jquery-latest.min.js"></script>
+    <script src ="${pageContext.request.contextPath}/js/communityList.js"></script>
+    <%-- <script src ="/js/communityList.js"></script> --%>
 
-    <script src = "${pageContext.request.contextPath}/js/communityList.js"></script>
-
-    <title>블로그 형식</title>
 
 </head>
 
@@ -37,7 +33,7 @@
 
 
 <!-- header -->
-<jsp:include page="header.jsp"></jsp:include>
+<%-- <jsp:include page="header.jsp"></jsp:include> --%>
 
 
 
@@ -49,13 +45,13 @@
                 <div class="title"><h1>비움과 채움 스토리</h1></div>
                 <div id = "communityTypeBtnSection" class="snbMenu">
                     <div class="snb-btn">
-                            <input type = "button" value = "비움과 채움 스토리" onclick = "">
+                            <input type = "button" value = "비움과 채움 스토리">
                     </div>
                     <div class="snb-btn">
-                            <input type = "button" value = "키토산 스토리" onclick = "">
+                            <input type = "button" value = "키토산 스토리" >
                     </div>
                     <div class="snb-btn">
-                            <input type = "button" value = "건강 스토리" onclick = "">
+                            <input type = "button" value = "건강 스토리" >
                     </div>
                 </div>
             </div> 
@@ -189,11 +185,6 @@
                 </div>
 
             </div>
-
-
-
-
-
         </div>    
     </div>
 </main>
