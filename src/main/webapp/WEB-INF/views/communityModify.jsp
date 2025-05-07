@@ -86,8 +86,10 @@
                     <td>
                     기존 업로드 자리
                     <input type = "hidden" value = '${community_post.post_files}' id = "originalFileJSON">
-                    <div id = "originalFiles">
+                    <div id = "originFileContainer">    
+                        <div id = "originalFiles">
 
+                        </div>
                     </div>
                     <hr noshade>
                     </td>
@@ -101,6 +103,15 @@
                         <form id="uploadForm" enctype="multipart/form-data">
                             <input type="file" id="fileInput" name="files" multiple>
                         </form>
+
+                        <div id = "newFileContainer">    
+                            <div id = "newFiles">
+
+                            </div>
+                        </div>
+
+
+
                         <hr noshade>
                         <!-- <h3>이미지 업로드</h3>
                         <input type="file" name="image" accept="image/*" id="btn-upload"> -->
@@ -112,6 +123,8 @@
                     <%-- before : submit --%>
                         <input type="button" value="수정" onclick="modify()">
                         <input type="button" value="취소" onclick="cancelModify()">
+                        
+                        <input type="button" value="test" onclick="test()">
                     </td>
                 </tr>
             </table>

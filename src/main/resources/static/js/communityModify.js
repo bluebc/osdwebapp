@@ -12,10 +12,74 @@ addEventListener("DOMContentLoaded", async function () {
     fileList = originalFileList;
     console.log(originalFileList);
     setOriginalFileList(originalFileList);
+
+    document.getElementById("fileInput").addEventListener("change", function () {
+        getNewFileList();
+        setNewFileList();
+ 
+
+    });
+
 });
+
+let newFileList = [];
+
+function getNewFileList(){
+
+    let fileInput = document.getElementById("fileInput");
+    let files = fileInput.files;
+    for (let i = 0; i < files.length; i++) {
+        let isDuplicate = newFileList.some(f => f.name === files[i].name && f.size === files[i].size);
+        if (!isDuplicate) {
+            newFileList.push(files[i]);
+        } else {
+            alert(`중복된 파일입니다: ${files[i].name}`);
+        }
+    }
+}
+
+function setNewFileList(newFileList) {
+
+
+    
+    const newFileContainerDiv = document.getElementById("newFileContainer");
+    const newFilesDiv = document.getElementById("newFiles");
+
+
+    newFileList.forEach(newFile => {
+        let newfileDiv = document.createElement("div");
+
+        let deleteCheckBox = document.createElement("input");
+        deleteCheckBox.type = "checkbox";
+        deleteCheckBox.value = newFile.name;
+        deleteCheckBox.name = "deleteNewFile";
+        newfileDiv.appendChild(deleteCheckBox);
+
+        let fileName = newFile.name;
+        let fileNameLabel = document.createElement("label");
+        fileNameLabel.textContent = fileName;
+        newfileDiv.appendChild(fileNameLabel);
+
+        newFilesDiv.appendChild(newfileDiv);
+
+    });
+
+}
+
+
+function deleteNewFiles() {
+    const checkedBoxes = document.querySelectorAll("input[name='deleteNewFile']:checked");
+    const filesToDelete = Array.from(checkedBoxes).map(checkedBox => checkedBox.value);
+    console.log(currentFiles);
+    currentFiles = currentFiles.filter(file => !filesToDelete.includes(file));
+    console.log(currentFiles);
+    setnewFileList(fileList);
+}
+
 
 
 function setOriginalFileList(originalFileList) {
+    const originalFileContainerDiv = document.getElementById("originFileContainer");
     const originalFilesDiv = document.getElementById("originalFiles");
     while (originalFilesDiv.firstChild) {
         originalFilesDiv.removeChild(originalFilesDiv.firstChild);
@@ -26,7 +90,7 @@ function setOriginalFileList(originalFileList) {
         let deleteCheckBox = document.createElement("input");
         deleteCheckBox.type = "checkbox";
         deleteCheckBox.value = originalFile;
-        deleteCheckBox.name = "deleteFile";
+        deleteCheckBox.name = "deleteOriginalFile";
         originalfileDiv.appendChild(deleteCheckBox);
 
         let fileName = originalFile.substring(originalFile.indexOf("_") + 1);
@@ -37,21 +101,21 @@ function setOriginalFileList(originalFileList) {
         originalFilesDiv.appendChild(originalfileDiv);
 
     });
-    
-    if (originalFileList.length>0) {
+
+    if (originalFileList.length > 0) {
         let deleteFileButton = document.createElement("input");
         deleteFileButton.type = "button";
         deleteFileButton.value = "삭제";
         deleteFileButton.onclick = function () {
             deleteOriginalFiles();
         }
-        originalFilesDiv.appendChild(deleteFileButton);
+        originalFileContainerDiv.appendChild(deleteFileButton);
     }
 
 }
 
 function deleteOriginalFiles() {
-    const checkedBoxes = document.querySelectorAll("input[name='deleteFile']:checked");
+    const checkedBoxes = document.querySelectorAll("input[name='deleteOriginalFile']:checked");
     const filesToDelete = Array.from(checkedBoxes).map(checkedBox => checkedBox.value);
     console.log(fileList);
     fileList = fileList.filter(file => !filesToDelete.includes(file));
@@ -91,7 +155,6 @@ function setPostTypeList(typeList) {
 
 
 }
-
 
 
 

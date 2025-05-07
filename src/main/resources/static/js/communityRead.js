@@ -85,10 +85,13 @@ function goPostList() {
 
 function setFileList() {
     const fileJSON = document.getElementById("fileJSON").value;
-    console.log(fileJSON);
+    if(fileJSON == null || fileJSON==''){
+        return;
+    }
+    
     const fileListDiv = document.getElementById("fileList");
     const fileList = JSON.parse(fileJSON);
-    // console.log(fileList);
+
     fileList.forEach(file => {
         let eachFileDiv = document.createElement("div");
         let fileIco = document.createElement("span");
