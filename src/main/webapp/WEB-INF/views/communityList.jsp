@@ -14,7 +14,7 @@
         integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/reset.css">
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/community.css?ver=1">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/community.css">
     <%-- <link rel="stylesheet" href="<c:url value='/css/community.css?ver=1'/>"> --%>
 
     <!--favicon--->
@@ -24,7 +24,8 @@
     <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
     <script src="http://code.jquery.com/jquery-latest.min.js"></script>
     <script src ="${pageContext.request.contextPath}/js/communityList.js"></script>
-    <%-- <script src ="/js/communityList.js"></script> --%>
+    <%-- <script src="/js/communityList.js"></script> --%>
+
 
 
 </head>
@@ -40,7 +41,7 @@
 </div>
 
 <!-- header -->
-<%-- <jsp:include page="header.jsp"></jsp:include> --%>
+<jsp:include page="header.jsp"></jsp:include>
 
 
 <main>
