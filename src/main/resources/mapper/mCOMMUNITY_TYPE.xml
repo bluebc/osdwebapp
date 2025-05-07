@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="Community_Type">
+
+<resultMap id="CommunityTypeResultMap" type="com.osd.web.app.dto.Community_TypeDto">
+    <result column="TYPE_ID" property="type_id"/>
+    <result column="TYPE_NAME" property="type_name"/>
+	<result column="TYPE_SORT" property="type_sort"/>
+	<result column="TYPE_USE" property="type_use"/>
+
+</resultMap>
+		 
+<select id="selectAll" resultMap="CommunityTypeResultMap">
+	select * from community_type order by type_sort asc
+</select>
+
+<select id="selectNameById" parameterType="int" resultType="String">
+	select type_name from community_type where type_id = #{type_id}
+</select>
+		
+</mapper>

@@ -68,4 +68,11 @@ public class Community_PostDao {
         parameterMap.put("keyword", keyword);
         return session.selectOne("Community_Post.selectCountByTypeAndKeyword", parameterMap);
     }
+
+    public int selectRownumByTypeAndId(int type_id, int post_id){
+        Map<String, Object> parameterMap = new HashMap<>();
+        parameterMap.put("type_id", type_id);
+        parameterMap.put("post_id", post_id);
+        return session.selectOne("Community_Post.selectRownumByTypeAndId", parameterMap);
+    }
 }

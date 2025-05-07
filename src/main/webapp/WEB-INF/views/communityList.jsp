@@ -14,8 +14,7 @@
         integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/reset.css">
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/community.css">
-    <%-- <link rel="stylesheet" href="<c:url value='/css/community.css?ver=1'/>"> --%>
+    <link rel="stylesheet" href="<c:url value='/css/community.css?ver=1'/>">
 
     <!--favicon--->
     <link href="${pageContext.request.contextPath}/img/favicon.ico" rel="icon">
@@ -23,9 +22,8 @@
     <!--js-->
     <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
     <script src="http://code.jquery.com/jquery-latest.min.js"></script>
-    <script src ="${pageContext.request.contextPath}/js/communityList.js"></script>
-    <%-- <script src="/js/communityList.js"></script> --%>
 
+    <script src = "${pageContext.request.contextPath}/js/communityList.js"></script>
 
 
 </head>
@@ -33,15 +31,10 @@
 <body>
 
 
-<input type = "button" value = "Function Test Button" onclick = "loadAndSetTest()">
-<div>
-<input type = "button" value = "Type 1" onclick = "setType(1)">
-<input type = "button" value = "Type 2" onclick = "setType(2)">
-<input type = "button" value = "Type 3" onclick = "setType(3)">
-</div>
-
 <!-- header -->
-<jsp:include page="header.jsp"></jsp:include>
+<%-- <jsp:include page="header.jsp"></jsp:include> --%>
+
+
 
 
 <main>
@@ -51,13 +44,13 @@
                 <div class="title"><h1>비움과 채움 스토리</h1></div>
                 <div id = "communityTypeBtnSection" class="snbMenu">
                     <div class="snb-btn">
-                            <input type = "button" value = "비움과 채움 스토리" onclick="" >
+                            <input type = "button" value = "비움과 채움 스토리" onclick = "">
                     </div>
                     <div class="snb-btn">
-                            <input type = "button" value = "키토산 스토리" onclick="" >
+                            <input type = "button" value = "키토산 스토리" onclick = "">
                     </div>
                     <div class="snb-btn">
-                            <input type = "button" value = "건강 스토리" onclick="" >
+                            <input type = "button" value = "건강 스토리" onclick = "">
                     </div>
                 </div>
             </div> 
@@ -72,6 +65,8 @@
                 </div>
 
 
+                <%-- 페이징 위치 문제로 컨테이너 추가 --%>
+                <div class = "postContainer" id = "postContainer">
 
                 <div class="post">
                     <div class="post-left">
@@ -176,7 +171,10 @@
                     </div>
                 </div>
 
-                <div class="pagination" >
+                </div> 
+                <%-- postContatiner --%>
+
+                <div class="pagination" id = "pagination">
                     <div class="pagenumber selected">1</div>
                     <div class="pagenumber">2</div>
                     <div class="pagenumber">3</div>

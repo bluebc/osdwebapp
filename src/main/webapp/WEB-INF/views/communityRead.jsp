@@ -33,13 +33,14 @@
 
 <input type = "hidden" id = "post_id" value = "${community_post.post_id}">
 <input type = "hidden" id = "user_id" value = "${community_post.user_id}">
+<input type = "hidden" id = "type_id" value = "${community_post.type_id}">
 <input type = "hidden" id = "login_user_id" value = "${login_user_id}">
 
 
 
 <div class="container">
     <div class="content">
-        <div class="title">게시판 type theme</div>
+        <div class="title">${type_name} 게시판 theme</div>
 
         <%-- 카테고리 표시 필요 --%>
 
