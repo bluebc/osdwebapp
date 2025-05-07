@@ -5,7 +5,6 @@ addEventListener("DOMContentLoaded", async function () {
 
     let type_id = document.getElementById("type_id").value;
     document.getElementById("post_type").value = type_id;
-
 });
 
 
@@ -38,6 +37,8 @@ function setPostTypeList(typeList) {
         postTypeSelect.append(postTypeOption);
     });
 
+
+
 }
 
 // 글 작성 완료
@@ -45,6 +46,7 @@ async function modify() {
     // console.log("게시");
 
     var post_id = document.getElementById("post_id").value;
+    let type_id = document.getElementById("post_type").value;
     var user_id = document.getElementById("user_id").value;
     var post_subject = document.getElementById("post_subject").value;
     // var post_content = document.getElementById("post_content").value;
@@ -72,7 +74,7 @@ async function modify() {
 
     var post = {
         post_id: post_id,
-        // type_id: type_id,
+        type_id: type_id,
         // theme_id: theme_id,
         user_id: user_id,
         post_subject: post_subject,
