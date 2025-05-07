@@ -1,3 +1,5 @@
+console.log('--');
+
 let currentPage = 1;
 let currentKeyword = "";
 let currentType = 0;
