@@ -51,13 +51,13 @@
                 <div class="title"><h1>비움과 채움 스토리</h1></div>
                 <div id = "communityTypeBtnSection" class="snbMenu">
                     <div class="snb-btn">
-                            <input type = "button" value = "비움과 채움 스토리">
+                            <input type = "button" value = "비움과 채움 스토리" onclick="" >
                     </div>
                     <div class="snb-btn">
-                            <input type = "button" value = "키토산 스토리" >
+                            <input type = "button" value = "키토산 스토리" onclick="" >
                     </div>
                     <div class="snb-btn">
-                            <input type = "button" value = "건강 스토리" >
+                            <input type = "button" value = "건강 스토리" onclick="" >
                     </div>
                 </div>
             </div> 
@@ -193,7 +193,7 @@
 <!-- footer -->
 <jsp:include page="footer.jsp"></jsp:include>
 
-<%-- <script>
+<script>
         function likePost(button) {
             let text = button.innerText;
             let count = parseInt(text.match(/\d+/)[0]);
@@ -205,7 +205,7 @@
         function commentPost() {
             alert('댓글 기능은 아직 준비 중입니다!');
         }
-</script> --%>
+</script>
 
 </body>
 
