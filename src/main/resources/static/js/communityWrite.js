@@ -42,8 +42,8 @@ async function posting() {
     // console.log("게시");
 
     let user_id = document.getElementById("user_id").value;
-    let type_id = document.getElementById("type_id").value;
-    let theme_id = document.getElementById("theme_id").value;
+    let type_id = document.getElementById("post_type").value;
+    // let theme_id = document.getElementById("theme_id").value;
     let post_subject = document.getElementById("post_subject").value;
     // summernote.js
     let post_content = getMarkupStr();
@@ -92,7 +92,7 @@ async function posting() {
 
     var post = {
         type_id: type_id,
-        theme_id: theme_id,
+        // theme_id: theme_id,
         user_id: user_id,
         post_subject: post_subject,
         post_content: post_content,

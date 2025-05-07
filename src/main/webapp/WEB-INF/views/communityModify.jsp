@@ -20,6 +20,8 @@
     <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
     <script src="http://code.jquery.com/jquery-latest.min.js"></script>
     <script src ="${pageContext.request.contextPath}/js/communityModify.js"></script>
+    <script src ="${pageContext.request.contextPath}/js/fileUpload.js"></script>
+
 </head>
 
 <body>
@@ -79,6 +81,19 @@
                         <input type="file" name="image" accept="image/*" id="btn-upload"> -->
                     </td>
                 </tr>
+
+                <tr>
+                    <td>
+                    기존 업로드 자리
+                    <input type = "hidden" value = '${community_post.post_files}' id = "originalFileJSON">
+                    <div id = "originalFiles">
+
+                    </div>
+                    <hr noshade>
+                    </td>
+                </tr>
+
+
 
                 <tr>
                     <td>

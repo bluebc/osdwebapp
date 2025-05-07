@@ -68,6 +68,18 @@
             </div>
 
         </div>
+
+        <%-- file --%>
+        <div>
+            
+           <input type = "hidden" id = "fileJSON" value = '${community_post.post_files}'><%-- ""로 감싸면 JSON 안읽어짐 --%>
+                    <%-- <input type="hidden" id="fileJSON" value="<c:out value='${community_post.post_files}' escapeXml='false' />"> --%>
+                    
+
+            <div id = fileList>
+            <%-- ${community_post.post_files} --%>
+            </div>
+        </div>
     
         <div class="comment-section">
             <div class="reply-box">
@@ -85,12 +97,7 @@
                 <div id = "displayComment">
                     <div class = "commentLevel1" id = "cmt_id1">
                     </div>
-                    <input type = "hidden" id = "fileJSON" value = "${community_post.post_files}">
-                    <%-- <input type="hidden" id="fileJSON" value="<c:out value='${community_post.post_files}' escapeXml='false' />"> --%>
-                    
-
-                    <div id = fileList>
-                    <%-- ${community_post.post_files} --%>
+                 
                 </div>
             </div>
 
@@ -100,13 +107,14 @@
                     <div class="nickname"><h3>${login_user_nickname}</h3></div>
                     <textarea id = "writeCommentContent" class = "write-content" placeholder  = "댓글을 작성하세요"></textarea>
                 </div>
+            </div>
 
                 <div  class="comment-attach">
                     <div  class="register-box">
                         <input type = "button" value = "등록" onclick = "writeComment()">
                     </div>
                 </div>
-            </div>
+           
 
             </div>
         </div>
