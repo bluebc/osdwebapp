@@ -19,7 +19,7 @@
     <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
     <script src="http://code.jquery.com/jquery-latest.min.js"></script>
     <script src ="${pageContext.request.contextPath}/js/communityWrite.js"></script>
-    <script src ="${pageContext.request.contextPath}/js/fileUpload.js"></script>
+    <%-- <script src ="${pageContext.request.contextPath}/js/fileUpload.js"></script> --%>
 
 
 
@@ -103,6 +103,16 @@
                         <form id="uploadForm" enctype="multipart/form-data">
                             <input type="file" id="fileInput" name="files" multiple>
                         </form>
+
+                        <div id = "newFileContainer">    
+                            <div id = "newFiles">
+
+                            </div>
+                            <div>
+                                <input type = "button" value = "삭제" onclick = "deleteNewFiles()" id = "deleteNewFilesButton"  style = "display: none;">
+                            </div>
+                        </div>
+
                         <hr noshade>
                         <!-- <h3>이미지 업로드</h3>
                         <input type="file" name="image" accept="image/*" id="btn-upload"> -->

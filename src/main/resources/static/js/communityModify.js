@@ -15,6 +15,7 @@ addEventListener("DOMContentLoaded", async function () {
     console.log(originalFileList);
     setOriginalFileList(originalFileList);
 
+    // 업로드할 파일 선택 이벤트
     document.getElementById("fileInput").addEventListener("change", function () {
         getNewFileList();
         setNewFileList(newFileList);
@@ -108,9 +109,7 @@ function setNewFileList(newFileList) {
 
 function deleteNewFiles() {
     const checkedBoxes = document.querySelectorAll("input[name='deleteNewFile']:checked");
-    console.log(checkedBoxes);
     const filesToDelete = Array.from(checkedBoxes).map(checkedBox => checkedBox.value);
-    console.log(filesToDelete);
 
     // newFileList = newFileList.filter(file => !filesToDelete.includes(file));
     newFileList = newFileList.filter(file => {
@@ -168,9 +167,7 @@ function setOriginalFileList(originalFileList) {
 function deleteOriginalFiles() {
     const checkedBoxes = document.querySelectorAll("input[name='deleteOriginalFile']:checked");
     const filesToDelete = Array.from(checkedBoxes).map(checkedBox => checkedBox.value);
-    console.log(fileList);
     fileList = fileList.filter(file => !filesToDelete.includes(file));
-    console.log(fileList);
     setOriginalFileList(fileList);
 }
 
