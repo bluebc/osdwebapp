@@ -68,7 +68,7 @@
                             <button type="button" class="select_op">건강 프로그램</button>
                             <ul class="op_list">
                                 <li class="op_item"><a href="#">건강 프로그램</a></li>
-                                <li class="op_item"><a href="#">건강 나눔</a></li>
+                                <li class="op_item"><a href="/community/list">건강 나눔</a></li>
                                 <li class="op_item"><a href="#">회원방</a></li>
                                 <li class="op_item"><a href="#">건강 이벤트&Mall</a></li>
                                 <li class="op_item"><a href="/cunsultList">상담 & 게시판</a></li>

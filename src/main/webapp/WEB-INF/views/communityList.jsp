@@ -14,8 +14,7 @@
         integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/reset.css">
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/community.css?ver=1">
-    <%-- <link rel="stylesheet" href="<c:url value='/css/community.css?ver=1'/>"> --%>
+    <link rel="stylesheet" href="<c:url value='/css/community.css?ver=1'/>">
 
     <!--favicon--->
     <link href="${pageContext.request.contextPath}/img/favicon.ico" rel="icon">
@@ -23,8 +22,8 @@
     <!--js-->
     <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
     <script src="http://code.jquery.com/jquery-latest.min.js"></script>
-    <script src ="${pageContext.request.contextPath}/js/communityList.js"></script>
-    <%-- <script src ="/js/communityList.js"></script> --%>
+
+    <script src = "${pageContext.request.contextPath}/js/communityList.js"></script>
 
 
 </head>
@@ -45,13 +44,13 @@
                 <div class="title"><h1>비움과 채움 스토리</h1></div>
                 <div id = "communityTypeBtnSection" class="snbMenu">
                     <div class="snb-btn">
-                            <input type = "button" value = "비움과 채움 스토리">
+                            <input type = "button" value = "비움과 채움 스토리" onclick = "">
                     </div>
                     <div class="snb-btn">
-                            <input type = "button" value = "키토산 스토리" >
+                            <input type = "button" value = "키토산 스토리" onclick = "">
                     </div>
                     <div class="snb-btn">
-                            <input type = "button" value = "건강 스토리" >
+                            <input type = "button" value = "건강 스토리" onclick = "">
                     </div>
                 </div>
             </div> 
@@ -192,7 +191,7 @@
 <!-- footer -->
 <jsp:include page="footer.jsp"></jsp:include>
 
-<%-- <script>
+<script>
         function likePost(button) {
             let text = button.innerText;
             let count = parseInt(text.match(/\d+/)[0]);
@@ -204,7 +203,7 @@
         function commentPost() {
             alert('댓글 기능은 아직 준비 중입니다!');
         }
-</script> --%>
+</script>
 
 </body>
 
