@@ -36,6 +36,7 @@
         <input type = "hidden" id = "user_id" value = "${community_post.user_id}">
         <input type = "hidden" id = "post_id" value = "${community_post.post_id}">
         <input type = "hidden" id = "type_id" value = "${community_post.type_id}">
+        <input type = "hidden" id = "theme_id" value = "${community_post.theme_id}">
             <table>
                 <tr>
                     <td>
@@ -54,6 +55,13 @@
                                 <option value="카테고리2";name="카테고리2";>카테고리2</option>
                                 <option value="카테고리3";name="카테고리3";>카테고리3</option>
                                 <option value="카테고리4";name="카테고리4";>카테고리4</option>
+                            </select>
+                            <select id = "post_theme">
+                                <option value="1"; name="미선택"; >테마를 선택해주세요</option>
+                                <option value="2";name="테마";>테마</option>
+                                <option value="테마2";name="테마2";>테마2</option>
+                                <option value="테마3";name="테마3";>테마3</option>
+                                <option value="테마4";name="테마4";>테마4</option>
                             </select>
                             <input type="text" placeholder="제목을 입력해주세요" name="title" id = "post_subject" value = "${community_post.post_subject}">
                         </fieldset>

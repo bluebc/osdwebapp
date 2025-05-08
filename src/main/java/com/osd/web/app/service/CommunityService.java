@@ -14,6 +14,7 @@ import com.osd.web.app.dao.Community_CommentDao;
 import com.osd.web.app.dao.Community_Comment_LikeDao;
 import com.osd.web.app.dao.Community_PostDao;
 import com.osd.web.app.dao.Community_Post_LikeDao;
+import com.osd.web.app.dao.Community_ThemeDao;
 import com.osd.web.app.dao.Community_TypeDao;
 import com.osd.web.app.dto.Board_CommentDto;
 import com.osd.web.app.dto.Board_PostDto;
@@ -21,6 +22,7 @@ import com.osd.web.app.dto.Community_CommentDto;
 import com.osd.web.app.dto.Community_Comment_LikeDto;
 import com.osd.web.app.dto.Community_PostDto;
 import com.osd.web.app.dto.Community_Post_LikeDto;
+import com.osd.web.app.dto.Community_ThemeDto;
 import com.osd.web.app.dto.Community_TypeDto;
 
 @Service
@@ -34,6 +36,9 @@ public class CommunityService {
 
     @Autowired
     private Community_TypeDao community_TypeDao;
+
+    @Autowired
+    private Community_ThemeDao community_ThemeDao;
 
     public Community_PostDto insertPost(Community_PostDto community_PostDto) {
         LocalDateTime post_created_at = LocalDateTime.now().truncatedTo(ChronoUnit.SECONDS);
@@ -246,6 +251,14 @@ public class CommunityService {
 
     public String getTypeNameById(int type_id){
         return community_TypeDao.selectNameById(type_id);
+    }
+
+    public List<Community_ThemeDto> getThemeList(){
+        return community_ThemeDao.selectAll();
+    }
+
+    public String getThemeNameById(int theme_id){
+        return community_ThemeDao.selectNameById(theme_id);
     }
 
 }

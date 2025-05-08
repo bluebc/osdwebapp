@@ -40,7 +40,7 @@
 
 <div class="container">
     <div class="content">
-        <div class="title">${type_name} 게시판 theme</div>
+        <div class="title">${type_name} ${theme_name}</div>
 
         <%-- 카테고리 표시 필요 --%>
 
