@@ -1,18 +1,37 @@
 let fileList = [];
 let newFileList = [];
 let originalFileList = [];
+let themesByType = new Map();
 
 addEventListener("DOMContentLoaded", async function () {
     const typeResultMap = await getPostTypeList();
     const typeList = typeResultMap.list;
     setPostTypeList(typeList);
 
+    const themeResultMap = await getPostThemeList();
+    const themeList = themeResultMap.list;
+
+    setThemesByTypeMap(typeList, themeList);
+
+       // type 변경 시 theme 업데이트
+       const typeSelect = document.getElementById("post_type");
+       typeSelect.addEventListener("change", function () {
+   
+           let type_id = parseInt(this.value);
+           setPostThemeList(type_id);
+       });
+   
+
     let type_id = document.getElementById("type_id").value;
+    type_id = parseInt(type_id);
     document.getElementById("post_type").value = type_id;
+    setPostThemeList(type_id);
+
+    let theme_id = document.getElementById("theme_id").value;
+    document.getElementById("post_theme").value = theme_id;
 
     originalFileList = JSON.parse(document.getElementById("originalFileJSON").value);
     fileList = originalFileList;
-    console.log(originalFileList);
     setOriginalFileList(originalFileList);
 
     // 업로드할 파일 선택 이벤트
@@ -202,12 +221,68 @@ function setPostTypeList(typeList) {
 
 }
 
+
+async function getPostThemeList() {
+
+    const response = await fetch("/community/getPostThemeList", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: {}
+    });
+
+    const result = await response.json();
+
+    return result;
+}
+
+function setPostThemeList(type_id) {
+
+    let themeList = themesByType.get(type_id);
+    let postThemeSelect = document.getElementById("post_theme");
+
+    while (postThemeSelect.firstChild) {
+        postThemeSelect.removeChild(postThemeSelect.firstChild);
+    }
+
+    themeList.forEach(theme => {
+        let postThemeOption = document.createElement("option");
+        postThemeOption.value = theme.theme_id;
+        postThemeOption.textContent = theme.theme_name;
+        postThemeSelect.append(postThemeOption);
+    });
+
+}
+
+function setThemesByTypeMap(typeList, themeList) {
+
+    typeList.forEach(type => {
+        let type_id = type.type_id;
+        let themes = [];
+
+        themeList.forEach(theme => {
+
+            if (type_id == theme.type_id) {
+                themes.push(theme);
+            }
+
+        });
+
+        themesByType.set(type_id, themes);
+
+    });
+    return themesByType;
+}
+
 // 글 작성 완료
 async function modify() {
     // console.log("게시");
 
     var post_id = document.getElementById("post_id").value;
     let type_id = document.getElementById("post_type").value;
+    let theme_id = document.getElementById("post_theme").value;
+    if(theme_id == null){
+        theme_id = 0;
+    }
     var user_id = document.getElementById("user_id").value;
     var post_subject = document.getElementById("post_subject").value;
     // var post_content = document.getElementById("post_content").value;
@@ -250,7 +325,7 @@ async function modify() {
     let post = {
         post_id: post_id,
         type_id: type_id,
-        // theme_id: theme_id,
+        theme_id: theme_id,
         user_id: user_id,
         post_subject: post_subject,
         post_content: post_content,

@@ -1,9 +1,27 @@
-let newFileList = []
+let newFileList = [];
+let themesByType = new Map();
 
 addEventListener("DOMContentLoaded", async function () {
     const typeResultMap = await getPostTypeList();
     const typeList = typeResultMap.list;
     setPostTypeList(typeList);
+
+    const themeResultMap = await getPostThemeList();
+    const themeList = themeResultMap.list;
+
+    setThemesByTypeMap(typeList, themeList);
+
+    // type 변경 시 theme 업데이트
+    const typeSelect = document.getElementById("post_type");
+    typeSelect.addEventListener("change", function () {
+
+        let type_id = parseInt(this.value);
+        setPostThemeList(type_id);
+    });
+    
+    let type_id = document.getElementById("post_type").value;
+    type_id = parseInt(type_id);
+    setPostThemeList(type_id);
 
     // 업로드할 파일 선택 이벤트
     document.getElementById("fileInput").addEventListener("change", function () {
@@ -12,6 +30,29 @@ addEventListener("DOMContentLoaded", async function () {
     });
 
 });
+
+
+
+function setThemesByTypeMap(typeList, themeList) {
+
+    typeList.forEach(type => {
+        let type_id = type.type_id;
+        let themes = [];
+
+        themeList.forEach(theme => {
+
+            if (type_id == theme.type_id) {
+                themes.push(theme);
+            }
+
+        });
+
+        themesByType.set(type_id, themes);
+
+    });
+    return themesByType;
+}
+
 
 async function uploadFiles(newFileList) {
 
@@ -110,23 +151,52 @@ async function getPostTypeList() {
 
     return result;
 }
-
 function setPostTypeList(typeList) {
 
-    let postTypeDiv = document.getElementById("post_type");
+    let postTypeSelect = document.getElementById("post_type");
 
-    while (postTypeDiv.firstChild) {
-        postTypeDiv.removeChild(postTypeDiv.firstChild);
+    while (postTypeSelect.firstChild) {
+        postTypeSelect.removeChild(postTypeSelect.firstChild);
     }
 
     typeList.forEach(type => {
         let postTypeOption = document.createElement("option");
         postTypeOption.value = type.type_id;
         postTypeOption.textContent = type.type_name;
-        postTypeDiv.append(postTypeOption);
+        postTypeSelect.append(postTypeOption);
     });
 
+}
 
+
+async function getPostThemeList() {
+
+    const response = await fetch("/community/getPostThemeList", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: {}
+    });
+
+    const result = await response.json();
+
+    return result;
+}
+
+function setPostThemeList(type_id) {
+
+    let themeList = themesByType.get(type_id);
+    let postThemeSelect = document.getElementById("post_theme");
+
+    while (postThemeSelect.firstChild) {
+        postThemeSelect.removeChild(postThemeSelect.firstChild);
+    }
+
+    themeList.forEach(theme => {
+        let postThemeOption = document.createElement("option");
+        postThemeOption.value = theme.theme_id;
+        postThemeOption.textContent = theme.theme_name;
+        postThemeSelect.append(postThemeOption);
+    });
 
 }
 
@@ -137,7 +207,10 @@ async function posting() {
 
     let user_id = document.getElementById("user_id").value;
     let type_id = document.getElementById("post_type").value;
-    // let theme_id = document.getElementById("theme_id").value;
+    let theme_id = document.getElementById("post_theme").value;
+    if(theme_id == null){
+        theme_id = 0;
+    }
     let post_subject = document.getElementById("post_subject").value;
     // summernote.js
     let post_content = getMarkupStr();
@@ -185,7 +258,7 @@ async function posting() {
 
     var post = {
         type_id: type_id,
-        // theme_id: theme_id,
+        theme_id: theme_id,
         user_id: user_id,
         post_subject: post_subject,
         post_content: post_content,

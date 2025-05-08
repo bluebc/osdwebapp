@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="Community_Theme">
+
+<resultMap id="CommunityThemeResultMap" type="com.osd.web.app.dto.Community_ThemeDto">
+    <result column="TYPE_ID" property="type_id"/>
+    <result column="THEME_ID" property="theme_id"/>
+	<result column="THEME_NAME" property="theme_name"/>
+	<result column="THEME_SORT" property="theme_sort"/>
+	<result column="THEME_USE" property="theme_use"/>
+
+</resultMap>
+		 
+<select id="selectAll" resultMap="CommunityThemeResultMap">
+	select * from community_theme where THEME_USE = 'Y' order by theme_sort asc
+</select>
+
+<select id="selectNameById" parameterType="int" resultType="String">
+	select theme_name from community_theme where theme_id = #{theme_id}
+</select>
+		
+</mapper>

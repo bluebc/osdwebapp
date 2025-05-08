@@ -11,7 +11,7 @@
 </resultMap>
 		 
 <select id="selectAll" resultMap="CommunityTypeResultMap">
-	select * from community_type order by type_sort asc
+	select * from community_type where type_use = 'Y' order by type_sort asc
 </select>
 
 <select id="selectNameById" parameterType="int" resultType="String">

@@ -22,6 +22,7 @@ import com.osd.web.app.dto.Community_CommentDto;
 import com.osd.web.app.dto.Community_Comment_LikeDto;
 import com.osd.web.app.dto.Community_PostDto;
 import com.osd.web.app.dto.Community_Post_LikeDto;
+import com.osd.web.app.dto.Community_ThemeDto;
 import com.osd.web.app.dto.Community_TypeDto;
 import com.osd.web.app.service.CommunityService;
 
@@ -223,6 +224,17 @@ public class CommunityBoardController {
         return resultMap;
     }
 
+    @ResponseBody
+    @PostMapping("/getPostThemeList")
+    public Map<String, Object> getPostThemeList(){
+        Map<String, Object> resultMap = new HashMap<>();
+
+        List<Community_ThemeDto> list = communityService.getThemeList();
+        resultMap.put("list", list);
+
+        return resultMap;
+    }
+
 
     @RequestMapping("/read")
     public String communityReadPage(@RequestParam(required = true, defaultValue = "0", name = "post_id") int post_id,
@@ -256,9 +268,10 @@ public class CommunityBoardController {
 
         int type_id = community_PostDto.getType_id();
         String type_name = communityService.getTypeNameById(type_id);
-
-
-        // 작성 시간 포맷
+        int theme_id = community_PostDto.getTheme_id();
+        String theme_name = communityService.getThemeNameById(theme_id);
+        
+          // 작성 시간 포맷
         LocalDateTime post_created_at = board_PostDto.getPost_created_at();
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
         String formatted = post_created_at.format(formatter);
@@ -266,6 +279,7 @@ public class CommunityBoardController {
         model.addAttribute("liked", liked);
         model.addAttribute("community_post", board_PostDto);
         model.addAttribute("type_name", type_name);
+        model.addAttribute("theme_name", theme_name);
 
         return "communityRead";
     }
