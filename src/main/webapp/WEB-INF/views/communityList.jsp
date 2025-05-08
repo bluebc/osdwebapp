@@ -1,17 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-
 <!DOCTYPE html>
 <html lang="ko" dir="ltr">
 <head>
-    <title>오생단</title>
-
     <!-- meta  -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>오생단</title>
 
-    <!--favicon--->
-    <link href="${pageContext.request.contextPath}/img/favicon.ico" rel="icon">
 
     <!-- css -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
@@ -20,8 +16,8 @@
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/reset.css">
     <link rel="stylesheet" href="<c:url value='/css/community.css?ver=1'/>">
 
-
-
+    <!--favicon--->
+    <link href="${pageContext.request.contextPath}/img/favicon.ico" rel="icon">
 
     <!--js-->
     <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
@@ -29,7 +25,6 @@
 
     <script src = "${pageContext.request.contextPath}/js/communityList.js"></script>
 
-    <title>블로그 형식</title>
 
 </head>
 
@@ -37,7 +32,7 @@
 
 
 <!-- header -->
-<jsp:include page="header.jsp"></jsp:include>
+<%-- <jsp:include page="header.jsp"></jsp:include> --%>
 
 
 
@@ -189,11 +184,6 @@
                 </div>
 
             </div>
-
-
-
-
-
         </div>    
     </div>
 </main>
@@ -201,7 +191,7 @@
 <!-- footer -->
 <jsp:include page="footer.jsp"></jsp:include>
 
-<%-- <script>
+<script>
         function likePost(button) {
             let text = button.innerText;
             let count = parseInt(text.match(/\d+/)[0]);
@@ -213,7 +203,7 @@
         function commentPost() {
             alert('댓글 기능은 아직 준비 중입니다!');
         }
-</script> --%>
+</script>
 
 </body>
 
