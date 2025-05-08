@@ -10,8 +10,11 @@
     <title>건강 나눔</title>
 
     <!-- css -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+        integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/reset.css">
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/cunsultRead.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/communityRead.css">
 
     <!--favicon--->
     <link href="img/favicon.ico" rel="icon">
@@ -60,6 +63,7 @@
                     
                 </div>
             </div>
+            <hr>
             <div class="post-content">${community_post.post_content}</div>
 
             <div id = "modOrDel" style="display:none">
@@ -70,7 +74,7 @@
         </div>
 
         <%-- file --%>
-        <div>
+        <div class="module-file">
             
            <input type = "hidden" id = "fileJSON" value = '${community_post.post_files}'><%-- ""로 감싸면 JSON 안읽어짐 --%>
                     <%-- <input type="hidden" id="fileJSON" value="<c:out value='${community_post.post_files}' escapeXml='false' />"> --%>

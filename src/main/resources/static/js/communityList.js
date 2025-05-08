@@ -1,5 +1,3 @@
-console.log('--');
-
 let currentPage = 1;
 let currentKeyword = "";
 let currentType = 0;
@@ -11,6 +9,7 @@ document.addEventListener("DOMContentLoaded", async function () {
     await setCommunityType();
     await loadAndSetPostList();
 });
+
 
 async function getRownumSession() {
     const response = await fetch("/community/getRownumSession",
@@ -58,14 +57,21 @@ async function setCommunityType() {
         let typeBtn = document.createElement("input");
         typeBtn.type = "button";
         typeBtn.value = type.type_name;
+
         typeBtn.onclick = function () {
             setType(type.type_id);
+
+            const pageTitle = document.getElementById("pageTitle");
+            if (pageTitle) {
+                pageTitle.textContent = type.type_name;
+            }
         }
 
         snbBtnDiv.appendChild(typeBtn);
         communityTypeBtnSectionDiv.appendChild(snbBtnDiv);
     });
 }
+
 
 async function getCommunityType() {
 
@@ -223,7 +229,7 @@ function setPostList(postList) {
             userImg = "default.jpg";
         }
         const userImgSrc = userImgDir + userImg;
-
+    
         // 게시글 썸네일
         const uploadImgDir = "/img/upload/";
         let postThumbnailImg;
@@ -234,92 +240,81 @@ function setPostList(postList) {
             postThumbnailImg = "notUploaded.jpg";
         }
         const postImgSrc = uploadImgDir + postThumbnailImg;
-
-        // lv1
+    
+        // lv1 (postDiv)
         let postDiv = document.createElement("div");
-        postDiv.className = "post"
-        postDiv.id = "post_" + post.post_id;
-        postDiv.onclick = function () {
-            // goPostRead(post.post_id);
-        }
-
-        // lv2
+        postDiv.className = "post";
+    
+        // lv2 (postLeftDiv)
         let postLeftDiv = document.createElement("div");
         postLeftDiv.className = "post-left";
-
-        // lv3
+    
+        // lv3 (authorDiv)
         let authorDiv = document.createElement("div");
         authorDiv.className = "author";
-        // lv4
+    
+        // lv4 (authorImg)
         let authorImg = document.createElement("img");
         authorImg.src = userImgSrc;
         authorDiv.appendChild(authorImg);
-
-        // lv4
+    
+        // lv4 (writeTimeDiv)
         let writeTimeDiv = document.createElement("div");
         writeTimeDiv.className = "write-time";
-
+    
         let createdAt = post.post_created_at;
         let date = new Date(createdAt);
-
+    
         let yyyy = date.getFullYear();
         let MM = String(date.getMonth() + 1).padStart(2, '0');
         let dd = String(date.getDate()).padStart(2, '0');
-        let hh = String(date.getHours()).padStart(2, '0');
-        let mm = String(date.getMinutes()).padStart(2, '0');
-        let ss = String(date.getSeconds()).padStart(2, '0');
-
-        // let formattedTime = `${yyyy}-${MM}-${dd} ${hh}:${mm}:${ss}`;
         let formattedTime = `${yyyy}.${MM}.${dd}`;
-
-        // writeTimeDiv.textContent = formattedTime;
-        // hh 시간 전 표기?
-
-        // lv5
+    
+        // 작성자와 시간
         let writerH3 = document.createElement("h3");
         writerH3.textContent = post.user_nickname;
         writeTimeDiv.appendChild(writerH3);
-
-        // lv5
+    
         let timeH4 = document.createElement("h4");
         timeH4.textContent = formattedTime;
         writeTimeDiv.appendChild(timeH4);
-
+    
         authorDiv.appendChild(writeTimeDiv);
         postLeftDiv.appendChild(authorDiv);
-        postDiv.appendChild(postLeftDiv);
-
-        // lv3
+    
+        // lv3 (mThumbnailDiv) - 모바일에서만 보일 이미지
         let mThumbnailDiv = document.createElement("div");
         mThumbnailDiv.className = "m-thumbnail";
         mThumbnailDiv.onclick = function () {
             goPostRead(post.post_id);
         }
-
-        // lv4
+    
+        // lv4 (mImgbox)
         let mImgbox = document.createElement("div");
         mImgbox.className = "m-imgbox";
 
         if (post.post_images != null) {
         // lv5
+    
+        // lv5 (mThumbnailImg)
         let mThumbnailImg = document.createElement("img");
         mThumbnailImg.src = postImgSrc;
-
+    
         mImgbox.appendChild(mThumbnailImg);
         mThumbnailDiv.appendChild(mImgbox);
         }
-
-        // lv4
+    
+        // lv4 (mNumPhotosSpan) - 사진 개수
         let mNumPhotosSpan = document.createElement("span");
         mNumPhotosSpan.className = "m-num-photos";
-        // lv5
         let blindSpan = document.createElement("span");
         blindSpan.className = "blind";
-        // 사진 개수
         mNumPhotosSpan.appendChild(blindSpan);
         mThumbnailDiv.appendChild(mNumPhotosSpan);
-
-        // lv3
+    
+        postLeftDiv.appendChild(mThumbnailDiv);
+    
+        // lv3 (titleDiv)
         let titleDiv = document.createElement("div");
         titleDiv.className = "title";
         titleDiv.textContent = post.post_subject;
@@ -327,79 +322,65 @@ function setPostList(postList) {
             goPostRead(post.post_id);
         }
         postLeftDiv.appendChild(titleDiv);
-
-        // lv3
+    
+        // lv3 (descDiv)
         let descDiv = document.createElement("div");
         descDiv.className = "desc";
-
+    
         let htmlContent = post.post_content;
         let tempDiv = document.createElement('div');
         tempDiv.innerHTML = htmlContent;
+
         let images = tempDiv.querySelectorAll('img');
         images.forEach(img => img.remove());
         let textOnly = tempDiv.textContent.trim();
-
-        // descDiv.textContent = post.post_content;
+    
         descDiv.textContent = textOnly;
         descDiv.onclick = function () {
             goPostRead(post.post_id);
         }
 
-        // // 3줄만 표시하는 스타일 적용
-        // descDiv.style.display = "-webkit-box";
-        // descDiv.style.webkitBoxOrient = "vertical";
-        // descDiv.style.webkitLineClamp = "3"; // 3줄 제한
-        // descDiv.style.overflow = "hidden";
-        // descDiv.style.textOverflow = "ellipsis";
-
+        let imageCount = images.length;
+        mNumPhotosSpan.append(imageCount);
+    
         postLeftDiv.appendChild(descDiv);
-
-        // lv3
+    
+        // lv3 (buttonsDiv)
         let buttonsDiv = document.createElement("div");
         buttonsDiv.className = "buttons";
-        // lv4
+    
+        // 좋아요 버튼
         let likePostButton = document.createElement("button");
         likePostButton.className = "button";
         likePostButton.onclick = function () {
-
+            // 좋아요 처리
         }
-
-        // lv5
+    
         let heartI = document.createElement("i");
         heartI.className = "fa-regular fa-heart";
-        // 텍스트, 하트 위치 의문
         likePostButton.appendChild(heartI);
-        likePostButton.textContent = "좋아요";
-        likePostButton.textContent += " ";
-        likePostButton.textContent += post.post_likecnt;
-
-        // 좋아요 개수 표기
+        likePostButton.textContent = "좋아요 " + post.post_likecnt;
         buttonsDiv.appendChild(likePostButton);
-
-        // lv4
+    
+        // 댓글 버튼
         let commentPostButton = document.createElement("button");
         commentPostButton.className = "button";
-
-        // lv5
         let commentI = document.createElement("i");
         commentI.className = "fa-regular fa-comment-dots";
         commentPostButton.appendChild(commentI);
-        commentPostButton.textContent = "댓글";
-        commentPostButton.textContent += " ";
-        commentPostButton.textContent += post.post_cmtcnt;
-
+        commentPostButton.textContent = "댓글 " + post.post_cmtcnt;
         buttonsDiv.appendChild(commentPostButton);
+    
         postLeftDiv.appendChild(buttonsDiv);
         postDiv.appendChild(postLeftDiv);
-
-        // lv2 ====================
+    
+        // lv2 (thumbnailDiv) - 썸네일
         let thumbnailDiv = document.createElement("div");
         thumbnailDiv.className = "thumbnail";
         thumbnailDiv.onclick = function () {
             goPostRead(post.post_id);
         }
-
-        // lv3
+    
         let thumbnailDiv2 = document.createElement("div");
         thumbnailDiv2.className = "thumbnail";
 
@@ -415,13 +396,18 @@ function setPostList(postList) {
 
         thumbnailDiv.appendChild(thumbnailDiv2);
         postDiv.appendChild(thumbnailDiv);
-
-        // blogContainerDiv.appendChild(postDiv);
+    
+        // postContainerDiv에 추가
         postContatinerDiv.appendChild(postDiv);
+    
+    });
+    
 
-
+    window.scrollTo({
+        top: 0,
+        behavior: "smooth" 
     });
 
 
-
 }
+

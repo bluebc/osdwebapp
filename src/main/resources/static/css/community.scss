@@ -1,5 +1,9 @@
 @import "./mixin";
 
+body{
+    overflow-x: visible;
+}
+
 header{
     .top-banner{
         display: none;
@@ -10,17 +14,31 @@ main{
     .container{
         padding: 14rem 0 14rem;
         min-height: 800px;
+        position: relative;
+        
         .content{
             display: flex;
             max-width: 1410px;
             padding: 0 50px;
             margin: 60px auto 0;
             .snbContainer{
+                position: sticky;
+                top: 160px;
+                align-self: flex-start;
+                z-index: 2;
+                background-color: white;
                 margin-top: 10px;
-                // width: 260px;
+                width: 300px;
                 .title{
                     h1{
                         
+                    }
+                }
+                #post-admin{
+                    margin: 2rem 0 1rem 15px;
+                    input{
+                        
+                        font-size: 1.2rem;
                     }
                 }
                 .snbMenu{
@@ -70,7 +88,8 @@ main{
             }
 
             .blog-container {
-                max-width: 800px;
+                width: 100%;
+                max-width: 850px;
                 margin: auto;
                 .form-area{
                     display: flex;
@@ -117,89 +136,98 @@ main{
 
                     
                 }
-                .post {
-                    background-color: #fff;
-                    border-bottom: 1px solid #ddd;
-                    padding: 25px 0;
-                    // border-radius: 10px;
-                    // box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
-                    display: flex;
-                    flex-wrap: wrap;
-                    justify-content: space-between;
-                    margin-bottom: 20px;
-                    .post-left {
-                        flex: 1;
-                        margin-right: 30px;
-                        min-width: 250px;
-                        .author {
-                            display: flex;
-                            align-items: center;
-                            font-size: 13px;
-                            color: #666;
-                            margin-bottom: 8px;
-                            img {
-                                width: 50px;
-                                height: 50px;
-                                border-radius: 50%;
-                                margin-right: 8px;
-                            }
-                            .write-time{
-                                h3{margin-bottom: 7px;}
-                                h4{
-                                    margin: 0;
-                                    font-weight: 100;
-                                }
-                            }
-                        }
-                        .m-thumbnail{
-                            display: none;
-                        }
-                        .title {
-                            font-size: 1.5rem;
-                            font-weight: 600;
-                            color: #222;
-                            margin: 16px 0;
-                        }
-                        .desc {
-                            font-size: 14px;
-                            color: #444;
-                            margin-bottom: 10px;
-                            max-height: 4em; 
-                            line-height: 1.3;
-                            overflow: hidden;
-                            text-overflow: ellipsis;
-                            display: -webkit-box;
-                            -webkit-line-clamp: 3; 
-                            -webkit-box-orient: vertical;
-                        }
-                        .buttons {
-                            margin-top: 10px;
-                            display: flex;
-                            gap: 10px;
-                            .button {
-                                font-size: 12px;
-                                padding: 5px 10px;
-                                border-radius: 5px;
-                                border: none;
+                .postContainer{
+
+                    .post{
+                        background-color: #fff;
+                        border-bottom: 1px solid #ddd;
+                        padding: 25px 0;
+                        // border-radius: 10px;
+                        // box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+                        display: flex;
+                        flex-wrap: wrap;
+                        justify-content: space-between;
+                        margin-bottom: 20px;
+                        .post-left {
+                            flex: 1;
+                            margin-right: 30px;
+                            min-width: 250px;
+                            .author {
                                 cursor: pointer;
-                                background-color: #eee;
-                                transition: background 0.3s;
-                                &:hover{
-                                    background-color: #ddd;
+                                display: flex;
+                                align-items: center;
+                                font-size: 13px;
+                                color: #666;
+                                margin-bottom: 8px;
+                                img {
+                                    width: 50px;
+                                    height: 50px;
+                                    border-radius: 50%;
+                                    margin-right: 8px;
+                                }
+                                .write-time{
+                                    h3{
+                                        margin-bottom: 7px;
+                                    }
+                                    h4{
+                                        margin: 0;
+                                        font-weight: 100;
+                                    }
+                                }
+                            }
+                            .m-thumbnail{
+                                display: none;
+                            }
+                            .title {
+                                cursor: pointer;
+                                font-size: 1.5rem;
+                                font-weight: 600;
+                                color: #222;
+                                margin: 16px 0;
+                            }
+                            .desc {
+                                cursor: pointer;
+                                font-size: 14px;
+                                color: #444;
+                                margin-bottom: 10px;
+                                max-height: 4em; 
+                                line-height: 1.3;
+                                overflow: hidden;
+                                text-overflow: ellipsis;
+                                display: -webkit-box;
+                                -webkit-line-clamp: 3; 
+                                -webkit-box-orient: vertical;
+                            }
+                            .buttons {
+                                margin-top: 10px;
+                                display: flex;
+                                gap: 10px;
+                                .button {
+                                    font-size: 12px;
+                                    padding: 5px 10px;
+                                    border-radius: 5px;
+                                    border: none;
+                                    cursor: pointer;
+                                    background-color: #eee;
+                                    transition: background 0.3s;
+                                    &:hover{
+                                        background-color: #ddd;
+                                    }
                                 }
                             }
                         }
-                    }
-                    .thumbnail {
-                        width: 185px;
-                        height: 185px; 
-                        flex-shrink: 0;
-                        overflow: hidden;
-                        // border-radius: 5px;
-                        img {
-                            width: 100%;
-                            height: 100%;
-                            object-fit: cover;
+                        .thumbnail {
+                            cursor: pointer;
+                            width: 185px;
+                            height: 185px; 
+                            flex-shrink: 0;
+                            overflow: hidden;
+                            // border-radius: 5px;
+                            img {
+                                width: 100%;
+                                height: 100%;
+                                object-fit: cover;
+                            }
                         }
                     }
                 }
@@ -209,6 +237,7 @@ main{
                     margin-top: 3rem;
                     .pagenumber{
                         cursor: pointer;
+                        height: 1.5rem;
                         margin: 0 20px;
                         text-align: center;
                         display: inline-block;
@@ -219,7 +248,15 @@ main{
                             border-bottom: 2px solid #000;
                         }
                     }
-
+                    .pagination{
+                        cursor: pointer;
+                        height: 1.5rem;
+                        margin: 0 20px;
+                        text-align: center;
+                        display: inline-block;
+                        padding-bottom: 2px;
+                        border-bottom: 2px solid transparent; 
+                    }
                     .selected {
                         color: rgb(5, 155, 5);
                         font-weight: bold;
@@ -246,6 +283,8 @@ main{
                 margin: 0 20px;
                 flex-direction: column;
                 .snbContainer{
+                    width: 100%;
+                    position: initial;
                     .snbMenu {
                         margin: 2rem 0 0 0;
                     }
@@ -254,51 +293,60 @@ main{
                     .form-area{
                         padding: 1rem;
                     }
-                    .post {
-                        .post-left {
-                            width: 100%;
-                            .buttons {
-                                //justify-content: center;
-                            }
-                            .m-thumbnail{
-                                display: block;
-                                position: relative;
-                                .m-imgbox{
-                                    img{
+                    .postContainer{
+                        .post {
+                            .post-left {
+                                width: 100%;
+                                margin: 0;
+                                .buttons {
+                                    //justify-content: center;
+                                }
+                                .m-thumbnail{
+                                    display: flex;
+                                    position: relative;
+                                    align-items: center;
+                                    justify-content: center;
+                                    .m-imgbox{
                                         width: 100%;
-                                        height: 100%;
-                                        object-fit: cover;
-                                    }
-                                }
-                                .m-num-photos{
-                                    background: rgba(0, 0, 0, .4);
-                                    border-radius: 24px;
-                                    color: #fff;
-                                    font-size: 12px;
-                                    height: 24px;
-                                    letter-spacing: -.3px;
-                                    line-height: 24px;
-                                    min-width: 21px;
-                                    padding: 0 15px;
-                                    position: absolute;
-                                    right: 10px;
-                                    text-align: center;
-                                    top: 10px;
-                                    .blind{
+                                        height: 600px;
                                         overflow: hidden;
+                                        img{
+                                            border-radius: 10px;
+                                            width: 100%;
+                                            height: 100%;
+                                            object-fit: cover;
+                                        }
+                                    }
+                                    .m-num-photos{
+                                        background: rgba(0, 0, 0, .4);
+                                        border-radius: 24px;
+                                        color: #fff;
+                                        font-size: 12px;
+                                        height: 24px;
+                                        letter-spacing: -.3px;
+                                        line-height: 24px;
+                                        min-width: 21px;
+                                        padding: 0 15px;
                                         position: absolute;
-                                        clip: rect(0 0 0 0);
-                                        font-size: 0;
-                                        height: 1px;
-                                        line-height: 0;
-                                        margin: -1px;
-                                        width: 1px;
+                                        right: 20px;
+                                        text-align: center;
+                                        top: 20px;
+                                        .blind{
+                                            overflow: hidden;
+                                            position: absolute;
+                                            clip: rect(0 0 0 0);
+                                            font-size: 0;
+                                            height: 1px;
+                                            line-height: 0;
+                                            margin: -1px;
+                                            width: 1px;
+                                        }
                                     }
                                 }
                             }
-                        }
-                        .thumbnail {
-                            display: none;
+                            .thumbnail {
+                                display: none;
+                            }
                         }
                     }
                 } 
@@ -317,8 +365,12 @@ main{
         .container{
             padding: 18rem 0 8rem;
             .content{
+                padding: 0 15px;
                 margin: 0 20px;
-                
+                .snbContainer {
+                    width: 400px;
+                    top: 17rem;
+                }
             }
         }
     }

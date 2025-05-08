@@ -1,0 +1,395 @@
+@import "./mixin";
+
+header{
+    .top-banner{
+        display: none;
+    }
+}
+
+
+.container{
+    padding: 15rem 0 15rem;
+    .content{
+        max-width: 1200px;
+        margin: 20px auto;
+        padding: 20px;
+        // border: 1px solid #ddd;
+        border-radius: 10px;
+        // background-color: #f9f9f9;
+        .title {
+            color: #a3a3a3;
+            font-size: 1.3rem;
+            margin-bottom: 10px;
+        }
+        
+        .post{
+            position: relative;
+            .post-title {
+                font-size: 2rem;
+                font-weight: bold;
+                margin-bottom: 3rem;
+            }
+            .post-meta {
+                margin-bottom: 10px;
+                display: flex;
+                align-items: center;
+                .thumb {
+                    width: 50px;
+                    height: 50px;
+                    border-radius: 50%;
+                    margin-right: 10px;
+                }
+                .infoItem{
+                    .nickname{
+                        font-size: 14px;
+                        h3{
+                            margin-bottom: 5px;
+                        }
+                    }
+                    .article-info{
+                        font-size: 12px;
+                        color: gray;
+                    }
+                }
+            }
+            hr{
+                margin: 2rem 0;
+                border: 0;
+                height: 2px;
+                background: #d3d3d3;
+            }
+            .post-content {
+                white-space: break-spaces;
+                font-size: 16px;
+                margin: 2rem 0;
+            }
+            #modOrDel{
+                position: absolute;
+                right: 0;
+                top: 5rem;
+                input[type="button"] {
+                    margin: 2px;
+                    padding: 5px 15px;
+                    border: 1px solid #ccc;
+                    border-radius: 4px;
+                    cursor: pointer;
+                    &:hover{
+                        background: #616161;
+                        color: white;
+                    }
+                }
+
+            }
+        }
+        
+        .module-file{
+            margin-bottom: 3rem;
+            #fileList{
+                position: relative;
+                max-width: 450px;
+                vertical-align: top;
+                .se-module{
+                    min-height: 35px;
+                    padding: 1rem;
+                    border: 1px solid #e0e0e0;
+                    background-color: #fff;
+                    box-sizing: border-box;
+                    box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.08);
+                    text-align: left;
+                    i{
+                        margin-right: 10px;
+                        strong{
+                            position: absolute;
+                            overflow: hidden;           
+                            clip: rect(0 0 0 0);
+                            width: 1px;
+                            height: 1px;
+                        }
+                    }
+                    a{
+                        display: inline-block;
+                        border-bottom: 2px solid transparent;
+                        color: black;
+                        &:hover{
+                            border-bottom: 2px solid black;
+                        }
+                    }
+                }
+            }
+        }
+        
+        .comment-section {
+            border-top: 2px solid #ddd;
+            padding-top: 10px;
+
+            .reply-box{
+                display: flex;
+                gap: 1rem;
+                margin: 1rem 0;
+                #like{
+                    cursor: pointer;
+                }
+                .comment-header {
+                    display: flex;
+                    justify-content: space-between;
+                    font-size: 14px;
+                    margin-bottom: 10px;
+                }
+                
+            }
+            #comment {
+                #displayComment{    
+                    .commentLevel1,
+                    .commentLevel2 {
+                        border-bottom: 1px solid #eee;
+                        padding: 10px 0;
+                        display: flex;
+                        align-items: flex-start;
+                        gap: 15px;
+
+                        img {
+                            width: 40px ;
+                            height: 40px ;
+                            border-radius: 50%;
+                            flex-shrink: 0;
+                        }
+
+                        .commentContent {
+                            position: relative;
+                            flex-grow: 1;
+                            strong {
+                            display: block;
+                            font-weight: bold;
+                            margin-bottom: 5px;
+                            }
+
+                            p {
+                            margin: 15px 0;
+                            }
+
+                            .commentButtons {
+                            font-size: 12px;
+                            color: gray;
+                            margin-top: 5px;
+                                span{
+                                    margin-right: 10px;
+                                }
+                                .reReplyButton {
+                                cursor: pointer;
+                                }
+                                .inpButtons{
+                                    position: absolute;
+                                    top: 0;
+                                    right: 0;
+                                    input{
+                                        
+                                        &:nth-child(1){
+                                            margin-right: 10px;
+                                            
+                                        }
+                                    }
+                                }
+                            }
+                        }
+
+                        .editComment{
+                            width: 100%;
+                            margin: 3rem 0;
+                            padding: 16px 10px 10px 18px;
+                            border: 2px solid #ccc;
+                            border-radius: 6px;
+                            box-sizing: border-box;
+                            background: transparent;
+                            textarea{
+                                overflow: hidden;
+                                overflow-wrap: break-word;
+                                display: block;
+                                width: 100%;
+                                min-height: 45px;
+                                padding-right: 1px;
+                                border: none;
+                                font-size: 13px;
+                                resize: none;
+                                box-sizing: border-box;
+                                background: transparent;
+                                outline: 0;
+                            }
+                            .editButtons{
+                                float: right;
+                                input{
+                                    margin: 2px;
+                                    padding: 5px 15px;
+                                    border: 1px solid #ccc;
+                                    border-radius: 4px;
+                                    cursor: pointer;
+                                    &:nth-child(1){
+                                        background: #616161;
+                                        color: white;
+                                    }
+                                }
+                            }
+                        }
+                        
+                    }
+                    .writeReComment{
+                        margin: 1rem 0;
+                        padding: 16px 10px 10px 18px;
+                        border: 2px solid #ccc;
+                        border-radius: 6px;
+                        box-sizing: border-box;
+                        background: transparent;
+                        textarea{
+                            overflow: hidden;
+                            overflow-wrap: break-word;
+                            display: block;
+                            width: 100%;
+                            min-height: 40px;
+                            padding-right: 1px;
+                            border: none;
+                            font-size: 13px;
+                            resize: none;
+                            box-sizing: border-box;
+                            background: transparent;
+                            outline: 0;
+                        }
+                        .reWrapper{
+                            display: flex;
+                            justify-content: flex-end;
+                            input{
+                                margin: 2px;
+                                padding: 5px 15px;
+                                border: 1px solid #ccc;
+                                border-radius: 4px;
+                                cursor: pointer;
+                            }
+                        }
+                    }
+                    .commentLevel2 {
+                        margin-top: 10px;
+                        img{
+                            margin-left: 50px;
+                        }
+                    }
+                }
+
+
+                #writeComment{
+                    margin: 3rem 0;
+                    padding: 16px 10px 10px 18px;
+                    border: 2px solid #ccc;
+                    border-radius: 6px;
+                    box-sizing: border-box;
+                    background: transparent;
+                    .comment-inbox{
+                        position: relative;
+                        margin-bottom: 10px;
+                        .nickname{
+                            display: block;
+                            margin-bottom: 10px;
+                            font-weight: 700;
+                            font-size: 13px;
+                            h3{}
+                        }
+                        .write-content{
+                            overflow: hidden;
+                            overflow-wrap: break-word;
+                            display: block;
+                            width: 100%;
+                            min-height: 17px;
+                            padding-right: 1px;
+                            border: none;
+                            font-size: 13px;
+                            resize: none;
+                            box-sizing: border-box;
+                            background: transparent;
+                            outline: 0;
+                        }
+                    }
+                    .comment-attach{
+                        position: relative;
+                        .register-box{
+                            float: right;
+                            input{
+                                margin: 2px;
+                                padding: 5px 15px;
+                                border: 1px solid #ccc;
+                                border-radius: 4px;
+                                cursor: pointer;
+                            }
+                        }
+                        &::after{
+                            content: "";
+                            display: block;
+                            clear: both;
+                        }
+                    }
+                }
+            }
+            #writeComment{
+                margin: 3rem 0;
+                padding: 16px 10px 10px 18px;
+                border: 2px solid #ccc;
+                border-radius: 6px;
+                box-sizing: border-box;
+                background: transparent;
+                .comment-inbox{
+                    position: relative;
+                    margin-bottom: 10px;
+                    .nickname{
+                        display: block;
+                        margin-bottom: 10px;
+                        font-weight: 700;
+                        font-size: 13px;
+                        h3{}
+                    }
+                    .write-content{
+                        overflow: hidden;
+                        overflow-wrap: break-word;
+                        display: block;
+                        width: 100%;
+                        min-height: 17px;
+                        padding-right: 1px;
+                        border: none;
+                        font-size: 13px;
+                        resize: none;
+                        box-sizing: border-box;
+                        background: transparent;
+                        outline: 0;
+                    }
+                }
+                .comment-attach{
+                    position: relative;
+                    .register-box{
+                        float: right;
+                        input{
+                            margin: 2px;
+                            padding: 5px 15px;
+                            border: 1px solid #ccc;
+                            border-radius: 4px;
+                            cursor: pointer;
+                        }
+                    }
+                    &::after{
+                        content: "";
+                        display: block;
+                        clear: both;
+                    }
+                }
+            }
+            
+        }
+        .list-frame{
+            text-align: right;
+            input{
+                margin: 2px;
+                padding: 5px 15px;
+                border: 1px solid #ccc;
+                border-radius: 4px;
+                cursor: pointer;
+                background: #616161;
+                color: white;
+                
+            }
+        }
+    }
+}
