@@ -1,3 +1,7 @@
+let fileList = [];
+let newFileList = [];
+let originalFileList = [];
+
 addEventListener("DOMContentLoaded", async function () {
     const typeResultMap = await getPostTypeList();
     const typeList = typeResultMap.list;
@@ -6,8 +10,169 @@ addEventListener("DOMContentLoaded", async function () {
     let type_id = document.getElementById("type_id").value;
     document.getElementById("post_type").value = type_id;
 
+    originalFileList = JSON.parse(document.getElementById("originalFileJSON").value);
+    fileList = originalFileList;
+    console.log(originalFileList);
+    setOriginalFileList(originalFileList);
+
+    document.getElementById("fileInput").addEventListener("change", function () {
+        getNewFileList();
+        setNewFileList(newFileList);
+    });
 });
 
+async function uploadFiles(newFileList) {
+
+    let formData = new FormData();
+    if (newFileList.length === 0) {
+        return null;
+    }
+
+    for (let file of newFileList) {
+        formData.append("files", file);
+    }
+
+    const response = await fetch("/file/upload", {
+        method: "POST",
+        body: formData
+    });
+
+    const result = await response.json();
+
+    return result;
+};
+
+
+function getNewFileList() {
+
+    let fileInput = document.getElementById("fileInput");
+    let files = fileInput.files;
+    for (let i = 0; i < files.length; i++) {
+        let isDuplicate = newFileList.some(f => f.name === files[i].name && f.size === files[i].size);
+        if (!isDuplicate) {
+            newFileList.push(files[i]);
+        } else {
+            alert(`중복된 파일입니다: ${files[i].name}`);
+        }
+    }
+}
+
+function setNewFileList(newFileList) {
+
+    const newFileContainerDiv = document.getElementById("newFileContainer");
+    const newFilesDiv = document.getElementById("newFiles");
+
+    while (newFilesDiv.firstChild) {
+        newFilesDiv.removeChild(newFilesDiv.firstChild);
+    }
+
+    newFileList.forEach(newFile => {
+        let newfileDiv = document.createElement("div");
+
+        let deleteCheckBox = document.createElement("input");
+        deleteCheckBox.type = "checkbox";
+        // deleteCheckBox.value = newFile;
+        // name + size를 기준으로 고유값 생성
+        deleteCheckBox.value = `${newFile.name}_${newFile.size}`;
+        deleteCheckBox.name = "deleteNewFile";
+        newfileDiv.appendChild(deleteCheckBox);
+
+        let fileName = newFile.name;
+        let fileNameLabel = document.createElement("label");
+        fileNameLabel.textContent = fileName;
+        newfileDiv.appendChild(fileNameLabel);
+
+        newFilesDiv.appendChild(newfileDiv);
+
+    });
+
+    // if (newFileList.length > 0) {
+    //     let deleteFileButton = document.createElement("input");
+    //     deleteFileButton.type = "button";
+    //     deleteFileButton.value = "삭제";
+    //     deleteFileButton.onclick = function () {
+    //         deleteNewFiles();
+    //     }
+    //     newFileContainerDiv.appendChild(deleteFileButton);
+    // }
+    let deleteNewFilesButton = document.getElementById("deleteNewFilesButton");
+    if (newFileList.length > 0) {
+        deleteNewFilesButton.style.display = "block";
+    }
+    else {
+        deleteNewFilesButton.style.display = "none";
+    }
+
+}
+
+
+function deleteNewFiles() {
+    const checkedBoxes = document.querySelectorAll("input[name='deleteNewFile']:checked");
+    console.log(checkedBoxes);
+    const filesToDelete = Array.from(checkedBoxes).map(checkedBox => checkedBox.value);
+    console.log(filesToDelete);
+
+    // newFileList = newFileList.filter(file => !filesToDelete.includes(file));
+    newFileList = newFileList.filter(file => {
+        const identifier = `${file.name}_${file.size}`;
+        return !filesToDelete.includes(identifier);
+    });
+
+    setNewFileList(newFileList);
+}
+
+function setOriginalFileList(originalFileList) {
+    const originalFileContainerDiv = document.getElementById("originFileContainer");
+    const originalFilesDiv = document.getElementById("originalFiles");
+    while (originalFilesDiv.firstChild) {
+        originalFilesDiv.removeChild(originalFilesDiv.firstChild);
+    }
+    originalFileList.forEach(originalFile => {
+        let originalfileDiv = document.createElement("div");
+
+        let deleteCheckBox = document.createElement("input");
+        deleteCheckBox.type = "checkbox";
+        deleteCheckBox.value = originalFile;
+        deleteCheckBox.name = "deleteOriginalFile";
+        originalfileDiv.appendChild(deleteCheckBox);
+
+        let fileName = originalFile.substring(originalFile.indexOf("_") + 1);
+        let fileNameLabel = document.createElement("label");
+        fileNameLabel.textContent = fileName;
+        originalfileDiv.appendChild(fileNameLabel);
+
+        originalFilesDiv.appendChild(originalfileDiv);
+
+    });
+
+    // if (originalFileList.length > 0) {
+    //     let deleteFileButton = document.createElement("input");
+    //     deleteFileButton.type = "button";
+    //     deleteFileButton.value = "삭제";
+    //     deleteFileButton.onclick = function () {
+    //         deleteOriginalFiles();
+    //     }
+    //     originalFileContainerDiv.appendChild(deleteFileButton);
+    // }
+
+    let deleteOriginalFilesButton = document.getElementById("deleteOriginalFilesButton");
+    if (originalFileList.length > 0) {
+        deleteOriginalFilesButton.style.display = "block";
+    }
+    else {
+        deleteOriginalFilesButton.style.display = "none";
+    }
+
+}
+
+function deleteOriginalFiles() {
+    const checkedBoxes = document.querySelectorAll("input[name='deleteOriginalFile']:checked");
+    const filesToDelete = Array.from(checkedBoxes).map(checkedBox => checkedBox.value);
+    console.log(fileList);
+    fileList = fileList.filter(file => !filesToDelete.includes(file));
+    console.log(fileList);
+    setOriginalFileList(fileList);
+}
 
 
 async function getPostTypeList() {
@@ -45,6 +210,7 @@ async function modify() {
     // console.log("게시");
 
     var post_id = document.getElementById("post_id").value;
+    let type_id = document.getElementById("post_type").value;
     var user_id = document.getElementById("user_id").value;
     var post_subject = document.getElementById("post_subject").value;
     // var post_content = document.getElementById("post_content").value;
@@ -56,7 +222,6 @@ async function modify() {
     if (usedImages.length > 0) {
         post_images = JSON.stringify(usedImages);
     }
-
 
     if (post_subject == null || post_subject == "") {
         alert("제목을 입력하세요.");
@@ -70,14 +235,29 @@ async function modify() {
         return;
     }
 
-    var post = {
+    // var fileInputId = "fileInput";
+    // fileList
+    let post_files;
+
+    const uploaded = await uploadFiles(newFileList);
+    if (uploaded != null) {
+        const uploadfileList = uploaded.fileList;
+
+        uploadfileList.forEach(file => {
+            fileList.push(file);
+        });
+        // console.log(files);
+    }
+    post_files = JSON.stringify(fileList);
+
+    let post = {
         post_id: post_id,
-        // type_id: type_id,
+        type_id: type_id,
         // theme_id: theme_id,
         user_id: user_id,
         post_subject: post_subject,
         post_content: post_content,
-        // post_files: post_files,
+        post_files: post_files,
         post_images: post_images
     };
 

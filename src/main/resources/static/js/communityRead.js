@@ -85,15 +85,23 @@ function goPostList() {
 
 function setFileList() {
     const fileJSON = document.getElementById("fileJSON").value;
-    console.log(fileJSON);
+    if(fileJSON == null || fileJSON==''){
+        return;
+    }
+    
     const fileListDiv = document.getElementById("fileList");
     const fileList = JSON.parse(fileJSON);
-    // console.log(fileList);
+
     fileList.forEach(file => {
+        let eachFileDiv = document.createElement("div");
+        let fileIco = document.createElement("span");
+        fileIco.textContent="★";
+        eachFileDiv.appendChild(fileIco);
         let fileLinkA = document.createElement("a");
         fileLinkA.href = "/file/download?filename=" + file;
         fileLinkA.textContent = file.substring(file.indexOf("_") + 1);
-        fileListDiv.appendChild(fileLinkA);
+        eachFileDiv.appendChild(fileLinkA);
+        fileListDiv.appendChild(eachFileDiv);
     });
 
 }
