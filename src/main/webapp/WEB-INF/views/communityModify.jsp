@@ -20,7 +20,7 @@
     <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
     <script src="http://code.jquery.com/jquery-latest.min.js"></script>
     <script src ="${pageContext.request.contextPath}/js/communityModify.js"></script>
-    <script src ="${pageContext.request.contextPath}/js/fileUpload.js"></script>
+    <%-- <script src ="${pageContext.request.contextPath}/js/fileUpload.js"></script> --%>
 
 </head>
 
@@ -90,6 +90,9 @@
                         <div id = "originalFiles">
 
                         </div>
+                        <div>
+                            <input type = "button" value = "삭제" onclick = "deleteOriginalFiles()" id = "deleteOriginalFilesButton" style = "display: none;">
+                        </div>
                     </div>
                     <hr noshade>
                     </td>
@@ -108,6 +111,9 @@
                             <div id = "newFiles">
 
                             </div>
+                            <div>
+                                <input type = "button" value = "삭제" onclick = "deleteNewFiles()" id = "deleteNewFilesButton"  style = "display: none;">
+                            </div>
                         </div>
 
 
@@ -123,8 +129,6 @@
                     <%-- before : submit --%>
                         <input type="button" value="수정" onclick="modify()">
                         <input type="button" value="취소" onclick="cancelModify()">
-                        
-                        <input type="button" value="test" onclick="test()">
                     </td>
                 </tr>
             </table>

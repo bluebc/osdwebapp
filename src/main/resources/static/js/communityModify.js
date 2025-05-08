@@ -1,4 +1,6 @@
 let fileList = [];
+let newFileList = [];
+let originalFileList = [];
 
 addEventListener("DOMContentLoaded", async function () {
     const typeResultMap = await getPostTypeList();
@@ -8,23 +10,40 @@ addEventListener("DOMContentLoaded", async function () {
     let type_id = document.getElementById("type_id").value;
     document.getElementById("post_type").value = type_id;
 
-    let originalFileList = JSON.parse(document.getElementById("originalFileJSON").value);
+    originalFileList = JSON.parse(document.getElementById("originalFileJSON").value);
     fileList = originalFileList;
     console.log(originalFileList);
     setOriginalFileList(originalFileList);
 
     document.getElementById("fileInput").addEventListener("change", function () {
         getNewFileList();
-        setNewFileList();
- 
-
+        setNewFileList(newFileList);
     });
-
 });
 
-let newFileList = [];
+async function uploadFiles(newFileList) {
 
-function getNewFileList(){
+    let formData = new FormData();
+    if (newFileList.length === 0) {
+        return null;
+    }
+
+    for (let file of newFileList) {
+        formData.append("files", file);
+    }
+
+    const response = await fetch("/file/upload", {
+        method: "POST",
+        body: formData
+    });
+
+    const result = await response.json();
+
+    return result;
+};
+
+
+function getNewFileList() {
 
     let fileInput = document.getElementById("fileInput");
     let files = fileInput.files;
@@ -40,18 +59,21 @@ function getNewFileList(){
 
 function setNewFileList(newFileList) {
 
-
-    
     const newFileContainerDiv = document.getElementById("newFileContainer");
     const newFilesDiv = document.getElementById("newFiles");
 
+    while (newFilesDiv.firstChild) {
+        newFilesDiv.removeChild(newFilesDiv.firstChild);
+    }
 
     newFileList.forEach(newFile => {
         let newfileDiv = document.createElement("div");
 
         let deleteCheckBox = document.createElement("input");
         deleteCheckBox.type = "checkbox";
-        deleteCheckBox.value = newFile.name;
+        // deleteCheckBox.value = newFile;
+        // name + size를 기준으로 고유값 생성
+        deleteCheckBox.value = `${newFile.name}_${newFile.size}`;
         deleteCheckBox.name = "deleteNewFile";
         newfileDiv.appendChild(deleteCheckBox);
 
@@ -64,19 +86,40 @@ function setNewFileList(newFileList) {
 
     });
 
+    // if (newFileList.length > 0) {
+    //     let deleteFileButton = document.createElement("input");
+    //     deleteFileButton.type = "button";
+    //     deleteFileButton.value = "삭제";
+    //     deleteFileButton.onclick = function () {
+    //         deleteNewFiles();
+    //     }
+    //     newFileContainerDiv.appendChild(deleteFileButton);
+    // }
+    let deleteNewFilesButton = document.getElementById("deleteNewFilesButton");
+    if (newFileList.length > 0) {
+        deleteNewFilesButton.style.display = "block";
+    }
+    else {
+        deleteNewFilesButton.style.display = "none";
+    }
+
 }
 
 
 function deleteNewFiles() {
     const checkedBoxes = document.querySelectorAll("input[name='deleteNewFile']:checked");
+    console.log(checkedBoxes);
     const filesToDelete = Array.from(checkedBoxes).map(checkedBox => checkedBox.value);
-    console.log(currentFiles);
-    currentFiles = currentFiles.filter(file => !filesToDelete.includes(file));
-    console.log(currentFiles);
-    setnewFileList(fileList);
+    console.log(filesToDelete);
+
+    // newFileList = newFileList.filter(file => !filesToDelete.includes(file));
+    newFileList = newFileList.filter(file => {
+        const identifier = `${file.name}_${file.size}`;
+        return !filesToDelete.includes(identifier);
+    });
+
+    setNewFileList(newFileList);
 }
-
-
 
 function setOriginalFileList(originalFileList) {
     const originalFileContainerDiv = document.getElementById("originFileContainer");
@@ -102,14 +145,22 @@ function setOriginalFileList(originalFileList) {
 
     });
 
+    // if (originalFileList.length > 0) {
+    //     let deleteFileButton = document.createElement("input");
+    //     deleteFileButton.type = "button";
+    //     deleteFileButton.value = "삭제";
+    //     deleteFileButton.onclick = function () {
+    //         deleteOriginalFiles();
+    //     }
+    //     originalFileContainerDiv.appendChild(deleteFileButton);
+    // }
+
+    let deleteOriginalFilesButton = document.getElementById("deleteOriginalFilesButton");
     if (originalFileList.length > 0) {
-        let deleteFileButton = document.createElement("input");
-        deleteFileButton.type = "button";
-        deleteFileButton.value = "삭제";
-        deleteFileButton.onclick = function () {
-            deleteOriginalFiles();
-        }
-        originalFileContainerDiv.appendChild(deleteFileButton);
+        deleteOriginalFilesButton.style.display = "block";
+    }
+    else {
+        deleteOriginalFilesButton.style.display = "none";
     }
 
 }
@@ -152,13 +203,7 @@ function setPostTypeList(typeList) {
         postTypeSelect.append(postTypeOption);
     });
 
-
-
 }
-
-
-
-
 
 // 글 작성 완료
 async function modify() {
@@ -178,7 +223,6 @@ async function modify() {
         post_images = JSON.stringify(usedImages);
     }
 
-
     if (post_subject == null || post_subject == "") {
         alert("제목을 입력하세요.");
         document.getElementById("post_subject").focus();
@@ -191,17 +235,15 @@ async function modify() {
         return;
     }
 
-
-
-    var fileInputId = "fileInput";
+    // var fileInputId = "fileInput";
     // fileList
     let post_files;
 
-    const uploaded = await uploadFiles(fileInputId);
+    const uploaded = await uploadFiles(newFileList);
     if (uploaded != null) {
-        const newfileList = uploaded.fileList;
+        const uploadfileList = uploaded.fileList;
 
-        newfileList.forEach(file => {
+        uploadfileList.forEach(file => {
             fileList.push(file);
         });
         // console.log(files);
