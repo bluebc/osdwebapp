@@ -24,7 +24,9 @@ import com.osd.web.app.dto.Community_PostDto;
 import com.osd.web.app.dto.Community_Post_LikeDto;
 import com.osd.web.app.dto.Community_ThemeDto;
 import com.osd.web.app.dto.Community_TypeDto;
+import com.osd.web.app.dto.User_InfoDto;
 import com.osd.web.app.service.CommunityService;
+import com.osd.web.app.service.User_InfoService;
 
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
@@ -35,6 +37,9 @@ public class CommunityBoardController {
 
     @Autowired
     private CommunityService communityService;
+    
+    @Autowired
+    private User_InfoService user_InfoService;
 
     @RequestMapping("/")
     public String communityPage() {
@@ -215,7 +220,7 @@ public class CommunityBoardController {
 
     @ResponseBody
     @PostMapping("/getPostTypeList")
-    public Map<String, Object> getPostTypeList(){
+    public Map<String, Object> getPostTypeList() {
         Map<String, Object> resultMap = new HashMap<>();
 
         List<Community_TypeDto> list = communityService.getTypeList();
@@ -226,7 +231,7 @@ public class CommunityBoardController {
 
     @ResponseBody
     @PostMapping("/getPostThemeList")
-    public Map<String, Object> getPostThemeList(){
+    public Map<String, Object> getPostThemeList() {
         Map<String, Object> resultMap = new HashMap<>();
 
         List<Community_ThemeDto> list = communityService.getThemeList();
@@ -234,7 +239,6 @@ public class CommunityBoardController {
 
         return resultMap;
     }
-
 
     @RequestMapping("/read")
     public String communityReadPage(@RequestParam(required = true, defaultValue = "0", name = "post_id") int post_id,
@@ -270,8 +274,8 @@ public class CommunityBoardController {
         String type_name = communityService.getTypeNameById(type_id);
         int theme_id = community_PostDto.getTheme_id();
         String theme_name = communityService.getThemeNameById(theme_id);
-        
-          // 작성 시간 포맷
+
+        // 작성 시간 포맷
         LocalDateTime post_created_at = board_PostDto.getPost_created_at();
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
         String formatted = post_created_at.format(formatter);
@@ -280,6 +284,12 @@ public class CommunityBoardController {
         model.addAttribute("community_post", board_PostDto);
         model.addAttribute("type_name", type_name);
         model.addAttribute("theme_name", theme_name);
+
+        User_InfoDto login_user_Info = user_InfoService.getUser_InfoById(login_user_id);
+        if (login_user_Info != null) {
+            String login_user_nickname = login_user_Info.getUser_nickname();
+            model.addAttribute("login_user_nickname", login_user_nickname);
+        }
 
         return "communityRead";
     }
