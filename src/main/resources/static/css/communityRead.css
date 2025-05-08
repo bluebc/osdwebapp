@@ -1,0 +1,374 @@
+header .top-banner {
+  display: none;
+}
+
+.container {
+  padding: 15rem 0 15rem;
+}
+.container .content {
+  max-width: 1200px;
+  margin: 20px auto;
+  padding: 20px;
+  border-radius: 10px;
+}
+.container .content .title {
+  color: #a3a3a3;
+  font-size: 1.3rem;
+  margin-bottom: 10px;
+}
+.container .content .post {
+  position: relative;
+}
+.container .content .post .post-title {
+  font-size: 2rem;
+  font-weight: bold;
+  margin-bottom: 3rem;
+}
+.container .content .post .post-meta {
+  margin-bottom: 10px;
+  display: flex;
+  align-items: center;
+}
+.container .content .post .post-meta .thumb {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  margin-right: 10px;
+}
+.container .content .post .post-meta .infoItem .nickname {
+  font-size: 14px;
+}
+.container .content .post .post-meta .infoItem .nickname h3 {
+  margin-bottom: 5px;
+}
+.container .content .post .post-meta .infoItem .article-info {
+  font-size: 12px;
+  color: gray;
+}
+.container .content .post hr {
+  margin: 2rem 0;
+  border: 0;
+  height: 2px;
+  background: #d3d3d3;
+}
+.container .content .post .post-content {
+  white-space: break-spaces;
+  font-size: 16px;
+  margin: 2rem 0;
+}
+.container .content .post #modOrDel {
+  position: absolute;
+  right: 0;
+  top: 5rem;
+}
+.container .content .post #modOrDel input[type=button] {
+  margin: 2px;
+  padding: 5px 15px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  cursor: pointer;
+}
+.container .content .post #modOrDel input[type=button]:hover {
+  background: #616161;
+  color: white;
+}
+.container .content .module-file {
+  margin-bottom: 3rem;
+}
+.container .content .module-file #fileList {
+  position: relative;
+  max-width: 450px;
+  vertical-align: top;
+}
+.container .content .module-file #fileList .se-module {
+  min-height: 35px;
+  padding: 1rem;
+  border: 1px solid #e0e0e0;
+  background-color: #fff;
+  box-sizing: border-box;
+  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.08);
+  text-align: left;
+}
+.container .content .module-file #fileList .se-module i {
+  margin-right: 10px;
+}
+.container .content .module-file #fileList .se-module i strong {
+  position: absolute;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  width: 1px;
+  height: 1px;
+}
+.container .content .module-file #fileList .se-module a {
+  display: inline-block;
+  border-bottom: 2px solid transparent;
+  color: black;
+}
+.container .content .module-file #fileList .se-module a:hover {
+  border-bottom: 2px solid black;
+}
+.container .content .comment-section {
+  border-top: 2px solid #ddd;
+  padding-top: 10px;
+}
+.container .content .comment-section .reply-box {
+  display: flex;
+  gap: 1rem;
+  margin: 1rem 0;
+}
+.container .content .comment-section .reply-box #like {
+  cursor: pointer;
+}
+.container .content .comment-section .reply-box .comment-header {
+  display: flex;
+  justify-content: space-between;
+  font-size: 14px;
+  margin-bottom: 10px;
+}
+.container .content .comment-section #comment #displayComment .commentLevel1,
+.container .content .comment-section #comment #displayComment .commentLevel2 {
+  border-bottom: 1px solid #eee;
+  padding: 10px 0;
+  display: flex;
+  align-items: flex-start;
+  gap: 15px;
+}
+.container .content .comment-section #comment #displayComment .commentLevel1 img,
+.container .content .comment-section #comment #displayComment .commentLevel2 img {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+.container .content .comment-section #comment #displayComment .commentLevel1 .commentContent,
+.container .content .comment-section #comment #displayComment .commentLevel2 .commentContent {
+  position: relative;
+  flex-grow: 1;
+}
+.container .content .comment-section #comment #displayComment .commentLevel1 .commentContent strong,
+.container .content .comment-section #comment #displayComment .commentLevel2 .commentContent strong {
+  display: block;
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+.container .content .comment-section #comment #displayComment .commentLevel1 .commentContent p,
+.container .content .comment-section #comment #displayComment .commentLevel2 .commentContent p {
+  margin: 15px 0;
+}
+.container .content .comment-section #comment #displayComment .commentLevel1 .commentContent .commentButtons,
+.container .content .comment-section #comment #displayComment .commentLevel2 .commentContent .commentButtons {
+  font-size: 12px;
+  color: gray;
+  margin-top: 5px;
+}
+.container .content .comment-section #comment #displayComment .commentLevel1 .commentContent .commentButtons span,
+.container .content .comment-section #comment #displayComment .commentLevel2 .commentContent .commentButtons span {
+  margin-right: 10px;
+}
+.container .content .comment-section #comment #displayComment .commentLevel1 .commentContent .commentButtons .reReplyButton,
+.container .content .comment-section #comment #displayComment .commentLevel2 .commentContent .commentButtons .reReplyButton {
+  cursor: pointer;
+}
+.container .content .comment-section #comment #displayComment .commentLevel1 .commentContent .commentButtons .inpButtons,
+.container .content .comment-section #comment #displayComment .commentLevel2 .commentContent .commentButtons .inpButtons {
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+.container .content .comment-section #comment #displayComment .commentLevel1 .commentContent .commentButtons .inpButtons input:nth-child(1),
+.container .content .comment-section #comment #displayComment .commentLevel2 .commentContent .commentButtons .inpButtons input:nth-child(1) {
+  margin-right: 10px;
+}
+.container .content .comment-section #comment #displayComment .commentLevel1 .editComment,
+.container .content .comment-section #comment #displayComment .commentLevel2 .editComment {
+  width: 100%;
+  margin: 3rem 0;
+  padding: 16px 10px 10px 18px;
+  border: 2px solid #ccc;
+  border-radius: 6px;
+  box-sizing: border-box;
+  background: transparent;
+}
+.container .content .comment-section #comment #displayComment .commentLevel1 .editComment textarea,
+.container .content .comment-section #comment #displayComment .commentLevel2 .editComment textarea {
+  overflow: hidden;
+  overflow-wrap: break-word;
+  display: block;
+  width: 100%;
+  min-height: 45px;
+  padding-right: 1px;
+  border: none;
+  font-size: 13px;
+  resize: none;
+  box-sizing: border-box;
+  background: transparent;
+  outline: 0;
+}
+.container .content .comment-section #comment #displayComment .commentLevel1 .editComment .editButtons,
+.container .content .comment-section #comment #displayComment .commentLevel2 .editComment .editButtons {
+  float: right;
+}
+.container .content .comment-section #comment #displayComment .commentLevel1 .editComment .editButtons input,
+.container .content .comment-section #comment #displayComment .commentLevel2 .editComment .editButtons input {
+  margin: 2px;
+  padding: 5px 15px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  cursor: pointer;
+}
+.container .content .comment-section #comment #displayComment .commentLevel1 .editComment .editButtons input:nth-child(1),
+.container .content .comment-section #comment #displayComment .commentLevel2 .editComment .editButtons input:nth-child(1) {
+  background: #616161;
+  color: white;
+}
+.container .content .comment-section #comment #displayComment .writeReComment {
+  margin: 1rem 0;
+  padding: 16px 10px 10px 18px;
+  border: 2px solid #ccc;
+  border-radius: 6px;
+  box-sizing: border-box;
+  background: transparent;
+}
+.container .content .comment-section #comment #displayComment .writeReComment textarea {
+  overflow: hidden;
+  overflow-wrap: break-word;
+  display: block;
+  width: 100%;
+  min-height: 40px;
+  padding-right: 1px;
+  border: none;
+  font-size: 13px;
+  resize: none;
+  box-sizing: border-box;
+  background: transparent;
+  outline: 0;
+}
+.container .content .comment-section #comment #displayComment .writeReComment .reWrapper {
+  display: flex;
+  justify-content: flex-end;
+}
+.container .content .comment-section #comment #displayComment .writeReComment .reWrapper input {
+  margin: 2px;
+  padding: 5px 15px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  cursor: pointer;
+}
+.container .content .comment-section #comment #displayComment .commentLevel2 {
+  margin-top: 10px;
+}
+.container .content .comment-section #comment #displayComment .commentLevel2 img {
+  margin-left: 50px;
+}
+.container .content .comment-section #comment #writeComment {
+  margin: 3rem 0;
+  padding: 16px 10px 10px 18px;
+  border: 2px solid #ccc;
+  border-radius: 6px;
+  box-sizing: border-box;
+  background: transparent;
+}
+.container .content .comment-section #comment #writeComment .comment-inbox {
+  position: relative;
+  margin-bottom: 10px;
+}
+.container .content .comment-section #comment #writeComment .comment-inbox .nickname {
+  display: block;
+  margin-bottom: 10px;
+  font-weight: 700;
+  font-size: 13px;
+}
+.container .content .comment-section #comment #writeComment .comment-inbox .write-content {
+  overflow: hidden;
+  overflow-wrap: break-word;
+  display: block;
+  width: 100%;
+  min-height: 17px;
+  padding-right: 1px;
+  border: none;
+  font-size: 13px;
+  resize: none;
+  box-sizing: border-box;
+  background: transparent;
+  outline: 0;
+}
+.container .content .comment-section #comment #writeComment .comment-attach {
+  position: relative;
+}
+.container .content .comment-section #comment #writeComment .comment-attach .register-box {
+  float: right;
+}
+.container .content .comment-section #comment #writeComment .comment-attach .register-box input {
+  margin: 2px;
+  padding: 5px 15px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  cursor: pointer;
+}
+.container .content .comment-section #comment #writeComment .comment-attach::after {
+  content: "";
+  display: block;
+  clear: both;
+}
+.container .content .comment-section #writeComment {
+  margin: 3rem 0;
+  padding: 16px 10px 10px 18px;
+  border: 2px solid #ccc;
+  border-radius: 6px;
+  box-sizing: border-box;
+  background: transparent;
+}
+.container .content .comment-section #writeComment .comment-inbox {
+  position: relative;
+  margin-bottom: 10px;
+}
+.container .content .comment-section #writeComment .comment-inbox .nickname {
+  display: block;
+  margin-bottom: 10px;
+  font-weight: 700;
+  font-size: 13px;
+}
+.container .content .comment-section #writeComment .comment-inbox .write-content {
+  overflow: hidden;
+  overflow-wrap: break-word;
+  display: block;
+  width: 100%;
+  min-height: 17px;
+  padding-right: 1px;
+  border: none;
+  font-size: 13px;
+  resize: none;
+  box-sizing: border-box;
+  background: transparent;
+  outline: 0;
+}
+.container .content .comment-section #writeComment .comment-attach {
+  position: relative;
+}
+.container .content .comment-section #writeComment .comment-attach .register-box {
+  float: right;
+}
+.container .content .comment-section #writeComment .comment-attach .register-box input {
+  margin: 2px;
+  padding: 5px 15px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  cursor: pointer;
+}
+.container .content .comment-section #writeComment .comment-attach::after {
+  content: "";
+  display: block;
+  clear: both;
+}
+.container .content .list-frame {
+  text-align: right;
+}
+.container .content .list-frame input {
+  margin: 2px;
+  padding: 5px 15px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  cursor: pointer;
+  background: #616161;
+  color: white;
+}/*# sourceMappingURL=communityRead.css.map */

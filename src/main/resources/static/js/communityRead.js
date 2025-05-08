@@ -83,28 +83,66 @@ function goPostList() {
     window.location.href = "/community/list";
 }
 
+// function setFileList() {
+//     const fileJSON = document.getElementById("fileJSON").value;
+//     if(fileJSON == null || fileJSON==''){
+//         return;
+//     }
+    
+//     const fileListDiv = document.getElementById("fileList");
+//     const fileList = JSON.parse(fileJSON);
+
+//     fileList.forEach(file => {
+//         let eachFileDiv = document.createElement("div");
+//         let fileIco = document.createElement("span");
+//         fileIco.textContent="⬇";
+//         eachFileDiv.appendChild(fileIco);
+//         let fileLinkA = document.createElement("a");
+//         fileLinkA.href = "/file/download?filename=" + file;
+//         fileLinkA.textContent = file.substring(file.indexOf("_") + 1);
+//         eachFileDiv.appendChild(fileLinkA);
+//         fileListDiv.appendChild(eachFileDiv);
+//     });
+
+// }
+
 function setFileList() {
     const fileJSON = document.getElementById("fileJSON").value;
-    if(fileJSON == null || fileJSON==''){
-        return;
-    }
-    
+    if (!fileJSON) return;
+
     const fileListDiv = document.getElementById("fileList");
     const fileList = JSON.parse(fileJSON);
 
     fileList.forEach(file => {
-        let eachFileDiv = document.createElement("div");
-        let fileIco = document.createElement("span");
-        fileIco.textContent="★";
-        eachFileDiv.appendChild(fileIco);
-        let fileLinkA = document.createElement("a");
-        fileLinkA.href = "/file/download?filename=" + file;
-        fileLinkA.textContent = file.substring(file.indexOf("_") + 1);
-        eachFileDiv.appendChild(fileLinkA);
-        fileListDiv.appendChild(eachFileDiv);
-    });
+        // .se-module div 생성
+        const seModuleDiv = document.createElement("div");
+        seModuleDiv.className = "se-module";
 
+        // i 태그 생성 (Font Awesome 아이콘)
+        const icon = document.createElement("i");
+        icon.setAttribute("class", "fa fa-regular fa-folder");
+        icon.style.color = "#000000";
+
+        // 시각적 설명을 위한 strong 태그 추가
+        const strong = document.createElement("strong");
+        strong.className = "se-blind";
+        strong.textContent = "첨부파일";
+
+        icon.appendChild(strong);
+        seModuleDiv.appendChild(icon);
+
+        // 파일 링크 생성
+        const fileLink = document.createElement("a");
+        fileLink.href = "/file/download?filename=" + encodeURIComponent(file);
+        fileLink.textContent = file.substring(file.indexOf("_") + 1);
+
+        seModuleDiv.appendChild(fileLink);
+
+        // 전체 리스트에 추가
+        fileListDiv.appendChild(seModuleDiv);
+    });
 }
+
 
 async function like() {
 

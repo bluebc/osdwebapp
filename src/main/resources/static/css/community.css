@@ -1,4 +1,8 @@
 @charset "UTF-8";
+body {
+  overflow-x: visible;
+}
+
 header .top-banner {
   display: none;
 }
@@ -6,6 +10,7 @@ header .top-banner {
 main .container {
   padding: 14rem 0 14rem;
   min-height: 800px;
+  position: relative;
 }
 main .container .content {
   display: flex;
@@ -14,7 +19,19 @@ main .container .content {
   margin: 60px auto 0;
 }
 main .container .content .snbContainer {
+  position: sticky;
+  top: 160px;
+  align-self: flex-start;
+  z-index: 2;
+  background-color: white;
   margin-top: 10px;
+  width: 300px;
+}
+main .container .content .snbContainer #post-admin {
+  margin: 2rem 0 1rem 15px;
+}
+main .container .content .snbContainer #post-admin input {
+  font-size: 1.2rem;
 }
 main .container .content .snbContainer .snbMenu {
   display: flex;
@@ -60,7 +77,8 @@ main .container .content .snbContainer .snbMenu .snb-btn::after {
   background: url(../img/arriw-right.svg) 50% 50% no-repeat;
 }
 main .container .content .blog-container {
-  max-width: 800px;
+  width: 100%;
+  max-width: 850px;
   margin: auto;
 }
 main .container .content .blog-container .form-area {
@@ -106,7 +124,7 @@ main .container .content .blog-container .form-area .search .btn-search .hidden 
   padding: 0;
   border: 0;
 }
-main .container .content .blog-container .post {
+main .container .content .blog-container .postContainer .post {
   background-color: #fff;
   border-bottom: 1px solid #ddd;
   padding: 25px 0;
@@ -115,41 +133,44 @@ main .container .content .blog-container .post {
   justify-content: space-between;
   margin-bottom: 20px;
 }
-main .container .content .blog-container .post .post-left {
+main .container .content .blog-container .postContainer .post .post-left {
   flex: 1;
   margin-right: 30px;
   min-width: 250px;
 }
-main .container .content .blog-container .post .post-left .author {
+main .container .content .blog-container .postContainer .post .post-left .author {
+  cursor: pointer;
   display: flex;
   align-items: center;
   font-size: 13px;
   color: #666;
   margin-bottom: 8px;
 }
-main .container .content .blog-container .post .post-left .author img {
+main .container .content .blog-container .postContainer .post .post-left .author img {
   width: 50px;
   height: 50px;
   border-radius: 50%;
   margin-right: 8px;
 }
-main .container .content .blog-container .post .post-left .author .write-time h3 {
+main .container .content .blog-container .postContainer .post .post-left .author .write-time h3 {
   margin-bottom: 7px;
 }
-main .container .content .blog-container .post .post-left .author .write-time h4 {
+main .container .content .blog-container .postContainer .post .post-left .author .write-time h4 {
   margin: 0;
   font-weight: 100;
 }
-main .container .content .blog-container .post .post-left .m-thumbnail {
+main .container .content .blog-container .postContainer .post .post-left .m-thumbnail {
   display: none;
 }
-main .container .content .blog-container .post .post-left .title {
+main .container .content .blog-container .postContainer .post .post-left .title {
+  cursor: pointer;
   font-size: 1.5rem;
   font-weight: 600;
   color: #222;
   margin: 16px 0;
 }
-main .container .content .blog-container .post .post-left .desc {
+main .container .content .blog-container .postContainer .post .post-left .desc {
+  cursor: pointer;
   font-size: 14px;
   color: #444;
   margin-bottom: 10px;
@@ -161,12 +182,12 @@ main .container .content .blog-container .post .post-left .desc {
   -webkit-line-clamp: 3;
   -webkit-box-orient: vertical;
 }
-main .container .content .blog-container .post .post-left .buttons {
+main .container .content .blog-container .postContainer .post .post-left .buttons {
   margin-top: 10px;
   display: flex;
   gap: 10px;
 }
-main .container .content .blog-container .post .post-left .buttons .button {
+main .container .content .blog-container .postContainer .post .post-left .buttons .button {
   font-size: 12px;
   padding: 5px 10px;
   border-radius: 5px;
@@ -175,16 +196,17 @@ main .container .content .blog-container .post .post-left .buttons .button {
   background-color: #eee;
   transition: background 0.3s;
 }
-main .container .content .blog-container .post .post-left .buttons .button:hover {
+main .container .content .blog-container .postContainer .post .post-left .buttons .button:hover {
   background-color: #ddd;
 }
-main .container .content .blog-container .post .thumbnail {
+main .container .content .blog-container .postContainer .post .thumbnail {
+  cursor: pointer;
   width: 185px;
   height: 185px;
   flex-shrink: 0;
   overflow: hidden;
 }
-main .container .content .blog-container .post .thumbnail img {
+main .container .content .blog-container .postContainer .post .thumbnail img {
   width: 100%;
   height: 100%;
   -o-object-fit: cover;
@@ -197,6 +219,7 @@ main .container .content .blog-container .pagination {
 }
 main .container .content .blog-container .pagination .pagenumber {
   cursor: pointer;
+  height: 1.5rem;
   margin: 0 20px;
   text-align: center;
   display: inline-block;
@@ -206,6 +229,15 @@ main .container .content .blog-container .pagination .pagenumber {
 }
 main .container .content .blog-container .pagination .pagenumber:hover {
   border-bottom: 2px solid #000;
+}
+main .container .content .blog-container .pagination .pagination {
+  cursor: pointer;
+  height: 1.5rem;
+  margin: 0 20px;
+  text-align: center;
+  display: inline-block;
+  padding-bottom: 2px;
+  border-bottom: 2px solid transparent;
 }
 main .container .content .blog-container .pagination .selected {
   color: rgb(5, 155, 5);
@@ -225,26 +257,39 @@ main .container .content .blog-container .pagination .selected {
     margin: 0 20px;
     flex-direction: column;
   }
+  main .container .content .snbContainer {
+    width: 100%;
+    position: initial;
+  }
   main .container .content .snbContainer .snbMenu {
     margin: 2rem 0 0 0;
   }
   main .container .content .blog-container .form-area {
     padding: 1rem;
   }
-  main .container .content .blog-container .post .post-left {
+  main .container .content .blog-container .postContainer .post .post-left {
     width: 100%;
+    margin: 0;
   }
-  main .container .content .blog-container .post .post-left .m-thumbnail {
-    display: block;
+  main .container .content .blog-container .postContainer .post .post-left .m-thumbnail {
+    display: flex;
     position: relative;
+    align-items: center;
+    justify-content: center;
   }
-  main .container .content .blog-container .post .post-left .m-thumbnail .m-imgbox img {
+  main .container .content .blog-container .postContainer .post .post-left .m-thumbnail .m-imgbox {
+    width: 100%;
+    height: 600px;
+    overflow: hidden;
+  }
+  main .container .content .blog-container .postContainer .post .post-left .m-thumbnail .m-imgbox img {
+    border-radius: 10px;
     width: 100%;
     height: 100%;
     -o-object-fit: cover;
        object-fit: cover;
   }
-  main .container .content .blog-container .post .post-left .m-thumbnail .m-num-photos {
+  main .container .content .blog-container .postContainer .post .post-left .m-thumbnail .m-num-photos {
     background: rgba(0, 0, 0, 0.4);
     border-radius: 24px;
     color: #fff;
@@ -255,11 +300,11 @@ main .container .content .blog-container .pagination .selected {
     min-width: 21px;
     padding: 0 15px;
     position: absolute;
-    right: 10px;
+    right: 20px;
     text-align: center;
-    top: 10px;
+    top: 20px;
   }
-  main .container .content .blog-container .post .post-left .m-thumbnail .m-num-photos .blind {
+  main .container .content .blog-container .postContainer .post .post-left .m-thumbnail .m-num-photos .blind {
     overflow: hidden;
     position: absolute;
     clip: rect(0 0 0 0);
@@ -269,7 +314,7 @@ main .container .content .blog-container .pagination .selected {
     margin: -1px;
     width: 1px;
   }
-  main .container .content .blog-container .post .thumbnail {
+  main .container .content .blog-container .postContainer .post .thumbnail {
     display: none;
   }
 }
@@ -281,6 +326,11 @@ main .container .content .blog-container .pagination .selected {
     padding: 18rem 0 8rem;
   }
   main .container .content {
+    padding: 0 15px;
     margin: 0 20px;
+  }
+  main .container .content .snbContainer {
+    width: 400px;
+    top: 17rem;
   }
 }/*# sourceMappingURL=community.css.map */
