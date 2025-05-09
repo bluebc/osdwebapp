@@ -292,6 +292,9 @@ function setPostList(postList) {
         // lv4 (mImgbox)
         let mImgbox = document.createElement("div");
         mImgbox.className = "m-imgbox";
+
+        if (post.post_images != null) {
+        // lv5
     
         // lv5 (mThumbnailImg)
         let mThumbnailImg = document.createElement("img");
@@ -299,6 +302,7 @@ function setPostList(postList) {
     
         mImgbox.appendChild(mThumbnailImg);
         mThumbnailDiv.appendChild(mImgbox);
+        }
     
         // lv4 (mNumPhotosSpan) - 사진 개수
         let mNumPhotosSpan = document.createElement("span");
@@ -379,11 +383,17 @@ function setPostList(postList) {
     
         let thumbnailDiv2 = document.createElement("div");
         thumbnailDiv2.className = "thumbnail";
-    
+
+        if (post.post_images != null) {
+        // lv4
         let thumnailImg = document.createElement("img");
         thumnailImg.src = postImgSrc;
         thumbnailDiv2.appendChild(thumnailImg);
-    
+        }
+
+        // lv3
+        // let numPhotosSpan = document.createElement("span");
+
         thumbnailDiv.appendChild(thumbnailDiv2);
         postDiv.appendChild(thumbnailDiv);
     
@@ -401,3 +411,6 @@ function setPostList(postList) {
 
 }
 
+function goCommunityWrite(){
+    window.location.href = "/community/write";
+}
