@@ -65,6 +65,21 @@
             </div>
 
         </div>
+
+        <%-- file --%>
+        <div class="module-file">
+            
+           <input type = "hidden" id = "fileJSON" value = '${cunsult_post.post_files}'><%-- ""로 감싸면 JSON 안읽어짐 --%>
+                    <%-- <input type="hidden" id="fileJSON" value="<c:out value='${community_post.post_files}' escapeXml='false' />"> --%>
+                    
+
+            <div id = fileList>
+            <%-- ${community_post.post_files} --%>
+            </div>
+        </div>
+
+
+
     
         <div class="comment-section">
             <div class="reply-box">

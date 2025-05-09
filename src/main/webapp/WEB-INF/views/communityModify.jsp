@@ -92,7 +92,7 @@
 
                 <tr>
                     <td>
-                    기존 업로드 자리
+                    기존 업로드
                     <input type = "hidden" value = '${community_post.post_files}' id = "originalFileJSON">
                     <div id = "originFileContainer">    
                         <div id = "originalFiles">
