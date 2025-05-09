@@ -42,9 +42,9 @@
         <div class="content">
             <div class="snbContainer">
                 <div class="title"><h1 id="pageTitle">비움과 채움 스토리</h1></div>
-                <div id="post-admin">
+                <div class="writing">
                     <i class="fa-regular fa-pen-to-square" style="color: #000000;"></i>
-                    <input type="button" value="글쓰기" class="writing-btn" onclick="">
+                    <input type="button" value="글쓰기"  class="writing-btn" onclick="">
                 </div>
                 <div id = "communityTypeBtnSection" class="snbMenu">
                     <div class="snb-btn">

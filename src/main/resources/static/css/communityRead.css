@@ -6,13 +6,14 @@ header .top-banner {
   padding: 15rem 0 15rem;
 }
 .container .content {
-  max-width: 1200px;
+  max-width: 1000px;
   margin: 20px auto;
   padding: 20px;
+  border: 1px solid #ddd;
   border-radius: 10px;
 }
 .container .content .title {
-  color: #a3a3a3;
+  color: green;
   font-size: 1.3rem;
   margin-bottom: 10px;
 }
@@ -139,6 +140,7 @@ header .top-banner {
   height: 40px;
   border-radius: 50%;
   flex-shrink: 0;
+  display: block !important;
 }
 .container .content .comment-section #comment #displayComment .commentLevel1 .commentContent,
 .container .content .comment-section #comment #displayComment .commentLevel2 .commentContent {

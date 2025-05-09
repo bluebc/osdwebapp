@@ -10,14 +10,14 @@ header{
 .container{
     padding: 15rem 0 15rem;
     .content{
-        max-width: 1200px;
+        max-width: 1000px;
         margin: 20px auto;
         padding: 20px;
-        // border: 1px solid #ddd;
+        border: 1px solid #ddd;
         border-radius: 10px;
         // background-color: #f9f9f9;
         .title {
-            color: #a3a3a3;
+            color: green;
             font-size: 1.3rem;
             margin-bottom: 10px;
         }
@@ -152,6 +152,7 @@ header{
                             height: 40px ;
                             border-radius: 50%;
                             flex-shrink: 0;
+                            display: block !important;
                         }
 
                         .commentContent {
@@ -268,6 +269,7 @@ header{
                         margin-top: 10px;
                         img{
                             margin-left: 50px;
+                            
                         }
                     }
                 }
