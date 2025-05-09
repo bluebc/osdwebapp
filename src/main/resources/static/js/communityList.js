@@ -411,3 +411,6 @@ function setPostList(postList) {
 
 }
 
+function goCommunityWrite(){
+    window.location.href = "/community/write";
+}
