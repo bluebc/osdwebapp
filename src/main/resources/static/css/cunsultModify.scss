@@ -92,35 +92,47 @@ header{
                         
                     }
                             
-                    .imageUpload{
-                        width: 100%;
-                        margin-top: 1rem;
-                        text-align: right;
-                        h3{}
-                        display: inline-block;
-                        .upload-name {
-                            width: 50%;
-                            height: 30px;
-                            padding: 0 15px;
-                            vertical-align: middle;
-                            border: 1px solid #dddddd;
+                    .original-file{
+                        
+                        input{}
+                        .original-container{
+                            
+                            #originalFiles{
+                                margin-bottom: 10px;
+                                div{
+                                    input{
+                                        margin-right: 15px;
+                                    }
+                                }
+                            }
                         }
-                        label {
-                            padding: 5px 20px;
-                            color: #fff;
-                            vertical-align: middle;
-                            background-color: #616161;
+                    }
+
+
+                    .upload-file{
+                        .custom-file-upload {
+                            display: inline-block;
+                            padding: 8px 12px;
                             cursor: pointer;
-                            margin-left: 10px;
+                            background-color: #616161;
+                            color: white;
+                            border-radius: 4px;
+                            margin-bottom: 10px;
                         }
-                        input[type="file"] {
-                            position: absolute;
-                            width: 0;
-                            height: 0;
-                            padding: 0;
-                            overflow: hidden;
-                            border: 0;
+                        #fileInput {
+                            display: none;
                         }
+                        #newFileContainer{
+                            #newFiles{
+                                margin-bottom: 10px;
+                                div{
+                                    input{
+                                        margin-right: 15px;
+                                    }
+                                }
+                            }
+                        }
+
                         hr{
                             margin-top: 2rem;
                         }

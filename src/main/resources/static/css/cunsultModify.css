@@ -78,36 +78,31 @@ header .top-banner {
   outline: none;
   border: none;
 }
-.container .content form table tr .imageUpload {
-  width: 100%;
-  margin-top: 1rem;
-  text-align: right;
+.container .content form table tr .original-file .original-container #originalFiles {
+  margin-bottom: 10px;
+}
+.container .content form table tr .original-file .original-container #originalFiles div input {
+  margin-right: 15px;
+}
+.container .content form table tr .upload-file .custom-file-upload {
   display: inline-block;
-}
-.container .content form table tr .imageUpload .upload-name {
-  width: 50%;
-  height: 30px;
-  padding: 0 15px;
-  vertical-align: middle;
-  border: 1px solid #dddddd;
-}
-.container .content form table tr .imageUpload label {
-  padding: 5px 20px;
-  color: #fff;
-  vertical-align: middle;
-  background-color: #616161;
+  padding: 8px 12px;
   cursor: pointer;
-  margin-left: 10px;
+  background-color: #616161;
+  color: white;
+  border-radius: 4px;
+  margin-bottom: 10px;
 }
-.container .content form table tr .imageUpload input[type=file] {
-  position: absolute;
-  width: 0;
-  height: 0;
-  padding: 0;
-  overflow: hidden;
-  border: 0;
+.container .content form table tr .upload-file #fileInput {
+  display: none;
 }
-.container .content form table tr .imageUpload hr {
+.container .content form table tr .upload-file #newFileContainer #newFiles {
+  margin-bottom: 10px;
+}
+.container .content form table tr .upload-file #newFileContainer #newFiles div input {
+  margin-right: 15px;
+}
+.container .content form table tr .upload-file hr {
   margin-top: 2rem;
 }
 .container .content form table tr .register-btn {
