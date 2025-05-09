@@ -64,19 +64,18 @@
                                 <div id="summernote" name="editordata"></div>
                             </div>
                         </div>
+                        <hr noshade>
                     </td>
                 </tr>
 
-                <tr>
+                <%-- <tr>
                     <td class="imageUpload">
                         <input class="upload-name" value="이미지" placeholder="이미지">
                         <label for="file">이미지찾기</label>
                         <input type="file" id="file" accept="image/*">
                         <hr noshade>
-                        <!-- <h3>이미지 업로드</h3>
-                        <input type="file" name="image" accept="image/*" id="btn-upload"> -->
                     </td>
-                </tr>
+                </tr> --%>
 
                 <tr>
                     <td>

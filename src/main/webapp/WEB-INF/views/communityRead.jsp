@@ -111,13 +111,16 @@
                     <div class="nickname"><h3>${login_user_nickname}</h3></div>
                     <textarea id = "writeCommentContent" class = "write-content" placeholder  = "댓글을 작성하세요"></textarea>
                 </div>
-            </div>
 
                 <div  class="comment-attach">
                     <div  class="register-box">
                         <input type = "button" value = "등록" onclick = "writeComment()">
                     </div>
                 </div>
+
+            </div>
+
+                
            
 
             </div>

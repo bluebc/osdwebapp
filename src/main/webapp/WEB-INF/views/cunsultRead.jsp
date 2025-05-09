@@ -93,7 +93,7 @@
             <div id = "writeComment">
                 <div class="comment-inbox">
                     <div class="nickname"><h3>${login_user_nickname}</h3></div>
-                    <textarea  class = "write-content" placeholder  = "댓글을 작성하세요"></textarea>
+                    <textarea id = "writeCommentContent" class = "write-content" placeholder  = "댓글을 작성하세요"></textarea>
                 </div>
 
                 <div  class="comment-attach">
@@ -101,6 +101,7 @@
                         <input type = "button" value = "등록" onclick = "writeComment()">
                     </div>
                 </div>
+
             </div>
 
             </div>

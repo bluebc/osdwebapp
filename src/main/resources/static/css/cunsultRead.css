@@ -14,7 +14,7 @@ header .top-banner {
 }
 .container .content .title {
   color: green;
-  font-size: 14px;
+  font-size: 1.3rem;
   margin-bottom: 10px;
 }
 .container .content .post {
@@ -31,13 +31,16 @@ header .top-banner {
   align-items: center;
 }
 .container .content .post .post-meta .thumb {
-  width: 45px;
-  height: 45px;
+  width: 50px;
+  height: 50px;
   border-radius: 50%;
   margin-right: 10px;
 }
 .container .content .post .post-meta .infoItem .nickname {
   font-size: 14px;
+}
+.container .content .post .post-meta .infoItem .nickname h3 {
+  margin-bottom: 5px;
 }
 .container .content .post .post-meta .infoItem .article-info {
   font-size: 12px;
@@ -57,7 +60,7 @@ header .top-banner {
 .container .content .post #modOrDel {
   position: absolute;
   right: 0;
-  top: 0;
+  top: 2.1rem;
 }
 .container .content .post #modOrDel input[type=button] {
   margin: 2px;
@@ -102,6 +105,7 @@ header .top-banner {
   height: 40px;
   border-radius: 50%;
   flex-shrink: 0;
+  display: block !important;
 }
 .container .content .comment-section #comment #displayComment .commentLevel1 .commentContent,
 .container .content .comment-section #comment #displayComment .commentLevel2 .commentContent {

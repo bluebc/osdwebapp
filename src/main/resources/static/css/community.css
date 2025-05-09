@@ -27,10 +27,10 @@ main .container .content .snbContainer {
   margin-top: 10px;
   width: 300px;
 }
-main .container .content .snbContainer #post-admin {
+main .container .content .snbContainer .writing {
   margin: 2rem 0 1rem 15px;
 }
-main .container .content .snbContainer #post-admin input {
+main .container .content .snbContainer .writing input {
   font-size: 1.2rem;
 }
 main .container .content .snbContainer .snbMenu {

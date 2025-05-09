@@ -347,42 +347,45 @@ async function setComments() {
 // 댓글 작성 창 열기
 function addReCommentWrite(level1DivId) {
     const level1Div = document.getElementById(level1DivId);
+    const level0Div = level1Div.parentElement;
 
-    var re_cmt_id = "re" + level1DivId;
-
+    const re_cmt_id = "re" + level1DivId;
 
     // 열려있는 댓글 창 닫기
     if (document.getElementById(re_cmt_id) != null) {
-
         const divs = document.querySelectorAll(".writeReComment");
         divs.forEach(div => div.remove());
-
         return;
     }
 
-    const divs = document.querySelectorAll(".writeReComment");
-    divs.forEach(div => div.remove());
-
     const writeReCommentDiv = document.createElement("div");
-    writeReCommentDiv.className = "writeReComment"
+    writeReCommentDiv.className = "writeReComment";
 
     const reCommentTextarea = document.createElement("textarea");
     reCommentTextarea.placeholder = "댓글을 작성하세요";
     reCommentTextarea.id = re_cmt_id;
-    reCommentTextarea.className = "writeReCommentContent";
     writeReCommentDiv.appendChild(reCommentTextarea);
+
+    const buttonWrapper = document.createElement("div");
+    buttonWrapper.className = "reWrapper";
 
     const reCommentPostButton = document.createElement("input");
     reCommentPostButton.type = "button";
     reCommentPostButton.value = "작성 완료";
     reCommentPostButton.onclick = function () {
         postReComment(level1DivId);
+    };
+
+    buttonWrapper.appendChild(reCommentPostButton);
+    writeReCommentDiv.appendChild(buttonWrapper);
+
+    if (level1Div.nextSibling) {
+        level0Div.insertBefore(writeReCommentDiv, level1Div.nextSibling);
+    } else {
+        level0Div.appendChild(writeReCommentDiv);
     }
-    writeReCommentDiv.appendChild(reCommentPostButton);
-
-    level1Div.appendChild(writeReCommentDiv);
-
 }
+
 
 async function postReComment(level1DivId) {
 
@@ -501,6 +504,7 @@ function commentLikeButton(cmt_id) {
 }
 
 
+
 // 댓글 수정
 async function editComment(cmtLvId) {
 
@@ -521,40 +525,60 @@ async function editComment(cmtLvId) {
     let editCmtDiv = document.createElement("div");
     editCmtDiv.className = "editComment";
 
-    // 입력창
-    let editCmtContent = document.createElement("input");
-    editCmtContent.type = "textarea";
+    // 입력창 (textarea)
+    let editCmtContent = document.createElement("textarea");
     editCmtContent.value = cmtContent;
     editCmtContent.id = "editCmt_" + cmt_id;
     editCmtDiv.appendChild(editCmtContent);
 
+    // 버튼 컨테이너
+    let buttonWrapper = document.createElement("div");
+    buttonWrapper.className = "editButtons";
+
+    // 수정 완료 버튼
     let updateCmtButton = document.createElement("input");
-    updateCmtButton.value = "수정 완료";
+    updateCmtButton.type = "button";
+    updateCmtButton.value = "수정";
     updateCmtButton.onclick = function () {
         updateComment(cmt_id);
     }
-    editCmtDiv.appendChild(updateCmtButton);
+    buttonWrapper.appendChild(updateCmtButton);
 
+    // 수정 취소 버튼
     let cancelEditButton = document.createElement("input");
-    cancelEditButton.value = "수정 취소";
+    cancelEditButton.type = "button";
+    cancelEditButton.value = "취소";
     cancelEditButton.onclick = function () {
         cancelEditComment();
     }
-    editCmtDiv.appendChild(cancelEditButton);
+    buttonWrapper.appendChild(cancelEditButton);
 
+    // 버튼 div 추가
+    editCmtDiv.appendChild(buttonWrapper);
+
+    // 최종 삽입
     cmtLvDiv.appendChild(editCmtDiv);
-
 }
+
+
 
 // 댓글 수정 취소
 function cancelEditComment() {
 
+    // 댓글 수정 창 제거
     let editCommentDivs = document.querySelectorAll(".editComment");
-
     editCommentDivs.forEach(editCommentDiv => {
-        while (editCommentDiv.firstChild) {
-            editCommentDiv.removeChild(editCommentDiv.firstChild);
-        }
+        editCommentDiv.remove(); 
+    });
+
+    // 숨겨진 댓글 내용 다시 보이기
+    let allCommentContainers = document.querySelectorAll(".commentLevel");
+    allCommentContainers.forEach(container => {
+        Array.from(container.children).forEach(child => {
+            if (!child.classList.contains("editComment")) {
+                child.style.display = "block";
+            }
+        });
     });
 
     let commentContentDivs = document.querySelectorAll(".commentContent");
@@ -562,6 +586,7 @@ function cancelEditComment() {
         commentContentDiv.style.display = "block";
     });
 }
+
 
 // 댓글 수정 - 업데이트
 async function updateComment(cmt_id) {

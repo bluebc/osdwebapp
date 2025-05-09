@@ -8,9 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>건강나눔 글쓰기</title>
 
-    <!-- css -->
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/reset.css">
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/cunsultWrite.css">
+
     
     <!--favicon--->
     <link href="img/favicon.ico" rel="icon">
@@ -80,21 +78,20 @@
                                 <div id="summernote" name="editordata"></div>
                             </div>
                         </div>
-
-  
+                        <hr noshade>
                     </td>
                 </tr>
 
-                <tr>
+                <%-- <tr>
                     <td class="imageUpload">
                         <input class="upload-name" value="이미지" placeholder="이미지">
                         <label for="file">이미지찾기</label>
                         <input type="file" id="file" accept="image/*">
-                        <hr noshade>
-                        <!-- <h3>이미지 업로드</h3>
-                        <input type="file" name="image" accept="image/*" id="btn-upload"> -->
+                        
+                        <h3>이미지 업로드</h3>
+                        <input type="file" name="image" accept="image/*" id="btn-upload">
                     </td>
-                </tr>
+                </tr> --%>
 
 
                 <tr>
@@ -154,5 +151,9 @@
 	<script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/lang/summernote-ko-KR.js"></script>
     <script src ="${pageContext.request.contextPath}/js/summernote/summernote.js"></script>
+
+    <!-- css -->
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/reset.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/cunsultWrite.css">
 
 </html>
