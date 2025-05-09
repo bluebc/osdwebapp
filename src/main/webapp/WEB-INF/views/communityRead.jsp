@@ -105,7 +105,6 @@
                 </div>
             </div>
 
-
             <div id = "writeComment">
                 <div class="comment-inbox">
                     <div class="nickname"><h3>${login_user_nickname}</h3></div>
@@ -117,11 +116,6 @@
                         <input type = "button" value = "등록" onclick = "writeComment()">
                     </div>
                 </div>
-
-            </div>
-
-                
-           
 
             </div>
         </div>

@@ -90,44 +90,39 @@
                 </tr> --%>
 
                 <tr>
-                    <td>
-                    기존 업로드 자리
+                    <td class="original-file">
+                    <%-- 기존 업로드 자리 --%>
                     <input type = "hidden" value = '${community_post.post_files}' id = "originalFileJSON">
-                    <div id = "originFileContainer">    
-                        <div id = "originalFiles">
+                    <div id = "originFileContainer" class="original-container">    
+                        <div id = "originalFiles" >
 
                         </div>
                         <div>
                             <input type = "button" value = "삭제" onclick = "deleteOriginalFiles()" id = "deleteOriginalFilesButton" style = "display: none;">
                         </div>
                     </div>
-                    <hr noshade>
+                    <%-- <hr noshade> --%>
                     </td>
                 </tr>
 
 
 
                 <tr>
-                    <td>
-                        <label for="file">파일 업로드</label>
+                    <td class="upload-file">
+                        <hr noshade>
                         <form id="uploadForm" enctype="multipart/form-data">
+                            <label for="fileInput" class="custom-file-upload">파일 업로드</label>
                             <input type="file" id="fileInput" name="files" multiple>
                         </form>
 
                         <div id = "newFileContainer">    
-                            <div id = "newFiles">
-
+                            <div id = "newFiles" >
                             </div>
                             <div>
                                 <input type = "button" value = "삭제" onclick = "deleteNewFiles()" id = "deleteNewFilesButton"  style = "display: none;">
                             </div>
                         </div>
-
-
-
                         <hr noshade>
-                        <!-- <h3>이미지 업로드</h3>
-                        <input type="file" name="image" accept="image/*" id="btn-upload"> -->
                     </td>
                 </tr>
                 
