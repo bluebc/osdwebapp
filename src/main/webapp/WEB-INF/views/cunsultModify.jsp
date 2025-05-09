@@ -61,33 +61,50 @@
 
                             <%-- summernote --%>
                             <div>
-                                <div id="summernote" name="editordata"></div>
+                                <div id="summernote" name="editordata">${cunsult_post.post_content}</div>
                             </div>
                         </div>
                         <hr noshade>
                     </td>
                 </tr>
 
-                <%-- <tr>
-                    <td class="imageUpload">
-                        <input class="upload-name" value="이미지" placeholder="이미지">
-                        <label for="file">이미지찾기</label>
-                        <input type="file" id="file" accept="image/*">
-                        <hr noshade>
-                    </td>
-                </tr> --%>
+               <tr>
+                    <td class="original-file">
+                    <%-- 기존 업로드 자리 --%>
+                    <input type = "hidden" value = '${cunsult_post.post_files}' id = "originalFileJSON">
+                    <div id = "originFileContainer" class="original-container">    
+                        <div id = "originalFiles" >
 
-                <tr>
-                    <td>
-                        <label for="file">파일 업로드</label>
-                        <form id="uploadForm" enctype="multipart/form-data">
-                            <input type="file" id="fileInput" name="files" multiple>
-                        </form>
-                        <hr noshade>
-                        <!-- <h3>이미지 업로드</h3>
-                        <input type="file" name="image" accept="image/*" id="btn-upload"> -->
+                        </div>
+                        <div>
+                            <input type = "button" value = "삭제" onclick = "deleteOriginalFiles()" id = "deleteOriginalFilesButton" style = "display: none;">
+                        </div>
+                    </div>
+                    <%-- <hr noshade> --%>
                     </td>
                 </tr>
+
+                <tr>
+                    <td class="upload-file">
+                        <hr noshade>
+                        
+                        <form id="uploadForm" enctype="multipart/form-data">
+                            <label for="fileInput" class="custom-file-upload">파일 업로드</label>
+                            <input type="file" id="fileInput" name="files" multiple>
+                        </form>
+
+                        <div id = "newFileContainer">    
+                            <div id = "newFiles">
+
+                            </div>
+                            <div>
+                                <input type = "button" value = "삭제" onclick = "deleteNewFiles()" id = "deleteNewFilesButton"  style = "display: none;">
+                            </div>
+                        </div>
+                        <hr noshade>
+                    </td>
+                </tr>
+                
                 
                 <tr>
                     <td class="register-btn">

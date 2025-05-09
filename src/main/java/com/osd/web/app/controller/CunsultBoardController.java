@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.osd.web.app.dto.Board_CommentDto;
 import com.osd.web.app.dto.Board_PostDto;
+import com.osd.web.app.dto.Community_PostDto;
 import com.osd.web.app.dto.Cunsult_CommentDto;
 import com.osd.web.app.dto.Cunsult_Comment_LikeDto;
 import com.osd.web.app.dto.Cunsult_PostDto;
@@ -135,16 +136,15 @@ public class CunsultBoardController {
         }
 
         User_InfoDto login_user_Info = user_InfoService.getUser_InfoById(login_user_id);
-        
-        if(login_user_Info!=null){
+
+        if (login_user_Info != null) {
             String login_user_nickname = login_user_Info.getUser_nickname();
             model.addAttribute("login_user_nickname", login_user_nickname);
         }
-        
+
         model.addAttribute("cunsult_post", board_PostDto);
         model.addAttribute("liked", liked);
         model.addAttribute("login_user_id", login_user_id);
-        
 
         LocalDateTime post_created_at = board_PostDto.getPost_created_at();
 
@@ -185,11 +185,42 @@ public class CunsultBoardController {
 
     @ResponseBody
     @PostMapping("/modifyCunsultPost")
-    public Map<String, Object> modifyCunsultPost(@RequestBody Cunsult_PostDto cunsult_PostDto) {
+    public Map<String, Object> modifyCunsultPost(HttpServletRequest request,
+            @RequestBody Cunsult_PostDto cunsult_PostDto) {
         Map<String, Object> resultMap = new HashMap<>();
 
-        int updated = cunsultService.updateCunsultPost(cunsult_PostDto);
+        int status = 0;
 
+        HttpSession session = request.getSession();
+        String login_user_id = (String) session.getAttribute("login_user_id");
+        if (login_user_id == null || login_user_id.equals("")) {
+            status = -1;
+            resultMap.put("status", status);
+            return resultMap;
+        }
+        if (cunsult_PostDto == null) {
+            status = -101;
+            resultMap.put("status", status);
+            return resultMap;
+        }
+
+        int post_id = cunsult_PostDto.getPost_id();
+        Board_PostDto cunsult_PostFromDb = cunsultService.getPostById(post_id);
+        if (!login_user_id.equals(cunsult_PostFromDb.getUser_id())) {
+            status = -2;
+            resultMap.put("status", status);
+            return resultMap;
+        }
+
+        int updated = cunsultService.updateCunsultPost(cunsult_PostDto);
+        if (updated != 1) {
+            status = -301;
+            resultMap.put("status", status);
+            return resultMap;
+        }
+
+        status = updated;
+        resultMap.put("status", status);
         resultMap.put("updated", updated);
 
         return resultMap;
