@@ -10,5 +10,12 @@
 <select id="selectAll" resultMap="ShopProductResultMap">
 	select * from shop_product
 </select>
+
+<insert id="insert" parameterType="Shop_ProductDto">
+	insert into shop_product
+		(product_id, product_name)
+	values
+		(#{product_id}, #{product_name})
+</insert>
 		
 </mapper>

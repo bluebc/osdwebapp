@@ -17,4 +17,8 @@ public class Shop_ProductDao {
     public List<Shop_ProductDto> selectAll() {
         return session.selectList("Shop_Product.selectAll");
     }
+
+    public int insert(Shop_ProductDto shop_ProductDto){
+        return session.insert("Shop_Product.insert", shop_ProductDto);
+    }
 }
