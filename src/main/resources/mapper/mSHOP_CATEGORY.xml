@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="Shop_Category">
+
+<resultMap id="ShopCategoryResultMap" type="com.osd.web.app.dto.Shop_CategoryDto">
+
+	<result column="CATE_ID" property="cate_id"/>
+	<result column="GROUP_ID" property="group_id"/>
+	<result column="CATE_NAME" property="cate_name"/>
+	<result column="CATE_SORT" property="cate_sort"/>
+	<result column="CATE_USE" property="cate_use"/>
+
+</resultMap>
+		 
+<select id="selectAll" resultMap="ShopCategoryResultMap">
+	select * from shop_category
+</select>
+
+<insert id="insert" parameterType="Shop_CategoryDto">
+	insert into shop_category
+	values
+		(#{cate_id}, #{group_id}, #{cate_name}, #{cate_sort}, #{cate_use})
+</insert>
+		
+</mapper>

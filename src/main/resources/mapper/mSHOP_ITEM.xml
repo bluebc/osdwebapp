@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="Shop_Item">
+
+<resultMap id="ShopItemResultMap" type="com.osd.web.app.dto.Shop_ItemDto">
+    <result column="ITEM_ID" property="item_id"/>
+    <result column="ITEM_NAME" property="item_name"/>
+	<result column="GROUP_ID" property="group_id"/>
+	<result column="CATE_ID" property="cate_id"/>
+	<result column="ITEM_PRICE" property="item_price"/>
+	<result column="ITEM_DISCOUNTED" property="item_discounted"/>
+	<result column="ITEM_PRODUCT" property="item_product"/>
+	<result column="ITEM_SORT" property="item_sort"/>
+	<result column="ITEM_USE" property="item_use"/>
+
+</resultMap>
+		 
+<select id="selectAll" resultMap="ShopItemResultMap">
+	select * from shop_item
+</select>
+
+<insert id="insert" parameterType="Shop_ItemDto">
+	insert into shop_item
+		(product_id, product_name)
+	values
+		(#{product_id}, #{product_name})
+</insert>
+		
+</mapper>

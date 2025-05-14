@@ -11,6 +11,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.osd.web.app.dto.Shop_CategoryDto;
+import com.osd.web.app.dto.Shop_GroupDto;
+import com.osd.web.app.dto.Shop_ItemDto;
 import com.osd.web.app.dto.Shop_ProductDto;
 import com.osd.web.app.service.ShopService;
 
@@ -41,8 +44,13 @@ public class ShopController {
         return "shopAdmin";
     }
 
+    @RequestMapping("/admin/edit/item")
+    public String shopAdminEditItemPage() {
+        return "shopAdminEditItem";
+    }
+
     @ResponseBody
-    @PostMapping("/getProductListAll")
+    @PostMapping("/admin/getProductListAll")
     public Map<String, Object> getProductListAll() {
         Map<String, Object> resultMap = new HashMap<>();
 
@@ -53,7 +61,7 @@ public class ShopController {
 
     @ResponseBody
     @PostMapping("/admin/insertProductList")
-    public Map<String, Object> insertProductList(@RequestBody List<Shop_ProductDto> list){
+    public Map<String, Object> insertProductList(@RequestBody List<Shop_ProductDto> list) {
 
         Map<String, Object> resultMap = new HashMap<>();
         int result = 0;
@@ -62,14 +70,38 @@ public class ShopController {
 
         resultMap.put("inserted", inserted);
         resultMap.put("result", result);
-        
+
         return resultMap;
     }
 
-    @RequestMapping("/admin/edit/item")
-    public String shopAdminEditItemPage() {
-        return "shopAdminEditItem";
+    @ResponseBody
+    @PostMapping("/admin/getItemListAll")
+    public Map<String, Object> getItemListAll() {
+        Map<String, Object> resultMap = new HashMap<>();
+
+        List<Shop_ItemDto> list = shopService.getItemListAll();
+        resultMap.put("list", list);
+        return resultMap;
     }
 
+    @ResponseBody
+    @PostMapping("/admin/getGroupListAll")
+    public Map<String, Object> getGroupListAll() {
+        Map<String, Object> resultMap = new HashMap<>();
+
+        List<Shop_GroupDto> list = shopService.getGroupListAll();
+        resultMap.put("list", list);
+        return resultMap;
+    }
+
+    @ResponseBody
+    @PostMapping("/admin/getCategoryListAll")
+    public Map<String, Object> getCategoryListAll() {
+        Map<String, Object> resultMap = new HashMap<>();
+
+        List<Shop_CategoryDto> list = shopService.getCategoryListAll();
+        resultMap.put("list", list);
+        return resultMap;
+    }
 
 }
