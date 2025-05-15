@@ -33,7 +33,25 @@
             </select>
 
 
-            <div id = "fieldContainer"></div>
+            <div id="fieldContainer"></div>
 
             <input type="button" value="적용" onclick="applyProductChanges()">
         </body>
+
+        <!-- 임시 스타일 태그 -->
+        <style>
+            .item {
+                display: table;
+                border-collapse: collapse;
+            }
+
+            .item.row {
+                display: table-row;
+            }
+
+            .item.row>div {
+                display: table-cell;
+                border: 1px solid #ccc;
+                padding: 4px;
+            }
+        </style>

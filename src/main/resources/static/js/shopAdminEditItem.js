@@ -2,20 +2,24 @@ let field = "";
 
 let groupList = [];
 let categoryList = [];
+let productList = [];
 
 addEventListener("DOMContentLoaded", async function () {
     groupList = await getGroupListAll();
     categoryList = await getCategoryListAll();
+    productList = await getProductListAll();
 });
 
 
 // Set field List
 let row = 0;
-let addedRow = -1;
+let addCount = -1;
+// let addedRow = -1;
 const trName = "r";
 const tdName = "c";
 const s1 = "-";
 const s2 = "_";
+const s3 = " ";
 const newFieldId = "new";
 
 //
@@ -23,19 +27,19 @@ const newFieldId = "new";
 async function changeField(fieldName) {
     field = fieldName;
     row = 0;
-    addedRow = -1;
+    addCount = -1;
 
     switch (field) {
         case 'product':
-            const productList = await getProductListAll();
+            // const productList = await getProductListAll();
             setProductList(productList);
             break;
         case 'group':
-            const groupList = await getGroupListAll();
+            // const groupList = await getGroupListAll();
             setGroupList(groupList);
             break;
         case 'category':
-            const categoryList = await getCategoryListAll();
+            // const categoryList = await getCategoryListAll();
             setCategoryList(categoryList);
             break;
         case 'item':
@@ -108,15 +112,16 @@ function setProductList(list) {
         fieldContainerDiv.removeChild(fieldContainerDiv.firstChild);
     }
 
-    const fieldTbl = document.createElement("table");
+    const fieldTbl = document.createElement("div");
     fieldTbl.className = field;
     fieldTbl.id = field;
 
-    const fieldNameTr = document.createElement("tr");
+    const fieldNameTr = document.createElement("div");
+    fieldNameTr.className = field + s3 + "row" + s3 + "header";
 
-    const productIdTh = document.createElement("th");
+    const productIdTh = document.createElement("div");
     productIdTh.textContent = "제품ID";
-    const productNameTh = document.createElement("th");
+    const productNameTh = document.createElement("div");
     productNameTh.textContent = "제품 이름";
 
     fieldNameTr.appendChild(productIdTh);
@@ -127,14 +132,15 @@ function setProductList(list) {
 
     list.forEach((product, rowIndex) => {
 
-        const productTr = document.createElement("tr");
+        const productTr = document.createElement("div");
         productTr.id = trName + s1 + rowIndex;
-        const idTd = document.createElement("td");
+        productTr.className = field + s3 + "row";
+        const idTd = document.createElement("div");
         idTd.id = trName + s1 + rowIndex + s2 + tdName + s1 + "id";
         idTd.textContent = product.product_id;
         productTr.appendChild(idTd);
 
-        const nameTd = document.createElement("td");
+        const nameTd = document.createElement("div");
         nameTd.id = trName + s1 + rowIndex + s2 + tdName + s1 + "name";
         nameTd.textContent = product.product_name;
         productTr.appendChild(nameTd);
@@ -151,14 +157,17 @@ function addProductRow() {
     const fieldTbl = document.getElementById(field);
 
     row += 1;
-    addedRow += 1;
+    addCount += 1;
+    // addedRow += 1;
+    addedRow = addCount;
     rowIndex = row;
 
-    const productTr = document.createElement("tr");
+    const productTr = document.createElement("div");
 
     productTr.id = trName + s1 + rowIndex;
+    productTr.className = field + s3 + "row";
 
-    const idTd = document.createElement("td");
+    const idTd = document.createElement("div");
     idTd.id = trName + s1 + rowIndex + s2 + tdName + s1 + "id";
     const idInput = document.createElement("input");
     idInput.id = newFieldId + s1 + addedRow + s2 + tdName + s1 + "id";
@@ -166,7 +175,7 @@ function addProductRow() {
     idTd.appendChild(idInput);
     productTr.appendChild(idTd);
 
-    const nameTd = document.createElement("td");
+    const nameTd = document.createElement("div");
     nameTd.id = trName + s1 + rowIndex + s2 + tdName + s1 + "name";
     const nameInput = document.createElement("input");
     nameInput.id = newFieldId + s1 + addedRow + s2 + tdName + s1 + "name";
@@ -255,29 +264,30 @@ function setItemList(list) {
         fieldContainerDiv.removeChild(fieldContainerDiv.firstChild);
     }
 
-    const fieldTbl = document.createElement("table");
+    const fieldTbl = document.createElement("div");
     fieldTbl.className = field;
     fieldTbl.id = field;
 
-    const fieldNameTr = document.createElement("tr");
+    const fieldNameTr = document.createElement("div");
+    fieldNameTr.className = field + s3 + "row" + s3 + "header";
 
-    const itemIdTh = document.createElement("th");
+    const itemIdTh = document.createElement("div");
     itemIdTh.textContent = "품목ID";
-    const itemNameTh = document.createElement("th");
+    const itemNameTh = document.createElement("div");
     itemNameTh.textContent = "품목 이름";
-    const itemGroupTh = document.createElement("th");
+    const itemGroupTh = document.createElement("div");
     itemGroupTh.textContent = "그룹 ID";
-    const itemCateTh = document.createElement("th");
+    const itemCateTh = document.createElement("div");
     itemCateTh.textContent = "카테고리 ID";
-    const itemPriceTh = document.createElement("th");
+    const itemPriceTh = document.createElement("div");
     itemPriceTh.textContent = "품목 정가";
-    const itemDiscountedTh = document.createElement("th");
+    const itemDiscountedTh = document.createElement("div");
     itemDiscountedTh.textContent = "품목 할인가";
-    const itemProductTh = document.createElement("th");
+    const itemProductTh = document.createElement("div");
     itemProductTh.textContent = "품목 제품";
-    const itemSortTh = document.createElement("th");
+    const itemSortTh = document.createElement("div");
     itemSortTh.textContent = "품목 순서";
-    const itemUseTh = document.createElement("th");
+    const itemUseTh = document.createElement("div");
     itemUseTh.textContent = "품목 사용";
 
 
@@ -296,51 +306,52 @@ function setItemList(list) {
 
     list.forEach((item, rowIndex) => {
 
-        const itemTr = document.createElement("tr");
+        const itemTr = document.createElement("div");
+        itemTr.className = field + s3 + "row";
         itemTr.id = trName + s1 + rowIndex;
 
 
-        const idTd = document.createElement("td");
+        const idTd = document.createElement("div");
         idTd.id = trName + s1 + rowIndex + s2 + tdName + s1 + "id";
         idTd.textContent = item.item_id;
         itemTr.appendChild(idTd);
 
-        const nameTd = document.createElement("td");
+        const nameTd = document.createElement("div");
         nameTd.id = trName + s1 + rowIndex + s2 + tdName + s1 + "name";
         nameTd.textContent = item.item_name;
         itemTr.appendChild(nameTd);
 
-        const groupTd = document.createElement("td");
+        const groupTd = document.createElement("div");
         groupTd.id = trName + s1 + rowIndex + s2 + tdName + s1 + "group";
         groupTd.textContent = item.group_id;
         itemTr.appendChild(groupTd);
 
-        const cateTd = document.createElement("td");
+        const cateTd = document.createElement("div");
         cateTd.id = trName + s1 + rowIndex + s2 + tdName + s1 + "cate";
         cateTd.textContent = item.cate_id;
         itemTr.appendChild(cateTd);
 
-        const priceTd = document.createElement("td");
+        const priceTd = document.createElement("div");
         priceTd.id = trName + s1 + rowIndex + s2 + tdName + s1 + "price";
         priceTd.textContent = item.item_price;
         itemTr.appendChild(priceTd);
 
-        const discountedTd = document.createElement("td");
+        const discountedTd = document.createElement("div");
         discountedTd.id = trName + s1 + rowIndex + s2 + tdName + s1 + "discounted";
         discountedTd.textContent = item.item_discounted;
         itemTr.appendChild(discountedTd);
 
-        const productTd = document.createElement("td");
+        const productTd = document.createElement("div");
         productTd.id = trName + s1 + rowIndex + s2 + tdName + s1 + "product";
         productTd.textContent = item.product_id;
         itemTr.appendChild(productTd);
 
-        const sortTd = document.createElement("td");
+        const sortTd = document.createElement("div");
         sortTd.id = trName + s1 + rowIndex + s2 + tdName + s1 + "sort";
         sortTd.textContent = item.item_sort;
         itemTr.appendChild(sortTd);
 
-        const useTd = document.createElement("td");
+        const useTd = document.createElement("div");
         useTd.id = trName + s1 + rowIndex + s2 + tdName + s1 + "use";
         useTd.textContent = item.item_use;
         itemTr.appendChild(useTd);
@@ -358,14 +369,16 @@ function addItemRow() {
     const fieldTbl = document.getElementById(field);
 
     row += 1;
-    addedRow += 1;
-    rowIndex = row;
+    addCount += 1;
+    let addedRow = addCount;
+    let rowIndex = row;
 
-    const itemTr = document.createElement("tr");
+    const itemTr = document.createElement("div");
+    itemTr.className = field + s3 + "row";
 
     itemTr.id = trName + s1 + rowIndex;
 
-    const idTd = document.createElement("td");
+    const idTd = document.createElement("div");
     idTd.id = trName + s1 + rowIndex + s2 + tdName + s1 + "id";
     const idInput = document.createElement("input");
     idInput.id = newFieldId + s1 + addedRow + s2 + tdName + s1 + "id";
@@ -373,7 +386,7 @@ function addItemRow() {
     idTd.appendChild(idInput);
     itemTr.appendChild(idTd);
 
-    const nameTd = document.createElement("td");
+    const nameTd = document.createElement("div");
     nameTd.id = trName + s1 + rowIndex + s2 + tdName + s1 + "name";
     const nameInput = document.createElement("input");
     nameInput.id = newFieldId + s1 + addedRow + s2 + tdName + s1 + "name";
@@ -389,7 +402,7 @@ function addItemRow() {
     // groupTd.appendChild(groupInput);
     // itemTr.appendChild(groupTd);
 
-    const groupTd = document.createElement("td");
+    const groupTd = document.createElement("div");
     groupTd.id = trName + s1 + rowIndex + s2 + tdName + s1 + "group";
 
 
@@ -440,7 +453,7 @@ function addItemRow() {
     // cateTd.appendChild(cateInput);
     // itemTr.appendChild(cateTd);
 
-    const cateTd = document.createElement("td");
+    const cateTd = document.createElement("div");
     cateTd.id = trName + s1 + rowIndex + s2 + tdName + s1 + "cate";
 
     const cateSelect = document.createElement("select");
@@ -451,7 +464,7 @@ function addItemRow() {
 
 
 
-    const priceTd = document.createElement("td");
+    const priceTd = document.createElement("div");
     priceTd.id = trName + s1 + rowIndex + s2 + tdName + s1 + "price";
     const priceInput = document.createElement("input");
     priceInput.id = newFieldId + s1 + addedRow + s2 + tdName + s1 + "price";
@@ -459,7 +472,7 @@ function addItemRow() {
     priceTd.appendChild(priceInput);
     itemTr.appendChild(priceTd);
 
-    const discountedTd = document.createElement("td");
+    const discountedTd = document.createElement("div");
     discountedTd.id = trName + s1 + rowIndex + s2 + tdName + s1 + "discounted";
     const discountedInput = document.createElement("input");
     discountedInput.id = newFieldId + s1 + addedRow + s2 + tdName + s1 + "discounted";
@@ -467,15 +480,49 @@ function addItemRow() {
     discountedTd.appendChild(discountedInput);
     itemTr.appendChild(discountedTd);
 
-    const productTd = document.createElement("td");
+    const productTd = document.createElement("div");
     productTd.id = trName + s1 + rowIndex + s2 + tdName + s1 + "product";
-    const productInput = document.createElement("input");
-    productInput.id = newFieldId + s1 + addedRow + s2 + tdName + s1 + "product";
-    productInput.type = "text";
-    productTd.appendChild(productInput);
+
+    const productCount = document.createElement("input");
+    productCount.id = newFieldId + s1 + addedRow + s2 + tdName + s1 + "product" + s2 + "count";
+    productCount.type = "hidden";
+    productCount.value = 0;
+    productTd.appendChild(productCount);
+
+    const productContainerDiv = document.createElement("div");
+    productContainerDiv.id = newFieldId + s1 + addedRow + s2 + tdName + s1 + "product" + s2 + "container";
+    productContainerDiv.className = "itemProductContainer";
+    productTd.appendChild(productContainerDiv);
+
+    const addProductBtn = document.createElement("input");
+    addProductBtn.type = "button";
+    addProductBtn.value = "추가";
+    addProductBtn.onclick = function () {
+        addSelectProductToItem(rowIndex, trName, tdName, newFieldId, addedRow);
+    }
+    productTd.appendChild(addProductBtn);
+
+
+
+    // 제품 * 수량
+
+
+    // const productInput = document.createElement("input");
+    // productInput.id = newFieldId + s1 + addedRow + s2 + tdName + s1 + "product";
+    // productInput.type = "text";
+
+    // productTd.appendChild(productInput);
+
+
+
+
+
+
+
+
     itemTr.appendChild(productTd);
 
-    const sortTd = document.createElement("td");
+    const sortTd = document.createElement("div");
     sortTd.id = trName + s1 + rowIndex + s2 + tdName + s1 + "sort";
     const sortInput = document.createElement("input");
     sortInput.id = newFieldId + s1 + addedRow + s2 + tdName + s1 + "sort";
@@ -483,12 +530,28 @@ function addItemRow() {
     sortTd.appendChild(sortInput);
     itemTr.appendChild(sortTd);
 
-    const useTd = document.createElement("td");
+    const useTd = document.createElement("div");
     useTd.id = trName + s1 + rowIndex + s2 + tdName + s1 + "use";
-    const useInput = document.createElement("input");
-    useInput.id = newFieldId + s1 + addedRow + s2 + tdName + s1 + "use";
-    useInput.type = "text";
-    useTd.appendChild(useInput);
+    // const useInput = document.createElement("input");
+    // useInput.id = newFieldId + s1 + addedRow + s2 + tdName + s1 + "use";
+    // useInput.type = "text";
+    // useTd.appendChild(useInput);
+
+    const useSelect = document.createElement("select");
+    useSelect.id = newFieldId + s1 + addedRow + s2 + tdName + s1 + "use";
+    const useSelectOptionY = document.createElement("option");
+    useSelectOptionY.value = "Y";
+    useSelectOptionY.textContent = "Y";
+    useSelect.appendChild(useSelectOptionY);
+    const useSelectOptionN = document.createElement("option");
+    useSelectOptionN.value = "N";
+    useSelectOptionN.textContent = "N";
+    useSelect.appendChild(useSelectOptionN);
+
+    useTd.appendChild(useSelect);
+
+
+
     itemTr.appendChild(useTd);
 
 
@@ -498,10 +561,54 @@ function addItemRow() {
 
     // 후작업
     updateCategoryOptions();
+    addSelectProductToItem(rowIndex, trName, tdName, newFieldId, addedRow);
+
+}
+
+// added => add
+function addSelectProductToItem(rowIndex, trName, tdName, newFieldId, addedRow) {
+
+    let productCount = document.getElementById(newFieldId + s1 + addedRow + s2 + tdName + s1 + "product" + s2 + "count");
+    productCount.value = parseInt(productCount.value) + 1;
+    let count = productCount.value;
+
+
+
+
+    const productContainerDiv = document.getElementById(newFieldId + s1 + addedRow + s2 + tdName + s1 + "product" + s2 + "container");
+
+    // const productTd = document.getElementById(trName + s1 + rowIndex + s2 + tdName + s1 + "product");
+    const productAndQuantityDiv = document.createElement("div");
+    productAndQuantityDiv.id = newFieldId + s1 + addedRow + s2 + tdName + s1 + "product" + s2 + "count" + s1 + count;
+    const productSelect = document.createElement("select");
+    productSelect.id = newFieldId + s1 + addedRow + s2 + tdName + s1 + "product" + s2 + "count" + s1 + count + s2 + "select";
+    productList.forEach(product => {
+        const productSelectOption = document.createElement("option");
+        productSelectOption.value = product.product_id;
+        productSelectOption.textContent = product.product_name;
+        productSelect.appendChild(productSelectOption);
+    });
+    productAndQuantityDiv.appendChild(productSelect);
+    const productQuantity = document.createElement("input");
+    productQuantity.id = newFieldId + s1 + addedRow + s2 + tdName + s1 + "product" + s2 + "count" + s1 + count + s2 + "quantity";
+    productQuantity.type = "number";
+    productAndQuantityDiv.appendChild(productQuantity);
+
+    const deleteProductBtn = document.createElement("input");
+    deleteProductBtn.type = "button";
+    deleteProductBtn.value = "삭제";
+    deleteProductBtn.onclick = function () {
+        // 해당 항목 삭제
+        document.getElementById(newFieldId + s1 + addedRow + s2 + tdName + s1 + "product" + s2 + "count" + s1 + count).remove();
+    }
+    productAndQuantityDiv.appendChild(deleteProductBtn);
+
+    productContainerDiv.appendChild(productAndQuantityDiv);
 
 }
 
 function updateCategoryOptions() {
+    let addedRow = addCount;
     const cateSelect = document.getElementById(newFieldId + s1 + addedRow + s2 + tdName + s1 + "cate");
     while (cateSelect.firstChild) {
         cateSelect.removeChild(cateSelect.firstChild);
@@ -618,16 +725,16 @@ async function getCategoryListAll() {
 
 function setFieldList(list) {
     const fieldContainerDiv = document.getElementById("fieldContainer");
-    const fieldTbl = document.createElement("table");
+    const fieldTbl = document.createElement("div");
     fieldTbl.className = field;
 
     list.forEach((element, rowIndex) => {
-        const fieldTr = document.createElement("tr");
+        const fieldTr = document.createElement("div");
         fieldTr.id = `r-${rowIndex}`;
 
 
         Object.values(element).forEach((value, colIndex) => {
-            const fieldTd = document.createElement("td");
+            const fieldTd = document.createElement("div");
             fieldTd.id = `r-${rowIndex}_c-${colIndex}`;
             fieldTd.textContent = value;
 

@@ -143,4 +143,10 @@ public class TestController {
         return "test/community/community";
     }
 
+
+    @RequestMapping("/tTable")
+    public String tTablePage(){
+        return "test/table";
+    }
+
 }
