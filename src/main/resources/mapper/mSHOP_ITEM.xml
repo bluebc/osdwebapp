@@ -21,9 +21,9 @@
 
 <insert id="insert" parameterType="Shop_ItemDto">
 	insert into shop_item
-		(product_id, product_name)
+		(item_id, item_name, group_id, cate_id, item_price, item_discounted, item_product, item_sort, item_use)
 	values
-		(#{product_id}, #{product_name})
+		(#{item_id}, #{item_name}, #{group_id}, #{cate_id}, #{item_price}, #{item_discounted}, #{item_product}, #{item_sort}, #{item_use})
 </insert>
 		
 </mapper>

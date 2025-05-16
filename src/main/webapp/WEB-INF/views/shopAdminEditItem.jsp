@@ -35,7 +35,7 @@
 
             <div id="fieldContainer"></div>
 
-            <input type="button" value="적용" onclick="applyProductChanges()">
+            <input type="button" id = "applyChangesButton" value="적용" onclick="">
         </body>
 
         <!-- 임시 스타일 태그 -->

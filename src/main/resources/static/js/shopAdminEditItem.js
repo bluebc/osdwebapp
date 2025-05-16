@@ -3,11 +3,13 @@ let field = "";
 let groupList = [];
 let categoryList = [];
 let productList = [];
+let productMap = new Map(productList.map(product => [String(product.product_id), product.product_name]));
 
 addEventListener("DOMContentLoaded", async function () {
     groupList = await getGroupListAll();
     categoryList = await getCategoryListAll();
     productList = await getProductListAll();
+    productMap = new Map(productList.map(product => [String(product.product_id), product.product_name]));
 });
 
 
@@ -29,10 +31,15 @@ async function changeField(fieldName) {
     row = 0;
     addCount = -1;
 
+    const applyChangesButton = document.getElementById("applyChangesButton");
+
     switch (field) {
         case 'product':
             // const productList = await getProductListAll();
             setProductList(productList);
+            applyChangesButton.onclick = function () {
+                applyProductChanges();
+            }
             break;
         case 'group':
             // const groupList = await getGroupListAll();
@@ -45,6 +52,9 @@ async function changeField(fieldName) {
         case 'item':
             const itemList = await getItemListAll();
             setItemList(itemList);
+            applyChangesButton.onclick = function () {
+                applyItemChanges();
+            }
             break;
     }
     addFieldButton();
@@ -159,7 +169,7 @@ function addProductRow() {
     row += 1;
     addCount += 1;
     // addedRow += 1;
-    addedRow = addCount;
+    addedRowIndex = addCount;
     rowIndex = row;
 
     const productTr = document.createElement("div");
@@ -170,7 +180,7 @@ function addProductRow() {
     const idTd = document.createElement("div");
     idTd.id = trName + s1 + rowIndex + s2 + tdName + s1 + "id";
     const idInput = document.createElement("input");
-    idInput.id = newFieldId + s1 + addedRow + s2 + tdName + s1 + "id";
+    idInput.id = newFieldId + s1 + addedRowIndex + s2 + tdName + s1 + "id";
     idInput.type = "text";
     idTd.appendChild(idInput);
     productTr.appendChild(idTd);
@@ -178,7 +188,7 @@ function addProductRow() {
     const nameTd = document.createElement("div");
     nameTd.id = trName + s1 + rowIndex + s2 + tdName + s1 + "name";
     const nameInput = document.createElement("input");
-    nameInput.id = newFieldId + s1 + addedRow + s2 + tdName + s1 + "name";
+    nameInput.id = newFieldId + s1 + addedRowIndex + s2 + tdName + s1 + "name";
     nameInput.type = "text";
     nameTd.appendChild(nameInput);
     productTr.appendChild(nameTd);
@@ -201,8 +211,6 @@ function applyProductChanges() {
             .then(resultMap => {
                 const inserted = resultMap.inserted;
                 const result = resultMap.result;
-                console.log(inserted);
-                console.log(result);
             });
 
     }
@@ -211,7 +219,7 @@ function applyProductChanges() {
 
 function getNewProduct() {
     let productList = [];
-    for (let rowIndex = 1; rowIndex <= addedRow; rowIndex++) {
+    for (let rowIndex = 0; rowIndex < addCount; rowIndex++) {
         const product_id = document.getElementById(newFieldId + s1 + rowIndex + s2 + tdName + s1 + "id").value;
         if (product_id == null || product_id == "") {
             continue;
@@ -343,7 +351,65 @@ function setItemList(list) {
 
         const productTd = document.createElement("div");
         productTd.id = trName + s1 + rowIndex + s2 + tdName + s1 + "product";
-        productTd.textContent = item.product_id;
+
+
+
+
+        let item_productList = [];
+        item_productList = JSON.parse(item.item_product);
+
+
+        const productCount = document.createElement("input");
+        productCount.id = trName + s1 + rowIndex + s2 + tdName + s1 + "product" + s2 + "count";
+        productCount.type = "hidden";
+        productCount.value = item_productList.length;
+        productTd.appendChild(productCount);
+
+
+        const productContainerDiv = document.createElement("div");
+        productContainerDiv.id = trName + s1 + rowIndex + s2 + tdName + s1 + "product" + s2 + "container";
+        productContainerDiv.className = "itemProductContainer";
+        productTd.appendChild(productContainerDiv);
+
+        // div
+
+        item_productList.forEach(item_product => {
+
+            const productAndQuantityDiv = document.createElement("div");
+            productAndQuantityDiv.id = trName + s1 + rowIndex + s2 + tdName + s1 + "product" + s2 + "itemProduct" + s1 + item_product.item_product_id;
+
+
+            const productId = document.createElement("input");
+            productId.type = "hidden"
+            productId.id = trName + s1 + rowIndex + s2 + tdName + s1 + "product" + s2 + "itemProduct" + s1 + item_product.item_product_id + s2 + "id";
+            productId.value = item_product.product_id;
+
+            productAndQuantityDiv.appendChild(productId);
+
+
+            const productName = document.createElement("div");
+            productName.id = trName + s1 + rowIndex + s2 + tdName + s1 + "product" + s2 + "itemProduct" + s1 + item_product.item_product_id + s2 + "name";
+            productName.textContent = productMap.get(item_product.product_id);
+
+            productAndQuantityDiv.appendChild(productName);
+
+
+            const productQuantity = document.createElement("div");
+            productQuantity.id = trName + s1 + rowIndex + s2 + tdName + s1 + "product" + s2 + "itemProduct" + s1 + item_product.item_product_id + s2 + "quantity";
+            productQuantity.textContent = item_product.product_quantity;
+            productAndQuantityDiv.appendChild(productQuantity);
+
+            productTd.appendChild(productAndQuantityDiv);
+        });
+
+
+
+
+
+
+
+        // div
+
         itemTr.appendChild(productTd);
 
         const sortTd = document.createElement("div");
@@ -370,7 +436,7 @@ function addItemRow() {
 
     row += 1;
     addCount += 1;
-    let addedRow = addCount;
+    let addedRowIndex = addCount;
     let rowIndex = row;
 
     const itemTr = document.createElement("div");
@@ -381,7 +447,7 @@ function addItemRow() {
     const idTd = document.createElement("div");
     idTd.id = trName + s1 + rowIndex + s2 + tdName + s1 + "id";
     const idInput = document.createElement("input");
-    idInput.id = newFieldId + s1 + addedRow + s2 + tdName + s1 + "id";
+    idInput.id = newFieldId + s1 + addedRowIndex + s2 + tdName + s1 + "id";
     idInput.type = "text";
     idTd.appendChild(idInput);
     itemTr.appendChild(idTd);
@@ -389,26 +455,16 @@ function addItemRow() {
     const nameTd = document.createElement("div");
     nameTd.id = trName + s1 + rowIndex + s2 + tdName + s1 + "name";
     const nameInput = document.createElement("input");
-    nameInput.id = newFieldId + s1 + addedRow + s2 + tdName + s1 + "name";
+    nameInput.id = newFieldId + s1 + addedRowIndex + s2 + tdName + s1 + "name";
     nameInput.type = "text";
     nameTd.appendChild(nameInput);
     itemTr.appendChild(nameTd);
 
-    // const groupTd = document.createElement("td");
-    // groupTd.id = trName + s1 + rowIndex + s2 + tdName + s1 + "group";
-    // const groupInput = document.createElement("input");
-    // groupInput.id = newFieldId + s1 + addedRow + s2 + tdName + s1 + "group";
-    // groupInput.type = "text";
-    // groupTd.appendChild(groupInput);
-    // itemTr.appendChild(groupTd);
-
     const groupTd = document.createElement("div");
     groupTd.id = trName + s1 + rowIndex + s2 + tdName + s1 + "group";
 
-
-
     const groupSelect = document.createElement("select");
-    groupSelect.id = newFieldId + s1 + addedRow + s2 + tdName + s1 + "group";
+    groupSelect.id = newFieldId + s1 + addedRowIndex + s2 + tdName + s1 + "group";
 
     groupList.forEach(group => {
         const groupSelectOption = document.createElement("option");
@@ -417,57 +473,26 @@ function addItemRow() {
         groupSelect.appendChild(groupSelectOption);
     });
 
-
-    // groupSelect.addEventListener("change", function () {
-    //     const cateSelect = document.getElementById(newFieldId + s1 + addedRow + s2 + tdName + s1 + "cate");
-    //     while (cateSelect.firstChild) {
-    //         cateSelect.removeChild(cateSelect.firstChild);
-    //     }
-    //     categoryList.forEach(category => {
-    //         const group_id = document.getElementById(newFieldId + s1 + addedRow + s2 + tdName + s1 + "group").value;
-    //         if (category.group_id != group_id) {
-    //             return;
-    //         }
-    //         const cateSelectOption = document.createElement("option");
-    //         cateSelectOption.value = category.cate_id;
-    //         cateSelectOption.textContent = category.cate_name;
-    //         cateSelect.appendChild(cateSelectOption);
-    //     });
-
-    // });
-
     groupSelect.addEventListener("change", function () {
         updateCategoryOptions();
     });
 
-
-
     groupTd.appendChild(groupSelect);
     itemTr.appendChild(groupTd);
-
-    // const cateTd = document.createElement("td");
-    // cateTd.id = trName + s1 + rowIndex + s2 + tdName + s1 + "cate";
-    // const cateInput = document.createElement("input");
-    // cateInput.id = newFieldId + s1 + addedRow + s2 + tdName + s1 + "cate";
-    // cateInput.type = "text";
-    // cateTd.appendChild(cateInput);
-    // itemTr.appendChild(cateTd);
 
     const cateTd = document.createElement("div");
     cateTd.id = trName + s1 + rowIndex + s2 + tdName + s1 + "cate";
 
     const cateSelect = document.createElement("select");
-    cateSelect.id = newFieldId + s1 + addedRow + s2 + tdName + s1 + "cate";
+    cateSelect.id = newFieldId + s1 + addedRowIndex + s2 + tdName + s1 + "cate";
 
     cateTd.appendChild(cateSelect);
     itemTr.appendChild(cateTd);
 
-
-
     const priceTd = document.createElement("div");
     priceTd.id = trName + s1 + rowIndex + s2 + tdName + s1 + "price";
     const priceInput = document.createElement("input");
-    priceInput.id = newFieldId + s1 + addedRow + s2 + tdName + s1 + "price";
+    priceInput.id = newFieldId + s1 + addedRowIndex + s2 + tdName + s1 + "price";
     priceInput.type = "text";
     priceTd.appendChild(priceInput);
     itemTr.appendChild(priceTd);
@@ -475,7 +500,7 @@ function addItemRow() {
     const discountedTd = document.createElement("div");
     discountedTd.id = trName + s1 + rowIndex + s2 + tdName + s1 + "discounted";
     const discountedInput = document.createElement("input");
-    discountedInput.id = newFieldId + s1 + addedRow + s2 + tdName + s1 + "discounted";
+    discountedInput.id = newFieldId + s1 + addedRowIndex + s2 + tdName + s1 + "discounted";
     discountedInput.type = "text";
     discountedTd.appendChild(discountedInput);
     itemTr.appendChild(discountedTd);
@@ -484,13 +509,13 @@ function addItemRow() {
     productTd.id = trName + s1 + rowIndex + s2 + tdName + s1 + "product";
 
     const productCount = document.createElement("input");
-    productCount.id = newFieldId + s1 + addedRow + s2 + tdName + s1 + "product" + s2 + "count";
+    productCount.id = newFieldId + s1 + addedRowIndex + s2 + tdName + s1 + "product" + s2 + "count";
     productCount.type = "hidden";
     productCount.value = 0;
     productTd.appendChild(productCount);
 
     const productContainerDiv = document.createElement("div");
-    productContainerDiv.id = newFieldId + s1 + addedRow + s2 + tdName + s1 + "product" + s2 + "container";
+    productContainerDiv.id = newFieldId + s1 + addedRowIndex + s2 + tdName + s1 + "product" + s2 + "container";
     productContainerDiv.className = "itemProductContainer";
     productTd.appendChild(productContainerDiv);
 
@@ -498,47 +523,26 @@ function addItemRow() {
     addProductBtn.type = "button";
     addProductBtn.value = "추가";
     addProductBtn.onclick = function () {
-        addSelectProductToItem(rowIndex, trName, tdName, newFieldId, addedRow);
+        addSelectProductToItem(rowIndex, trName, tdName, newFieldId, addedRowIndex);
     }
     productTd.appendChild(addProductBtn);
-
-
-
-    // 제품 * 수량
-
-
-    // const productInput = document.createElement("input");
-    // productInput.id = newFieldId + s1 + addedRow + s2 + tdName + s1 + "product";
-    // productInput.type = "text";
-
-    // productTd.appendChild(productInput);
-
-
-
-
-
-
-
 
     itemTr.appendChild(productTd);
 
     const sortTd = document.createElement("div");
     sortTd.id = trName + s1 + rowIndex + s2 + tdName + s1 + "sort";
     const sortInput = document.createElement("input");
-    sortInput.id = newFieldId + s1 + addedRow + s2 + tdName + s1 + "sort";
+    sortInput.id = newFieldId + s1 + addedRowIndex + s2 + tdName + s1 + "sort";
     sortInput.type = "text";
     sortTd.appendChild(sortInput);
     itemTr.appendChild(sortTd);
 
     const useTd = document.createElement("div");
     useTd.id = trName + s1 + rowIndex + s2 + tdName + s1 + "use";
-    // const useInput = document.createElement("input");
-    // useInput.id = newFieldId + s1 + addedRow + s2 + tdName + s1 + "use";
-    // useInput.type = "text";
-    // useTd.appendChild(useInput);
+
 
     const useSelect = document.createElement("select");
-    useSelect.id = newFieldId + s1 + addedRow + s2 + tdName + s1 + "use";
+    useSelect.id = newFieldId + s1 + addedRowIndex + s2 + tdName + s1 + "use";
     const useSelectOptionY = document.createElement("option");
     useSelectOptionY.value = "Y";
     useSelectOptionY.textContent = "Y";
@@ -550,38 +554,29 @@ function addItemRow() {
 
     useTd.appendChild(useSelect);
 
-
-
     itemTr.appendChild(useTd);
-
-
 
     fieldTbl.appendChild(itemTr);
 
 
     // 후작업
     updateCategoryOptions();
-    addSelectProductToItem(rowIndex, trName, tdName, newFieldId, addedRow);
+    addSelectProductToItem(rowIndex, trName, tdName, newFieldId, addedRowIndex);
 
 }
 
-// added => add
-function addSelectProductToItem(rowIndex, trName, tdName, newFieldId, addedRow) {
+function addSelectProductToItem(rowIndex, trName, tdName, newFieldId, addedRowIndex) {
 
-    let productCount = document.getElementById(newFieldId + s1 + addedRow + s2 + tdName + s1 + "product" + s2 + "count");
+    let productCount = document.getElementById(newFieldId + s1 + addedRowIndex + s2 + tdName + s1 + "product" + s2 + "count");
     productCount.value = parseInt(productCount.value) + 1;
     let count = productCount.value;
 
+    const productContainerDiv = document.getElementById(newFieldId + s1 + addedRowIndex + s2 + tdName + s1 + "product" + s2 + "container");
 
-
-
-    const productContainerDiv = document.getElementById(newFieldId + s1 + addedRow + s2 + tdName + s1 + "product" + s2 + "container");
-
-    // const productTd = document.getElementById(trName + s1 + rowIndex + s2 + tdName + s1 + "product");
     const productAndQuantityDiv = document.createElement("div");
-    productAndQuantityDiv.id = newFieldId + s1 + addedRow + s2 + tdName + s1 + "product" + s2 + "count" + s1 + count;
+    productAndQuantityDiv.id = newFieldId + s1 + addedRowIndex + s2 + tdName + s1 + "product" + s2 + "count" + s1 + count;
     const productSelect = document.createElement("select");
-    productSelect.id = newFieldId + s1 + addedRow + s2 + tdName + s1 + "product" + s2 + "count" + s1 + count + s2 + "select";
+    productSelect.id = newFieldId + s1 + addedRowIndex + s2 + tdName + s1 + "product" + s2 + "count" + s1 + count + s2 + "id";
     productList.forEach(product => {
         const productSelectOption = document.createElement("option");
         productSelectOption.value = product.product_id;
@@ -590,7 +585,7 @@ function addSelectProductToItem(rowIndex, trName, tdName, newFieldId, addedRow) 
     });
     productAndQuantityDiv.appendChild(productSelect);
     const productQuantity = document.createElement("input");
-    productQuantity.id = newFieldId + s1 + addedRow + s2 + tdName + s1 + "product" + s2 + "count" + s1 + count + s2 + "quantity";
+    productQuantity.id = newFieldId + s1 + addedRowIndex + s2 + tdName + s1 + "product" + s2 + "count" + s1 + count + s2 + "quantity";
     productQuantity.type = "number";
     productAndQuantityDiv.appendChild(productQuantity);
 
@@ -598,8 +593,7 @@ function addSelectProductToItem(rowIndex, trName, tdName, newFieldId, addedRow) 
     deleteProductBtn.type = "button";
     deleteProductBtn.value = "삭제";
     deleteProductBtn.onclick = function () {
-        // 해당 항목 삭제
-        document.getElementById(newFieldId + s1 + addedRow + s2 + tdName + s1 + "product" + s2 + "count" + s1 + count).remove();
+        document.getElementById(newFieldId + s1 + addedRowIndex + s2 + tdName + s1 + "product" + s2 + "count" + s1 + count).remove();
     }
     productAndQuantityDiv.appendChild(deleteProductBtn);
 
@@ -608,13 +602,13 @@ function addSelectProductToItem(rowIndex, trName, tdName, newFieldId, addedRow) 
 }
 
 function updateCategoryOptions() {
-    let addedRow = addCount;
-    const cateSelect = document.getElementById(newFieldId + s1 + addedRow + s2 + tdName + s1 + "cate");
+    let addedRowIndex = addCount;
+    const cateSelect = document.getElementById(newFieldId + s1 + addedRowIndex + s2 + tdName + s1 + "cate");
     while (cateSelect.firstChild) {
         cateSelect.removeChild(cateSelect.firstChild);
     }
     categoryList.forEach(category => {
-        const group_id = document.getElementById(newFieldId + s1 + addedRow + s2 + tdName + s1 + "group").value;
+        const group_id = document.getElementById(newFieldId + s1 + addedRowIndex + s2 + tdName + s1 + "group").value;
         if (category.group_id != group_id) {
             return;
         }
@@ -628,9 +622,9 @@ function updateCategoryOptions() {
 
 
 
-function applyItemChanges() {
+async function applyItemChanges() {
 
-    insertList = getNewItem();
+    const insertList = await getNewItem();
 
     if (insertList.length > 0) {
 
@@ -642,30 +636,104 @@ function applyItemChanges() {
             .then(resultMap => {
                 const inserted = resultMap.inserted;
                 const result = resultMap.result;
-                console.log(inserted);
-                console.log(result);
+                console.log("insertItemList: " + inserted);
+                console.log("insertItemList: " + result);
             });
 
     }
 
 }
 
-function getNewItem() {
+async function getNewItem() {
     let itemList = [];
-    for (let rowIndex = 1; rowIndex <= addedRow; rowIndex++) {
-        const item_id = document.getElementById(newFieldId + s1 + rowIndex + s2 + tdName + s1 + "id").value;
+    for (let addedRowIndex = 0; addedRowIndex <= addCount; addedRowIndex++) {
+        const item_id = document.getElementById(newFieldId + s1 + addedRowIndex + s2 + tdName + s1 + "id").value;
         if (item_id == null || item_id == "") {
             continue;
         }
-        const item_name = document.getElementById(newFieldId + s1 + rowIndex + s2 + tdName + s1 + "name").value;
+        const item_name = document.getElementById(newFieldId + s1 + addedRowIndex + s2 + tdName + s1 + "name").value;
         if (item_name == null || item_name == "") {
             continue;
         }
-        const item = { item_id: item_id, item_name: item_name };
+        const group_id = document.getElementById(newFieldId + s1 + addedRowIndex + s2 + tdName + s1 + "group").value;
+        if (group_id == null || group_id == "") {
+            continue;
+        }
+        const cate_id = document.getElementById(newFieldId + s1 + addedRowIndex + s2 + tdName + s1 + "cate").value;
+        if (cate_id == null || cate_id == "") {
+            continue;
+        }
+        const item_price = document.getElementById(newFieldId + s1 + addedRowIndex + s2 + tdName + s1 + "price").value;
+        if (item_price == null || item_price == "") {
+            continue;
+        }
+        const item_discounted = document.getElementById(newFieldId + s1 + addedRowIndex + s2 + tdName + s1 + "discounted").value;
+        if (item_discounted == null || item_discounted == "") {
+            continue;
+        }
+        // product
+        let item_product = [];
+        const productCount = document.getElementById(newFieldId + s1 + addedRowIndex + s2 + tdName + s1 + "product" + s2 + "count").value;
+        for (let count = 1; count <= productCount; count++) {
+            const productAndQuantityDiv = document.getElementById(newFieldId + s1 + addedRowIndex + s2 + tdName + s1 + "product" + s2 + "count" + s1 + count);
+            if (productAndQuantityDiv == null) {
+                continue;
+            }
+            let product_id = document.getElementById(newFieldId + s1 + addedRowIndex + s2 + tdName + s1 + "product" + s2 + "count" + s1 + count + s2 + "id").value;
+            let product_quantity = document.getElementById(newFieldId + s1 + addedRowIndex + s2 + tdName + s1 + "product" + s2 + "count" + s1 + count + s2 + "quantity").value;
+            // const product = { product_id: product_id, product_quantity: product_quantity };
+            const product = {item_id: item_id, product_id: product_id, product_quantity: product_quantity };
+
+item_product.push(product);
+            // function insertItemProductList();
+            
+        }
+
+        const itemProductList = await insertItemProductList(item_product);
+        item_product = await itemProductList;
+
+        item_product = JSON.stringify(item_product);
+        // product
+
+        const item_sort = document.getElementById(newFieldId + s1 + addedRowIndex + s2 + tdName + s1 + "sort").value;
+        if (item_sort == null || item_sort == "") {
+            continue;
+        }
+        const item_use = document.getElementById(newFieldId + s1 + addedRowIndex + s2 + tdName + s1 + "use").value;
+        if (item_use == null || item_use == "") {
+            continue;
+        }
+
+        const item = {
+            item_id: item_id,
+            item_name: item_name,
+            group_id: group_id,
+            cate_id: cate_id,
+            item_price: item_price,
+            item_discounted: item_discounted,
+            item_product: item_product,
+            item_sort: item_sort,
+            item_use: item_use
+        };
         itemList.push(item);
     }
-    return productList;
+    return itemList;
 }
+
+async function insertItemProductList(item_product) {
+    const response = await fetch("/shop/admin/insertItemProductList", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(item_product),
+    });
+
+    const resultMap = await response.json();
+    const list = resultMap.list;
+    console.log("insertItemProductList: " + resultMap.status);
+    return list;
+}
+
+
 
 function getModifiedItem() {
 
