@@ -53,5 +53,6 @@
                 display: table-cell;
                 border: 1px solid #ccc;
                 padding: 4px;
+                /* width: 120px; */
             }
         </style>
