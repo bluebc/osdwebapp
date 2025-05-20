@@ -94,4 +94,8 @@ public class ShopService {
         return shop_Item_ProductDao.selectByItem(item_id);
     }
 
+    public int updateItemProductProductAndQuantity(Shop_Item_ProductDto shop_Item_ProductDto){
+        return shop_Item_ProductDao.updateProductAndQuantity(shop_Item_ProductDto);
+    }
+
 }

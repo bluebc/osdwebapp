@@ -435,6 +435,7 @@ function setItemList(list) {
         itemTr.appendChild(useTd);
 
         const editTd = document.createElement("div");
+        editTd.id = trName + s1 + rowIndex + s2 + tdName + s1 + "edit";
         const editBtn = document.createElement("input");
         editBtn.type = "button";
         editBtn.value = "수정";
@@ -777,15 +778,16 @@ function modifyItem(rowIndex) {
     modifyCount += 1;
     let modifyRow = modifyCount;
 
-    // const idTd = document.getElementById(trName + s1 + rowIndex + s2 + tdName + s1 + "id");
-    // const idVal = idTd.textContent;
-    // while (idTd.firstChild) {
-    //     idTd.removeChild(idTd.firstChild);
-    // }
-    // const idInput = document.createElement("input");
-    // idInput.id = modifyFieldId + s1 + modifyRow + s2 + tdName + s1 + "id";
-    // idInput.type = "text";
-    // idTd.appendChild(idInput);
+    const idTd = document.getElementById(trName + s1 + rowIndex + s2 + tdName + s1 + "id");
+    const idVal = idTd.textContent;
+    while (idTd.firstChild) {
+        idTd.removeChild(idTd.firstChild);
+    }
+    const idInput = document.createElement("input");
+    idInput.id = modifyFieldId + s1 + modifyRow + s2 + tdName + s1 + "id";
+    idInput.type = "text";
+    idInput.value = idVal;
+    idTd.appendChild(idInput);
 
     const nameTd = document.getElementById(trName + s1 + rowIndex + s2 + tdName + s1 + "name");
     const nameVal = nameTd.textContent;
@@ -881,6 +883,16 @@ function modifyItem(rowIndex) {
         const productAndQuantityDiv = document.createElement("div");
         productAndQuantityDiv.id = modifyFieldId + s1 + modifyRow + s2 + tdName + s1 + "product" + s2 + "itemProduct" + s1 + i;
 
+
+        // item_product_id
+        const itemProductInput = document.createElement("input");
+        itemProductInput.type = "hidden";
+        itemProductInput.id = modifyFieldId + s1 + modifyRow + s2 + tdName + s1 + "product" + s2 + "itemProduct" + s1 + i + s2 + "i";
+        itemProductInput.value = itemProduct.item_product_id;
+        productAndQuantityDiv.appendChild(itemProductInput);
+
+
+
         const productSelect = document.createElement("select");
         productSelect.id = modifyFieldId + s1 + modifyRow + s2 + tdName + s1 + "product" + s2 + "itemProduct" + s1 + i + s2 + "id";
         productList.forEach(product => {
@@ -938,7 +950,6 @@ function modifyItem(rowIndex) {
     const useSelect = document.createElement("select");
     useSelect.id = modifyFieldId + s1 + modifyRow + s2 + tdName + s1 + "use";
 
-
     const useSelectOptionY = document.createElement("option");
     useSelectOptionY.value = "Y";
     useSelectOptionY.textContent = "Y";
@@ -952,19 +963,179 @@ function modifyItem(rowIndex) {
     useSelect.value = usetVal;
     useTd.appendChild(useSelect);
 
+    const editTd = document.getElementById(trName + s1 + rowIndex + s2 + tdName + s1 + "edit");
+    while (editTd.firstChild) {
+        editTd.removeChild(editTd.firstChild);
+    }
+
+    const applyBtn = document.createElement("input");
+    applyBtn.type = "button";
+    applyBtn.value = "적용";
+    applyBtn.onclick = async function () {
+        console.log("적용");
+        await getModifiedItem(modifyRow);
+        // 적용
+    }
+    editTd.appendChild(applyBtn);
+
+    const deleteBtn = document.createElement("input");
+    deleteBtn.type = "button";
+    deleteBtn.value = "삭제";
+    deleteBtn.onclick = function () {
+        // 삭제
+    }
+    editTd.appendChild(deleteBtn);
+
+    const cancelBtn = document.createElement("input");
+    cancelBtn.type = "button";
+    cancelBtn.value = "취소";
+    cancelBtn.onclick = function () {
+        // 취소
+    }
+    editTd.appendChild(cancelBtn);
 
 }
 
+
+async function getModifiedItem(modifyRow) {
+    // let itemList = [];
+
+
+    // for (let addedRowIndex = 0; addedRowIndex <= addCount; addedRowIndex++) {
+    const item_id = document.getElementById(modifyFieldId + s1 + modifyRow + s2 + tdName + s1 + "id").value;
+    if (item_id == null || item_id == "") {
+        // continue;
+        alert("내용 오류");
+        return;
+    }
+    const item_name = document.getElementById(modifyFieldId + s1 + modifyRow + s2 + tdName + s1 + "name").value;
+    if (item_name == null || item_name == "") {
+        // continue;
+        alert("내용 오류");
+        return;
+    }
+    const group_id = document.getElementById(modifyFieldId + s1 + modifyRow + s2 + tdName + s1 + "group").value;
+    if (group_id == null || group_id == "") {
+        // continue;
+        alert("내용 오류");
+        return;
+    }
+    const cate_id = document.getElementById(modifyFieldId + s1 + modifyRow + s2 + tdName + s1 + "cate").value;
+    if (cate_id == null || cate_id == "") {
+        // continue;
+        alert("내용 오류");
+        return;
+    }
+    const item_price = document.getElementById(modifyFieldId + s1 + modifyRow + s2 + tdName + s1 + "price").value;
+    if (item_price == null || item_price == "") {
+        // continue;
+        alert("내용 오류");
+        return;
+    }
+    const item_discounted = document.getElementById(modifyFieldId + s1 + modifyRow + s2 + tdName + s1 + "discounted").value;
+    if (item_discounted == null || item_discounted == "") {
+        // continue;
+        alert("내용 오류");
+        return;
+    }
+    // product
+    let item_product = [];
+    const productCount = document.getElementById(modifyFieldId + s1 + modifyRow + s2 + tdName + s1 + "product" + s2 + "count").value;
+    for (let count = 0; count < productCount; count++) {
+        const productAndQuantityDiv = document.getElementById(modifyFieldId + s1 + modifyRow + s2 + tdName + s1 + "product" + s2 + "itemProduct" + s1 + count);
+        if (productAndQuantityDiv == null) {
+            continue;
+        }
+        let item_product_id = document.getElementById(modifyFieldId + s1 + modifyRow + s2 + tdName + s1 + "product" + s2 + "itemProduct" + s1 + count + s2 + "i").value;
+        let product_id = document.getElementById(modifyFieldId + s1 + modifyRow + s2 + tdName + s1 + "product" + s2 + "itemProduct" + s1 + count + s2 + "id").value;
+        let product_quantity = document.getElementById(modifyFieldId + s1 + modifyRow + s2 + tdName + s1 + "product" + s2 + "itemProduct" + s1 + count + s2 + "quantity").value;
+
+        const product = { item_product_id: item_product_id, item_id: item_id, product_id: product_id, product_quantity: product_quantity };
+
+        item_product.push(product);
+        // function insertItemProductList();
+
+    }
+    if (item_product == null || item_product.length == 0) {
+        // continue;
+        alert("내용 오류");
+        return;
+    }
+
+    const itemProductList = await applyItemProductModifies(item_product);
+    // 수정 + 추가 함수
+    item_product = await itemProductList;
+
+    item_product = JSON.stringify(item_product);
+    // product
+
+    const item_sort = document.getElementById(modifyFieldId + s1 + modifyRow + s2 + tdName + s1 + "sort").value;
+    if (item_sort == null || item_sort == "") {
+        // continue;
+        alert("내용 오류");
+        return;
+    }
+    const item_use = document.getElementById(modifyFieldId + s1 + modifyRow + s2 + tdName + s1 + "use").value;
+    if (item_use == null || item_use == "") {
+        // continue;
+        alert("내용 오류");
+        return;
+    }
+
+    const item = {
+        item_id: item_id,
+        item_name: item_name,
+        group_id: group_id,
+        cate_id: cate_id,
+        item_price: item_price,
+        item_discounted: item_discounted,
+        item_product: item_product,
+        item_sort: item_sort,
+        item_use: item_use
+    };
+    // itemList.push(item);
+    // }
+    return item;
+}
+
+async function applyItemProductModifies(item_product) {
+
+
+    const response = await fetch("/shop/admin/applyItemProductModifies", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(item_product),
+    });
+
+    const resultMap = await response.json();
+    const list = resultMap.list;
+    console.log("applyItemProductModifies: " + resultMap.status);
+    return list;
+
+
+
+}
+
+
 function modifySelectProductToItem(rowIndex, trName, tdName, newFieldId, addedRowIndex) {
 
-    let productCount = document.getElementById(newFieldId + s1 + addedRowIndex + s2 + tdName + s1 + "product" + s2 + "itemProduct");
+    let productCount = document.getElementById(newFieldId + s1 + addedRowIndex + s2 + tdName + s1 + "product" + s2 + "count");
     productCount.value = parseInt(productCount.value) + 1;
-    let count = productCount.value -1;
+    let count = productCount.value - 1;
 
     const productContainerDiv = document.getElementById(newFieldId + s1 + addedRowIndex + s2 + tdName + s1 + "product" + s2 + "container");
 
     const productAndQuantityDiv = document.createElement("div");
     productAndQuantityDiv.id = newFieldId + s1 + addedRowIndex + s2 + tdName + s1 + "product" + s2 + "itemProduct" + s1 + count;
+
+
+    const itemProductInput = document.createElement("input");
+    itemProductInput.type = "hidden";
+    itemProductInput.id = newFieldId + s1 + addedRowIndex + s2 + tdName + s1 + "product" + s2 + "itemProduct" + s1 + count + s2 + "i";
+    itemProductInput.value = 0;
+    productAndQuantityDiv.appendChild(itemProductInput);
+
+
     const productSelect = document.createElement("select");
     productSelect.id = newFieldId + s1 + addedRowIndex + s2 + tdName + s1 + "product" + s2 + "itemProduct" + s1 + count + s2 + "id";
     productList.forEach(product => {
@@ -973,6 +1144,7 @@ function modifySelectProductToItem(rowIndex, trName, tdName, newFieldId, addedRo
         productSelectOption.textContent = product.product_name;
         productSelect.appendChild(productSelectOption);
     });
+
     productAndQuantityDiv.appendChild(productSelect);
     const productQuantity = document.createElement("input");
     productQuantity.id = newFieldId + s1 + addedRowIndex + s2 + tdName + s1 + "product" + s2 + "itemProduct" + s1 + count + s2 + "quantity";
@@ -988,10 +1160,6 @@ function modifySelectProductToItem(rowIndex, trName, tdName, newFieldId, addedRo
     productAndQuantityDiv.appendChild(deleteProductBtn);
 
     productContainerDiv.appendChild(productAndQuantityDiv);
-
-}
-
-function getModifiedItem() {
 
 }
 

@@ -24,4 +24,7 @@ public class Shop_Item_ProductDao {
     public List<Shop_Item_ProductDto> selectByItem(String item_id) {
         return session.selectList("Shop_Item_Product.selectByItem", item_id);
     }
+    public int updateProductAndQuantity (Shop_Item_ProductDto shop_Item_ProductDto){
+        return session.update("Shop_Item_Product.updateProductAndQuantity", shop_Item_ProductDto);
+    }
 }

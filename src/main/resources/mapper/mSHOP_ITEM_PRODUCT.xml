@@ -27,5 +27,14 @@
 		item_id = #{item_id}
 	</where>
 </select>
+
+<update id="updateProductAndQuantity" parameterType="Shop_Item_ProductDto">
+	update shop_item_product 
+	<set>
+		product_id = #{product_id}, 
+		product_quantity = #{product_quantity} 
+	</set>
+	where item_product_id = #{item_product_id}
+</update>
 		
 </mapper>

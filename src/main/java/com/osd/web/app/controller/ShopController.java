@@ -139,7 +139,39 @@ public class ShopController {
             return resultMap;
         }
 
+        String item_id = list.get(0).getItem_id();
+
+        for (int i = 0; i < list.size(); i++) {
+            if (!item_id.equals(list.get(i).getItem_id())) {
+                status = -102;
+                resultMap.put("status", status);
+                return resultMap;
+            }
+        }
+
         int inserted = shopService.insertItemProduct(list);
+
+        List<Shop_Item_ProductDto> itemProductList = shopService.getItemProductByItem(item_id);
+
+        resultMap.put("inserted", inserted);
+        resultMap.put("status", status);
+        resultMap.put("list", itemProductList);
+
+        return resultMap;
+    }
+
+    @ResponseBody
+    @PostMapping("/admin/applyItemProductModifies")
+    public Map<String, Object> applyItemProductModifies(@RequestBody List<Shop_Item_ProductDto> list) {
+        Map<String, Object> resultMap = new HashMap<>();
+
+        int status = 0;
+
+        if (list == null || list.size() == 0) {
+            status = -101;
+            resultMap.put("status", status);
+            return resultMap;
+        }
 
         String item_id = list.get(0).getItem_id();
 
@@ -151,8 +183,21 @@ public class ShopController {
             }
         }
 
+        int updated = 0;
+        int inserted = 0;
+
+        for (int i = 0; i < list.size(); i++) {
+            if (list.get(i).getItem_product_id() == 0) {
+                inserted += shopService.insertItemProduct(list.get(i));
+                continue;
+            }
+            updated += shopService.updateItemProductProductAndQuantity(list.get(i));
+        }
+
         List<Shop_Item_ProductDto> itemProductList = shopService.getItemProductByItem(item_id);
 
+        resultMap.put("updated", updated);
+        resultMap.put("inserted", inserted);
         resultMap.put("status", status);
         resultMap.put("list", itemProductList);
 
