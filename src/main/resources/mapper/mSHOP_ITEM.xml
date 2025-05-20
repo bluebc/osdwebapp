@@ -25,5 +25,23 @@
 	values
 		(#{item_id}, #{item_name}, #{group_id}, #{cate_id}, #{item_price}, #{item_discounted}, #{item_product}, #{item_sort}, #{item_use})
 </insert>
+
+<insert id="update" parameterType="Shop_ItemDto">
+	update shop_item
+	<set>
+		item_name = #{item_name}, 
+		group_id = #{group_id}, 
+		cate_id = #{cate_id}, 
+		item_price = #{item_price}, 
+		item_discounted = #{item_discounted}, 
+		item_product = #{item_product}, 
+		item_sort = #{item_sort}, 
+		item_use = #{item_use}
+	</set>	
+	<where>
+		item_id = #{item_id}
+	</where>	
+
+</insert>
 		
 </mapper>

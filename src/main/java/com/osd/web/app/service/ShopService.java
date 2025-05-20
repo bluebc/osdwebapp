@@ -69,6 +69,10 @@ public class ShopService {
         return result;
     }
 
+    public int updateItem(Shop_ItemDto shop_ItemDto){
+        return shop_ItemDao.update(shop_ItemDto);
+    }
+
     public List<Shop_GroupDto> getGroupListAll() {
         return shop_GroupDao.selectAll();
     }
@@ -96,6 +100,10 @@ public class ShopService {
 
     public int updateItemProductProductAndQuantity(Shop_Item_ProductDto shop_Item_ProductDto){
         return shop_Item_ProductDao.updateProductAndQuantity(shop_Item_ProductDto);
+    }
+    
+    public int deleteItemProductByNotInId(List<Integer> list){
+        return shop_Item_ProductDao.deleteByNotInId(list);
     }
 
 }

@@ -182,6 +182,14 @@ public class ShopController {
                 return resultMap;
             }
         }
+        List<Integer> itemProductIds = new ArrayList<>();
+        for (int i = 0; i < list.size(); i++) {
+            if (list.get(i).getItem_product_id() == 0) {
+                continue;
+            }
+            itemProductIds.add(list.get(i).getItem_product_id());
+        }
+        shopService.deleteItemProductByNotInId(itemProductIds);
 
         int updated = 0;
         int inserted = 0;
@@ -200,6 +208,21 @@ public class ShopController {
         resultMap.put("inserted", inserted);
         resultMap.put("status", status);
         resultMap.put("list", itemProductList);
+
+        return resultMap;
+    }
+
+    @ResponseBody
+    @PostMapping("/admin/updateItem")
+    public Map<String, Object> updateItem(@RequestBody Shop_ItemDto shop_ItemDto) {
+
+        Map<String, Object> resultMap = new HashMap<>();
+        int result = 0;
+
+        int updated = shopService.updateItem(shop_ItemDto);
+
+        resultMap.put("inserted", updated);
+        resultMap.put("result", result);
 
         return resultMap;
     }

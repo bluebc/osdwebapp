@@ -785,7 +785,7 @@ function modifyItem(rowIndex) {
     }
     const idInput = document.createElement("input");
     idInput.id = modifyFieldId + s1 + modifyRow + s2 + tdName + s1 + "id";
-    idInput.type = "text";
+    idInput.type = "readonly";
     idInput.value = idVal;
     idTd.appendChild(idInput);
 
@@ -913,6 +913,17 @@ function modifyItem(rowIndex) {
 
         productAndQuantityDiv.appendChild(productQuantity);
 
+
+
+        const deleteProductBtn = document.createElement("input");
+        deleteProductBtn.type = "button";
+        deleteProductBtn.value = "삭제";
+        const deleteDivId = modifyFieldId + s1 + modifyRow + s2 + tdName + s1 + "product" + s2 + "itemProduct" + s1 + i;
+        deleteProductBtn.onclick = function () {
+            document.getElementById(deleteDivId).remove();
+        }
+        productAndQuantityDiv.appendChild(deleteProductBtn);
+
         productContainerDiv.appendChild(productAndQuantityDiv);
     });
 
@@ -972,8 +983,10 @@ function modifyItem(rowIndex) {
     applyBtn.type = "button";
     applyBtn.value = "적용";
     applyBtn.onclick = async function () {
-        console.log("적용");
-        await getModifiedItem(modifyRow);
+        if (!confirm("수정하시겠습니까?")) {
+            return;
+        }
+        await updateItem(modifyRow);
         // 적용
     }
     editTd.appendChild(applyBtn);
@@ -1113,6 +1126,21 @@ async function applyItemProductModifies(item_product) {
     return list;
 
 
+
+}
+
+async function updateItem(modifyRow) {
+
+    const item = await getModifiedItem(modifyRow);
+
+    const response = await fetch("/shop/admin/updateItem", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(item),
+    });
+
+    const resultMap = await response.json();
+    console.log("updateItem: " + resultMap.result);
 
 }
 
