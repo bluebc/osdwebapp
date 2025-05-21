@@ -221,7 +221,37 @@ public class ShopController {
 
         int updated = shopService.updateItem(shop_ItemDto);
 
-        resultMap.put("inserted", updated);
+        resultMap.put("updated", updated);
+        resultMap.put("result", result);
+
+        return resultMap;
+    }
+
+    @ResponseBody
+    @PostMapping("/admin/deleteItemProductList")
+    public Map<String, Object> deleteItemProductById(@RequestBody List<Shop_Item_ProductDto> list) {
+
+        Map<String, Object> resultMap = new HashMap<>();
+        int result = 0;
+
+        int deleted = shopService.deleteItemProductById(list);
+
+        resultMap.put("deleted", deleted);
+        resultMap.put("result", result);
+
+        return resultMap;
+    }
+
+    @ResponseBody
+    @PostMapping("/admin/deleteItem")
+    public Map<String, Object> deleteItem(@RequestBody Shop_ItemDto shop_ItemDto) {
+
+        Map<String, Object> resultMap = new HashMap<>();
+        int result = 0;
+
+        int deleted = shopService.deleteItemById(shop_ItemDto);
+
+        resultMap.put("deleted", deleted);
         resultMap.put("result", result);
 
         return resultMap;

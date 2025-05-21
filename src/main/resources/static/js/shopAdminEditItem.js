@@ -360,6 +360,9 @@ function setItemList(list) {
 
         let item_productList = [];
         item_productList = JSON.parse(item.item_product);
+        if (item_productList == null) {
+            return;
+        }
 
 
         const productCount = document.createElement("input");
@@ -785,7 +788,8 @@ function modifyItem(rowIndex) {
     }
     const idInput = document.createElement("input");
     idInput.id = modifyFieldId + s1 + modifyRow + s2 + tdName + s1 + "id";
-    idInput.type = "readonly";
+    idInput.type = "text";
+    idInput.readOnly = true;
     idInput.value = idVal;
     idTd.appendChild(idInput);
 
@@ -995,6 +999,10 @@ function modifyItem(rowIndex) {
     deleteBtn.type = "button";
     deleteBtn.value = "삭제";
     deleteBtn.onclick = function () {
+        if (!confirm("삭제하시겠습니까?")) {
+            return;
+        }
+        deleteItem(modifyFieldId, modifyRow);
         // 삭제
     }
     editTd.appendChild(deleteBtn);
@@ -1140,7 +1148,7 @@ async function updateItem(modifyRow) {
     });
 
     const resultMap = await response.json();
-    console.log("updateItem: " + resultMap.result);
+    console.log("updateItem: " + resultMap.updated);
 
 }
 
@@ -1189,6 +1197,90 @@ function modifySelectProductToItem(rowIndex, trName, tdName, newFieldId, addedRo
 
     productContainerDiv.appendChild(productAndQuantityDiv);
 
+}
+
+async function deleteItem(modifyFieldId, modifyRow) {
+
+    const item_id = document.getElementById(modifyFieldId + s1 + modifyRow + s2 + tdName + s1 + "id").value;
+    if (item_id == null || item_id == "") {
+        // continue;
+        alert("내용 오류");
+        return;
+    }
+
+
+
+    // product
+    let item_product = [];
+    const productCount = document.getElementById(modifyFieldId + s1 + modifyRow + s2 + tdName + s1 + "product" + s2 + "count").value;
+    for (let count = 0; count < productCount; count++) {
+        const productAndQuantityDiv = document.getElementById(modifyFieldId + s1 + modifyRow + s2 + tdName + s1 + "product" + s2 + "itemProduct" + s1 + count);
+        if (productAndQuantityDiv == null) {
+            continue;
+        }
+
+        let item_product_id = document.getElementById(modifyFieldId + s1 + modifyRow + s2 + tdName + s1 + "product" + s2 + "itemProduct" + s1 + count + s2 + "i").value;
+        let item_id = document.getElementById(modifyFieldId + s1 + modifyRow + s2 + tdName + s1 + "id").value;
+        let product_id = document.getElementById(modifyFieldId + s1 + modifyRow + s2 + tdName + s1 + "product" + s2 + "itemProduct" + s1 + count + s2 + "id").value;
+        let product_quantity = document.getElementById(modifyFieldId + s1 + modifyRow + s2 + tdName + s1 + "product" + s2 + "itemProduct" + s1 + count + s2 + "quantity").value;
+
+        const product = { item_product_id: item_product_id, item_id: item_id, product_id: product_id, product_quantity: product_quantity };
+
+        item_product.push(product);
+
+
+    }
+    // if (item_product == null || item_product.length == 0) {
+    //     // continue;
+    //     return;
+    // }
+
+    // delete item_product
+    let deleted = await deleteItemProductList(item_product);
+
+    // if (deleted != 1) {
+    //     return;
+    // }
+
+    const item = { item_id: item_id };
+
+    deleted = 0;
+
+    // delete item
+    const response = await fetch("/shop/admin/deleteItem", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(item),
+    });
+
+    const resultMap = await response.json();
+    console.log("deleteItem: " + resultMap.deleted);
+    deleted = await resultMap.deleted;
+
+    return deleted;
+
+    // remove div
+}
+
+async function deleteItemProductList(item_product) {
+
+    const response = await fetch("/shop/admin/deleteItemProductList", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(item_product),
+    });
+
+    const resultMap = await response.json();
+    console.log("deleteItemProductById: " + resultMap.deleted);
+    const deleted = await resultMap.deleted;
+
+    return deleted;
+
+}
+
+async function afterModify() {
+}
+async function afterDelete() {
 }
 
 // ==================================================

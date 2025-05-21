@@ -43,5 +43,12 @@
 	</where>	
 
 </insert>
+
+<delete id="deleteById" parameterType="Shop_ItemDto">
+	delete from shop_item
+	<where>
+		item_id = #{item_id}
+	</where>
+</delete>
 		
 </mapper>

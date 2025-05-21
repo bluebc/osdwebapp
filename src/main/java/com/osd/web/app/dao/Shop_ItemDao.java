@@ -24,4 +24,8 @@ public class Shop_ItemDao {
     public int update(Shop_ItemDto shop_ItemDto) {
         return session.update("Shop_Item.update", shop_ItemDto);
     }
+
+    public int deleteById(Shop_ItemDto shop_ItemDto) {
+        return session.delete("Shop_Item.deleteById", shop_ItemDto);
+    }
 }

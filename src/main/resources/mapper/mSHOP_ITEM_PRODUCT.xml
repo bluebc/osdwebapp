@@ -37,12 +37,21 @@
 	where item_product_id = #{item_product_id}
 </update>
 
-<delete id="deleteByNotInId" parameterType="List">
-	DELETE FROM shop_item_product
-    	WHERE item_product_id NOT IN
-    	<foreach collection="list" item="item_product_id" open="(" separator="," close=")">
-        	#{item_product_id}
-    	</foreach>
+<delete id="deleteByNotInId" parameterType="list">
+    <if test="list != null and list.size() > 0">
+        DELETE FROM shop_item_product
+        WHERE item_product_id NOT IN 
+        <foreach collection="list" item="item_product_id" open="(" separator="," close=")">
+            #{item_product_id}
+        </foreach>
+    </if>
+</delete>
+
+<delete id="deleteById" parameterType="Shop_Item_ProductDto">
+	delete from shop_item_product
+	<where>
+		item_product_id = #{item_product_id}
+	</where>
 </delete>
 		
 </mapper>

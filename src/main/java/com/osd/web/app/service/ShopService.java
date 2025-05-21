@@ -69,7 +69,7 @@ public class ShopService {
         return result;
     }
 
-    public int updateItem(Shop_ItemDto shop_ItemDto){
+    public int updateItem(Shop_ItemDto shop_ItemDto) {
         return shop_ItemDao.update(shop_ItemDto);
     }
 
@@ -98,12 +98,29 @@ public class ShopService {
         return shop_Item_ProductDao.selectByItem(item_id);
     }
 
-    public int updateItemProductProductAndQuantity(Shop_Item_ProductDto shop_Item_ProductDto){
+    public int updateItemProductProductAndQuantity(Shop_Item_ProductDto shop_Item_ProductDto) {
         return shop_Item_ProductDao.updateProductAndQuantity(shop_Item_ProductDto);
     }
-    
-    public int deleteItemProductByNotInId(List<Integer> list){
+
+    public int deleteItemProductByNotInId(List<Integer> list) {
         return shop_Item_ProductDao.deleteByNotInId(list);
+    }
+
+    public int deleteItemProductById(Shop_Item_ProductDto shop_Item_ProductDto) {
+        return shop_Item_ProductDao.deleteById(shop_Item_ProductDto);
+    }
+
+    public int deleteItemProductById(List<Shop_Item_ProductDto> list) {
+        int result = 0;
+        for (int i = 0; i < list.size(); i++) {
+            Shop_Item_ProductDto shop_Item_ProductDto = list.get(i);
+            result += deleteItemProductById(shop_Item_ProductDto);
+        }
+        return result;
+    }
+
+    public int deleteItemById (Shop_ItemDto shop_ItemDto){
+        return shop_ItemDao.deleteById(shop_ItemDto);
     }
 
 }
