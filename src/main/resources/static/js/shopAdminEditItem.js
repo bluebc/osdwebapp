@@ -296,8 +296,8 @@ function setItemList(list) {
     itemDiscountedTh.textContent = "품목 할인가";
     const itemProductTh = document.createElement("div");
     itemProductTh.textContent = "품목 제품";
-    const itemSortTh = document.createElement("div");
-    itemSortTh.textContent = "품목 순서";
+    // const itemSortTh = document.createElement("div");
+    // itemSortTh.textContent = "품목 순서";
     const itemUseTh = document.createElement("div");
     itemUseTh.textContent = "품목 사용";
     const itemEditTh = document.createElement("div");
@@ -311,7 +311,7 @@ function setItemList(list) {
     fieldNameTr.appendChild(itemPriceTh);
     fieldNameTr.appendChild(itemDiscountedTh);
     fieldNameTr.appendChild(itemProductTh);
-    fieldNameTr.appendChild(itemSortTh);
+    // fieldNameTr.appendChild(itemSortTh);
     fieldNameTr.appendChild(itemUseTh);
     fieldNameTr.appendChild(itemEditTh);
 
@@ -427,10 +427,10 @@ function setItemList(list) {
 
         itemTr.appendChild(productTd);
 
-        const sortTd = document.createElement("div");
-        sortTd.id = trName + s1 + rowIndex + s2 + tdName + s1 + "sort";
-        sortTd.textContent = item.item_sort;
-        itemTr.appendChild(sortTd);
+        // const sortTd = document.createElement("div");
+        // sortTd.id = trName + s1 + rowIndex + s2 + tdName + s1 + "sort";
+        // sortTd.textContent = item.item_sort;
+        // itemTr.appendChild(sortTd);
 
         const useTd = document.createElement("div");
         useTd.id = trName + s1 + rowIndex + s2 + tdName + s1 + "use";
@@ -555,13 +555,13 @@ function addItemRow() {
 
     itemTr.appendChild(productTd);
 
-    const sortTd = document.createElement("div");
-    sortTd.id = trName + s1 + rowIndex + s2 + tdName + s1 + "sort";
-    const sortInput = document.createElement("input");
-    sortInput.id = newFieldId + s1 + addedRowIndex + s2 + tdName + s1 + "sort";
-    sortInput.type = "text";
-    sortTd.appendChild(sortInput);
-    itemTr.appendChild(sortTd);
+    // const sortTd = document.createElement("div");
+    // sortTd.id = trName + s1 + rowIndex + s2 + tdName + s1 + "sort";
+    // const sortInput = document.createElement("input");
+    // sortInput.id = newFieldId + s1 + addedRowIndex + s2 + tdName + s1 + "sort";
+    // sortInput.type = "text";
+    // sortTd.appendChild(sortInput);
+    // itemTr.appendChild(sortTd);
 
     const useTd = document.createElement("div");
     useTd.id = trName + s1 + rowIndex + s2 + tdName + s1 + "use";
@@ -585,21 +585,31 @@ function addItemRow() {
 
     const editTd = document.createElement("div");
     editTd.id = newFieldId + s1 + addedRowIndex + s2 + tdName + s1 + "edit";
-    const editBtn = document.createElement("input");
-    editBtn.type = "button";
-    editBtn.value = "삭제";
-    editBtn.onclick = function () {
+
+    const insertBtn = document.createElement("input");
+    insertBtn.type = "button";
+    insertBtn.value = "등록";
+    insertBtn.onclick = function () {
+        // 추가 품목 등록
+        insertItem(addedRowIndex);
+    }
+    editTd.appendChild(insertBtn);
+
+
+
+    const deleteBtn = document.createElement("input");
+    deleteBtn.type = "button";
+    deleteBtn.value = "삭제";
+    deleteBtn.onclick = function () {
         // 추가 품목 삭제
         document.getElementById(trName + s1 + rowIndex).remove();
     }
-    editTd.appendChild(editBtn);
+    editTd.appendChild(deleteBtn);
 
     itemTr.appendChild(editTd);
 
 
     fieldTbl.appendChild(itemTr);
-
-
 
     // 후작업
     updateCategoryOptions();
@@ -667,7 +677,7 @@ function updateCategoryOptions() {
 
 async function applyItemChanges() {
 
-    const insertList = await getNewItem();
+    const insertList = await getNewItemList();
 
     if (insertList.length > 0) {
 
@@ -687,7 +697,7 @@ async function applyItemChanges() {
 
 }
 
-async function getNewItem() {
+async function getNewItemList() {
     let itemList = [];
     for (let addedRowIndex = 0; addedRowIndex <= addCount; addedRowIndex++) {
         const item_id = document.getElementById(newFieldId + s1 + addedRowIndex + s2 + tdName + s1 + "id").value;
@@ -738,10 +748,10 @@ async function getNewItem() {
         item_product = JSON.stringify(item_product);
         // product
 
-        const item_sort = document.getElementById(newFieldId + s1 + addedRowIndex + s2 + tdName + s1 + "sort").value;
-        if (item_sort == null || item_sort == "") {
-            continue;
-        }
+        // const item_sort = document.getElementById(newFieldId + s1 + addedRowIndex + s2 + tdName + s1 + "sort").value;
+        // if (item_sort == null || item_sort == "") {
+        //     continue;
+        // }
         const item_use = document.getElementById(newFieldId + s1 + addedRowIndex + s2 + tdName + s1 + "use").value;
         if (item_use == null || item_use == "") {
             continue;
@@ -755,13 +765,94 @@ async function getNewItem() {
             item_price: item_price,
             item_discounted: item_discounted,
             item_product: item_product,
-            item_sort: item_sort,
+            // item_sort: item_sort,
             item_use: item_use
         };
         itemList.push(item);
     }
     return itemList;
 }
+
+async function getNewItem(rowIndex) {
+
+    const item_id = document.getElementById(newFieldId + s1 + rowIndex + s2 + tdName + s1 + "id").value;
+    if (item_id == null || item_id == "") {
+        return;
+    }
+    const item_name = document.getElementById(newFieldId + s1 + rowIndex + s2 + tdName + s1 + "name").value;
+    if (item_name == null || item_name == "") {
+        return;
+    }
+    const group_id = document.getElementById(newFieldId + s1 + rowIndex + s2 + tdName + s1 + "group").value;
+    if (group_id == null || group_id == "") {
+        return;
+    }
+    const cate_id = document.getElementById(newFieldId + s1 + rowIndex + s2 + tdName + s1 + "cate").value;
+    if (cate_id == null || cate_id == "") {
+        return;
+    }
+    const item_price = document.getElementById(newFieldId + s1 + rowIndex + s2 + tdName + s1 + "price").value;
+    if (item_price == null || item_price == "") {
+        return;
+    }
+    const item_discounted = document.getElementById(newFieldId + s1 + rowIndex + s2 + tdName + s1 + "discounted").value;
+    if (item_discounted == null || item_discounted == "") {
+        return;
+    }
+
+    let item_product = [];
+    const productCount = document.getElementById(newFieldId + s1 + rowIndex + s2 + tdName + s1 + "product" + s2 + "count").value;
+    for (let count = 1; count <= productCount; count++) {
+        const productAndQuantityDiv = document.getElementById(newFieldId + s1 + rowIndex + s2 + tdName + s1 + "product" + s2 + "count" + s1 + count);
+        if (productAndQuantityDiv == null) {
+            continue;
+        }
+        let product_id = document.getElementById(newFieldId + s1 + rowIndex + s2 + tdName + s1 + "product" + s2 + "count" + s1 + count + s2 + "id").value;
+        let product_quantity = document.getElementById(newFieldId + s1 + rowIndex + s2 + tdName + s1 + "product" + s2 + "count" + s1 + count + s2 + "quantity").value;
+        const product = { item_id: item_id, product_id: product_id, product_quantity: product_quantity };
+
+        item_product.push(product);
+    }
+
+    const itemProductList = await insertItemProductList(item_product);
+    item_product = await itemProductList;
+
+    item_product = JSON.stringify(item_product);
+
+
+    const item_use = document.getElementById(newFieldId + s1 + rowIndex + s2 + tdName + s1 + "use").value;
+    if (item_use == null || item_use == "") {
+        return;
+    }
+
+    const item = {
+        item_id: item_id,
+        item_name: item_name,
+        group_id: group_id,
+        cate_id: cate_id,
+        item_price: item_price,
+        item_discounted: item_discounted,
+        item_product: item_product,
+        item_use: item_use
+    };
+
+    return item;
+}
+
+async function insertItem(rowIndex) {
+    const item = await getNewItem(rowIndex);
+
+    const response = await fetch("/shop/admin/insertItem", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(item),
+    });
+    const resultMap = await response.json();
+    const inserted = resultMap.inserted;
+    console.log("insertItem: " + inserted);
+    return inserted;
+}
+
 
 async function insertItemProductList(item_product) {
     const response = await fetch("/shop/admin/insertItemProductList", {
@@ -945,16 +1036,16 @@ function modifyItem(rowIndex) {
     productTd.appendChild(addProductBtn);
 
 
-    const sortTd = document.getElementById(trName + s1 + rowIndex + s2 + tdName + s1 + "sort");
-    const sortVal = sortTd.textContent;
-    while (sortTd.firstChild) {
-        sortTd.removeChild(sortTd.firstChild);
-    }
-    const sortInput = document.createElement("input");
-    sortInput.id = modifyFieldId + s1 + modifyRow + s2 + tdName + s1 + "sort";
-    sortInput.type = "text";
-    sortInput.value = sortVal;
-    sortTd.appendChild(sortInput);
+    // const sortTd = document.getElementById(trName + s1 + rowIndex + s2 + tdName + s1 + "sort");
+    // const sortVal = sortTd.textContent;
+    // while (sortTd.firstChild) {
+    //     sortTd.removeChild(sortTd.firstChild);
+    // }
+    // const sortInput = document.createElement("input");
+    // sortInput.id = modifyFieldId + s1 + modifyRow + s2 + tdName + s1 + "sort";
+    // sortInput.type = "text";
+    // sortInput.value = sortVal;
+    // sortTd.appendChild(sortInput);
 
 
     const useTd = document.getElementById(trName + s1 + rowIndex + s2 + tdName + s1 + "use");
@@ -1090,12 +1181,12 @@ async function getModifiedItem(modifyRow) {
     item_product = JSON.stringify(item_product);
     // product
 
-    const item_sort = document.getElementById(modifyFieldId + s1 + modifyRow + s2 + tdName + s1 + "sort").value;
-    if (item_sort == null || item_sort == "") {
-        // continue;
-        alert("내용 오류");
-        return;
-    }
+    // const item_sort = document.getElementById(modifyFieldId + s1 + modifyRow + s2 + tdName + s1 + "sort").value;
+    // if (item_sort == null || item_sort == "") {
+    //     // continue;
+    //     alert("내용 오류");
+    //     return;
+    // }
     const item_use = document.getElementById(modifyFieldId + s1 + modifyRow + s2 + tdName + s1 + "use").value;
     if (item_use == null || item_use == "") {
         // continue;
@@ -1111,7 +1202,7 @@ async function getModifiedItem(modifyRow) {
         item_price: item_price,
         item_discounted: item_discounted,
         item_product: item_product,
-        item_sort: item_sort,
+        // item_sort: item_sort,
         item_use: item_use
     };
     // itemList.push(item);
@@ -1208,8 +1299,6 @@ async function deleteItem(modifyFieldId, modifyRow) {
         return;
     }
 
-
-
     // product
     let item_product = [];
     const productCount = document.getElementById(modifyFieldId + s1 + modifyRow + s2 + tdName + s1 + "product" + s2 + "count").value;
@@ -1256,6 +1345,8 @@ async function deleteItem(modifyFieldId, modifyRow) {
     const resultMap = await response.json();
     console.log("deleteItem: " + resultMap.deleted);
     deleted = await resultMap.deleted;
+
+    document.getElementById(trName + s1 + modifyRow).remove();
 
     return deleted;
 

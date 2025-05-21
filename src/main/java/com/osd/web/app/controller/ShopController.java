@@ -20,8 +20,6 @@ import com.osd.web.app.dto.Shop_Item_ProductDto;
 import com.osd.web.app.dto.Shop_ProductDto;
 import com.osd.web.app.service.ShopService;
 
-import lombok.val;
-
 @RequestMapping("/shop")
 @Controller
 public class ShopController {
@@ -99,6 +97,21 @@ public class ShopController {
         int result = 0;
 
         int inserted = shopService.insertItem(list);
+
+        resultMap.put("inserted", inserted);
+        resultMap.put("result", result);
+
+        return resultMap;
+    }
+
+    @ResponseBody
+    @PostMapping("/admin/insertItem")
+    public Map<String, Object> insertItem(@RequestBody Shop_ItemDto shop_ItemDto) {
+
+        Map<String, Object> resultMap = new HashMap<>();
+        int result = 0;
+
+        int inserted = shopService.insertItem(shop_ItemDto);
 
         resultMap.put("inserted", inserted);
         resultMap.put("result", result);
