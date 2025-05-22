@@ -3,6 +3,7 @@ let field = "";
 let groupList = [];
 let categoryList = [];
 let productList = [];
+let itemList = [];
 let productMap = new Map(productList.map(product => [String(product.product_id), product.product_name]));
 
 addEventListener("DOMContentLoaded", async function () {
@@ -53,7 +54,7 @@ async function changeField(fieldName) {
             setCategoryList(categoryList);
             break;
         case 'item':
-            const itemList = await getItemListAll();
+            itemList = await getItemListAll();
             setItemList(itemList);
             applyChangesButton.onclick = function () {
                 applyItemChanges();
@@ -675,103 +676,103 @@ function updateCategoryOptions() {
 
 
 
-async function applyItemChanges() {
+// async function applyItemChanges() {
 
-    const insertList = await getNewItemList();
+//     const insertList = await getNewItemList();
 
-    if (insertList.length > 0) {
+//     if (insertList.length > 0) {
 
-        const response = fetch("/shop/admin/insertItemList", {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify(insertList)
-        }).then(response => response.json())
-            .then(resultMap => {
-                const inserted = resultMap.inserted;
-                const result = resultMap.result;
-                console.log("insertItemList: " + inserted);
-                console.log("insertItemList: " + result);
-            });
+//         const response = fetch("/shop/admin/insertItemList", {
+//             method: "POST",
+//             headers: { "Content-Type": "application/json" },
+//             body: JSON.stringify(insertList)
+//         }).then(response => response.json())
+//             .then(resultMap => {
+//                 const inserted = resultMap.inserted;
+//                 const result = resultMap.result;
+//                 console.log("insertItemList: " + inserted);
+//                 console.log("insertItemList: " + result);
+//             });
 
-    }
+//     }
 
-}
+// }
 
-async function getNewItemList() {
-    let itemList = [];
-    for (let addedRowIndex = 0; addedRowIndex <= addCount; addedRowIndex++) {
-        const item_id = document.getElementById(newFieldId + s1 + addedRowIndex + s2 + tdName + s1 + "id").value;
-        if (item_id == null || item_id == "") {
-            continue;
-        }
-        const item_name = document.getElementById(newFieldId + s1 + addedRowIndex + s2 + tdName + s1 + "name").value;
-        if (item_name == null || item_name == "") {
-            continue;
-        }
-        const group_id = document.getElementById(newFieldId + s1 + addedRowIndex + s2 + tdName + s1 + "group").value;
-        if (group_id == null || group_id == "") {
-            continue;
-        }
-        const cate_id = document.getElementById(newFieldId + s1 + addedRowIndex + s2 + tdName + s1 + "cate").value;
-        if (cate_id == null || cate_id == "") {
-            continue;
-        }
-        const item_price = document.getElementById(newFieldId + s1 + addedRowIndex + s2 + tdName + s1 + "price").value;
-        if (item_price == null || item_price == "") {
-            continue;
-        }
-        const item_discounted = document.getElementById(newFieldId + s1 + addedRowIndex + s2 + tdName + s1 + "discounted").value;
-        if (item_discounted == null || item_discounted == "") {
-            continue;
-        }
-        // product
-        let item_product = [];
-        const productCount = document.getElementById(newFieldId + s1 + addedRowIndex + s2 + tdName + s1 + "product" + s2 + "count").value;
-        for (let count = 1; count <= productCount; count++) {
-            const productAndQuantityDiv = document.getElementById(newFieldId + s1 + addedRowIndex + s2 + tdName + s1 + "product" + s2 + "count" + s1 + count);
-            if (productAndQuantityDiv == null) {
-                continue;
-            }
-            let product_id = document.getElementById(newFieldId + s1 + addedRowIndex + s2 + tdName + s1 + "product" + s2 + "count" + s1 + count + s2 + "id").value;
-            let product_quantity = document.getElementById(newFieldId + s1 + addedRowIndex + s2 + tdName + s1 + "product" + s2 + "count" + s1 + count + s2 + "quantity").value;
-            // const product = { product_id: product_id, product_quantity: product_quantity };
-            const product = { item_id: item_id, product_id: product_id, product_quantity: product_quantity };
+// async function getNewItemList() {
+//     let itemList = [];
+//     for (let addedRowIndex = 0; addedRowIndex <= addCount; addedRowIndex++) {
+//         const item_id = document.getElementById(newFieldId + s1 + addedRowIndex + s2 + tdName + s1 + "id").value;
+//         if (item_id == null || item_id == "") {
+//             continue;
+//         }
+//         const item_name = document.getElementById(newFieldId + s1 + addedRowIndex + s2 + tdName + s1 + "name").value;
+//         if (item_name == null || item_name == "") {
+//             continue;
+//         }
+//         const group_id = document.getElementById(newFieldId + s1 + addedRowIndex + s2 + tdName + s1 + "group").value;
+//         if (group_id == null || group_id == "") {
+//             continue;
+//         }
+//         const cate_id = document.getElementById(newFieldId + s1 + addedRowIndex + s2 + tdName + s1 + "cate").value;
+//         if (cate_id == null || cate_id == "") {
+//             continue;
+//         }
+//         const item_price = document.getElementById(newFieldId + s1 + addedRowIndex + s2 + tdName + s1 + "price").value;
+//         if (item_price == null || item_price == "") {
+//             continue;
+//         }
+//         const item_discounted = document.getElementById(newFieldId + s1 + addedRowIndex + s2 + tdName + s1 + "discounted").value;
+//         if (item_discounted == null || item_discounted == "") {
+//             continue;
+//         }
+//         // product
+//         let item_product = [];
+//         const productCount = document.getElementById(newFieldId + s1 + addedRowIndex + s2 + tdName + s1 + "product" + s2 + "count").value;
+//         for (let count = 1; count <= productCount; count++) {
+//             const productAndQuantityDiv = document.getElementById(newFieldId + s1 + addedRowIndex + s2 + tdName + s1 + "product" + s2 + "count" + s1 + count);
+//             if (productAndQuantityDiv == null) {
+//                 continue;
+//             }
+//             let product_id = document.getElementById(newFieldId + s1 + addedRowIndex + s2 + tdName + s1 + "product" + s2 + "count" + s1 + count + s2 + "id").value;
+//             let product_quantity = document.getElementById(newFieldId + s1 + addedRowIndex + s2 + tdName + s1 + "product" + s2 + "count" + s1 + count + s2 + "quantity").value;
+//             // const product = { product_id: product_id, product_quantity: product_quantity };
+//             const product = { item_id: item_id, product_id: product_id, product_quantity: product_quantity };
 
-            item_product.push(product);
-            // function insertItemProductList();
+//             item_product.push(product);
+//             // function insertItemProductList();
 
-        }
+//         }
 
-        const itemProductList = await insertItemProductList(item_product);
-        item_product = await itemProductList;
+//         const itemProductList = await insertItemProductList(item_product);
+//         item_product = await itemProductList;
 
-        item_product = JSON.stringify(item_product);
-        // product
+//         item_product = JSON.stringify(item_product);
+//         // product
 
-        // const item_sort = document.getElementById(newFieldId + s1 + addedRowIndex + s2 + tdName + s1 + "sort").value;
-        // if (item_sort == null || item_sort == "") {
-        //     continue;
-        // }
-        const item_use = document.getElementById(newFieldId + s1 + addedRowIndex + s2 + tdName + s1 + "use").value;
-        if (item_use == null || item_use == "") {
-            continue;
-        }
+//         // const item_sort = document.getElementById(newFieldId + s1 + addedRowIndex + s2 + tdName + s1 + "sort").value;
+//         // if (item_sort == null || item_sort == "") {
+//         //     continue;
+//         // }
+//         const item_use = document.getElementById(newFieldId + s1 + addedRowIndex + s2 + tdName + s1 + "use").value;
+//         if (item_use == null || item_use == "") {
+//             continue;
+//         }
 
-        const item = {
-            item_id: item_id,
-            item_name: item_name,
-            group_id: group_id,
-            cate_id: cate_id,
-            item_price: item_price,
-            item_discounted: item_discounted,
-            item_product: item_product,
-            // item_sort: item_sort,
-            item_use: item_use
-        };
-        itemList.push(item);
-    }
-    return itemList;
-}
+//         const item = {
+//             item_id: item_id,
+//             item_name: item_name,
+//             group_id: group_id,
+//             cate_id: cate_id,
+//             item_price: item_price,
+//             item_discounted: item_discounted,
+//             item_product: item_product,
+//             // item_sort: item_sort,
+//             item_use: item_use
+//         };
+//         itemList.push(item);
+//     }
+//     return itemList;
+// }
 
 async function getNewItem(rowIndex) {
 
@@ -1093,7 +1094,7 @@ function modifyItem(rowIndex) {
         if (!confirm("삭제하시겠습니까?")) {
             return;
         }
-        deleteItem(modifyFieldId, modifyRow);
+        deleteItem(modifyFieldId, modifyRow, rowIndex);
         // 삭제
     }
     editTd.appendChild(deleteBtn);
@@ -1102,6 +1103,7 @@ function modifyItem(rowIndex) {
     cancelBtn.type = "button";
     cancelBtn.value = "취소";
     cancelBtn.onclick = function () {
+        resetItem(rowIndex)
         // 취소
     }
     editTd.appendChild(cancelBtn);
@@ -1110,8 +1112,6 @@ function modifyItem(rowIndex) {
 
 
 async function getModifiedItem(modifyRow) {
-    // let itemList = [];
-
 
     // for (let addedRowIndex = 0; addedRowIndex <= addCount; addedRowIndex++) {
     const item_id = document.getElementById(modifyFieldId + s1 + modifyRow + s2 + tdName + s1 + "id").value;
@@ -1205,8 +1205,7 @@ async function getModifiedItem(modifyRow) {
         // item_sort: item_sort,
         item_use: item_use
     };
-    // itemList.push(item);
-    // }
+
     return item;
 }
 
@@ -1290,7 +1289,7 @@ function modifySelectProductToItem(rowIndex, trName, tdName, newFieldId, addedRo
 
 }
 
-async function deleteItem(modifyFieldId, modifyRow) {
+async function deleteItem(modifyFieldId, modifyRow, rowIndex) {
 
     const item_id = document.getElementById(modifyFieldId + s1 + modifyRow + s2 + tdName + s1 + "id").value;
     if (item_id == null || item_id == "") {
@@ -1346,7 +1345,7 @@ async function deleteItem(modifyFieldId, modifyRow) {
     console.log("deleteItem: " + resultMap.deleted);
     deleted = await resultMap.deleted;
 
-    document.getElementById(trName + s1 + modifyRow).remove();
+    document.getElementById(trName + s1 + rowIndex).remove();
 
     return deleted;
 
@@ -1367,6 +1366,138 @@ async function deleteItemProductList(item_product) {
 
     return deleted;
 
+}
+
+function resetItem(rowIndex) {
+    let item = itemList[rowIndex];
+    let elementId;
+
+
+    elementId = trName + s1 + rowIndex + s2 + tdName + s1 + "id";
+    const idTd = document.getElementById(elementId);
+    while (idTd.firstChild) {
+        idTd.removeChild(idTd.firstChild);
+    }
+    idTd.textContent = item.item_id;
+
+    elementId = trName + s1 + rowIndex + s2 + tdName + s1 + "name";
+    const nameTd = document.getElementById(elementId);
+    while (nameTd.firstChild) {
+        nameTd.removeChild(nameTd.firstChild);
+    }
+    nameTd.textContent = item.item_name;
+
+    elementId = trName + s1 + rowIndex + s2 + tdName + s1 + "group";
+    const groupTd = document.getElementById(elementId);
+    while (groupTd.firstChild) {
+        groupTd.removeChild(groupTd.firstChild);
+    }
+    groupTd.textContent = item.group_id;
+
+    elementId = trName + s1 + rowIndex + s2 + tdName + s1 + "cate";
+    const cateTd = document.getElementById(elementId);
+    while (cateTd.firstChild) {
+        cateTd.removeChild(cateTd.firstChild);
+    }
+    cateTd.textContent = item.cate_id;
+
+    elementId = trName + s1 + rowIndex + s2 + tdName + s1 + "price";
+    const priceTd = document.getElementById(elementId);
+    while (priceTd.firstChild) {
+        priceTd.removeChild(priceTd.firstChild);
+    }
+    priceTd.textContent = item.item_price;
+
+    elementId = trName + s1 + rowIndex + s2 + tdName + s1 + "discounted";
+    const discountedTd = document.getElementById(elementId);
+    while (discountedTd.firstChild) {
+        discountedTd.removeChild(discountedTd.firstChild);
+    }
+    discountedTd.textContent = item.item_discounted;
+
+
+    elementId = trName + s1 + rowIndex + s2 + tdName + s1 + "product";
+    const productTd = document.getElementById(elementId);
+    while (productTd.firstChild) {
+        productTd.removeChild(productTd.firstChild);
+    }
+
+    let item_productList = [];
+    item_productList = JSON.parse(item.item_product);
+    if (item_productList == null) {
+        return;
+    }
+
+
+    const productCount = document.createElement("input");
+    productCount.id = trName + s1 + rowIndex + s2 + tdName + s1 + "product" + s2 + "count";
+    productCount.type = "hidden";
+    productCount.value = item_productList.length;
+    productTd.appendChild(productCount);
+
+
+    const productContainerDiv = document.createElement("div");
+    productContainerDiv.id = trName + s1 + rowIndex + s2 + tdName + s1 + "product" + s2 + "container";
+    productContainerDiv.className = "itemProductContainer";
+    productTd.appendChild(productContainerDiv);
+
+    let i = -1;
+    item_productList.forEach(item_product => {
+        i += 1;
+
+        const productAndQuantityDiv = document.createElement("div");
+        productAndQuantityDiv.id = trName + s1 + rowIndex + s2 + tdName + s1 + "product" + s2 + "itemProduct" + s1 + i;
+
+        const itemProductId = document.createElement("input");
+        elementId = trName + s1 + rowIndex + s2 + tdName + s1 + "id";
+        itemProductId.type = "hidden"
+        itemProductId.id = trName + s1 + rowIndex + s2 + tdName + s1 + "product" + s2 + "itemProduct" + s1 + i + s2 + "i";
+        itemProductId.value = item_product.item_product_id;
+
+        productAndQuantityDiv.appendChild(itemProductId);
+
+        const productId = document.createElement("input");
+        productId.type = "hidden"
+        productId.id = trName + s1 + rowIndex + s2 + tdName + s1 + "product" + s2 + "itemProduct" + s1 + i + s2 + "id";
+        productId.value = item_product.product_id;
+
+        productAndQuantityDiv.appendChild(productId);
+
+        const productName = document.createElement("div");
+        productName.id = trName + s1 + rowIndex + s2 + tdName + s1 + "product" + s2 + "itemProduct" + s1 + i + s2 + "name";
+        productName.textContent = productMap.get(item_product.product_id);
+
+        productAndQuantityDiv.appendChild(productName);
+
+        const productQuantity = document.createElement("div");
+        productQuantity.id = trName + s1 + rowIndex + s2 + tdName + s1 + "product" + s2 + "itemProduct" + s1 + i + s2 + "quantity";
+        productQuantity.textContent = item_product.product_quantity;
+        productAndQuantityDiv.appendChild(productQuantity);
+
+        productContainerDiv.appendChild(productAndQuantityDiv);
+    });
+    productTd.appendChild(productContainerDiv);
+
+    elementId = trName + s1 + rowIndex + s2 + tdName + s1 + "use";
+    const useTd = document.getElementById(elementId);
+    while (useTd.firstChild) {
+        useTd.removeChild(useTd.firstChild);
+    }
+    useTd.textContent = item.item_use;
+
+    elementId = trName + s1 + rowIndex + s2 + tdName + s1 + "edit";
+    const editTd = document.getElementById(elementId);
+    while (editTd.firstChild) {
+        editTd.removeChild(editTd.firstChild);
+    }
+    const editBtn = document.createElement("input");
+    editBtn.type = "button";
+    editBtn.value = "수정";
+    editBtn.onclick = function () {
+        // 기존 데이터 수정 기능
+        modifyItem(rowIndex);
+    }
+    editTd.appendChild(editBtn);
 }
 
 async function afterModify() {
