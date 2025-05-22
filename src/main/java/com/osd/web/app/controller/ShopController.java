@@ -195,25 +195,28 @@ public class ShopController {
                 return resultMap;
             }
         }
-        List<Integer> itemProductIds = new ArrayList<>();
-        for (int i = 0; i < list.size(); i++) {
-            if (list.get(i).getItem_product_id() == 0) {
-                continue;
-            }
-            itemProductIds.add(list.get(i).getItem_product_id());
-        }
-        shopService.deleteItemProductByNotInId(itemProductIds);
+
+        // List<Integer> itemProductIds = new ArrayList<>();
+        // for (int i = 0; i < list.size(); i++) {
+        //     if (list.get(i).getItem_product_id() == 0) {
+        //         continue;
+        //     }
+        //     itemProductIds.add(list.get(i).getItem_product_id());
+        // }
+        // shopService.deleteItemProductByNotInId(itemProductIds);
 
         int updated = 0;
         int inserted = 0;
 
-        for (int i = 0; i < list.size(); i++) {
-            if (list.get(i).getItem_product_id() == 0) {
-                inserted += shopService.insertItemProduct(list.get(i));
-                continue;
-            }
-            updated += shopService.updateItemProductProductAndQuantity(list.get(i));
-        }
+        // for (int i = 0; i < list.size(); i++) {
+        //     if (list.get(i).getItem_product_id() == 0) {
+        //         inserted += shopService.insertItemProduct(list.get(i));
+        //         continue;
+        //     }
+        //     updated += shopService.updateItemProductProductAndQuantity(list.get(i));
+        // }
+
+        updated = shopService.updateItemProductListByItem(list);
 
         List<Shop_Item_ProductDto> itemProductList = shopService.getItemProductByItem(item_id);
 

@@ -1,6 +1,8 @@
 package com.osd.web.app.service;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -102,8 +104,38 @@ public class ShopService {
         return shop_Item_ProductDao.updateProductAndQuantity(shop_Item_ProductDto);
     }
 
-    public int deleteItemProductByNotInId(List<Integer> list) {
-        return shop_Item_ProductDao.deleteByNotInId(list);
+    // public int deleteItemProductByNotInId(List<Integer> list) {
+    // return shop_Item_ProductDao.deleteByNotInId(list);
+    // }
+
+    public int updateItemProductListByItem(List<Shop_Item_ProductDto> list) {
+        Map<String, Integer> resultMap = new HashMap<>();
+        int status = 0;
+
+        int inserted = 0;
+        // int updated = 0;
+        // int deleted = 0;
+
+        String item_id = list.get(0).getItem_id();
+
+        for (int i = 0; i < list.size(); i++) {
+            if (item_id != list.get(i).getItem_id()) {
+                status = 101;
+                resultMap.put("status", status);
+            }
+        }
+        // List<Shop_Item_ProductDto> listFromDb =
+        // shop_Item_ProductDao.selectByItem(item_id);
+        shop_Item_ProductDao.deleteByItem(item_id);
+        for (int i = 0; i < list.size(); i++) {
+            Shop_Item_ProductDto shop_Item_ProductDto = list.get(i);
+            inserted += shop_Item_ProductDao.insert(shop_Item_ProductDto);
+        }
+
+        resultMap.put("status", status);
+        resultMap.put("inserted", inserted);
+
+        return inserted;
     }
 
     public int deleteItemProductById(Shop_Item_ProductDto shop_Item_ProductDto) {
@@ -119,7 +151,7 @@ public class ShopService {
         return result;
     }
 
-    public int deleteItemById (Shop_ItemDto shop_ItemDto){
+    public int deleteItemById(Shop_ItemDto shop_ItemDto) {
         return shop_ItemDao.deleteById(shop_ItemDto);
     }
 

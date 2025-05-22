@@ -56,3 +56,21 @@
                 /* width: 120px; */
             }
         </style>
+
+               <style>
+            .product {
+                display: table;
+                border-collapse: collapse;
+            }
+
+            .product.row {
+                display: table-row;
+            }
+
+            .product.row>div {
+                display: table-cell;
+                border: 1px solid #ccc;
+                padding: 4px;
+                /* width: 120px; */
+            }
+        </style>

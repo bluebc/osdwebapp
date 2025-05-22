@@ -29,11 +29,15 @@ public class Shop_Item_ProductDao {
         return session.update("Shop_Item_Product.updateProductAndQuantity", shop_Item_ProductDto);
     }
 
-    public int deleteByNotInId(List<Integer> list) {
-        return session.delete("Shop_Item_Product.deleteByNotInId", list);
-    }
+    // public int deleteByNotInId(List<Integer> list) {
+    //     return session.delete("Shop_Item_Product.deleteByNotInId", list);
+    // }
 
     public int deleteById(Shop_Item_ProductDto shop_Item_ProductDto) {
         return session.delete("Shop_Item_Product.deleteById", shop_Item_ProductDto);
+    }
+    
+    public int deleteByItem(String item_id) {
+        return session.delete("Shop_Item_Product.deleteByItem", item_id);
     }
 }
