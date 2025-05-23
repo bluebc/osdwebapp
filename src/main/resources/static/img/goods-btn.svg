@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="31.022" height="31.023" viewBox="0 0 31.022 31.023">
+  <g id="icon" transform="translate(1.5 1.5)">
+    <circle id="타원_60" data-name="타원 60" cx="4.67" cy="4.67" r="4.67" transform="translate(0 9.341)" fill="none" stroke="#1d1d1d" stroke-linecap="round" stroke-linejoin="round" stroke-width="3"/>
+    <circle id="타원_61" data-name="타원 61" cx="4.67" cy="4.67" r="4.67" transform="translate(18.682)" fill="none" stroke="#1d1d1d" stroke-linecap="round" stroke-linejoin="round" stroke-width="3"/>
+    <circle id="타원_62" data-name="타원 62" cx="4.67" cy="4.67" r="4.67" transform="translate(18.682 18.682)" fill="none" stroke="#1d1d1d" stroke-linecap="round" stroke-linejoin="round" stroke-width="3"/>
+    <line id="선_20" data-name="선 20" y1="5.18" x2="10.36" transform="translate(8.831 6.751)" fill="none" stroke="#1d1d1d" stroke-linecap="round" stroke-linejoin="round" stroke-width="3"/>
+    <line id="선_21" data-name="선 21" x2="10.36" y2="5.18" transform="translate(8.831 16.092)" fill="none" stroke="#1d1d1d" stroke-linecap="round" stroke-linejoin="round" stroke-width="3"/>
+  </g>
+</svg>

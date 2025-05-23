@@ -129,7 +129,7 @@ function setPagination(currentPage, maxPage, count, limit) {
         let leftPageBtn = document.createElement("div");
         leftPageBtn.className = "pagination";
 
-        leftPageBtn.textContent = "<<"
+        leftPageBtn.textContent = "◀"
         leftPageBtn.onclick = function () {
             paging(startPage - 1);
         }
@@ -155,7 +155,7 @@ function setPagination(currentPage, maxPage, count, limit) {
         let rightPageBtn = document.createElement("div");
         rightPageBtn.className = "pagination";
 
-        rightPageBtn.textContent = ">>"
+        rightPageBtn.textContent = "▶"
         rightPageBtn.onclick = function () {
             paging(endPage + 1);
         }
@@ -313,6 +313,7 @@ function setPostList(postList) {
         mThumbnailDiv.appendChild(mNumPhotosSpan);
     
         postLeftDiv.appendChild(mThumbnailDiv);
+
     
         // lv3 (titleDiv)
         let titleDiv = document.createElement("div");
@@ -410,6 +411,8 @@ function setPostList(postList) {
 
 
 }
+
+
 
 function goCommunityWrite(){
     window.location.href = "/community/write";

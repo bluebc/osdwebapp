@@ -231,6 +231,7 @@ header .top-banner {
   border-color: inherit;
 }
 .container .content .lnbContainer .contents-box #myInfo .formList table tbody tr th {
+  line-height: 1.2;
   border-right: 1px solid #e5e5e5;
   display: table-cell;
   vertical-align: top;
@@ -420,6 +421,7 @@ header .top-banner {
   border-color: inherit;
 }
 .container .content .lnbContainer .contents-box #myPassword .cont_area .login_sec .member_info .table_col table tbody tr th {
+  line-height: 1.2;
   padding-top: 22px;
   padding-left: 40px;
   background-color: #f8f8f8;
@@ -534,4 +536,36 @@ header .top-banner {
 .container .content .lnbContainer .contents-box #myPassword .cont_area .login_sec .btn_sec .btn_em {
   background-color: #535353;
   color: #fff;
+}
+
+/* 768px*/
+@media screen and (max-width: 768px) {
+  .container {
+    padding: 9rem 0 9rem;
+  }
+  .container .content {
+    flex-direction: column;
+  }
+  .container .content .snbContainer {
+    width: 100%;
+    padding: 0 2rem;
+  }
+  .container .content .snbContainer .snbMenu {
+    flex-direction: row;
+    border: none;
+    margin: 1.5rem 0;
+  }
+  .container .content .snbContainer .snbMenu .snb-btn {
+    border: 1px solid #f2f2f2;
+  }
+  .container .content .snbContainer .snbMenu .snb-btn input {
+    text-align: center;
+    padding: 0;
+  }
+  .container .content .snbContainer .snbMenu .snb-btn::after {
+    display: none;
+  }
+  .container .content .lnbContainer {
+    margin: 2rem 2rem;
+  }
 }/*# sourceMappingURL=userInfo.css.map */

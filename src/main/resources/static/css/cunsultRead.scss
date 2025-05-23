@@ -104,6 +104,7 @@ header{
                 
             }
             #comment {
+                word-break: break-word;
                 #displayComment{    
                     .commentLevel1,
                     .commentLevel2 {
@@ -322,6 +323,15 @@ header{
         padding: 18rem 0 8rem;
         .content{
             margin: 0 20px;
+            .post{
+                #modOrDel{
+                    top: 2rem;
+                    input[type="button"]{
+                        padding: 3px 7px;
+                        font-size: 12px;
+                    }
+                }
+            }
         }
     }
 }
@@ -345,6 +355,9 @@ header{
     .container {
         .content {
             .post {
+                .post-title{
+                    margin-bottom: 2rem;
+                }
                 .post-meta {
                     .thumb{
                         width: 35px;
@@ -352,9 +365,8 @@ header{
                     }
                 }
                 #modOrDel{
-                    input{
-                        padding: 3px 7px;
-                        font-size: 12px;
+                    top: 2.8rem;
+                    input[type="button"]{
                     }
                 }
             }

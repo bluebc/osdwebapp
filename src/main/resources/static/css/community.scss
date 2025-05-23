@@ -271,6 +271,9 @@ main{
 
 /* 768px*/
 @include itablet{
+    body{
+        overflow-x: hidden;
+    }
     header{
         .top-banner{
             display: block;
@@ -281,6 +284,7 @@ main{
             padding: 18rem 0 8rem;
             .content{
                 margin: 0 20px;
+                padding: 0 10px;
                 flex-direction: column;
                 .snbContainer{
                     width: 100%;
@@ -307,14 +311,19 @@ main{
                                     align-items: center;
                                     justify-content: center;
                                     .m-imgbox{
+                                        aspect-ratio: 1 / 1;
                                         width: 100%;
-                                        height: 600px;
+                                        position: relative;
+                                        //height: 600px;
                                         overflow: hidden;
                                         img{
                                             border-radius: 10px;
                                             width: 100%;
                                             height: 100%;
-                                            object-fit: cover;
+                                            object-fit: cover; 
+                                            position: absolute;
+                                            top: 0;
+                                            left: 0;
                                         }
                                     }
                                     .m-num-photos{
@@ -340,6 +349,11 @@ main{
                                             line-height: 0;
                                             margin: -1px;
                                             width: 1px;
+                                        }
+                                    }
+                                    &.no-image {
+                                        .m-num-photos {
+                                        display: none;
                                         }
                                     }
                                 }
@@ -375,3 +389,26 @@ main{
         }
     }
 } 
+
+
+// 576px
+@include mobile{
+    main {
+        .container{
+            .content {
+                .blog-container {
+                    .pagination{
+                        .pagenumber {
+                            margin: 0 7px;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+// 344px;
+@include iphone{
+
+}
