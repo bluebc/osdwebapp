@@ -57,6 +57,12 @@ header .top-banner {
   font-size: 16px;
   margin: 2rem 0;
 }
+.container .content .post .post-content p img {
+  width: 100% !important;
+  height: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
 .container .content .post #modOrDel {
   position: absolute;
   right: 0;
@@ -125,6 +131,9 @@ header .top-banner {
   justify-content: space-between;
   font-size: 14px;
   margin-bottom: 10px;
+}
+.container .content .comment-section #comment {
+  word-break: break-word;
 }
 .container .content .comment-section #comment #displayComment .commentLevel1,
 .container .content .comment-section #comment #displayComment .commentLevel2 {

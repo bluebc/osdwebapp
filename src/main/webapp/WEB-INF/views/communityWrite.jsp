@@ -8,15 +8,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>건강나눔 글쓰기</title>
 
-
-    
     <!--favicon--->
     <link href="img/favicon.ico" rel="icon">
 
     <!--js-->
     <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
     <script src="http://code.jquery.com/jquery-latest.min.js"></script>
-    <script src ="${pageContext.request.contextPath}/js/communityWrite.js"></script>
+
     <%-- <script src ="${pageContext.request.contextPath}/js/fileUpload.js"></script> --%>
 
 
@@ -143,6 +141,8 @@
     </script>
 
 </body>
+    
+    <script src ="${pageContext.request.contextPath}/js/communityWrite.js"></script>
 
     <%-- summernote --%>
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" rel="stylesheet">

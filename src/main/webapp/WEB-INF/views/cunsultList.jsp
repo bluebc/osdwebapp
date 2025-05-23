@@ -6,9 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>상담 & 게시판</title>
 
-    <!-- css -->
-    <link rel="stylesheet" href="css/reset.css">
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/cunsultList.css">
+
 
     <!--favicon--->
     <link href="img/favicon.ico" rel="icon">
@@ -59,4 +57,9 @@
     <jsp:include page="footer.jsp"></jsp:include>
 
 </body>
+
+    <!-- css -->
+    <link rel="stylesheet" href="css/reset.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/cunsultList.css">
+    
 </html>

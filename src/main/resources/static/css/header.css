@@ -154,6 +154,8 @@ header .hd_all .hd_m {
   }
   header .hd_all {
     padding: 0;
+    transition: background-color 0.3s ease;
+    background-color: transparent;
   }
   header .hd_all article {
     display: none;
@@ -246,6 +248,9 @@ header .hd_all .hd_m {
   }
   header .hd_all .hd_m .hd_info .hd_log_m .he_link_m a {
     color: rgb(0, 0, 0);
+  }
+  header .scrolled {
+    background-color: white;
   }
 }
 @media screen and (max-width: 425px) {

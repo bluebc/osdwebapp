@@ -91,6 +91,9 @@ header .top-banner {
   font-size: 14px;
   margin-bottom: 10px;
 }
+.container .content .comment-section #comment {
+  word-break: break-word;
+}
 .container .content .comment-section #comment #displayComment .commentLevel1,
 .container .content .comment-section #comment #displayComment .commentLevel2 {
   border-bottom: 1px solid #eee;
@@ -301,6 +304,13 @@ header .top-banner {
   .container .content {
     margin: 0 20px;
   }
+  .container .content .post #modOrDel {
+    top: 2rem;
+  }
+  .container .content .post #modOrDel input[type=button] {
+    padding: 3px 7px;
+    font-size: 12px;
+  }
 }
 @media screen and (min-width: 768px) and (max-width: 1024px) and (orientation: landscape) {
   header .top-banner {
@@ -314,13 +324,15 @@ header .top-banner {
   }
 }
 @media screen and (max-width: 425px) {
+  .container .content .post .post-title {
+    margin-bottom: 2rem;
+  }
   .container .content .post .post-meta .thumb {
     width: 35px;
     height: 35px;
   }
-  .container .content .post #modOrDel input {
-    padding: 3px 7px;
-    font-size: 12px;
+  .container .content .post #modOrDel {
+    top: 2.8rem;
   }
   .container .content .comment-section #comment #displayComment .commentLevel1,
   .container .content .comment-section #comment #displayComment .commentLevel2 {

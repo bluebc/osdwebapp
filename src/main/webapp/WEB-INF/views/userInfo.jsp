@@ -234,7 +234,7 @@
                                         <tbody>
                                             <tr class="input">
                                                 <th scope="row">
-                                                    <label for="bef_pwd">현재 비밀번호</label>
+                                                    <label for="bef_pwd">현재<br>비밀번호</label>
                                                 </th>
                                                 <td>
                                                     <div class="cont-box">
@@ -247,7 +247,7 @@
                                             </tr>
                                             <tr class="input">
                                                 <th scope="row">
-                                                    <label for="new_pwd">새 비밀번호</label>
+                                                    <label for="new_pwd">새<br>비밀번호</label>
                                                 </th>
                                                 <td>
                                                     <div class="cont-box">
@@ -263,7 +263,7 @@
                                             </tr>
                                             <tr class="input">
                                                 <th scope="row">
-                                                    <label for="new_pwd_check">새 비밀번호 확인</label>
+                                                    <label for="new_pwd_check">새<br>비밀번호<br>확인</label>
                                                 </th>
                                                 <td>
                                                     <div class="cont-box">
