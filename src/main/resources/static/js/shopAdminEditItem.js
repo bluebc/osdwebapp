@@ -941,6 +941,18 @@ async function getNewItem(rowIndex) {
 }
 
 async function insertItem(rowIndex, addedRowIndex) {
+
+    const item_id = document.getElementById(newFieldId + s1 + addedRowIndex + s2 + tdName + s1 + "id").value;
+    if (item_id == null || item_id == "") {
+        return;
+    }
+
+    const duplicated = checkItemId(item_id);
+
+    if (duplicated == 1) {
+        return;
+    }
+
     const item = await getNewItem(addedRowIndex);
 
     setNewItem(rowIndex, item);
@@ -958,7 +970,6 @@ async function insertItem(rowIndex, addedRowIndex) {
 
     return inserted;
 }
-
 
 async function insertItemProductList(item_product) {
     const response = await fetch("/shop/admin/insertItemProductList", {
@@ -1768,10 +1779,17 @@ function resetItem(rowIndex, idVal) {
     editTd.appendChild(editBtn);
 }
 
-async function afterModify() {
+function checkItemId(item_id) {
+    let result = 0;
+    itemList.forEach(item => {
+        if (item.item_id == item_id) {
+            alert("이미 등록된 품목 ID");
+            result = 1;
+        }
+    });
+    return result;
 }
-async function afterDelete() {
-}
+
 
 // ==================================================
 // ▲ Shop_Item ▲
